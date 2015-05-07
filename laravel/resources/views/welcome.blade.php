@@ -5,7 +5,7 @@
         <div class="row">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Portale UniWeb 4.0 {{$user->DESCRIZIONE.' ,'.$user->INDIRIZZO.' - '.$user->LOCALITA}}</div>
+                    <div class="panel-heading">Portale UniWeb 4.0 {{$user['DESCRIZIONE'].' ,'.$user['INDIRIZZO'].' - '.$user['LOCALITA']}}</div>
 
                     <div class="panel-body">
                         <div class="form-group">
@@ -13,7 +13,7 @@
                                 <button type="button" class="btn btn-primary">MOBILE</button>
                             </div>
                             <div class="col-md-3">
-                                <button type="button" class="btn btn-primary" onclick="location.href='{{url('/gsu')}}'">GSU</button>
+                                <button type="button" class="btn btn-primary" onclick="location.href='{{url('/gsu/index')}}'">GSU</button>
                             </div>
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-primary">UNIGATE</button>

@@ -1,6 +1,7 @@
 <?php namespace App\Modules\Gsu\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Gsu\Models\GsuModel;
 use DB;
 
 class GsuController extends Controller {
@@ -16,10 +17,19 @@ class GsuController extends Controller {
 	 */
 	public function index()
 	{
-        $res = DB::select("SELECT * FROM UTENTI");
-        print_r($res);
-        exit;
-		//return view("gsu::test");
+		return view("gsu::index");
 	}
+
+    public function main(){
+        $res = new GsuModel();
+        $res = $res->getAllRequest();
+        return view("gsu::admin.main", ['request' => $res]);
+    }
+
+    public function getall(){
+        $res = new GsuModel();
+        $res = $res->getAllRequest();
+        return $res;
+    }
 
 }

@@ -39,7 +39,6 @@ class LoginController extends Controller {
         if($res){
             return Redirect::to('/dashboard');
         }
-        echo "QUI";
         return redirect('/');
 	}
 

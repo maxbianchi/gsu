@@ -8,7 +8,6 @@ use DB;
 
 class Utenti extends Model {
 
-    protected $connection = 'mysql';
     protected $table = 'UTENTI';
     protected $primaryKey = 'IDUTENTE';
 
@@ -20,7 +19,7 @@ class Utenti extends Model {
         $res = $this::where($where)->get()->toArray();
 
         if (count($res) == 1) {
-            $utente  = DB::select("SELECT * FROM AGE10 A WHERE A.SOGGETTO ='".$res[0]['CODUTENTE']."'");
+            $utente  = DB::select("SELECT * FROM UNIWEB.dbo.AGE10 A WHERE A.SOGGETTO ='".$res[0]['CODUTENTE']."'");
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
@@ -31,6 +30,21 @@ class Utenti extends Model {
             return false;
         }
 
+    }
+
+    public function getAllUser(){
+        $utente  = DB::select("SELECT A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE");
+        $utenti = json_encode($utente, JSON_HEX_QUOT);
+        return $utenti;
+    }
+
+    public function getAllUserFromMago(){
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA  FROM UNIWEB.dbo.AGE10 A ORDER BY DESCRIZIONE");
+        return $utenti;
+    }
+
+    public function createUser($codutente, $username, $password, $livello) {
+        DB::insert('insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO) values (?, ?, ?, ?)', [$codutente, $username, $password, $livello]);
     }
 
 }

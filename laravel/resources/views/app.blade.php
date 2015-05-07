@@ -6,10 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/redmond/jquery-ui.css" type="text/css" />
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    @yield('css')
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,14 +30,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">UniWeb 4.0 </a>
+				<a class="navbar-brand" href="{{ url('/dashboard') }}">UniWeb 4.0 Dashboard</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         @if (Session::get('livello')  == 1)
-                            <li><a href="{{ url('/adduser') }}">Add User</a></li>
+                            <li><a href="{{ url('/users') }}">Gestione Utenti</a></li>
                         @endif
                         @if (Session::get('logged')  == 1)
                             <li><a href="{{ url('/logout') }}">Logout</a></li>
@@ -51,5 +53,7 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    @yield('script')
 </body>
 </html>

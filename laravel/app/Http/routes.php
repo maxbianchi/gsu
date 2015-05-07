@@ -18,3 +18,6 @@ Route::post('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/dashboard', 'DashboardController@index');
 
+Route::get('/users', 'UserController@index');
+Route::get('/adduser', 'UserController@adduser');
+Route::post('/createuser', 'UserController@createuser');
