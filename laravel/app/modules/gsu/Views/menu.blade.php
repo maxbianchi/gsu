@@ -1,10 +1,10 @@
     <ul id="main-menu" class="sm sm-blue">
-        <li><a href="/">Home</a></li>
+        <li><a href="{{url('/gsu/index')}}">Home</a></li>
         <li><a href="#">Access</a>
             <ul>
-                <li><a href="/dial-up.asp">Dial-Up</a></li>
-                <li><a href="/adsl.asp">Adsl</a></li>
-                <li><a href="/direct_access.asp">Direct</a></li>
+                <li><a href="{{url('/gsu/dial-up')}}">Dial-Up</a></li>
+                <li><a href="{{url('/gsu/adsl')}}">Adsl</a></li>
+                <li><a href="{{url('/gsu/direct_access')}}">Direct</a></li>
                 <li><a href="/linea_aggiuntiva.asp">Linea aggiuntiva</a></li>
                 <li><a href="/mpls.asp">MPLS Adsl</a></li>
                 <li><a href="/mpls_direct_access.asp">MPLS Direct</a></li>
@@ -121,15 +121,3 @@
         </li>
     </ul>
 
-@section('script')
-    <script type="text/javascript" src="{{ URL::asset('js/jquery.smartmenus.min.js') }}"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('#main-menu').smartmenus({
-                subMenusSubOffsetX: 1,
-                subMenusSubOffsetY: -8
-            });
-        });
-    </script>
-
-@endsection

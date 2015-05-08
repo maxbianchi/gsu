@@ -1,11 +1,15 @@
 @extends('app')
 
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/login_style.css') }}" />
+@endsection
+
 @section('content')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
+				<div class="panel-heading">Portale Uniweb 4.0</div>
 				<div class="panel-body">
 
                                 @if (count(Session::get('errors')) > 0)
@@ -15,28 +19,22 @@
                                 @endif
 
 
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+					<form method="POST" action="{{ url('/login') }}" class="form-2">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Username</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="username" required value="{{ old('username') }}">
-							</div>
-						</div>
+                        <h1><span class="sign-up">Log in</span> </h1>
+                        <p class="float">
+                            <label for="login"><i class="icon-user"></i>Username</label>
+                            <input type="text" name="username" placeholder="Username or email">
+                        </p>
+                        <p class="float">
+                            <label for="password"><i class="icon-lock"></i>Password</label>
+                            <input type="password" name="password" placeholder="Password" class="showpassword">
+                        </p>
+                        <p class="clearfix">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" required name="password">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
-							</div>
-						</div>
+                            <input type="submit" name="submit" value="Log in">
+                        </p>
 					</form>
 				</div>
 			</div>
@@ -44,3 +42,5 @@
 	</div>
 </div>
 @endsection
+
+

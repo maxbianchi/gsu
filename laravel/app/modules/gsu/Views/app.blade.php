@@ -6,10 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/redmond/jquery-ui.css" type="text/css" />
+    <link href="{{ asset('/css/jqueryui/1.8.14/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link href="{{ asset('/css/bootstrap/3.3.4/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap/3.3.4/css/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery.dataTables.css') }}" rel="stylesheet">
+
+
+
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ URL::asset('css/sm-core-css.css') }}" />
@@ -22,6 +27,10 @@
         }
         #main-menu ul {
             width:12em; /* fixed width only please - you can use the "subMenusMinWidth"/"subMenusMaxWidth" script options to override this if you like */
+        }
+
+        .dataTables_filter{
+            display:none;
         }
     </style>
     @yield('css')
@@ -43,7 +52,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ url('/dashboard') }}">UniWeb 4.0 Dashboard</a>
+                <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/Banner.png') }}" alt="Uniweb 4.0 Dashboard" title="Uniweb 4.0 Dashboard"></a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -65,9 +74,22 @@
 	@yield('content')
 
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="{{ URL::asset('js/jquery/2.1.3/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/twitter-bootstrap/3.3.1/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jqueryui/1.11.4/jquery-ui.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/jquery.smartmenus.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#main-menu').smartmenus({
+                subMenusSubOffsetX: 1,
+                subMenusSubOffsetY: -8
+            });
+        });
+    </script>
+
     @yield('script')
 </body>
 </html>

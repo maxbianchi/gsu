@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/gsu/search')}}" name="form_search">
+            <form method="GET" action="{{url('/gsu/dial-up/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" name="cliente" placeholder="CLIENTE"></div>
@@ -36,17 +36,18 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">DESCRIZIONE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('descrizione')}}" id="descrizione" name="descrizione" placeholder="DESCRIZIONE"></div>
-                    <div class="col-md-1">DESCRIZIONE 2</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('descrizione2')}}" id="descrizione2" name="descrizione2" placeholder="DESCRIZIONE 2"></div>
-                    <div class="col-md-1">DISMESSI</div>
-                    <div class="col-md-2"><input type="checkbox" <?php if(!empty(Input::get('dismessi'))) echo "checked" ?> id="dismessi" name="dismessi"></div>
+                    <div class="col-md-1">CONNESSIONE</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('connessione')}}" id="connessione" name="connessione" placeholder="CONNESSIONE"></div>
+                    <div class="col-md-1">TIPO CONNESSIONE</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('tipo_connessione')}}" id="tipo_connessione" name="tipo_connessione" placeholder="TIPO CONNESSIONE"></div>
+                    <div class="col-md-1">IP</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('ip')}}" id="ip" name="ip" placeholder="IP"></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
                     <div class="col-md-offset-7"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
+
                 </div>
             </form>
         </div>
@@ -61,17 +62,17 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>CANONE</th>
-            <th>CLIENTE</th>
-            <th>CLIENTE FINALE</th>
-            <th>UBICAZIONE</th>
-            <th>DESCRIZIONE</th>
-            <th>DESCRIZIONE2</th>
-            <th>QTAAFO70</th>
-            <th>QTAGSU</th>
+            <th class="col-sm-1">AZIONI</th>
+            <th class="col-sm-1">MANTUTENZIONE</th>
+            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
+            <th class="col-sm-1">CANONE</th>
+            <th class="col-sm-2">CLIENTE</th>
+            <th class="col-sm-2">CLIENTE FINALE</th>
+            <th class="col-sm-2">UBICAZIONE</th>
+            <th class="col-sm-2">CONNESSIONE</th>
+            <th class="col-sm-2">TIPO CONNESSIONE</th>
+            <th class="col-sm-1">IP</th>
+            <th class="col-sm-1">NOTE</th>
         </tr>
         </thead>
 
@@ -79,38 +80,39 @@
         @foreach($request as $req)
             <tr>
                 <td>
-                    <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
-                    <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
+
                 </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/search?manutenzione=".$req['MANUTENZIONE']}}">{{$req['MANUTENZIONE']}}</a></td>
+                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDIALUP']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td>{{$req['SOGGETTO']}}</td>
                 <td>{{$req['CLIENTE']}}</td>
                 <td>{{$req['DESTINATARIOABITUALE']}}</td>
-                <td>{{$req['DESCRCANONE']}}</td>
-                <td>{{$req['DESCRCANONE2']}}</td>
-                <td>{{$req['QTAAOF70']}}</td>
-                <td>{{$req['QTAGSU']}}</td>
+                <td>{{$req['CONNESSIONE']}}</td>
+                <td>{{$req['TIPO_CONNESSIONE']}}</td>
+                <td>{{$req['IP']}}</td>
+                <td>{{$req['NOTE']}}</td>
             </tr>
         @endforeach
         </tbody>
 
         <tfoot>
         <tr>
-            <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>CANONE</th>
-            <th>CLIENTE</th>
-            <th>CLIENTE FINALE</th>
-            <th>UBICAZIONE</th>
-            <th>DESCRIZIONE</th>
-            <th>DESCRIZIONE2</th>
-            <th>QTAAFO70</th>
-            <th>QTAGSU</th>
+            <th class="col-sm-1">AZIONI</th>
+            <th class="col-sm-1">MANTUTENZIONE</th>
+            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
+            <th class="col-sm-1">CANONE</th>
+            <th class="col-sm-2">CLIENTE</th>
+            <th class="col-sm-2">CLIENTE FINALE</th>
+            <th class="col-sm-2">UBICAZIONE</th>
+            <th class="col-sm-2">CONNESSIONE</th>
+            <th class="col-sm-2">TIPO CONNESSIONE</th>
+            <th class="col-sm-1">IP</th>
+            <th class="col-sm-1">NOTE</th>
         </tr>
         </tfoot>
+
+
     </table>
 
 

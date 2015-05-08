@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Modules\Gsu\Models\GsuModel;
+use App\Modules\Gsu\Utility;
 use DB;
 
 class GsuController extends Controller {
@@ -23,13 +24,17 @@ class GsuController extends Controller {
     public function main(){
         $res = new GsuModel();
         $res = $res->getAllRequest();
-        return view("gsu::admin.main", ['request' => $res]);
+        $utility = new Utility();
+        $class = $utility->getClassColorStato($res);
+        return view("gsu::admin.main", ['request' => $res, 'class' => $class]);
     }
 
-    public function getall(){
+    public function search(){
         $res = new GsuModel();
-        $res = $res->getAllRequest();
-        return $res;
+        $res = $res->getFilteredRequest();
+        $utility = new Utility();
+        $class = $utility->getClassColorStato($res);
+        return view("gsu::admin.main", ['request' => $res, 'class' => $class]);
     }
 
 }
