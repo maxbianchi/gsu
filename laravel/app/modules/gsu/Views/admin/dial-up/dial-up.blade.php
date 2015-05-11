@@ -82,8 +82,8 @@
                 <td>
 
                     <a class="btn btn-small edit" href="{{'/gsu/dial-up/edit'}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn btn-small edit" href="javascript:void();" data-toggle="modal" data-target="#delete" title="DELETE"><i class="glyphicon glyphicon-trash"></i> </a>
-
+                    <a class="btn btn-small edit delete" href="javascript:void();" data-toggle="modal" title="DELETE" delete-id="{{$req['IDDIALUP'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <input type="hidden" value="{{$req['IDDIALUP'] or ""}}" id="id" name="id">
 
                 </td>
                 <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDIALUP']}}">{{$req['MANUTENZIONE']}}</a></td>
@@ -142,6 +142,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            var id_elimina;
+
             $('#main').dataTable({
                 "iDisplayLength": 30,
                 "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
@@ -159,8 +161,16 @@
 
             $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 
+
+            $(".delete").click(function(){
+                id_elimina = $(this).attr('delete-id');
+                $('#delete').modal('show');
+            });
+
+
+
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/dial-up/delete')}}", { id: '<?php echo empty($req['IDDIALUP']) ? "" : $req['IDDIALUP'];?>' } )
+                $.get( "{{url('/gsu/dial-up/delete')}}", { id: id_elimina } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");
