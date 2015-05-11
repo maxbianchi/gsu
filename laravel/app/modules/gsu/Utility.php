@@ -19,15 +19,19 @@ class Utility{
             if (($QTAAOF70 > $QTAGSU) && ($QTAGSU == 0)) {
                 $res["GSU"]['color'] = "red";
                 $res["GSU"]['text'] = "D";
+                $res["GSU"]['action'] = "edit";
             } else if (($QTAAOF70 > $QTAGSU) && ($QTAGSU != 0)) {
                 $res["GSU"]['color'] = "blue";
                 $res["GSU"]['text'] = "A";
+                $res["GSU"]['action'] = "show";
             } else if ($QTAAOF70 == $QTAGSU) {
                 $res["GSU"]['color'] = "green";
                 $res["GSU"]['text'] = "A";
+                $res["GSU"]['action'] = "show";
             } else if (($QTAAOF70 < $QTAGSU)) {
                 $res["GSU"]['color'] = "yellow";
                 $res["GSU"]['text'] = "A";
+                $res["GSU"]['action'] = "show";
             }
             $class[$row['MANUTENZIONE']] = $res;
 
@@ -40,7 +44,7 @@ class Utility{
             }
 
             //Imposto link dettaglio
-            $link[$row['CANONE']] = $canone->getRouteByCanone($row['CANONE']);
+            $link[$row['CANONE']] = $canone->getRouteByCanone($row['CANONE'])."/".$res["GSU"]['action'];
         }
 
         $class['link'] = $link;

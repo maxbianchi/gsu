@@ -96,5 +96,21 @@ EOF;
 
     }
 
+    public function getNameAnagrafica(){
+        $res = DB::select("SELECT DESCRIZIONE FROM UNIWEB.dbo.AGE10");
+
+        foreach($res as $key => $value)
+            foreach($value as $key2 => $value2)
+                $result[] = $value2;
+        return $result;
+    }
+
+
+    public function getAllAnagrafica(){
+        $q = Input::get('search_anagrafica');
+        $res = DB::select("SELECT * FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
+        return $res;
+    }
+
 }
 

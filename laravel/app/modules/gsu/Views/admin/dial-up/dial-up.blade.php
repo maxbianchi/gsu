@@ -18,11 +18,11 @@
         <div class="border">
             <form method="GET" action="{{url('/gsu/dial-up/search')}}" name="form_search">
                 <div class="row">
-                    <div class="col-md-1">CLIENTE</div>
+                    <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" name="cliente" placeholder="CLIENTE"></div>
-                    <div class="col-md-1">CLIENTE FINALE</div>
+                    <div class="col-md-1 cliente">CLIENTE FINALE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" name="cliente_finale" placeholder="CLIENTE FINALE"></div>
-                    <div class="col-md-1">UBICAZIONE IMPIANTO</div>
+                    <div class="col-md-2 destinatarioabituale">UBICAZIONE IMPIANTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('ubicazione')}}" id="ubicazione" name="ubicazione" placeholder="UBICAZIONE IMPIANTO"></div>
                     <div class="col-md-3"></div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('canone')}}" id="canone" name="canone" placeholder="CANONE"></div>
                     <div class="col-md-1">MANUTENZIONE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('manutenzione')}}" id="manutenzione" name="manutenzione" placeholder="MANUTENZIONE"></div>
-                    <div class="col-md-1">DATA INIZIO CONTRATTO</div>
+                    <div class="col-md-2">DATA INIZIO CONTRATTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('data_contratto')}}" id="data_contratto" name="data_contratto" class="datepicker" placeholder="DATA INIZIO CONTRATTO"></div>
                     <div class="col-md-3"></div>
                 </div>
@@ -40,13 +40,13 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('connessione')}}" id="connessione" name="connessione" placeholder="CONNESSIONE"></div>
                     <div class="col-md-1">TIPO CONNESSIONE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('tipo_connessione')}}" id="tipo_connessione" name="tipo_connessione" placeholder="TIPO CONNESSIONE"></div>
-                    <div class="col-md-1">IP</div>
+                    <div class="col-md-2">IP</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('ip')}}" id="ip" name="ip" placeholder="IP"></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
-                    <div class="col-md-offset-7"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
+                    <div class="col-md-offset-8"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
 
                 </div>
             </form>
@@ -80,6 +80,10 @@
         @foreach($request as $req)
             <tr>
                 <td>
+
+                    <a class="btn btn-small edit" href="{{'/gsu/dial-up/edit'}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="btn btn-small edit" href="javascript:void();" data-toggle="modal" data-target="#delete" title="DELETE"><i class="glyphicon glyphicon-trash"></i> </a>
+
 
                 </td>
                 <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDIALUP']}}">{{$req['MANUTENZIONE']}}</a></td>
@@ -115,6 +119,20 @@
 
     </table>
 
+    <div id="delete" class="modal fade" style="z-index:99999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminare il record selezionato ?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-primary" id="btn_elimina">ELIMINA</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -140,6 +158,14 @@
             });
 
             $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
+            $("#btn_elimina").click(function(){
+                $.get( "{{url('/gsu/dial-up/delete')}}", { id: '<?php echo empty($req['IDDIALUP']) ? "" : $req['IDDIALUP'];?>' } )
+                        .done(function( data ) {
+                            $("#delete").modal('toggle');
+                            $("#cerca").trigger("click");
+                        });
+            });
 
         });
     </script>

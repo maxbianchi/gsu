@@ -4,11 +4,13 @@ use App\Http\Controllers\Controller;
 use App\Modules\Gsu\Models\GsuModel;
 use App\Modules\Gsu\Utility;
 use DB;
+use Session;
 
-class GsuController extends Controller {
+class GsuController extends MainController {
 
 	public function __construct()
 	{
+
 	}
 
 	/**
@@ -18,7 +20,9 @@ class GsuController extends Controller {
 	 */
 	public function index()
 	{
-		return view("gsu::index");
+        $model = new GsuModel();
+        $anagrafica = $model->getNameAnagrafica();
+		return view("gsu::index", ['anagrafica' => json_encode($anagrafica)]);
 	}
 
     public function main(){
@@ -36,5 +40,12 @@ class GsuController extends Controller {
         $class = $utility->getClassColorStato($res);
         return view("gsu::admin.main", ['request' => $res, 'class' => $class]);
     }
+
+    public function anagrafica(){
+        $model = new GsuModel();
+        $anagrafica = $model->getAllAnagrafica();
+        return view("gsu::admin.anagrafica", ['anagrafica' => $anagrafica]);
+    }
+
 
 }

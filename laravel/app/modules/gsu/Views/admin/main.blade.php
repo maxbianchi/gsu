@@ -10,6 +10,10 @@
         .btn{
             min-width: 80px;
         }
+
+        .dataTables_filter{
+            display:none !important;
+        }
     </style>
 @endsection
 
@@ -18,11 +22,11 @@
         <div class="border">
             <form method="GET" action="{{url('/gsu/search')}}" name="form_search">
                 <div class="row">
-                    <div class="col-md-1">CLIENTE</div>
+                    <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" name="cliente" placeholder="CLIENTE"></div>
-                    <div class="col-md-1">CLIENTE FINALE</div>
+                    <div class="col-md-1 cliente">CLIENTE FINALE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" name="cliente_finale" placeholder="CLIENTE FINALE"></div>
-                    <div class="col-md-1">UBICAZIONE IMPIANTO</div>
+                    <div class="col-md-2 destinatarioabituale">UBICAZIONE IMPIANTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('ubicazione')}}" id="ubicazione" name="ubicazione" placeholder="UBICAZIONE IMPIANTO"></div>
                     <div class="col-md-3"></div>
                 </div>
@@ -31,7 +35,7 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('canone')}}" id="canone" name="canone" placeholder="CANONE"></div>
                     <div class="col-md-1">MANUTENZIONE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('manutenzione')}}" id="manutenzione" name="manutenzione" placeholder="MANUTENZIONE"></div>
-                    <div class="col-md-1">DATA INIZIO CONTRATTO</div>
+                    <div class="col-md-2">DATA INIZIO CONTRATTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('data_contratto')}}" id="data_contratto" name="data_contratto" class="datepicker" placeholder="DATA INIZIO CONTRATTO"></div>
                     <div class="col-md-3"></div>
                 </div>
@@ -40,13 +44,13 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('descrizione')}}" id="descrizione" name="descrizione" placeholder="DESCRIZIONE"></div>
                     <div class="col-md-1">DESCRIZIONE 2</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('descrizione2')}}" id="descrizione2" name="descrizione2" placeholder="DESCRIZIONE 2"></div>
-                    <div class="col-md-1">DISMESSI</div>
+                    <div class="col-md-2">DISMESSI</div>
                     <div class="col-md-2"><input type="checkbox" <?php if(!empty(Input::get('dismessi'))) echo "checked" ?> id="dismessi" name="dismessi"></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
-                    <div class="col-md-offset-7"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
+                    <div class="col-md-offset-8"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
                 </div>
             </form>
         </div>
@@ -82,7 +86,7 @@
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/search?manutenzione=".$req['MANUTENZIONE']}}">{{$req['MANUTENZIONE']}}</a></td>
+                <td><a href="{{url($class['link'][$req['CANONE']])."?manutenzione=".$req['MANUTENZIONE']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td>{{$req['SOGGETTO']}}</td>
@@ -113,7 +117,6 @@
         </tfoot>
     </table>
 
-
 @endsection
 
 
@@ -138,6 +141,7 @@
             });
 
             $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
 
         });
     </script>
