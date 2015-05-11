@@ -23,15 +23,15 @@ class Utility{
             } else if (($QTAAOF70 > $QTAGSU) && ($QTAGSU != 0)) {
                 $res["GSU"]['color'] = "blue";
                 $res["GSU"]['text'] = "A";
-                $res["GSU"]['action'] = "show";
+                $res["GSU"]['action'] = "search";
             } else if ($QTAAOF70 == $QTAGSU) {
                 $res["GSU"]['color'] = "green";
                 $res["GSU"]['text'] = "A";
-                $res["GSU"]['action'] = "show";
+                $res["GSU"]['action'] = "search";
             } else if (($QTAAOF70 < $QTAGSU)) {
                 $res["GSU"]['color'] = "yellow";
                 $res["GSU"]['text'] = "A";
-                $res["GSU"]['action'] = "show";
+                $res["GSU"]['action'] = "search";
             }
             $class[$row['MANUTENZIONE']] = $res;
 
