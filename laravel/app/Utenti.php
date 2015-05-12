@@ -20,6 +20,8 @@ class Utenti extends Model {
 
         if (count($res) == 1) {
             $utente  = DB::select("SELECT * FROM UNIWEB.dbo.AGE10 A WHERE A.SOGGETTO ='".$res[0]['CODUTENTE']."'");
+            $utente[0]['username'] = $usr;
+            $utente[0]['password'] = $pwd;
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
