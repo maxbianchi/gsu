@@ -96,6 +96,25 @@ class HtmlBuilder {
 
 		return '<img src="'.$this->url->asset($url, $secure).'"'.$this->attributes($attributes).'>';
 	}
+	
+	/**
+	 * Generate a link to a Favicon file.
+	 *
+	 * @param  string  $url
+	 * @param  array   $attributes
+	 * @param  bool    $secure
+	 * @return string
+	 */
+	public function favicon($url, $attributes = array(), $secure = null)
+	{
+		$defaults = array('rel' => 'shortcut icon', 'type' => 'image/x-icon');
+
+		$attributes = $attributes + $defaults;
+
+		$attributes['href'] = $this->url->asset($url, $secure);
+
+		return '<link'.$this->attributes($attributes).'>'.PHP_EOL;
+	}
 
 	/**
 	 * Generate a HTML link.
@@ -339,9 +358,6 @@ class HtmlBuilder {
 	{
 		$html = array();
 
-		// For numeric keys we will assume that the key and the value are the same
-		// as this will convert HTML attributes such as "required" to a correct
-		// form like required="required" instead of using incorrect numerics.
 		foreach ((array) $attributes as $key => $value)
 		{
 			$element = $this->attributeElement($key, $value);
@@ -361,6 +377,9 @@ class HtmlBuilder {
 	 */
 	protected function attributeElement($key, $value)
 	{
+		// For numeric keys we will assume that the key and the value are the same
+		// as this will convert HTML attributes such as "required" to a correct
+		// form like required="required" instead of using incorrect numerics.
 		if (is_numeric($key)) $key = $value;
 
 		if ( ! is_null($value)) return $key.'="'.e($value).'"';

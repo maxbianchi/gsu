@@ -575,7 +575,7 @@ class FormBuilder {
 	 *
 	 * @param  string  $value
 	 * @param  string  $selected
-	 * @return string
+	 * @return string|null
 	 */
 	protected function getSelectedValue($value, $selected)
 	{
@@ -908,7 +908,7 @@ class FormBuilder {
 	 *
 	 * @param  string  $name
 	 * @param  string  $value
-	 * @return string
+	 * @return mixed
 	 */
 	public function getValueAttribute($name, $value = null)
 	{
@@ -931,25 +931,18 @@ class FormBuilder {
 	 * Get the model value that should be assigned to the field.
 	 *
 	 * @param  string  $name
-	 * @return string
+	 * @return mixed
 	 */
 	protected function getModelValueAttribute($name)
 	{
-		if (is_object($this->model))
-		{
-			return object_get($this->model, $this->transformKey($name));
-		}
-		elseif (is_array($this->model))
-		{
-			return array_get($this->model, $this->transformKey($name));
-		}
+		return data_get($this->model, $this->transformKey($name));
 	}
 
 	/**
 	 * Get a value from the session's old input.
 	 *
 	 * @param  string  $name
-	 * @return string
+	 * @return mixed
 	 */
 	public function old($name)
 	{
