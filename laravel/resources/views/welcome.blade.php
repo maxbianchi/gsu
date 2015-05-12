@@ -16,7 +16,7 @@
         <div class="row">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Portale UniWeb 4.0 <span class="pull-right">{{$user['DESCRIZIONE'].' ,'.$user['INDIRIZZO'].' - '.$user['LOCALITA']}}</span></div>
+                    <div class="panel-heading">Portale UniWeb 4.0 <span class="pull-right"></span></div>
 
                     <div class="panel-body">
                         <div class="form-group">
