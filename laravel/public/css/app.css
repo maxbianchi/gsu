@@ -6315,3 +6315,17 @@ table.tbl_clienti td{
     min-width: 40px !important;
     max-width: 40px;
 }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #F5F5F5;
+    border-color: #E7E7E7;
+    text-align: center;
+    color: #646464;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}

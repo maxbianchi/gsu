@@ -81,7 +81,8 @@
 
             </form>
         </table>
-    </fieldset>
+        
+    <hr>
 
     <div id="msg" class="modal fade" style="z-index:99999;">
         <div class="modal-dialog">

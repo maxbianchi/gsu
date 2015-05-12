@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{{ URL::asset('images/logo.png') }}">
+            </div>
+            <div class="col-md-offset-6 col-md-3">
+                <img src="{{ URL::asset('images/logo_unigate.png') }}">
+            </div>
+        </div>
+
+
         <div class="row">
 
                 <div class="panel panel-default">
@@ -24,4 +35,5 @@
 
         </div>
     </div>
+
 @endsection

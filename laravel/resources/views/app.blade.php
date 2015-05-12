@@ -31,6 +31,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/Banner.png') }}" alt="Uniweb 4.0 Dashboard" title="Uniweb 4.0 Dashboard"></a>
+                <div style="margin-left: 40%;position: absolute;top: 15px;">{{Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']}}</div>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -40,7 +41,7 @@
                             <li><a href="{{ url('/users') }}">Gestione Utenti</a></li>
                         @endif
                         @if (Session::get('logged')  == 1)
-                            <li><a href="{{ url('/logout') }}">Logout</a></li>
+                            <li><a href="{{ url('/logout') }}" title="Logout">Logout</a></li>
                         @endif
                     </ul>
 				</ul>
@@ -50,10 +51,23 @@
 
 	@yield('content')
 
+    <footer class="footer">
+        <strong>Uniweb Srl</strong>
+        - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
+        <br>
+        Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
+        <a href="mailto:info@uniweb.it">info@uniweb.it</a>
+        <br>
+        Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922
+    </footer>
+
+
+
 	<!-- Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/jquery/2.1.3/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('/bootstrap/3.3.4/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jqueryui/1.11.4/jquery-ui.min.js') }}"></script>
+
     @yield('script')
 </body>
 </html>
