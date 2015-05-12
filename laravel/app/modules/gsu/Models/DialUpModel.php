@@ -156,7 +156,7 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = $qta where CODICE_R = '$manutenzione'");
+                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
 
@@ -195,8 +195,16 @@ EOF;
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
+    }
 
-
+    public function checkAddNew(){
+        $model = new GsuModel();
+        $res = $model->getFilteredRequest();
+        Input::merge(array('add' => '0'));
+        if(count($res) > 0) {
+            if ($res[0]['QTAAOF70'] > $res[0]['QTAGSU'])
+                Input::merge(array('add' => '1'));
+        }
     }
 
 }

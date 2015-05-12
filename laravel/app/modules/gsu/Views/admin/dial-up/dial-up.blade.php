@@ -80,11 +80,8 @@
         @foreach($request as $req)
             <tr>
                 <td>
-
-                    <a class="btn btn-small edit" href="{{'/gsu/dial-up/edit'}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn btn-small edit delete" href="javascript:void();" data-toggle="modal" title="DELETE" delete-id="{{$req['IDDIALUP'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
-                    <input type="hidden" value="{{$req['IDDIALUP'] or ""}}" id="id" name="id">
-
+                    <a class="btn btn-small edit" href="{{url('/gsu/dial-up/edit')."?id=".$req['IDDIALUP']}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="btn btn-small edit delete" href="javascript:void();" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDDIALUP'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDIALUP']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
@@ -100,23 +97,13 @@
         @endforeach
         </tbody>
 
-        <tfoot>
-        <tr>
-            <th class="col-sm-1">AZIONI</th>
-            <th class="col-sm-1">MANTUTENZIONE</th>
-            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
-            <th class="col-sm-1">CANONE</th>
-            <th class="col-sm-2">CLIENTE</th>
-            <th class="col-sm-2">CLIENTE FINALE</th>
-            <th class="col-sm-2">UBICAZIONE</th>
-            <th class="col-sm-2">CONNESSIONE</th>
-            <th class="col-sm-2">TIPO CONNESSIONE</th>
-            <th class="col-sm-1">IP</th>
-            <th class="col-sm-1">NOTE</th>
-        </tr>
-        </tfoot>
-
-
+        @if(Input::get('add') == 1)
+            <tfoot>
+            <tr>
+                <th colspan="11"><a class="btn btn-small edit" href="{{url('/gsu/dial-up/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+            </tr>
+            </tfoot>
+        @endif
     </table>
 
     <div id="delete" class="modal fade" style="z-index:99999;">
@@ -143,6 +130,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var id_elimina;
+            var manutenzione;
 
             $('#main').dataTable({
                 "iDisplayLength": 30,
@@ -164,13 +152,14 @@
 
             $(".delete").click(function(){
                 id_elimina = $(this).attr('delete-id');
+                manutenzione = $(this).attr('manutenzione');
                 $('#delete').modal('show');
             });
 
 
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/dial-up/delete')}}", { id: id_elimina } )
+                $.get( "{{url('/gsu/dial-up/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");
