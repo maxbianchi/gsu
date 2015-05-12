@@ -101,7 +101,7 @@ EOF;
 
         foreach($res as $key => $value)
             foreach($value as $key2 => $value2)
-                $result[] = $value2;
+                $result[] = utf8_encode($value2);
         return $result;
     }
 
