@@ -14,6 +14,7 @@ namespace Carbon;
 use Closure;
 use DateTime;
 use DateTimeZone;
+use DateInterval;
 use DatePeriod;
 use InvalidArgumentException;
 use Symfony\Component\Translation\Translator;

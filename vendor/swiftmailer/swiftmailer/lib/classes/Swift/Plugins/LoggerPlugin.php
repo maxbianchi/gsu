@@ -131,12 +131,11 @@ class Swift_Plugins_LoggerPlugin implements Swift_Events_CommandListener, Swift_
     {
         $e = $evt->getException();
         $message = $e->getMessage();
-        $code = $e->getCode();
-        $this->_logger->add(sprintf("!! %s (code: %s)", $message, $code));
+        $this->_logger->add(sprintf("!! %s", $message));
         $message .= PHP_EOL;
         $message .= 'Log data:'.PHP_EOL;
         $message .= $this->_logger->dump();
         $evt->cancelBubble();
-        throw new Swift_TransportException($message, $code, $e->getPrevious());
+        throw new Swift_TransportException($message);
     }
 }

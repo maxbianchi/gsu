@@ -1,0 +1,12 @@
+<?php namespace $MODULE_NAMESPACE$\$MODULENAME$\Http\Controllers;
+
+use Pingpong\Modules\Routing\Controller;
+
+class $CONTROLLERNAME$ extends Controller {
+	
+	public function index()
+	{
+		return view('$NAMESPACE$::index');
+	}
+	
+}

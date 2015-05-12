@@ -287,7 +287,7 @@ class HasManyThrough extends Relation {
 	 * Set the select clause for the relation query.
 	 *
 	 * @param  array  $columns
-	 * @return array
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
 	protected function getSelectColumns(array $columns = ['*'])
 	{
