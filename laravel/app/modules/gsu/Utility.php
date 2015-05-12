@@ -9,6 +9,7 @@ class Utility{
         $link = [];
         foreach($request as $key => $row) {
             $res = [];
+            $res["GSU"]['queryString'] = "";
             $STATO = $row['STATO'];
             $QTAAOF70 = $row['QTAAOF70'];
             $QTAGSU = $row['QTAGSU'];
@@ -24,6 +25,7 @@ class Utility{
                 $res["GSU"]['color'] = "blue";
                 $res["GSU"]['text'] = "A";
                 $res["GSU"]['action'] = "search";
+                $res["GSU"]['queryString'] = "add=1";
             } else if ($QTAAOF70 == $QTAGSU) {
                 $res["GSU"]['color'] = "green";
                 $res["GSU"]['text'] = "A";
@@ -44,7 +46,7 @@ class Utility{
             }
 
             //Imposto link dettaglio
-            $link[$row['CANONE']] = $canone->getRouteByCanone($row['CANONE'])."/".$res["GSU"]['action'];
+            $link[$row['MANUTENZIONE']] = $canone->getRouteByCanone($row['CANONE'])."/".$res["GSU"]['action'];
         }
 
         $class['link'] = $link;

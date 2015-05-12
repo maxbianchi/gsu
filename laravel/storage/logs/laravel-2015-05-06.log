@@ -1,0 +1,82 @@
+[2015-05-06 07:46:43] local.ERROR: exception 'InvalidArgumentException' with message 'Command "dump-autoload" is not defined.' in /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php:549
+Stack trace:
+#0 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(192): Symfony\Component\Console\Application->find('dump-autoload')
+#1 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/gsu/laravel/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2015-05-06 07:53:51] local.ERROR: exception 'Pingpong\Modules\Exceptions\ModuleNotFoundException' with message 'Module [Gsu] does not exist!' in /var/www/gsu/laravel/vendor/pingpong/modules/Repository.php:362
+Stack trace:
+#0 /var/www/gsu/laravel/vendor/pingpong/modules/Traits/ModuleCommandTrait.php(14): Pingpong\Modules\Repository->findOrFail('Gsu')
+#1 /var/www/gsu/laravel/vendor/pingpong/modules/Commands/UpdateCommand.php(32): Pingpong\Modules\Commands\UpdateCommand->getModuleName()
+#2 [internal function]: Pingpong\Modules\Commands\UpdateCommand->fire()
+#3 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(523): call_user_func_array(Array, Array)
+#4 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#5 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(257): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Pingpong\Modules\Commands\UpdateCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 /var/www/gsu/laravel/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 {main}  
+[2015-05-06 07:55:29] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Modules\Gsu\Providers\GsuServiceProvider' not found' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:541
+Stack trace:
+#0 {main}  
+[2015-05-06 07:57:35] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Modules\Gsu\Providers\GsuServiceProvider' not found' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:541
+Stack trace:
+#0 {main}  
+[2015-05-06 07:57:38] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Modules\Gsu\Providers\GsuServiceProvider' not found' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:541
+Stack trace:
+#0 {main}  
+[2015-05-06 07:58:40] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Modules\Gsu\Providers\GsuServiceProvider' not found' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:541
+Stack trace:
+#0 {main}  
+[2015-05-06 08:06:10] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Modules\Gsu\Providers\GsuServiceProvider' not found' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:541
+Stack trace:
+#0 {main}  
+[2015-05-06 08:14:03] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Pingpong\Modules\ModulesServiceProvider' not found' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:150
+Stack trace:
+#0 {main}  
+[2015-05-06 08:49:41] local.ERROR: exception 'ReflectionException' with message 'Class App\Modules\Gsu\Controllers\GsuController does not exist' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php:776
+Stack trace:
+#0 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(776): ReflectionClass->__construct('App\\Modules\\Gsu...')
+#1 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(656): Illuminate\Container\Container->build('App\\Modules\\Gsu...', Array)
+#2 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(644): Illuminate\Container\Container->make('App\\Modules\\Gsu...', Array)
+#3 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(161): Illuminate\Foundation\Application->make('App\\Modules\\Gsu...')
+#4 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(142): Illuminate\Foundation\Console\RouteListCommand->getControllerMiddleware('App\\Modules\\Gsu...')
+#5 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(109): Illuminate\Foundation\Console\RouteListCommand->getMiddleware(Object(Illuminate\Routing\Route))
+#6 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(89): Illuminate\Foundation\Console\RouteListCommand->getRouteInformation(Object(Illuminate\Routing\Route))
+#7 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(75): Illuminate\Foundation\Console\RouteListCommand->getRoutes()
+#8 [internal function]: Illuminate\Foundation\Console\RouteListCommand->fire()
+#9 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(523): call_user_func_array(Array, Array)
+#10 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#11 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(257): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteListCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /var/www/gsu/laravel/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 {main}  
+[2015-05-06 08:51:11] local.ERROR: exception 'ReflectionException' with message 'Class App\Modules\Gsu\Controllers\GsuController does not exist' in /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php:776
+Stack trace:
+#0 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(776): ReflectionClass->__construct('App\\Modules\\Gsu...')
+#1 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(656): Illuminate\Container\Container->build('App\\Modules\\Gsu...', Array)
+#2 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(644): Illuminate\Container\Container->make('App\\Modules\\Gsu...', Array)
+#3 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(161): Illuminate\Foundation\Application->make('App\\Modules\\Gsu...')
+#4 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(142): Illuminate\Foundation\Console\RouteListCommand->getControllerMiddleware('App\\Modules\\Gsu...')
+#5 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(109): Illuminate\Foundation\Console\RouteListCommand->getMiddleware(Object(Illuminate\Routing\Route))
+#6 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(89): Illuminate\Foundation\Console\RouteListCommand->getRouteInformation(Object(Illuminate\Routing\Route))
+#7 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/RouteListCommand.php(75): Illuminate\Foundation\Console\RouteListCommand->getRoutes()
+#8 [internal function]: Illuminate\Foundation\Console\RouteListCommand->fire()
+#9 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Container/Container.php(523): call_user_func_array(Array, Array)
+#10 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php(115): Illuminate\Container\Container->call(Array)
+#11 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Command/Command.php(257): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Console/Command.php(101): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#13 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(874): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#14 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\RouteListCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#15 /var/www/gsu/laravel/vendor/symfony/console/Symfony/Component/Console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /var/www/gsu/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(94): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /var/www/gsu/laravel/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 {main}  

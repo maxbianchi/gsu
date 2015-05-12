@@ -31,8 +31,9 @@ class DialUpController extends MainController {
     }
 
     public function search(){
-        $res = new DialUpModel();
-        $res = $res->getFilteredRequest();
+        $model = new DialUpModel();
+        $res = $model->getFilteredRequest();
+        $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
         return view("gsu::admin.dial-up.dial-up", ['request' => $res, 'class' => $class]);
@@ -64,6 +65,10 @@ class DialUpController extends MainController {
             $btn = 'save';
         else
             $btn = 'back';
+
+        if(Input::get('isnew') == 1){
+            $res = [];
+        }
 
         if(count($res) == 0)
             $res = ['MANUTENZIONE' => Input::get('manutenzione')];

@@ -1,9 +1,0 @@
-<?php namespace $MODULE_NAMESPACE$\$MODULE$\Entities;
-   
-use Illuminate\Database\Eloquent\Model;
-
-class $NAME$ extends Model {
-
-    protected $fillable = $FILLABLE$;
-
-}
