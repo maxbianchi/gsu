@@ -261,7 +261,7 @@
     <script>
         $(document).ready(function () {
             @if($btn == 'back')
-                $( ":text" ).prop('readonly', true);
+                $( ":text" ).prop('disabled', true);
             @endif
 
             $("#btn_salva").click(function(){
