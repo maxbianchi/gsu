@@ -1,5 +1,6 @@
 <?php namespace App\Modules\Gsu;
 
+
 class Utility{
 
     public function getClassColorStato(&$request){

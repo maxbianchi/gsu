@@ -92,7 +92,8 @@ EOF;
 			anagrafica3.CAP		        AS DESTINATARIOABITUALE_CAP,
 			anagrafica3.TELEFONO		AS DESTINATARIOABITUALE_TELEFONO,
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
-
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			DIAL_UP.IDDIALUP,
 			DIAL_UP.CONNESSIONE,
 			DIAL_UP.TIPO_CONNESSIONE,
@@ -106,6 +107,7 @@ EOF;
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
+			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
 			WHERE 1 = 1
 EOF;
 
@@ -198,10 +200,18 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new GsuModel();
+        $model = new DialUpModel();
         $res = $model->getFilteredRequest();
+        $codici_manutenzione = [];
+        $cod_manutenzione = "";
+        foreach ($res as $key => $value){
+            if($cod_manutenzione != $value['MANUTENZIONE']) {
+                $cod_manutenzione = $value['MANUTENZIONE'];
+                $codici_manutenzione[] = $value['MANUTENZIONE'];
+            }
+        }
         Input::merge(array('add' => '0'));
-        if(count($res) > 0) {
+        if(count($res) > 0 && count($codici_manutenzione) == 1) {
             if ($res[0]['QTAAOF70'] > $res[0]['QTAGSU'])
                 Input::merge(array('add' => '1'));
         }

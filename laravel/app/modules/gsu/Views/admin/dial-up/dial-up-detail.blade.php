@@ -21,7 +21,7 @@
     <br><br>
     <fieldset class="dettaglio_dati">
         <legend align="right"></legend>
-        <table width="100%" border="0" class="tabella">
+        <table width="100%" border="0" class="tabella dataTable">
             <form action="#" method="post" id="form">
                 <tr>
                     <td>COD MANUTENZIONE </td>
