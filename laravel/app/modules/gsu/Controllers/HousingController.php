@@ -13,7 +13,7 @@ class HousingController extends MainController {
 
     public function __construct()
     {
-
+        parent::__construct();
     }
 
     /**
