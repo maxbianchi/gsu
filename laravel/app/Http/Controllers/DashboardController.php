@@ -11,6 +11,8 @@ class DashboardController extends Controller {
             if (Session::has('logged') || Session::get('logged') != 1) {
                 Session::flush();
                 return Redirect::to('/')->with('message', 'Your are now logged out!');
+            }else {
+                Session::set('alive', 1);
             }
         });
 	}
