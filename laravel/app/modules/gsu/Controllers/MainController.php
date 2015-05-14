@@ -13,17 +13,14 @@ class MainController extends Controller {
 
     public function __construct()
     {
-        parent::__construct();
 
-        $this->beforeFilter(function(){
-            $logged = Session::get('logged');
-            if(is_null($logged) || $logged != 1) {
+          $this->beforeFilter(function(){
+            if(Session::has('logged') && Session::get('logged') != 1) {
                 Session::flush();
-                echo "QUI";
-                exit;
-                return Redirect::to('/logout')->with('message', 'Your are now logged out!');
+                return Redirect::to('/')->with('message', 'Your are now logged out!');
             }
         });
+
     }
 
 

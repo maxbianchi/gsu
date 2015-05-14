@@ -8,12 +8,10 @@ class DashboardController extends Controller {
 	public function __construct()
 	{
         $this->beforeFilter(function(){
-            $logged = Session::get('logged');
-            if(is_null($logged) && $logged != 1) {
+            if(Session::has('logged') && Session::get('logged') != 1) {
                 Session::flush();
-                return Redirect::to('/');
+                return Redirect::to('/')->with('message', 'Your are now logged out!');
             }
-        });
 	}
 
 	/**
