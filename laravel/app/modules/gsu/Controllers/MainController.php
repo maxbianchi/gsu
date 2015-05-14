@@ -15,14 +15,11 @@ class MainController extends Controller {
     {
         $this->beforeFilter(function(){
             $logged = Session::get('logged');
-            if(is_null($logged) && $logged != 1) {
+            if(is_null($logged) || $logged != 1) {
                 Session::flush();
                 return Redirect::to('/');
             }
         });
-
-        Session::put('backUrl', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-
     }
 
 

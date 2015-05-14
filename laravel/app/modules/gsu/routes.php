@@ -75,4 +75,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/hosting/edit', 'HostingController@edit');
     Route::post('gsu/hosting/save', 'HostingController@save');
     Route::get('gsu/hosting/delete', 'HostingController@delete');
+
+    //HOUSING
+    Route::get('gsu/housing', 'HousingController@main');
+    Route::get('gsu/housing/search', 'HousingController@search');
+    Route::get('gsu/housing/show', 'HousingController@show');
+    Route::get('gsu/housing/edit', 'HousingController@edit');
+    Route::post('gsu/housing/save', 'HousingController@save');
+    Route::get('gsu/housing/delete', 'HousingController@delete');
 });

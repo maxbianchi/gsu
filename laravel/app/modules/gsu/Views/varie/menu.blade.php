@@ -19,7 +19,7 @@
                     </ul>
                 </li>
                 <li><a href="{{url('/gsu/hosting')}}">Hosting</a></li>
-                <li><a href="/housing.asp">Housing</a></li>
+                <li><a href="{{url('/gsu/housing')}}">Housing</a></li>
                 <li><a href="/database.asp">Database</a></li>
                 <li><a href="/motori-di-ricerca.asp">Web Marketing</a></li>
                 <li><a href="/mailarchive.asp">Archivio Mail</a></li>
