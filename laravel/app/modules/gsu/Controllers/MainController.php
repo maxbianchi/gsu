@@ -13,20 +13,13 @@ class MainController extends Controller {
 
     public function __construct()
     {
-        /*$this->beforeFilter(function(){
+        $this->beforeFilter(function(){
             $logged = Session::get('logged');
             if(is_null($logged) || $logged != 1) {
                 Session::flush();
-                return Redirect::to('/dashboard');
+                return Redirect::to('/logout')->with('message', 'Your are now logged out!');
             }
-        });*/
-
-        $logged = Session::get('logged');
-        if(is_null($logged) || $logged != 1) {
-            Session::flush();
-            return Redirect::to('/dashboard');
-        }
-
+        });
     }
 
 
