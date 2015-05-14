@@ -13,6 +13,8 @@ class MainController extends Controller {
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->beforeFilter(function(){
             $logged = Session::get('logged');
             if(is_null($logged) || $logged != 1) {
