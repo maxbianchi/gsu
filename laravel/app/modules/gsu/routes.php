@@ -59,4 +59,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/mpls-direct-access/edit', 'MplsDirectAccessController@edit');
     Route::post('gsu/mpls-direct-access/save', 'MplsDirectAccessController@save');
     Route::get('gsu/mpls-direct-access/delete', 'MplsDirectAccessController@delete');
+
+    //DOMINI
+    Route::get('gsu/domini', 'DominiController@main');
+    Route::get('gsu/domini/search', 'DominiController@search');
+    Route::get('gsu/domini/show', 'DominiController@show');
+    Route::get('gsu/domini/edit', 'DominiController@edit');
+    Route::post('gsu/domini/save', 'DominiController@save');
+    Route::get('gsu/domini/delete', 'DominiController@delete');
 });

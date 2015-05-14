@@ -14,8 +14,8 @@
             <ul>
                 <li><a href="#">Domini</a>
                     <ul>
-                        <li><a href="/domini.asp?ACT=SRC&TIPODOMINIO=Normale">Normali</a></li>
-                        <li><a href="/domini.asp?ACT=SRC&TIPODOMINIO=PEC">Pec</a></li>
+                        <li><a href="{{url('/gsu/domini')."?tipo_dominio=Normale"}}">Normali</a></li>
+                        <li><a href="{{url('/gsu/domini')."?tipo_dominio=PEC"}}">Pec</a></li>
                     </ul>
                 </li>
                 <li><a href="/hosting.asp">Hosting</a></li>
