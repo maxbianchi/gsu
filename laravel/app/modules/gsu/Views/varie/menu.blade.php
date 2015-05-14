@@ -6,8 +6,8 @@
                 <li><a href="{{url('/gsu/adsl')}}">Adsl</a></li>
                 <li><a href="{{url('/gsu/direct-access')}}">Direct</a></li>
                 <li><a href="{{url('/gsu/linea-aggiuntiva')}}">Linea aggiuntiva</a></li>
-                <li><a href="/mpls.asp">MPLS Adsl</a></li>
-                <li><a href="/mpls-direct-access.asp">MPLS Direct</a></li>
+                <li><a href="{{url('/gsu/mpls')}}">MPLS Adsl</a></li>
+                <li><a href="{{url('/gsu/mpls-direct-access')}}">MPLS Direct</a></li>
             </ul>
         </li>
         <li><a href="#">Data Center</a>

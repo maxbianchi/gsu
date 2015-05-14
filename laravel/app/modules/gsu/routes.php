@@ -43,4 +43,20 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/linea-aggiuntiva/edit', 'LineaAggiuntivaController@edit');
     Route::post('gsu/linea-aggiuntiva/save', 'LineaAggiuntivaController@save');
     Route::get('gsu/linea-aggiuntiva/delete', 'LineaAggiuntivaController@delete');
+
+    //MPLS
+    Route::get('gsu/mpls', 'MplsController@main');
+    Route::get('gsu/mpls/search', 'MplsController@search');
+    Route::get('gsu/mpls/show', 'MplsController@show');
+    Route::get('gsu/mpls/edit', 'MplsController@edit');
+    Route::post('gsu/mpls/save', 'MplsController@save');
+    Route::get('gsu/mpls/delete', 'MplsController@delete');
+
+    //MPLS DIRECT ACCESS
+    Route::get('gsu/mpls-direct-access', 'MplsDirectAccessController@main');
+    Route::get('gsu/mpls-direct-access/search', 'MplsDirectAccessController@search');
+    Route::get('gsu/mpls-direct-access/show', 'MplsDirectAccessController@show');
+    Route::get('gsu/mpls-direct-access/edit', 'MplsDirectAccessController@edit');
+    Route::post('gsu/mpls-direct-access/save', 'MplsDirectAccessController@save');
+    Route::get('gsu/mpls-direct-access/delete', 'MplsDirectAccessController@delete');
 });

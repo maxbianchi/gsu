@@ -42,7 +42,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>NUMERO APPOGGIO</td>
+                    <td>NUMERO TELEFONO</td>
                     <td><input type="text" name="numero_telefono" value="{{$request['NUMERO_TELEFONO'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -55,13 +55,13 @@
                 </tr>
                 <tr>
                     <td>IP STATICI / SUBNET</td>
-                    <td><input type="text" name="ip_statici" value="{{$request['IP_STATICI'] or ""}}"></td>
+                    <td><input type="text" name="ip_statici" value="{{$request['IP_STATICI_SUBNET'] or ""}}"></td>
                     <td>SUBNET MASK</td>
                     <td><input type="text" name="ipsub" value="{{$request['IPSUB'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>GATEWAY WAN / PUNTO A PUNTO</td>
-                    <td><input type="text" name="gateway_wan_punto_a_punto" value="{{$request['GATEWAY_WAN_PUNTO_A_PUNTO'] or ""}}"></td>
+                    <td><input type="text" name="gateway_wan_punto_punto" value="{{$request['GATEWAY_WAN_PUNTO_A_PUNTO'] or ""}}"></td>
                     <td>SUBNET MASK</td>
                     <td><input type="text" name="wansub" value="{{$request['WANSUB'] or ""}}"></td>
                 </tr>
@@ -99,8 +99,8 @@
                     <td>
                         <select name="modalita">
                             <option value="">--- Selezionare Modalità ---</option>
-                            <option value="FAST" {{isset($request['MODALITA']) && $request['MODALITA'] == "FAST" ? 'selected="selected"' : ""  }}>FAST</option>
-                            <option value="INTERLEAVED" {{isset($request['MODALITA']) && $request['MODALITA'] == "INTERLEAVED" ? 'selected="selected"' : ""  }}>INTERLEAVED</option>
+                            <option value="FAST" {{isset($request['MODALITA']) && trim($request['MODALITA']) == "FAST" ? 'selected="selected"' : ""  }}>FAST</option>
+                            <option value="INTERLEAVED" {{isset($request['MODALITA']) && trim($request['MODALITA']) == "INTERLEAVED" ? 'selected="selected"' : ""  }}>INTERLEAVED</option>
                         </select>
                     </td>
                     <td></td>
@@ -160,12 +160,6 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>SERVIZI ACCESS</td>
-                    <td><input type="text" name="servizi_access" value="{{$servizi_access}}" style="background-color:{{$servizi_access == "SI" ? "green" : "red" }}" class="servizi"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td>VPI</td>
                     <td><input type="text" name="vpi" value="{{$request['VPI'] or "8"}}"></td>
                     <td>VCI</td>
@@ -189,32 +183,29 @@
                             <option value="">--- Selezionare Incapsulamento ---</option>
                             <option value="RFC 1483 Routed" {{isset($request['INCAPSULAMENTO']) && $request['INCAPSULAMENTO'] == "RFC 1483 Routed" ? 'selected="selected"' : ""  }}>RFC 1483 Routed</option>
                             <option value="RFC 2364 PPPoA" {{isset($request['INCAPSULAMENTO']) && $request['INCAPSULAMENTO'] == "RFC 2364 PPPoA" ? 'selected="selected"' : ""  }}>RFC 2364 PPPoA</option>
+                            <option value="Frame relay" {{isset($request['INCAPSULAMENTO']) && $request['INCAPSULAMENTO'] == "Frame relay" ? 'selected="selected"' : ""  }}>Frame relay</option>
                         </select>
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>Multiplex</td>
-                    <td>
-                        <select name="multiplex">
-                            <option value="">--- Selezionare Multiplex ---</option>
-                            <option value="LLC" {{isset($request['MULTIPLEX']) && $request['MULTIPLEX'] == "LLC" ? 'selected="selected"' : ""  }}>LLC</option>
-                        </select>
-                    </td>
+                    <td>DLCI</td>
+                    <td><input type="text" name="dlci" value="{{$request['DLCI'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>Utente Radius</td>
-                    <td><input type="text" name="utente_radius" value="{{$request['UTENTE_RADIUS'] or ""}}"></td>
-                    <td>Password Radius</td>
-                    <td><input type="text" name="pass_radius" value="{{$request['PASS_RADIUS'] or ""}}"></td>
+                    <td>LMI</td>
+                    <td><input type="text" name="lmi_type" value="{{$request['LMI_TYPE'] or ""}}"></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
+
                 <tr>
                     <td colspan="5" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
-                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDADSL'] or ""}}">
+                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDMPLS'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         @if($btn == 'save')
                             <input type="button" value="SALVA" id="btn_salva" class="btn btn-primary btn-xs">
@@ -235,7 +226,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Record Inserito con successo</h4>
+                    <h4 class="modal-title">Record inserito con successo</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
@@ -257,7 +248,7 @@
             @endif
 
             $("#btn_salva").click(function(){
-                         $.post( "{{url('/gsu/adsl/save')}}", $("form#form").serialize())
+                         $.post( "{{url('/gsu/mpls/save')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
                                     $("#btn_salva").hide();

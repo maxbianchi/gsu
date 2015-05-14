@@ -86,6 +86,9 @@
                             <option value="8" {{isset($request['NUMERO_IP_STATICI']) && $request['NUMERO_IP_STATICI'] == 8 ? 'selected="selected"' : ""  }}>8</option>
                             <option value="16" {{isset($request['NUMERO_IP_STATICI']) && $request['NUMERO_IP_STATICI'] == 16 ? 'selected="selected"' : ""  }}>16</option>
                             <option value="32" {{isset($request['NUMERO_IP_STATICI']) && $request['NUMERO_IP_STATICI'] == 32 ? 'selected="selected"' : ""  }}>32</option>
+                            <option value="64" {{isset($request['NUMERO_IP_STATICI']) && $request['NUMERO_IP_STATICI'] == 64 ? 'selected="selected"' : ""  }}>64</option>
+                            <option value="128" {{isset($request['NUMERO_IP_STATICI']) && $request['NUMERO_IP_STATICI'] == 128 ? 'selected="selected"' : ""  }}>128</option>
+                            <option value="256" {{isset($request['NUMERO_IP_STATICI']) && $request['NUMERO_IP_STATICI'] == 256 ? 'selected="selected"' : ""  }}>256</option>
                         </select>
                     </td>
                     <td></td>
@@ -112,6 +115,11 @@
                             <option value="8.8.4.4" {{isset($request['DNS_PRIMARIO']) && $request['DNS_PRIMARIO'] == "8.8.4.4" ? 'selected="selected"' : ""  }}>8.8.4.4</option>
                             <option value="151.99.125.1" {{isset($request['DNS_PRIMARIO']) && $request['DNS_PRIMARIO'] == "151.99.125.1" ? 'selected="selected"' : ""  }}>151.99.125.1</option>
                             <option value="151.99.0.100" {{isset($request['DNS_PRIMARIO']) && $request['DNS_PRIMARIO'] == "151.99.0.100" ? 'selected="selected"' : ""  }}>151.99.0.100</option>
+                            <?php
+                            $dnsprimario = ["8.8.8.8", "8.8.4.4", "151.99.125.1", "151.99.0.100"];
+                            if(isset($request['DNS_PRIMARIO']) && !in_array($request['DNS_PRIMARIO'], $dnsprimario))
+                                echo '<option value="'.$request['DNS_PRIMARIO'].'" selected="selected">'.$request['DNS_PRIMARIO'].'</option>';
+                            ?>
                         </select>
                     </td>
                     <td>DNS SECONDARIO</td>
@@ -122,6 +130,11 @@
                             <option value="8.8.4.4" {{isset($request['DNS_SECONDARIO']) && $request['DNS_SECONDARIO'] == "8.8.4.4" ? 'selected="selected"' : ""  }}>8.8.4.4</option>
                             <option value="151.99.125.1" {{isset($request['DNS_SECONDARIO']) && $request['DNS_SECONDARIO'] == "151.99.125.1" ? 'selected="selected"' : ""  }}>151.99.125.1</option>
                             <option value="151.99.0.100" {{isset($request['DNS_SECONDARIO']) && $request['DNS_SECONDARIO'] == "151.99.0.100" ? 'selected="selected"' : ""  }}>151.99.0.100</option>
+                            <?php
+                            $dnssecondario = ["8.8.8.8", "8.8.4.4", "151.99.125.1", "151.99.0.100"];
+                            if(isset($request['DNS_SECONDARIO']) && !in_array($request['DNS_SECONDARIO'], $dnssecondario))
+                                echo '<option value="'.$request['DNS_SECONDARIO'].'" selected="selected">'.$request['DNS_SECONDARIO'].'</option>';
+                            ?>
                         </select>
                     </td>
                 </tr>
