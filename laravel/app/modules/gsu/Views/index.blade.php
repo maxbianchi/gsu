@@ -24,7 +24,7 @@
             <div class="col-md-3"><input type="button" value="APPARATI ADSL ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-B1')}}"></div>
         </div>
         <div class="row">
-            <div class="col-md-3"><input type="button" value="LINEAR DIRECT ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-C0')}}"></div>
+            <div class="col-md-3"><input type="button" value="LINEA DIRECT ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-C0')}}"></div>
             <div class="col-md-3"><input type="button" value="APPARATI LINEAR DIRECT ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-C1')}}"></div>
             <div class="col-md-3"><input type="button" value="FLAT DIRECT ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-D0')}}"></div>
             <div class="col-md-3"><input type="button" value="APPARATI FLAT DIRECT ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-D1')}}"></div>

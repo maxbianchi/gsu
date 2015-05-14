@@ -26,43 +26,16 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+
                 </tr>
                 <tr>
-                    <td>CONNESSIONE</td>
-                    <td><input type="text" name="connessione" value="{{$request['CONNESSIONE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>TGU</td>
+                    <td><input type="text" name="tgu" value="{{$request['TGU'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>TIPO_CONNESSIONE</td>
-                    <td><input type="text" name="tipo_connessione" value="{{$request['TIPO_CONNESSIONE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>ACCOUNT</td>
-                    <td><input type="text" name="account" value="{{$request['ACCOUNT'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>PASSWORD</td>
-                    <td><input type="text" name="password" value="{{$request['PASSWORD'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>IP</td>
-                    <td><input type="text" name="ip" value="{{$request['IP'] or ""}}"></td>
-                    <td>NOTE</td>
-                    <td><input type="text" name="note" value="{{$request['NOTE'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td colspan="5" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
-                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDDIALUP'] or ""}}">
+                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDLINEA'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         @if($btn == 'save')
                             <input type="button" value="SALVA" id="btn_salva" class="btn btn-primary btn-xs">
@@ -105,7 +78,7 @@
             @endif
 
             $("#btn_salva").click(function(){
-                         $.post( "{{url('/gsu/dial-up/save')}}", $("form#form").serialize())
+                         $.post( "{{url('/gsu/linea-aggiuntiva/save')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
                                     $("#btn_salva").hide();

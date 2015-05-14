@@ -35,4 +35,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/direct-access/edit', 'DirectAccessController@edit');
     Route::post('gsu/direct-access/save', 'DirectAccessController@save');
     Route::get('gsu/direct-access/delete', 'DirectAccessController@delete');
+
+    //LINEA AGGIUNTIVA
+    Route::get('gsu/linea-aggiuntiva', 'LineaAggiuntivaController@main');
+    Route::get('gsu/linea-aggiuntiva/search', 'LineaAggiuntivaController@search');
+    Route::get('gsu/linea-aggiuntiva/show', 'LineaAggiuntivaController@show');
+    Route::get('gsu/linea-aggiuntiva/edit', 'LineaAggiuntivaController@edit');
+    Route::post('gsu/linea-aggiuntiva/save', 'LineaAggiuntivaController@save');
+    Route::get('gsu/linea-aggiuntiva/delete', 'LineaAggiuntivaController@delete');
 });

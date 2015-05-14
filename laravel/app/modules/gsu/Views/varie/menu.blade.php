@@ -5,9 +5,9 @@
                 <li><a href="{{url('/gsu/dial-up')}}">Dial-Up</a></li>
                 <li><a href="{{url('/gsu/adsl')}}">Adsl</a></li>
                 <li><a href="{{url('/gsu/direct-access')}}">Direct</a></li>
-                <li><a href="/linea_aggiuntiva.asp">Linea aggiuntiva</a></li>
+                <li><a href="{{url('/gsu/linea-aggiuntiva')}}">Linea aggiuntiva</a></li>
                 <li><a href="/mpls.asp">MPLS Adsl</a></li>
-                <li><a href="/mpls_direct_access.asp">MPLS Direct</a></li>
+                <li><a href="/mpls-direct-access.asp">MPLS Direct</a></li>
             </ul>
         </li>
         <li><a href="#">Data Center</a>
@@ -21,7 +21,7 @@
                 <li><a href="/hosting.asp">Hosting</a></li>
                 <li><a href="/housing.asp">Housing</a></li>
                 <li><a href="/database.asp">Database</a></li>
-                <li><a href="/motori_di_ricerca.asp">Web Marketing</a></li>
+                <li><a href="/motori-di-ricerca.asp">Web Marketing</a></li>
                 <li><a href="/mailarchive.asp">Archivio Mail</a></li>
                 <li><a href="/novirusnospam.asp">NoVirus / NoSpam / Scan-mail</a></li>
                 <li><a href="#">Caselle</a>
@@ -31,33 +31,33 @@
                         <li><a href="/caselle.asp?ACT=SRC&Canone=CAN-E11">PEC</a></li>
                     </ul>
                 </li>
-                <li><a href="/web_hat.asp">CMS</a></li>
+                <li><a href="/web-hat.asp">CMS</a></li>
                 <li><a href="/ipstatici.asp">IP statici</a></li>
                 <li><a href="#">Servizi Web</a>
                     <ul>
-                        <li><a href="/servizi_web.asp?servizio=Area Riservata">Area riservata</a></li>
-                        <li><a href="/servizi_web.asp?servizio=Banca Sella">Banca Sella</a></li>
-                        <li><a href="/servizi_web.asp?servizio=Directory Riservata">Directory riservata</a></li>
-                        <li><a href="/servizi_web.asp?servizio=Ftp Negozio">Ftp Negozio</a></li>
-                        <li><a href="/servizi_web.asp?servizio=Internet Emporium">Internet Emporium</a></li>
-                        <li><a href="/servizi_web.asp?servizio=MRTG">Mrtg</a></li>
+                        <li><a href="/servizi-web.asp?servizio=Area Riservata">Area riservata</a></li>
+                        <li><a href="/servizi-web.asp?servizio=Banca Sella">Banca Sella</a></li>
+                        <li><a href="/servizi-web.asp?servizio=Directory Riservata">Directory riservata</a></li>
+                        <li><a href="/servizi-web.asp?servizio=Ftp Negozio">Ftp Negozio</a></li>
+                        <li><a href="/servizi-web.asp?servizio=Internet Emporium">Internet Emporium</a></li>
+                        <li><a href="/servizi-web.asp?servizio=MRTG">Mrtg</a></li>
                     </ul>
                 </li>
             </ul>
         </li>
         <li><a href="#">Networking</a>
             <ul>
-                <li><a href="/url_filtering.asp">URL Filtering</a></li>
+                <li><a href="/url-filtering.asp">URL Filtering</a></li>
                 <li><a href="#">Apparati</a>
                     <ul>
-                        <li><a href="/apparati_networking.asp?PRD=Firewall">Ip-Safe</a></li>
-                        <li><a href="/apparati_networking.asp?PRD=Router">Router</a></li>
-                        <li><a href="/apparati_networking.asp?PRD=Networking">Networking</a></li>
+                        <li><a href="/apparati-networking.asp?PRD=Firewall">Ip-Safe</a></li>
+                        <li><a href="/apparati-networking.asp?PRD=Router">Router</a></li>
+                        <li><a href="/apparati-networking.asp?PRD=Networking">Networking</a></li>
                     </ul>
                 </li>
                 <li><a href="/multifunzione.asp">Multifunzione</a></li>
                 <li><a href="/centralini.asp">Centralini</a></li>
-                <li><a href="/apparati_mobile.asp">Apparati Mobile</a></li>
+                <li><a href="/apparati-mobile.asp">Apparati Mobile</a></li>
                 <li><a href="/hardware.asp">Hardware</a></li>
                 <li><a href="/faxvirtuale.asp">Fax Virtuale</a></li>
                 <li><a href="/videoconference.asp">Videoconference</a></li>
