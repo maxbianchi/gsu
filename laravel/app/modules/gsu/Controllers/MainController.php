@@ -19,6 +19,8 @@ class MainController extends Controller {
             $logged = Session::get('logged');
             if(is_null($logged) || $logged != 1) {
                 Session::flush();
+                echo "QUI";
+                exit;
                 return Redirect::to('/logout')->with('message', 'Your are now logged out!');
             }
         });
