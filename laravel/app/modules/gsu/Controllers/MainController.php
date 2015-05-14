@@ -17,7 +17,7 @@ class MainController extends Controller {
             $logged = Session::get('logged');
             if(is_null($logged) || $logged != 1) {
                 Session::flush();
-                return Redirect::to('/gsu/logout');
+                return Redirect::to('/dashboard');
             }
         });
     }
