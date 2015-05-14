@@ -6,8 +6,9 @@ use App\Modules\Gsu\Models\GsuModel;
 use App\Modules\Gsu\Utility;
 use DB;
 use Session;
-use Route;
+use Redirect;
 use Input;
+
 
 class MainController extends Controller {
 
