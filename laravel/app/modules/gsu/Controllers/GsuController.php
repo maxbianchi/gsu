@@ -47,5 +47,9 @@ class GsuController extends MainController {
         return view("gsu::admin.anagrafica", ['anagrafica' => $anagrafica]);
     }
 
+    public function logout(){
+        Session::flush();
+        return Redirect::to('/');
+    }
 
 }

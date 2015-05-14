@@ -7,6 +7,7 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/main', 'GsuController@main');
     Route::get('gsu/search', 'GsuController@search');
     Route::get('gsu/anagrafica', 'GsuController@anagrafica');
+    Route::get('gsu/logout', 'GsuController@logout');
 
     Route::get('gsu/dashboard',function(){
         return view("gsu::test");
