@@ -21,26 +21,23 @@
     <br><br>
     <fieldset class="dettaglio_dati">
         <legend align="right"></legend>
-        <table width="100%" border="0" class="tabella dataTable">
+        <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
             <form action="#" method="post" id="form">
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td width="19%">TIPO LINEA</td>
-                    <td width="19%"><input type="text" name="tipo_linea" value="{{$request['TIPO_LINEA'] or ""}}"></td>
-                    <td width="9%">&nbsp;</td>
-                    <td width="23%">&nbsp;</td>
-                    <td width="30%">&nbsp;</td>
+                    <td>TIPO LINEA</td>
+                    <td><input type="text" name="tipo_linea" value="{{$request['TIPO_LINEA'] or ""}}"></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>LINEA FORNITORE</td>
                     <td><input type="text" name="linea_fornitore" value="{{$request['LINEA_FORNITORE'] or ""}}"></td>
-                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -49,12 +46,10 @@
                     <td><input type="text" name="numero_telefono" value="{{$request['NUMERO_TELEFONO'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>TGU</td>
                     <td><input type="text" name="tgu" value="{{$request['TGU'] or ""}}"></td>
-                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -63,28 +58,24 @@
                     <td><input type="text" name="ip_statici" value="{{$request['IP_STATICI'] or ""}}"></td>
                     <td>SUBNET MASK</td>
                     <td><input type="text" name="ipsub" value="{{$request['IPSUB'] or ""}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>GATEWAY WAN / PUNTO A PUNTO</td>
                     <td><input type="text" name="gateway_wan_punto_a_punto" value="{{$request['GATEWAY_WAN_PUNTO_A_PUNTO'] or ""}}"></td>
                     <td>SUBNET MASK</td>
                     <td><input type="text" name="wansub" value="{{$request['WANSUB'] or ""}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>GATEWAY INTERFACCIA LAN</td>
                     <td><input type="text" name="gateway_interfaccia_lan" value="{{$request['GATEWAY_INTERFACCIA_LAN'] or ""}}"></td>
                     <td>SUBNET MASK</td>
                     <td><input type="text" name="lansub" value="{{$request['LANSUB'] or ""}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>IP STATICO ROUTER</td>
                     <td><input type="text" name="ip_statico_router" value="{{$request['IP_STATICO_ROUTER'] or ""}}"></td>
                     <td>SUBNET MASK</td>
                     <td><input type="text" name="rutsub" value="{{$request['RUTSUB'] or ""}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>NUMERO IP STATICI</td>
@@ -99,7 +90,6 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>MODALITA'</td>
@@ -112,7 +102,6 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>DNS PRIMARIO</td>
@@ -135,7 +124,6 @@
                             <option value="151.99.0.100" {{isset($request['DNS_SECONDARIO']) && $request['DNS_SECONDARIO'] == "151.99.0.100" ? 'selected="selected"' : ""  }}>151.99.0.100</option>
                         </select>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>NUMERO VERDE TECNICO</td>
@@ -151,28 +139,24 @@
                     </td>
                     <td></td>
                     <td></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVIZI PLUS / SINFONIA</td>
                     <td><input type="text" name="servizi_plus" value="{{$servizi_plus}}" style="background-color:{{$servizi_plus == "SI" ? "green" : "red" }}" class="servizi"></td>
                     <td></td>
                     <td></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVIZI ACCESS</td>
                     <td><input type="text" name="servizi_access" value="{{$servizi_access}}" style="background-color:{{$servizi_access == "SI" ? "green" : "red" }}" class="servizi"></td>
                     <td></td>
                     <td></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>VPI</td>
                     <td><input type="text" name="vpi" value="{{$request['VPI'] or "8"}}"></td>
                     <td>VCI</td>
                     <td><input type="text" name="vci" value="{{$request['VCI'] or "35"}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Installazione Modem</td>
@@ -182,7 +166,6 @@
                             <option value="x LAN" {{isset($request['INSTALLAZIONE_MODEM']) && $request['INSTALLAZIONE_MODEM'] == "x LAN" ? 'selected="selected"' : ""  }}>x LAN</option>
                         </select>
                     </td>
-                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -197,7 +180,6 @@
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Multiplex</td>
@@ -209,17 +191,13 @@
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Utente Radius</td>
                     <td><input type="text" name="utente_radius" value="{{$request['UTENTE_RADIUS'] or ""}}"></td>
                     <td>Password Radius</td>
                     <td><input type="text" name="pass_radius" value="{{$request['PASS_RADIUS'] or ""}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
-
-
                 <tr>
                     <td colspan="5" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">

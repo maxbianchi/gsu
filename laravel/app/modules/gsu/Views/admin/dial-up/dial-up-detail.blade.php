@@ -21,26 +21,23 @@
     <br><br>
     <fieldset class="dettaglio_dati">
         <legend align="right"></legend>
-        <table width="100%" border="0" class="tabella dataTable">
+        <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
             <form action="#" method="post" id="form">
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td width="19%">CONNESSIONE</td>
-                    <td width="19%"><input type="text" name="connessione" value="{{$request['CONNESSIONE'] or ""}}"></td>
-                    <td width="9%">&nbsp;</td>
-                    <td width="23%">&nbsp;</td>
-                    <td width="30%">&nbsp;</td>
+                    <td>CONNESSIONE</td>
+                    <td><input type="text" name="connessione" value="{{$request['CONNESSIONE'] or ""}}"></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>TIPO_CONNESSIONE</td>
                     <td><input type="text" name="tipo_connessione" value="{{$request['TIPO_CONNESSIONE'] or ""}}"></td>
-                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -49,12 +46,10 @@
                     <td><input type="text" name="account" value="{{$request['ACCOUNT'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PASSWORD</td>
                     <td><input type="text" name="password" value="{{$request['PASSWORD'] or ""}}"></td>
-                    <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -63,7 +58,6 @@
                     <td><input type="text" name="ip" value="{{$request['IP'] or ""}}"></td>
                     <td>NOTE</td>
                     <td><input type="text" name="note" value="{{$request['NOTE'] or ""}}"></td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td colspan="5" style="padding-top:20px;">
