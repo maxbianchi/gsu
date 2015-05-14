@@ -27,4 +27,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/adsl/edit', 'AdslController@edit');
     Route::post('gsu/adsl/save', 'AdslController@save');
     Route::get('gsu/adsl/delete', 'AdslController@delete');
+
+    //DIRECT ACCESS
+    Route::get('gsu/direct-access', 'DirectAccessController@main');
+    Route::get('gsu/direct-access/search', 'DirectAccessController@search');
+    Route::get('gsu/direct-access/show', 'DirectAccessController@show');
+    Route::get('gsu/direct-access/edit', 'DirectAccessController@edit');
+    Route::post('gsu/direct-access/save', 'DirectAccessController@save');
+    Route::get('gsu/direct-access/delete', 'DirectAccessController@delete');
 });

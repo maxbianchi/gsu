@@ -4,7 +4,7 @@
             <ul>
                 <li><a href="{{url('/gsu/dial-up')}}">Dial-Up</a></li>
                 <li><a href="{{url('/gsu/adsl')}}">Adsl</a></li>
-                <li><a href="{{url('/gsu/direct_access')}}">Direct</a></li>
+                <li><a href="{{url('/gsu/direct-access')}}">Direct</a></li>
                 <li><a href="/linea_aggiuntiva.asp">Linea aggiuntiva</a></li>
                 <li><a href="/mpls.asp">MPLS Adsl</a></li>
                 <li><a href="/mpls_direct_access.asp">MPLS Direct</a></li>
