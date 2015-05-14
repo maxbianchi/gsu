@@ -35,13 +35,13 @@ class Utenti extends Model {
     }
 
     public function getAllUser(){
-        $utente  = DB::select("SELECT A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE");
+        $utente  = DB::select("SELECT A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != ''");
         $utenti = json_encode($utente, JSON_HEX_QUOT);
         return $utenti;
     }
 
     public function getAllUserFromMago(){
-        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA  FROM UNIWEB.dbo.AGE10 A ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
         return $utenti;
     }
 
