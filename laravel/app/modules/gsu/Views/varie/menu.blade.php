@@ -18,7 +18,7 @@
                         <li><a href="{{url('/gsu/domini')."?tipo_dominio=PEC"}}">Pec</a></li>
                     </ul>
                 </li>
-                <li><a href="/hosting.asp">Hosting</a></li>
+                <li><a href="{{url('/gsu/hosting')}}">Hosting</a></li>
                 <li><a href="/housing.asp">Housing</a></li>
                 <li><a href="/database.asp">Database</a></li>
                 <li><a href="/motori-di-ricerca.asp">Web Marketing</a></li>

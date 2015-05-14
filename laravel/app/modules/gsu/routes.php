@@ -67,4 +67,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/domini/edit', 'DominiController@edit');
     Route::post('gsu/domini/save', 'DominiController@save');
     Route::get('gsu/domini/delete', 'DominiController@delete');
+
+    //HOSTING
+    Route::get('gsu/hosting', 'HostingController@main');
+    Route::get('gsu/hosting/search', 'HostingController@search');
+    Route::get('gsu/hosting/show', 'HostingController@show');
+    Route::get('gsu/hosting/edit', 'HostingController@edit');
+    Route::post('gsu/hosting/save', 'HostingController@save');
+    Route::get('gsu/hosting/delete', 'HostingController@delete');
 });
