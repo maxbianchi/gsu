@@ -155,14 +155,14 @@
                 </tr>
                 <tr>
                     <td>SERVIZI PLUS / SINFONIA</td>
-                    <td><input type="text" name="servizi_plus" value="{{$servizi_plus}}" style="background-color:{{$servizi_plus == "SI" ? "green" : "red" }}"></td>
+                    <td><input type="text" name="servizi_plus" value="{{$servizi_plus}}" style="background-color:{{$servizi_plus == "SI" ? "green" : "red" }}" class="servizi"></td>
                     <td></td>
                     <td></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVIZI ACCESS</td>
-                    <td><input type="text" name="servizi_access" value="{{$servizi_access}}" style="background-color:{{$servizi_access == "SI" ? "green" : "red" }}"></td>
+                    <td><input type="text" name="servizi_access" value="{{$servizi_access}}" style="background-color:{{$servizi_access == "SI" ? "green" : "red" }}" class="servizi"></td>
                     <td></td>
                     <td></td>
                     <td>&nbsp;</td>

@@ -6342,3 +6342,6 @@ input[type="text"].focus {
     box-shadow: 0 0 5px 1px #969696;
 }
 
+input[type="text"].servizi{
+    font-weight: bold;
+}
