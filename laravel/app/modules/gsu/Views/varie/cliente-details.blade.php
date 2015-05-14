@@ -1,8 +1,8 @@
     <div class="container-fluid">
         <div class="border">
-        <table class="tbl_clienti">
+        <table class="tbl_clienti" style="width:100%">
             <thead>
-                <tr>
+                <tr style="width:100%">
                     <td style="width:11%;"></td>
                     <td style="width:7%;">CODICE</td>
                     <td style="width:25%;">DESCRIZIONE</td>
