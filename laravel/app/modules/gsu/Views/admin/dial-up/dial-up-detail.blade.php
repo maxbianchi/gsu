@@ -101,7 +101,7 @@
         $(document).ready(function () {
             @if($btn == 'back')
                 $( ":text" ).prop('readonly', true);
-                $( "select" ).prop('readonly', true);
+                $( "select" ).prop('disabled', true);
             @endif
 
             $("#btn_salva").click(function(){
