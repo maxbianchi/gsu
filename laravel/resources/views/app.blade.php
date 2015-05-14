@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-    <link href="{{ asset('/css/jqueryui/1.8.14/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jqueryui/1.11.4/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->

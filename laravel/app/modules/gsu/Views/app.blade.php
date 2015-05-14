@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-    <link href="{{ asset('/css/jqueryui/1.8.14/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jqueryui/1.11.4/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/bootstrap/3.3.4/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/bootstrap/3.3.4/css/bootstrap-theme.min.css') }}" rel="stylesheet">
@@ -54,7 +54,7 @@
 				</button>
                 <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/Banner.png') }}" alt="Uniweb 4.0 Dashboard" title="Uniweb 4.0 Dashboard"></a>
                 <div style="margin-left: 40%;position: absolute;top: 15px;">{{Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']}}</div>
-                
+
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
