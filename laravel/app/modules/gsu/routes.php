@@ -117,4 +117,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/novirusnospam/edit', 'NoVirusNoSpamController@edit');
     Route::post('gsu/novirusnospam/save', 'NoVirusNoSpamController@save');
     Route::get('gsu/novirusnospam/delete', 'NoVirusNoSpamController@delete');
+
+    //CASELLE
+    Route::get('gsu/caselle', 'CaselleController@main');
+    Route::get('gsu/caselle/search', 'CaselleController@search');
+    Route::get('gsu/caselle/show', 'CaselleController@show');
+    Route::get('gsu/caselle/edit', 'CaselleController@edit');
+    Route::post('gsu/caselle/save', 'CaselleController@save');
+    Route::get('gsu/caselle/delete', 'CaselleController@delete');
 });

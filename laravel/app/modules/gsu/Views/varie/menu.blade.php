@@ -26,9 +26,9 @@
                 <li><a href="{{url('/gsu/novirusnospam')}}">NoVirus / NoSpam / Scan-mail</a></li>
                 <li><a href="#">Caselle</a>
                     <ul>
-                        <li><a href="/caselle.asp?ACT=SRC&Canone=CAN-E06">Normali</a></li>
-                        <li><a href="/caselle.asp?ACT=SRC&Canone=CAN-E08">Relay / Smtp Auth</a></li>
-                        <li><a href="/caselle.asp?ACT=SRC&Canone=CAN-E11">PEC</a></li>
+                        <li><a href="{{url('/gsu/caselle')."?canone=CAN-E06"}}">Normali</a></li>
+                        <li><a href="{{url('/gsu/caselle')."?canone=CAN-E08"}}">Relay / Smtp Auth</a></li>
+                        <li><a href="{{url('/gsu/caselle')."?canone=CAN-E11"}}">PEC</a></li>
                     </ul>
                 </li>
                 <li><a href="/web-hat.asp">CMS</a></li>
