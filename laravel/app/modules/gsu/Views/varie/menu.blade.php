@@ -23,7 +23,7 @@
                 <li><a href="{{url('/gsu/database')}}">Database</a></li>
                 <li><a href="{{url('/gsu/webmarketing')}}">Web Marketing</a></li>
                 <li><a href="{{url('/gsu/mailarchive')}}">Archivio Mail</a></li>
-                <li><a href="/novirusnospam.asp">NoVirus / NoSpam / Scan-mail</a></li>
+                <li><a href="{{url('/gsu/novirusnospam')}}">NoVirus / NoSpam / Scan-mail</a></li>
                 <li><a href="#">Caselle</a>
                     <ul>
                         <li><a href="/caselle.asp?ACT=SRC&Canone=CAN-E06">Normali</a></li>

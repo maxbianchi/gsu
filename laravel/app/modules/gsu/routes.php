@@ -109,4 +109,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/mailarchive/edit', 'MailArchiveController@edit');
     Route::post('gsu/mailarchive/save', 'MailArchiveController@save');
     Route::get('gsu/mailarchive/delete', 'MailArchiveController@delete');
+
+    //NOVIRUSNOSPAM
+    Route::get('gsu/novirusnospam', 'NoVirusNoSpamController@main');
+    Route::get('gsu/novirusnospam/search', 'NoVirusNoSpamController@search');
+    Route::get('gsu/novirusnospam/show', 'NoVirusNoSpamController@show');
+    Route::get('gsu/novirusnospam/edit', 'NoVirusNoSpamController@edit');
+    Route::post('gsu/novirusnospam/save', 'NoVirusNoSpamController@save');
+    Route::get('gsu/novirusnospam/delete', 'NoVirusNoSpamController@delete');
 });
