@@ -121,28 +121,3 @@
 
 
 
-@section('script')
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#main').dataTable({
-                "iDisplayLength": 30,
-                "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
-                "aaSorting": [],
-                "fnInitComplete": function(oSettings, json) {
-                    $("#loader").hide();
-                    $("#main").show();
-                }
-            });
-
-            $("#reimposta").click(function(){
-               $("input[type=text]").val("");
-                $("input[type=checkbox]").attr("checked", false);
-            });
-
-            $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
-
-
-        });
-    </script>
-@endsection

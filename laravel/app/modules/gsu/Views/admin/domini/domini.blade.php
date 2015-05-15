@@ -75,9 +75,9 @@
             <th style="width:5%">MANTUTENZIONE</th>
             <th style="width:5%">DATA INIZIO CONTRATTO</th>
             <th style="width:5%">CANONE</th>
-            <th style="width:20%">CLIENTE</th>
-            <th style="width:20%">CLIENTE FINALE</th>
-            <th style="width:20%">UBICAZIONE</th>
+            <th style="width:20%" class="soggetto">CLIENTE</th>
+            <th style="width:20%" class="cliente">CLIENTE FINALE</th>
+            <th style="width:20%" class="destinatarioabituale">UBICAZIONE</th>
             <th style="width:5%">DATA REGISTRAZIONE</th>
             <th style="width:10%">NOME DOMINIO</th>
             <th style="width:5%">SCADENZA</th>
@@ -92,14 +92,14 @@
             <tr>
                 <td>
                     <a class="btn btn-small edit" href="{{url('/gsu/domini/edit')."?id=".$req['IDDOMINIO']}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn btn-small edit delete" href="javascript:void();" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDDOMINIO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="btn btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDDOMINIO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDOMINIO']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
-                <td>{{$req['SOGGETTO']}}</td>
-                <td>{{$req['CLIENTE']}}</td>
-                <td>{{$req['DESTINATARIOABITUALE']}}</td>
+                <td class="soggetto">{{$req['SOGGETTO']}}</td>
+                <td class="cliente">{{$req['CLIENTE']}}</td>
+                <td class="destinatarioabituale">{{$req['DESTINATARIOABITUALE']}}</td>
                 <td>{{$req['DATAR']}}</td>
                 <td>{{$req['NOMEDOMINIO']}}</td>
                 <td>{{$req['SCADENZA']}}</td>
@@ -142,35 +142,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var id_elimina;
-            var manutenzione;
-
-            $('#main').dataTable({
-                "iDisplayLength": 30,
-                "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
-                "aaSorting": [],
-                "bAutoWidth": false,
-                "fnInitComplete": function(oSettings, json) {
-                    $("#loader").hide();
-                    $("#main").show();
-                }
-            });
-
-            $("#reimposta").click(function(){
-               $("input[type=text]").val("");
-                $("input[type=checkbox]").attr("checked", false);
-            });
-
-            $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
-
-
-            $(".delete").click(function(){
-                id_elimina = $(this).attr('delete-id');
-                manutenzione = $(this).attr('manutenzione');
-                $('#delete').modal('show');
-            });
-
-
 
             $("#btn_elimina").click(function(){
                 $.get( "{{url('/gsu/domini/delete')}}", { id: id_elimina, manutenzione: manutenzione } )

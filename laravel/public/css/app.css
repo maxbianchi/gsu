@@ -6287,7 +6287,7 @@ table.tbl_clienti {
 }
 
 .destinatarioabituale{
-    background-color: #ffccff;
+    background-color: #ffcceb; //#ffccff;
     padding: 2px;
 }
 
@@ -6296,11 +6296,23 @@ table.tbl_clienti tr.soggetto{
 }
 
 table.tbl_clienti tr.cliente{
-    background-color: #00ffff;
+    background-color:#7dc4ce; //#00ffff;
 }
 
 table.tbl_clienti tr.destinatarioabituale{
     background-color: #ffccff;
+}
+
+.soggetto{
+    background-color: #ffffcc;
+}
+
+.cliente{
+    background-color: #7dc4ce; //#00ffff;
+}
+
+.destinatarioabituale{
+    background-color: #ffcceb; //#ffccff;
 }
 
 table.tbl_clienti td{

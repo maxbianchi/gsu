@@ -83,6 +83,7 @@
     <script src="{{ URL::asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('js/dataTables.bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.smartmenus.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
     <script type="text/javascript">
         $(function() {
             $('#main-menu').smartmenus({
