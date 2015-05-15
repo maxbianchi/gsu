@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class DialUpModel extends Model {
+class DatabaseModel extends Model {
 
     public function getAllRequest(){
         $sql = <<<EOF
@@ -26,16 +26,18 @@ class DialUpModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
-			DIAL_UP.IDDIALUP,
-			DIAL_UP.CONNESSIONE,
-			DIAL_UP.TIPO_CONNESSIONE,
-			DIAL_UP.ACCOUNT,
-			DIAL_UP.PASSWORD,
-			DIAL_UP.IP,
-			DIAL_UP.NOTE,
-			DIAL_UP.CODICE_R
-			FROM		gsu.dbo.DIAL_UP
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DIAL_UP.codice_r				= richieste.MANUTENZIONE
+            DATA_BASE.IDDATABASE,
+			DATA_BASE.CODICE_R,
+			DATA_BASE.SOGGETTO AS SOGGETTO_AGG,
+			DATA_BASE.CLIENTE AS CLIENTE_AGG,
+			DATA_BASE.DESTINATARIOABITUALE AS DESTINATARIOABITUALE_AGG,
+			DATA_BASE.TIPO,
+			DATA_BASE.SERVER_,
+			DATA_BASE.LOGIN,
+			DATA_BASE.PASSWORD,
+			DATA_BASE.CODICE_R
+			FROM gsu.dbo.DATA_BASE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DATA_BASE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica	ON richieste.SOGGETTO				= anagrafica.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -55,9 +57,8 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $connessione = Input::get('connessione');
-        $tipo_connessione = Input::get('tipo_connessione');
-        $ip = Input::get('ip');
+        $tipo = Input::get('tipo');
+        $server = Input::get('server');
 
 
         $sql = <<<EOF
@@ -94,16 +95,18 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			DIAL_UP.IDDIALUP,
-			DIAL_UP.CONNESSIONE,
-			DIAL_UP.TIPO_CONNESSIONE,
-			DIAL_UP.ACCOUNT,
-			DIAL_UP.PASSWORD,
-			DIAL_UP.IP,
-			DIAL_UP.NOTE,
-			DIAL_UP.CODICE_R
-			FROM		gsu.dbo.DIAL_UP
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DIAL_UP.codice_r				= richieste.MANUTENZIONE
+            DATA_BASE.IDDATABASE,
+			DATA_BASE.CODICE_R,
+			DATA_BASE.SOGGETTO AS SOGGETTO_AGG,
+			DATA_BASE.CLIENTE AS CLIENTE_AGG,
+			DATA_BASE.DESTINATARIOABITUALE AS DESTINATARIOABITUALE_AGG,
+			DATA_BASE.TIPO,
+			DATA_BASE.SERVER_,
+			DATA_BASE.LOGIN,
+			DATA_BASE.PASSWORD,
+			DATA_BASE.CODICE_R
+			FROM gsu.dbo.DATA_BASE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DATA_BASE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -112,7 +115,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND DIAL_UP.IDDIALUP = '$id'";
+            $sql .= " AND DATA_BASE.IDDatabase = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -131,12 +134,11 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($connessione))
-            $sql .= " AND DIAL_UP.CONNESSIONE like '%$connessione%'";
-        if(!empty($tipo_connessione))
-            $sql .= " AND DIAL_UP.TIPO_CONNESSIONE like '%$tipo_connessione%'";
-        if(!empty($ip))
-            $sql .= " AND DIAL_UP.IP like '%$ip%'";
+        if(!empty($tipo))
+            $sql .= " AND DATA_BASE.TIPO like '%$tipo%'";
+        if(!empty($server))
+            $sql .= " AND DATA_BASE.SERVER_ like '%$server%'";
+
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -150,7 +152,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.DIAL_UP WHERE IDDIALUP='$id'";
+            $sql = "DELETE FROM gsu.dbo.DATA_BASE WHERE IDDATABASE='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -171,17 +173,17 @@ EOF;
 
     public function saveData(){
         $id = Input::get('id_tbl');
-        $connessione = Input::get('connessione');
-        $tipo_connessione = Input::get('tipo_connessione');
-        $account = Input::get('account');
-        $password = Input::get('password');
+        $tipo = Input::get('tipo');
+        $server = Input::get('server');
         $ip = Input::get('ip');
-        $note = Input::get('note');
+        $gestione = Input::get('gestione');
+        $login = Input::get('login');
+        $password = Input::get('password');
         $manutenzione = Input::get('manutenzione');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.DIAL_UP (Codice_R, Connessione, Tipo_Connessione, Account, Password, Ip,Note) VALUES ('$manutenzione','$connessione','$tipo_connessione','$account','$password','$ip','$note')");
+                DB::insert("INSERT INTO gsu.dbo.DATA_BASE (Codice_R, TIPO, SERVER_, IP, GESTIONE, LOGIN,PASSWORD) VALUES ('$manutenzione','$tipo','$server','$ip','$gestione','$login','$password')");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -194,7 +196,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.DIAL_UP SET Codice_R='$manutenzione', Connessione='$connessione', Tipo_Connessione='$tipo_connessione', Account='$account', Password='$password', Ip='$ip',Note='$note' WHERE IDDIALUP=$id");
+                DB::update("UPDATE gsu.dbo.DATA_BASE SET Codice_R='$manutenzione', TIPO='$tipo', SERVER_='$server', IP='$ip', GESTIONE='$gestione', LOGIN='$login',PASSWORD='$password' WHERE IDDATABASE=$id");
 
         }
         catch (Exception $e) {
@@ -203,7 +205,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new DialUpModel();
+        $model = new DatabaseModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
