@@ -93,4 +93,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/database/edit', 'DatabaseController@edit');
     Route::post('gsu/database/save', 'DatabaseController@save');
     Route::get('gsu/database/delete', 'DatabaseController@delete');
+
+    //WEBMARKETING
+    Route::get('gsu/webmarketing', 'WebMarketingController@main');
+    Route::get('gsu/webmarketing/search', 'WebMarketingController@search');
+    Route::get('gsu/webmarketing/show', 'WebMarketingController@show');
+    Route::get('gsu/webmarketing/edit', 'WebMarketingController@edit');
+    Route::post('gsu/webmarketing/save', 'WebMarketingController@save');
+    Route::get('gsu/webmarketing/delete', 'WebMarketingController@delete');
 });

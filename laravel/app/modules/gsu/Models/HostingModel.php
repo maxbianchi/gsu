@@ -199,7 +199,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new DialUpModel();
+        $model = new HostingModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

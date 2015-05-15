@@ -75,20 +75,3 @@
 @endsection
 
 
-
-@section('script')
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#main').dataTable({
-                "iDisplayLength": 30,
-                "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
-                "aaSorting": [],
-                "fnInitComplete": function(oSettings, json) {
-                    $("#loader").hide();
-                    $("#main").show();
-                }
-            });
-        });
-    </script>
-@endsection

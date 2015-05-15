@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class HousingModel extends Model {
+class WebMarketingModel extends Model {
 
     public function getAllRequest(){
         $sql = <<<EOF
@@ -14,10 +14,10 @@ class HousingModel extends Model {
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
-			anagrafica.DESCRIZIONE		AS SOGGETTO,
-			anagrafica.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
-			anagrafica.LOCALITA		AS SOGGETTO_LOCALITA,
-			anagrafica.PROVINCIA		AS SOGGETTO_PROVINCIA,
+			anagrafica1.DESCRIZIONE		AS SOGGETTO,
+			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
+			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
+			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
 			anagrafica2.DESCRIZIONE	AS CLIENTE,
 			anagrafica2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
@@ -26,17 +26,14 @@ class HousingModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
-	        HOUSING.IDHOUSING,
-			HOUSING.CODICE_R,
-			HOUSING.TIPO,
-			HOUSING.SERVER_,
-			HOUSING.LOGIN,
-			HOUSING.PASSWORD,
-			HOUSING.SERIALE,
-			HOUSING.CODICE_R
-			FROM gsu.dbo.HOUSING
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica	ON richieste.SOGGETTO				= anagrafica.SOGGETTO
+            MOTORIDIRICERCA.IDMOTORIDIRICERCA,
+			MOTORIDIRICERCA.NOMEDOMINIO,
+			MOTORIDIRICERCA.UTENTE,
+			MOTORIDIRICERCA.PASSWORD,
+			MOTORIDIRICERCA.CODICE_R
+			FROM		gsu.dbo.MOTORIDIRICERCA
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MOTORIDIRICERCA.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
             ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE
@@ -55,7 +52,8 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $pagina = Input::get('pagina');
+        $nome_dominio = Input::get('nome_dominio');
+
 
         $sql = <<<EOF
             SELECT
@@ -91,17 +89,23 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			HOUSING.IDHOUSING,
-			HOUSING.CODICE_R,
-			HOUSING.TIPO,
-			HOUSING.SERVER_,
-			HOUSING.LOGIN,
-			HOUSING.PASSWORD,
-			HOUSING.SERIALE,
-			HOUSING.GESTIONE,
-			HOUSING.CODICE_R
-			FROM gsu.dbo.HOUSING
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
+            MOTORIDIRICERCA.IDMOTORIDIRICERCA,
+			MOTORIDIRICERCA.NOMEDOMINIO,
+			MOTORIDIRICERCA.UTENTE,
+			MOTORIDIRICERCA.PASSWORD,
+			MOTORIDIRICERCA.PAROLA1,
+			MOTORIDIRICERCA.PAROLA2,
+			MOTORIDIRICERCA.PAROLA3,
+			MOTORIDIRICERCA.PAROLA4,
+			MOTORIDIRICERCA.PAROLA5,
+			MOTORIDIRICERCA.PAROLA6,
+			MOTORIDIRICERCA.PAROLA7,
+			MOTORIDIRICERCA.PAROLA8,
+			MOTORIDIRICERCA.PAROLA9,
+			MOTORIDIRICERCA.PAROLA10,
+			MOTORIDIRICERCA.CODICE_R
+			FROM		gsu.dbo.MOTORIDIRICERCA
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MOTORIDIRICERCA.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -110,7 +114,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND HOUSING.IDHOUSING = '$id'";
+            $sql .= " AND MOTORIDIRICERCA.IDMOTORIDIRICERCA = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -129,8 +133,9 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($pagina))
-            $sql .= " AND HOUSING.PAGINA like '%$pagina%'";
+        if(!empty($nome_dominio))
+            $sql .= " AND MOTORIDIRICERCA.NOMEDOMINIO like '%$nome_dominio%'";
+
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -144,7 +149,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.HOUSING WHERE IDHOUSING='$id'";
+            $sql = "DELETE FROM gsu.dbo.MOTORIDIRICERCA WHERE IDMOTORIDIRICERCA='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -165,15 +170,25 @@ EOF;
 
     public function saveData(){
         $id = Input::get('id_tbl');
-        $seriale = Input::get('seriale');
-        $tipo = Input::get('tipo');
-        $server = Input::get('server');
-        $gestione = Input::get('gestione');
         $manutenzione = Input::get('manutenzione');
+
+        $nome_dominio = Input::get('nome_dominio');
+        $utente = Input::get('utente');
+        $password = Input::get('password');
+        $parola1 = Input::get('parola1');
+        $parola2 = Input::get('parola2');
+        $parola3 = Input::get('parola3');
+        $parola4 = Input::get('parola4');
+        $parola5 = Input::get('parola5');
+        $parola6 = Input::get('parola6');
+        $parola7 = Input::get('parola7');
+        $parola8 = Input::get('parola8');
+        $parola9 = Input::get('parola9');
+        $parola10 = Input::get('parola10');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.HOUSING (Codice_R, SERIALE, TIPO, SERVER_, GESTIONE) VALUES ('$manutenzione','$seriale','$tipo','$server','$gestione')");
+                DB::insert("INSERT INTO gsu.dbo.MOTORIDIRICERCA (Codice_R, NOMEDOMINIO, UTENTE, PASSWORD, PAROLA1, PAROLA2,PAROLA3,PAROLA4,PAROLA5,PAROLA6,PAROLA7,PAROLA8,PAROLA9,PAROLA10) VALUES ('$manutenzione','$nome_dominio','$utente','$password','$parola1','$parola2','$parola3','$parola4','$parola5','$parola6','$parola7','$parola8','$parola9','$parola10')");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -186,7 +201,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.HOUSING SET Codice_R='$manutenzione', SERIALE='$seriale', TIPO='$tipo',SERVER_='$server', GESTIONE='$gestione' WHERE IDHOUSING=$id");
+                DB::update("UPDATE gsu.dbo.MOTORIDIRICERCA SET Codice_R='$manutenzione', NOMEDOMINIO='$nome_dominio', UTENTE='$utente', PASSWORD='$password', PAROLA1='$parola1', PAROLA2='$parola2',PAROLA3='$parola3',PAROLA4='$parola4',PAROLA5='$parola5',PAROLA6='$parola6',PAROLA7='$parola7',PAROLA8='$parola8',PAROLA9='$parola9',PAROLA10='$parola10' WHERE IDMOTORIDIRICERCA=$id");
 
         }
         catch (Exception $e) {
@@ -195,7 +210,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new HousingModel();
+        $model = new WebMarketingModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

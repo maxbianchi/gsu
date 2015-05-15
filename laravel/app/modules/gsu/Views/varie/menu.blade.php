@@ -21,7 +21,7 @@
                 <li><a href="{{url('/gsu/hosting')}}">Hosting</a></li>
                 <li><a href="{{url('/gsu/housing')}}">Housing</a></li>
                 <li><a href="{{url('/gsu/database')}}">Database</a></li>
-                <li><a href="/motori-di-ricerca.asp">Web Marketing</a></li>
+                <li><a href="{{url('/gsu/webmarketing')}}">Web Marketing</a></li>
                 <li><a href="/mailarchive.asp">Archivio Mail</a></li>
                 <li><a href="/novirusnospam.asp">NoVirus / NoSpam / Scan-mail</a></li>
                 <li><a href="#">Caselle</a>

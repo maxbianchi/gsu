@@ -264,7 +264,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new AdslModel();
+        $model = new DirectAccessModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

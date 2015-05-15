@@ -51,7 +51,7 @@ class Canoni{
         $this->canoni['/gsu/faxvirtuale'] = ['CAN-F017B'];
         $this->canoni['/gsu/videoconference'] = ['CAN-F041A'];
         $this->canoni['/gsu/ipstatici'] = ['CAN-E091A', 'CAN-E091B' , 'CAN-E092A', 'CAN-E092B', 'CAN-E093B'];
-        $this->canoni['/gsu/motori-di-ricerca'] = ['CAN-E041A', 'CAN-E041B'];
+        $this->canoni['/gsu/webmarketing'] = ['CAN-E041A', 'CAN-E041B'];
         $this->canoni['/gsu/novirusnospam'] = ['CAN-E051A', 'CAN-E051B', 'CAN-E052-001A', 'CAN-E052-002A', 'CAN-E052-003A', 'CAN-E052-004A', 'CAN-E052-005A', 'CAN-E052-006A', 'CAN-E052-007A', 'CAN-E052-008A', 'CAN-E052-009A', 'CAN-E052-010A'];
         $this->canoni['/gsu/postwarranty'] = ['CAN-G041A', 'CAN-G041B'];
         $this->canoni['/gsu/smartnet'] = ['CAN-G021A', 'CAN-G021B'];
