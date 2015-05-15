@@ -24,7 +24,7 @@
                                                     <select id="codutente">
                                                         @foreach ($utenti as $key => $utente)
                                                             @if($utente['DESCRIZIONE'] != "")
-                                                                <option value="{{$utente['SOGGETTO']}}">{{$utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA'].'  ('.$utente['PROVINCIA'].')'}}</option>"
+                                                                <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo $utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.htmlentities($utente['LOCALITA'],ENT_QUOTES, "UTF-8").'  ('.$utente['PROVINCIA'].')'?></option>"
                                                             @endif
                                                         @endforeach
                                                     </select>
