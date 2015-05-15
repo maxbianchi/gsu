@@ -101,4 +101,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/webmarketing/edit', 'WebMarketingController@edit');
     Route::post('gsu/webmarketing/save', 'WebMarketingController@save');
     Route::get('gsu/webmarketing/delete', 'WebMarketingController@delete');
+
+    //MAIL ARCHIVE
+    Route::get('gsu/mailarchive', 'MailArchiveController@main');
+    Route::get('gsu/mailarchive/search', 'MailArchiveController@search');
+    Route::get('gsu/mailarchive/show', 'MailArchiveController@show');
+    Route::get('gsu/mailarchive/edit', 'MailArchiveController@edit');
+    Route::post('gsu/mailarchive/save', 'MailArchiveController@save');
+    Route::get('gsu/mailarchive/delete', 'MailArchiveController@delete');
 });
