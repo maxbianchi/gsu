@@ -19,7 +19,7 @@
             <form method="GET" action="{{url('/gsu/direct-access/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" name="cliente" placeholder="CLIENTE"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" placeholder="CLIENTE"></div>
                     <div class="col-md-1 cliente">CLIENTE FINALE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" name="cliente_finale" placeholder="CLIENTE FINALE"></div>
                     <div class="col-md-2 destinatarioabituale">UBICAZIONE IMPIANTO</div>

@@ -20,9 +20,7 @@ class GsuController extends MainController {
 	 */
 	public function index()
 	{
-        $model = new GsuModel();
-        $anagrafica = $model->getNameAnagrafica();
-		return view("gsu::index", ['anagrafica' => json_encode($anagrafica)]);
+		return view("gsu::index");
 	}
 
     public function main(){
@@ -45,6 +43,12 @@ class GsuController extends MainController {
         $model = new GsuModel();
         $anagrafica = $model->getAllAnagrafica();
         return view("gsu::admin.anagrafica", ['anagrafica' => $anagrafica]);
+    }
+
+    public function getanagrafica(){
+        $model = new GsuModel();
+        $anagrafica = $model->getAnagraficaByName();
+        return json_encode($anagrafica);
     }
 
     public function logout(){

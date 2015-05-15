@@ -89,6 +89,17 @@
                 subMenusSubOffsetX: 1,
                 subMenusSubOffsetY: -8
             });
+
+            @if (Session::get('livello')  == 1)
+            $('.search_anagrafica').autocomplete({
+                source: '/gsu/getanagrafica',
+                minLength: 2,
+                select: function(event, ui) {
+
+                }
+            });
+            @endif;
+
         });
     </script>
 
