@@ -22,6 +22,9 @@ class Utenti extends Model {
             $utente  = DB::select("SELECT * FROM UNIWEB.dbo.AGE10 A WHERE A.SOGGETTO ='".$res[0]['CODUTENTE']."'");
             $utente[0]['username'] = $usr;
             $utente[0]['password'] = $pwd;
+            foreach($utente[0] as $key => $value){
+                    $utente[$key]= utf8_encode($value);
+            }
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
@@ -47,6 +50,11 @@ class Utenti extends Model {
 
     public function getAllUserFromMago(){
         $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
+        foreach($utente as $key => $value){
+            foreach($value as $key2 => $value2){
+                $utente[$key][$key2] = utf8_encode($value2);
+            }
+        }
         return $utenti;
     }
 
