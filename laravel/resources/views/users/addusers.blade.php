@@ -24,7 +24,7 @@
                                                     <select id="codutente">
                                                         @foreach ($utenti as $key => $utente)
                                                             @if($utente['DESCRIZIONE'] != "")
-                                                                <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo $utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.utf8_encode($utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
+                                                                <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
                                                             @endif
                                                         @endforeach
                                                     </select>
