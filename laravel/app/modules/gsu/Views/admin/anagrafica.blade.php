@@ -56,9 +56,9 @@
                 <td>{{$row['SOGGETTO']}}</td>
                 <td>{{$row['DESCRIZIONE']}}</td>
                 <td>{{$row['CONTATTO']}}</td>
-                <td>{{$row['INDIRIZZO']}}</td>
+                <td>{{utf8_encode($row['INDIRIZZO'])}}</td>
                 <td>{{$row['CAP']}}</td>
-                <td>{{$row['LOCALITA']}}</td>
+                <td>{{utf8_encode($row['LOCALITA'])}}</td>
                 <td>{{$row['PROVINCIA']}}</td>
                 <td>{{$row['TELEFONO']}}</td>
                 <td>{{$row['Fax']}}</td>
