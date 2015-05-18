@@ -36,8 +36,7 @@ class Canoni{
         $this->canoni['/gsu/utente-aggiuntivo-ts'] = ['CAN-G103-001A'];
         $this->canoni['/gsu/assistenza-tecnica'] = ['CAN-G002A', 'CAN-G002B'];
         $this->canoni['/gsu/servizi-access'] = ['CAN-G061', 'CAN-G061A', 'CAN-G061B', 'CAN-G062', 'CAN-G062A', 'CAN-G062B'];
-        $this->canoni['/gsu/caselle'] = ['CAN-E062A', 'CAN-E062B', 'CAN-E061B', 'CAN-E061A', 'CAN-E061M', 'CAN-E063A', 'CAN-E063B', 'CAN-E064A', 'CAN-E064B', 'CAN-E11A', 'CAN-E11B', 'CAN-E111A', 'CAN-E111B', 'CAN-E112A', 'CAN-E112B', 'CAN-E113A', 'CAN-E113B'];
-        $this->canoni['/gsu/caselle-relay'] = ['CAN-E081A', 'CAN-E081B', 'CAN-E082-001A', 'CAN-E082-002A', 'CAN-E082-003A', 'CAN-E082-004A', 'CAN-E082-005A', 'CAN-E082-006A', 'CAN-E082-007A', 'CAN-E082-008A', 'CAN-E082-009A', 'CAN-E082-010A', 'CAN-E082-001B', 'CAN-E082-002B', 'CAN-E082-003B', 'CAN-E082-004B', 'CAN-E082-005B', 'CAN-E082-006B', 'CAN-E082-007B', 'CAN-E082-008B', 'CAN-E082-009B', 'CAN-E082-010B'];
+        $this->canoni['/gsu/caselle'] = ['CAN-E062A', 'CAN-E062B', 'CAN-E061B', 'CAN-E061A', 'CAN-E061M', 'CAN-E063A', 'CAN-E063B', 'CAN-E064A', 'CAN-E064B', 'CAN-E11A', 'CAN-E11B', 'CAN-E111A', 'CAN-E111B', 'CAN-E112A', 'CAN-E112B', 'CAN-E113A', 'CAN-E113B','CAN-E081A', 'CAN-E081B', 'CAN-E082-001A', 'CAN-E082-002A', 'CAN-E082-003A', 'CAN-E082-004A', 'CAN-E082-005A', 'CAN-E082-006A', 'CAN-E082-007A', 'CAN-E082-008A', 'CAN-E082-009A', 'CAN-E082-010A', 'CAN-E082-001B', 'CAN-E082-002B', 'CAN-E082-003B', 'CAN-E082-004B', 'CAN-E082-005B', 'CAN-E082-006B', 'CAN-E082-007B', 'CAN-E082-008B', 'CAN-E082-009B', 'CAN-E082-010B'];
         $this->canoni['/gsu/database'] = ['CAN-E031A', 'CAN-E031B'];
         $this->canoni['/gsu/housing'] = ['CAN-E021A', 'CAN-E021B'];
         $this->canoni['/gsu/outlook'] = ['CAN-E131A', 'CAN-E131B'];

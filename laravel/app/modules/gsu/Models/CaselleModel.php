@@ -63,7 +63,9 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $nome_dominio = Input::get('nome_dominio');
+        $account = Input::get('account');
+        $email = Input::get('email');
+        $megabyte = Input::get('megabyte');
 
 
         $sql = <<<EOF
@@ -102,11 +104,29 @@ EOF;
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             CASELLE.IDCASELLA,
 			CASELLE.ACCOUNT,
+			CASELLE.EMAIL,
 			CASELLE.PASSWORD,
 			CASELLE.MEGABYTE,
 			CASELLE.TIPO,
 			CASELLE.CODICE_R,
-			CASELLE.EMAIL
+			CASELLE.TIPO_UTENTE,
+            CASELLE.POP3,
+			CASELLE.SMTP,
+			CASELLE.NOTE,
+			CASELLE.ALIAS_1,
+			CASELLE.ALIAS_2,
+			CASELLE.ALIAS_3,
+			CASELLE.ALIAS_4,
+			CASELLE.ALIAS_5,
+			CASELLE.ALIAS_6,
+			CASELLE.ALIAS_7,
+			CASELLE.ALIAS_8,
+            CASELLE.ALIAS_9,
+            CASELLE.ALIAS_10,
+            CASELLE.ALIAS_11,
+            CASELLE.ALIAS_12,
+            CASELLE.FORWARD,
+            CASELLE.COPIA
 			FROM		gsu.dbo.CASELLE
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CASELLE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -136,8 +156,12 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($nome_dominio))
-            $sql .= " AND MOTORIDIRICERCA.NOMEDOMINIO like '%$nome_dominio%'";
+        if(!empty($account))
+            $sql .= " AND CASELLE.ACCOUNT like '%$account%'";
+        if(!empty($email))
+            $sql .= " AND CASELLE.EMAIL like '%$email%'";
+        if(!empty($megabyte))
+            $sql .= " AND CASELLE.MEGABYTE like '%$megabyte%'";
 
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
@@ -175,23 +199,34 @@ EOF;
         $id = Input::get('id_tbl');
         $manutenzione = Input::get('manutenzione');
 
-        $nome_dominio = Input::get('nome_dominio');
-        $utente = Input::get('utente');
+        $tipo_utente = Input::get('tipo_utente');
+        $tipo_casella = Input::get('tipo');
+        $megabyte = Input::get('megabyte');
+        $account = Input::get('account');
         $password = Input::get('password');
-        $parola1 = Input::get('parola1');
-        $parola2 = Input::get('parola2');
-        $parola3 = Input::get('parola3');
-        $parola4 = Input::get('parola4');
-        $parola5 = Input::get('parola5');
-        $parola6 = Input::get('parola6');
-        $parola7 = Input::get('parola7');
-        $parola8 = Input::get('parola8');
-        $parola9 = Input::get('parola9');
-        $parola10 = Input::get('parola10');
+        $email = Input::get('email');
+        $pop3 = Input::get('pop3');
+        $smtp = Input::get('smtp');
+        $note = Input::get('note');
+        $alias_1 = Input::get('alias_1');
+        $alias_2 = Input::get('alias_2');
+        $alias_3 = Input::get('alias_3');
+        $alias_4 = Input::get('alias_4');
+        $alias_5 = Input::get('alias_5');
+        $alias_6 = Input::get('alias_6');
+        $alias_7 = Input::get('alias_7');
+        $alias_8 = Input::get('alias_8');
+        $alias_9 = Input::get('alias_9');
+        $alias_10 = Input::get('alias_10');
+        $alias_11 = Input::get('alias_11');
+        $alias_12 = Input::get('alias_12');
+        $forward = Input::get('forward');
+        $copia = Input::get('copia');
+
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.MOTORIDIRICERCA (Codice_R, NOMEDOMINIO, UTENTE, PASSWORD, PAROLA1, PAROLA2,PAROLA3,PAROLA4,PAROLA5,PAROLA6,PAROLA7,PAROLA8,PAROLA9,PAROLA10) VALUES ('$manutenzione','$nome_dominio','$utente','$password','$parola1','$parola2','$parola3','$parola4','$parola5','$parola6','$parola7','$parola8','$parola9','$parola10')");
+                DB::insert("INSERT INTO gsu.dbo.CASELLE (Codice_R, TIPO_UTENTE, TIPO,MEGABYTE,ACCOUNT,PASSWORD,EMAIL,POP3,SMTP,NOTE,ALIAS_1,ALIAS_2,ALIAS_3,ALIAS_4,ALIAS_5,ALIAS_6,ALIAS_7,ALIAS_8,ALIAS_9,ALIAS_10,ALIAS_11,ALIAS_12,FORWARD,COPIA) VALUES ('$manutenzione','$tipo_utente','$tipo_casella','$megabyte','$account','$password','$email','$pop3','$smtp','$note','$alias_1','$alias_2','$alias_3','$alias_4','$alias_5','$alias_6','$alias_7','$alias_8','$alias_9','$alias_10','$alias_11','$alias_12','$forward','$copia')");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -203,9 +238,9 @@ EOF;
                     DB::insert("INSERT INTO gsu.dbo.RICHIESTE_EVASE (CODICE_R, QUANTITA) VALUES ('$manutenzione','1')");
                 }
             }
-            else
-                DB::update("UPDATE gsu.dbo.MOTORIDIRICERCA SET Codice_R='$manutenzione', NOMEDOMINIO='$nome_dominio', UTENTE='$utente', PASSWORD='$password', PAROLA1='$parola1', PAROLA2='$parola2',PAROLA3='$parola3',PAROLA4='$parola4',PAROLA5='$parola5',PAROLA6='$parola6',PAROLA7='$parola7',PAROLA8='$parola8',PAROLA9='$parola9',PAROLA10='$parola10' WHERE IDMOTORIDIRICERCA=$id");
-
+            else {
+                DB::update("UPDATE gsu.dbo.CASELLE SET Codice_R='$manutenzione', TIPO_UTENTE='$tipo_utente', TIPO='$tipo_casella', MEGABYTE='$megabyte', ACCOUNT='$account', PASSWORD='$password',EMAIL='$email',POP3='$pop3',SMTP='$smtp',NOTE='$note',ALIAS_1='$alias_1',ALIAS_2='$alias_2',ALIAS_3='$alias_3',ALIAS_4='$alias_4',ALIAS_5='$alias_5',ALIAS_6='$alias_6',ALIAS_7='$alias_7',ALIAS_8='$alias_8',ALIAS_9='$alias_9',ALIAS_10='$alias_10',ALIAS_11='$alias_11',ALIAS_12='$alias_12',FORWARD='$forward',COPIA='$copia' WHERE IDCASELLA=$id");
+            }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -229,6 +264,25 @@ EOF;
                 Input::merge(array('add' => '1'));
         }
     }
+
+
+
+    public function getActivesync($email){
+        $sql = "SELECT * FROM ACTIVESYNC WHERE (EMAIL= '" . $email . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getOutlookconnector($email){
+        $sql = "SELECT * FROM OUTLOOKCONNECTOR WHERE (EMAIL= '" . $email . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
 
 }
 

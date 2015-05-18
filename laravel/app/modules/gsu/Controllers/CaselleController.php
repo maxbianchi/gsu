@@ -43,19 +43,23 @@ class CaselleController extends MainController {
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.caselle.caselle-detail", ['request' => $res, 'btn' => $btn]);
+        $activesync = $return['activesync'];
+        $outlookconnector = $return['outlookconnector'];
+        return view("gsu::admin.caselle.caselle-detail", ['request' => $res, 'btn' => $btn, 'activesync' => $activesync, 'outlookconnector' => $outlookconnector]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.caselle.caselle-detail", ['request' => $res, 'btn' => $btn]);
+        $activesync = $return['activesync'];
+        $outlookconnector = $return['outlookconnector'];
+        return view("gsu::admin.caselle.caselle-detail", ['request' => $res, 'btn' => $btn, 'activesync' => $activesync, 'outlookconnector' => $outlookconnector]);
     }
 
     private function manageShow(){
-        $res = new CaselleModel();
-        $res = $res->getFilteredRequest();
+        $model = new CaselleModel();
+        $res = $model->getFilteredRequest();
 
         $action = Route::currentRouteAction();
         $action = explode("@", $action);
@@ -75,8 +79,21 @@ class CaselleController extends MainController {
         else
             $res = $res[0];
 
+        $activesync = "NO";
+        $outlookconnector = "NO";
+        if(count($res) == 0) {
+            $res = ['MANUTENZIONE' => Input::get('manutenzione')];
+        }
+        else {
+            $activesync = $model->getActivesync($res['ACCOUNT']);
+            $outlookconnector = $model->getOutlookconnector($res['ACCOUNT']);
+        }
+
         $return['res'] = $res;
         $return['btn'] = $btn;
+        $return['activesync'] = $activesync;
+        $return['outlookconnector'] = $outlookconnector;
+
 
         return $return;
     }

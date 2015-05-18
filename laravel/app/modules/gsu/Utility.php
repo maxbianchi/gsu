@@ -77,5 +77,10 @@ class Utility{
         return $class;
     }
 
+    public static function DEBUG($data){
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+    }
 
 }

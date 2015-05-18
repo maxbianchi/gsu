@@ -166,7 +166,7 @@
                 </tr>
                 <tr>
                     <td>ALIAS_12</td>
-                    <td><input type="text" name="alias_4" value="{{$request['ALIAS_12'] or ""}}"></td>
+                    <td><input type="text" name="alias_12" value="{{$request['ALIAS_12'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -184,13 +184,13 @@
                 </tr>
                 <tr>
                     <td>ACTIVE SYNC</td>
-                    <td><input type="text" name="activesync" value="{{$request['COPIA'] or ""}}"></td>
+                    <td><input type="text" name="activesync" value="{{$activesync or ""}}" style="background-color:{{$activesync == "SI" ? "green" : "red" }}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>OUTLOOK CONNECTOR</td>
-                    <td><input type="text" name="outlookconnector" value="{{$request['COPIA'] or ""}}"></td>
+                    <td><input type="text" name="outlookconnector" value="{{$outlookconnector or ""}}" style="background-color:{{$outlookconnector == "SI" ? "green" : "red" }}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>

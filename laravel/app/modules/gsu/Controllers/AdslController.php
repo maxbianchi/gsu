@@ -80,7 +80,6 @@ class AdslController extends MainController {
             $res = ['MANUTENZIONE' => Input::get('manutenzione')];
         }
         else {
-            $res = $res[0];
             $servizi_plus = $model->getServiziPlus($res['TGU']);
             $servizi_access = $model->getServiziAccess($res['TGU']);
         }
