@@ -26,35 +26,25 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERIALE</td>
                     <td><input type="text" name="seriale" value="{{$request['SERIALE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>TIPO</td>
                     <td><input type="text" name="tipo" value="{{$request['TIPO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVER</td>
                     <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>GESTIONE</td>
                     <td><input type="text" name="gestione" value="{{$request['GESTIONE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDHOUSING'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

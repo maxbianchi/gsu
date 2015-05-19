@@ -26,53 +26,37 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVER</td>
                     <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PIATTAFORMA</td>
                     <td><input type="text" name="piattaforma" value="{{$request['PIATTAFORMA'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVIZIO</td>
                     <td><input type="text" name="servizio" value="{{$request['SERVIZIO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAGINA</td>
                     <td><input type="text" name="pagina" value="{{$request['PAGINA'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SPAZIOWEB</td>
                     <td><input type="text" name="spazioweb" value="{{$request['SPAZIOWEB'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>FTP UTENTE</td>
                     <td><input type="text" name="ftp_utente" value="{{$request['FTPUTENTE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>FTP PASSWORD</td>
                     <td><input type="text" name="ftp_password" value="{{$request['FTPPASSWORD'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDHOSTING'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

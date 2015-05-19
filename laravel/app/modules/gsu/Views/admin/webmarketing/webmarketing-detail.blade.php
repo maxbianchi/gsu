@@ -26,89 +26,61 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>NOME DOMINIO</td>
                     <td><input type="text" name="nome_dominio" value="{{$request['NOMEDOMINIO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>UTENTE</td>
                     <td><input type="text" name="utente" value="{{$request['UTENTE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PASSWORD</td>
                     <td><input type="text" name="password" value="{{$request['PASSWORD'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA1</td>
                     <td><input type="text" name="parola1" value="{{$request['PAROLA1'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA2</td>
                     <td><input type="text" name="parola2" value="{{$request['PAROLA2'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA3</td>
                     <td><input type="text" name="parola3" value="{{$request['PAROLA3'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA4</td>
                     <td><input type="text" name="parola4" value="{{$request['PAROLA4'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA5</td>
                     <td><input type="text" name="parola5" value="{{$request['PAROLA5'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA6</td>
                     <td><input type="text" name="parola6" value="{{$request['PAROLA6'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA7</td>
                     <td><input type="text" name="parola7" value="{{$request['PAROLA7'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA8</td>
                     <td><input type="text" name="parola8" value="{{$request['PAROLA8'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA9</td>
                     <td><input type="text" name="parola9" value="{{$request['PAROLA9'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PAROLA10</td>
                     <td><input type="text" name="parola10" value="{{$request['PAROLA10'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDMOTORIDIRICERCA'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

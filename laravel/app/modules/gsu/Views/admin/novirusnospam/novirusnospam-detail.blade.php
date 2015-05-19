@@ -26,17 +26,13 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>DOMINIO</td>
                     <td><input type="text" name="dominio" value="{{$request['DOMINIO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDNOVIRUSNOSPAM'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

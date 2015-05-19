@@ -26,47 +26,33 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>TIPO</td>
                     <td><input type="text" name="tipo" value="{{$request['TIPO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SERVER</td>
                     <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>IP</td>
                     <td><input type="text" name="ip" value="{{$request['IP'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>GESTIONE</td>
                     <td><input type="text" name="gestione" value="{{$request['GESTIONE'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>LOGIN</td>
                     <td><input type="text" name="login" value="{{$request['LOGIN'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>PASSWORD</td>
                     <td><input type="text" name="password" value="{{$request['PASSWORD'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="5" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDDATABASE'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

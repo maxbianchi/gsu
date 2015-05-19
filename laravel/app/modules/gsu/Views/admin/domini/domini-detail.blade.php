@@ -26,8 +26,6 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>TIPO DOMINIO</td>
@@ -37,41 +35,29 @@
                             <option value="PEC"	{{isset($request['TIPODOMINIO']) && $request['TIPODOMINIO'] == "PEC" ? 'selected="selected"' : ""  }}>PEC</option>
                         </select>
                     </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>DATA REGISTRAZIONE</td>
                     <td><input type="text" name="data_registrazione" value="{{$request['DATAR'] or ""}}" class="datepicker"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>NOME DOMINIO</td>
                     <td><input type="text" name="nome_dominio" value="{{$request['NOMEDOMINIO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SCADENZA</td>
                     <td><input type="text" name="scadenza" value="{{$request['SCADENZA'] or ""}}" class="datepicker"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>SCADENZA EFFETTIVA</td>
                     <td><input type="text" name="scadenza_effettiva" value="{{$request['SCADENZAEFFETTIVA'] or ""}}" class="datepicker"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>NOVIRUSNOSPAM</td>
                     <td><input type="text" name="novirusnospam" value="{{$request['NOVIRUSNOSPAM'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="5" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDDOMINIO'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
