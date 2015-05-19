@@ -19,29 +19,29 @@
             <form method="GET" action="{{url('/gsu/mpls-direct-access/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" placeholder="CLIENTE"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
                     <div class="col-md-1 cliente">CLIENTE FINALE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" name="cliente_finale" placeholder="CLIENTE FINALE"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" name="cliente_finale" ></div>
                     <div class="col-md-2 destinatarioabituale">UBICAZIONE IMPIANTO</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('ubicazione')}}" id="ubicazione" name="ubicazione" placeholder="UBICAZIONE IMPIANTO"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('ubicazione')}}" id="ubicazione" name="ubicazione" ></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">CANONE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('canone')}}" id="canone" name="canone" placeholder="CANONE"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('canone')}}" id="canone" name="canone" ></div>
                     <div class="col-md-1">MANUTENZIONE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('manutenzione')}}" id="manutenzione" name="manutenzione" placeholder="MANUTENZIONE"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('manutenzione')}}" id="manutenzione" name="manutenzione" ></div>
                     <div class="col-md-2">DATA INIZIO CONTRATTO</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('data_contratto')}}" id="data_contratto" name="data_contratto" class="datepicker" placeholder="DATA INIZIO CONTRATTO"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('data_contratto')}}" id="data_contratto" name="data_contratto" class="datepicker" ></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">TGU</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" placeholder="TGU"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
                     <div class="col-md-1">IP ROUTER</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('ip_router')}}" id="ip_router" name="ip_router" placeholder="IP ROUTER"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('ip_router')}}" id="ip_router" name="ip_router" ></div>
                     <div class="col-md-2">NUMERO TELEFONO</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('numero_telefono')}}" id="numero_telefono" name="numero_telefono" placeholder="TELEFONO"></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('numero_telefono')}}" id="numero_telefono" name="numero_telefono" ></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
