@@ -42,8 +42,7 @@ class Utenti extends Model {
                 $utente[$key][$key2] = utf8_encode($value2);
             }
         }
-        $utenti = json_encode($utente, JSON_HEX_QUOT);
-        return $utenti;
+        return $utente;
     }
 
     public function getAllUserFromMago(){

@@ -21,8 +21,25 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="col-md4 col-md-offset-1">
-                                    <table id="list"></table>
-                                    <div id="pager"></div>
+                                    <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>DESCRIZIONE</th>
+                                            <th>NOME UTENTE</th>
+                                            <th>PASSWORD</th>
+                                            <th>LIVELLO</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($utenti as $utente)
+                                            <tr>
+                                                <td>{{$utente['DESCRIZIONE']}}</td>
+                                                <td>{{$utente['UTENTE']}}</td>
+                                                <td>{{$utente['PASSWORD']}}</td>
+                                                <td>{{$utente['LIVELLO']}}</td>
+                                            </tr>
+                                            @endforeach;
+                                    </table>
                             </div>
                         </div>
                     </div>
@@ -37,31 +54,14 @@
     <script type="text/javascript" src="{{ URL::asset('js/i18n/grid.locale-en.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var grid = $("#list");
-            var mydata = <?php echo $utenti ?>;
-            grid.jqGrid({
-                datatype: "local",
-                data: mydata,
-                colNames:['Descrizione','Nome Utente', 'Password', 'Livello'],
-                colModel:[
-                    {name:'DESCRIZIONE',index:'DESCRIZIONE', width:400},
-                    {name:'UTENTE',index:'UTENTE', width:200},
-                    {name:'PASSWORD',index:'PASSWORD', width:200},
-                    {name:'LIVELLO',index:'LIVELLO', width:100, align:"right"}
-                ],
-                search:true,
-                pager:'#pager',
-                jsonReader: {cell:""},
-                rowNum: 20,
-                rowList: [5, 10, 20, 50],
-                sortname: 'DESCRIZIONE',
-                sortorder: 'asc',
-                viewrecords: true,
-                height: "100%",
-                caption: "Utenti registrati a sistema"
+            $('#main').dataTable({
+                "iDisplayLength": 30,
+                "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
+                "aaSorting": [],
+                "fnInitComplete": function(oSettings, json) {
+                    $("#main").show();
+                }
             });
-            grid.jqGrid('navGrid','#pager',{add:false,edit:false,del:false,search:true,refresh:true},
-                    {},{},{},{multipleSearch:true, multipleGroup:true, showQuery: true});
         });
     </script>
 @endsection
