@@ -81,8 +81,10 @@ class AdslController extends MainController {
         }
         else {
             $res = $res[0];
-            $servizi_plus = $model->getServiziPlus($res['TGU']);
-            $servizi_access = $model->getServiziAccess($res['TGU']);
+            if(isset($res['TGU'])) {
+                $servizi_plus = $model->getServiziPlus($res['TGU']);
+                $servizi_access = $model->getServiziAccess($res['TGU']);
+            }
         }
 
         $return['res'] = $res;

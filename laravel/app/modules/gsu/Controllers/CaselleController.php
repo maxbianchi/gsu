@@ -85,8 +85,10 @@ class CaselleController extends MainController {
             $res = ['MANUTENZIONE' => Input::get('manutenzione')];
         }
         else {
-            $activesync = $model->getActivesync($res['ACCOUNT']);
-            $outlookconnector = $model->getOutlookconnector($res['ACCOUNT']);
+            if(isset($res['ACCOUNT'])) {
+                $activesync = $model->getActivesync($res['ACCOUNT']);
+                $outlookconnector = $model->getOutlookconnector($res['ACCOUNT']);
+            }
         }
 
         $return['res'] = $res;
