@@ -6411,3 +6411,8 @@ table.dataTable.detail{
 * html .ui-autocomplete {
     height: 250px;
 }
+
+
+table.adduser tr td{
+    padding: 10px;
+}

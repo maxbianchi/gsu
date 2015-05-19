@@ -18,7 +18,7 @@
                                 <form action="#" method="POST" id="form_utente" onsubmit="return false;">
                                     <fieldset>
                                         <legend>Crea nuovo utente</legend>
-                                        <table>
+                                        <table class="adduser">
                                             <tr>
                                                 <td colspan="2">
                                                     <select id="codutente">
