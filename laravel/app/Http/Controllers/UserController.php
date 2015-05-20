@@ -4,6 +4,7 @@
 use App\Utenti;
 use Session;
 use Input;
+use Redirect;
 
 class UserController extends Controller {
 

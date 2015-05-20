@@ -38,7 +38,7 @@
                                                 <td>{{$utente['PASSWORD']}}</td>
                                                 <td>{{$utente['LIVELLO']}}</td>
                                             </tr>
-                                            @endforeach;
+                                            @endforeach
                                     </table>
                             </div>
                         </div>
