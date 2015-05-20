@@ -52,16 +52,4 @@
 @section('script')
     <script type="text/javascript" src="{{ URL::asset('js/jquery.jqGrid.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/i18n/grid.locale-en.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#main').dataTable({
-                "iDisplayLength": 30,
-                "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
-                "aaSorting": [],
-                "fnInitComplete": function(oSettings, json) {
-                    $("#main").show();
-                }
-            });
-        });
-    </script>
 @endsection
