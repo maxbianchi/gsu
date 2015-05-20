@@ -9,6 +9,8 @@ use DB;
 class MplsModel extends Model {
 
     public function getAllRequest(){
+        $cliente = Input::get('cliente');
+
         $sql = <<<EOF
 			SELECT
 			richieste.OGGETTO			AS CANONE,
@@ -51,8 +53,14 @@ class MplsModel extends Model {
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE
+            WHERE 1 = 1
 EOF;
+
+        if(!empty($cliente))
+            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+
+
+        $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
         return $request;

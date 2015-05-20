@@ -2,6 +2,9 @@
 
 Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers'), function() {
 
+    //AJAX
+    Route::get('/gsu/getclienti', 'GsuController@getclienti');
+
     //MAIN e DASHBOARD
     Route::get('gsu/index', 'GsuController@index');
     Route::get('gsu/main', 'GsuController@main');

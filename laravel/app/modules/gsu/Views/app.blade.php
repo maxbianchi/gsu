@@ -101,6 +101,16 @@
             });
             @endif;
 
+            @if (Session::get('livello')  == 2)
+            $('.search_clienti').autocomplete({
+                source: '/gsu/getclienti',
+                minLength: 2,
+                select: function(event, ui) {
+
+                }
+            });
+            @endif;
+
         });
     </script>
 

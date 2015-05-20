@@ -1,17 +1,12 @@
 @extends('app')
 
-@section('css')
-
-    <link rel="stylesheet" href="{{ URL::asset('css/ui.jqgrid.css') }}" />
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Portale UniWeb 4.0
-                    <span class="pull-right autoimport"><a  href="#">Importazione da AOF70</a></span>
+                    <div class="panel-heading"><a href="{{url('/riferimenti/addnew')}}">Crea nuovo</a>
+                    <span class="pull-right autoimport"><a  href="javascript:void(0);">Importazione da AOF70</a></span>
                     </div>
 
                     <div class="panel-body">

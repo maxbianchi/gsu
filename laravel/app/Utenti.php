@@ -3,6 +3,7 @@
 use App\Modules\Gsu\Utility;
 use Illuminate\Database\Eloquent\Model;
 use Input;
+use League\Flysystem\Exception;
 use Session;
 use DB;
 
@@ -21,12 +22,28 @@ class Utenti extends Model {
 
         if (count($res) == 1) {
             $utente  = DB::select("SELECT * FROM UNIWEB.dbo.AGE10 A WHERE A.SOGGETTO ='".$res[0]['CODUTENTE']."'");
+            $riferimenti  = $this->getAllRiferimenti($res[0]['CODUTENTE']);
+            $clienti_finali = [];
+            $ubicazioni = [];
+
+            if($res[0]['LIVELLO'] != 1) {
+                foreach ($riferimenti as $rif) {
+                    if (!in_array($rif['CLIENTE_FINALE'], $clienti_finali))
+                        $clienti_finali[] = $rif['CLIENTE_FINALE'];
+                    if (!in_array($rif['UBICAZIONE_IMPIANTO'], $ubicazioni))
+                        $ubicazioni[] = $rif['UBICAZIONE_IMPIANTO'];
+                }
+            }
+
             $utente[0]['username'] = $usr;
             $utente[0]['password'] = $pwd;
 
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
+            Session::put('clienti_finali', $clienti_finali);
+            Session::put('ubicazioni', $ubicazioni);
+
             return true;
         } else {
             Session::flush();
@@ -37,7 +54,7 @@ class Utenti extends Model {
     }
 
     public function getAllUser(){
-        $utente  = DB::select("SELECT A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != '' ORDER BY A.DESCRIZIONE");
+        $utente  = DB::select("SELECT U.IDUTENTE, A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != '' ORDER BY A.DESCRIZIONE");
         foreach($utente as $key => $value){
             foreach($value as $key2 => $value2){
                 $utente[$key][$key2] = utf8_encode($value2);
@@ -52,18 +69,22 @@ class Utenti extends Model {
     }
 
     public function createUser($codutente, $username, $password, $livello) {
-        DB::insert('insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO) values (?, ?, ?, ?)', [$codutente, $username, $password, $livello]);
+        DB::insert("insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO) values ('$codutente', '$username', '$password', '$livello')");
     }
 
 
-    public function getAllRiferimenti(){
+    public function getAllRiferimenti($soggetto = ""){
         $sql = <<<EOF
         SELECT A1.DESCRIZIONE SOGGETTO, A2.DESCRIZIONE CLIENTE_FINALE, ISNULL(NULLIF(A3.DESCRIZIONE, ''), ISNULL(NULLIF(A3.DESCRIZIONE, ''), ISNULL(NULLIF((A2.DESCRIZIONE), ''), A1.DESCRIZIONE)) + ' - ' + ISNULL(NULLIF((A2.LOCALITA), ''), A1.LOCALITA)) + ' - ' + ISNULL(NULLIF(A3.INDIRIZZO, ''), ISNULL(NULLIF((A2.INDIRIZZO), ''), A1.INDIRIZZO)) UBICAZIONE_IMPIANTO FROM UNIWEB.dbo.riferimenti R
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON R.SOGGETTO = A1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON R.CLIENTE_FINALE = A2.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON R.UBICAZIONE_IMPIANTO = A3.SOGGETTO
-        ORDER BY SOGGETTO
 EOF;
+
+        if(!empty($soggetto))
+            $sql .=" WHERE A1.SOGGETTO like '%$soggetto%'";
+
+        $sql .= " ORDER BY SOGGETTO";
 
         $res = DB::select($sql);
         return $res;
@@ -85,6 +106,18 @@ EOF;
             }
         }
         return $i;
+    }
+
+    public function saveRiferimento(){
+        try {
+            $soggetto = Input::get('soggetto');
+            $cliente = Input::get('cliente');
+            $ubicazione = Input::get('ubicazione');
+            DB::insert("insert into UNIWEB.dbo.riferimenti (SOGGETTO, CLIENTE_FINALE,UBICAZIONE_IMPIANTO) values ('$soggetto', '$cliente', '$ubicazione')");
+        }
+        catch (Exception $e) {
+            Throw new Exception('Caught exception: '. $e->getMessage());
+        }
     }
 
 }

@@ -11,6 +11,7 @@ class DominiModel extends Model {
     public function getAllRequest(){
 
         $tipo_dominio = Input::get('tipo_dominio');
+        $cliente = Input::get('cliente');
 
         $sql = <<<EOF
         SELECT
@@ -47,6 +48,9 @@ EOF;
 
         if(!empty($tipo_dominio))
             $sql .= " AND DOMINI.TIPODOMINIO like '%$tipo_dominio%'";
+        if(!empty($cliente))
+            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 

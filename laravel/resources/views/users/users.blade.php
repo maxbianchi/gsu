@@ -1,9 +1,5 @@
 @extends('app')
 
-@section('css')
-
-    <link rel="stylesheet" href="{{ URL::asset('css/ui.jqgrid.css') }}" />
-@endsection
 
 @section('content')
     <div class="container">
@@ -24,6 +20,7 @@
                                     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%">
                                         <thead>
                                         <tr>
+                                            <th>AZIONI</th>
                                             <th>DESCRIZIONE</th>
                                             <th>NOME UTENTE</th>
                                             <th>PASSWORD</th>
@@ -33,6 +30,10 @@
                                         <tbody>
                                             @foreach($utenti as $utente)
                                             <tr>
+                                                <td>
+                                                    <a class="btn btn-small edit" href="{{url('/edituser')."?id=".$utente['IDUTENTE']}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                                                    <a class="btn btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE"  delete-id="{{$utente['IDUTENTE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                                                </td>
                                                 <td>{{$utente['DESCRIZIONE']}}</td>
                                                 <td>{{$utente['UTENTE']}}</td>
                                                 <td>{{$utente['PASSWORD']}}</td>
@@ -49,7 +50,3 @@
     </div>
 @endsection
 
-@section('script')
-    <script type="text/javascript" src="{{ URL::asset('js/jquery.jqGrid.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/i18n/grid.locale-en.js') }}"></script>
-@endsection

@@ -1,7 +1,5 @@
 @extends('app')
 
-
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -14,11 +12,12 @@
                             <div class="col-md4 col-md-offset-1">
                                 <form action="#" method="POST" id="form_utente" onsubmit="return false;">
                                     <fieldset>
-                                        <legend>Crea nuovo utente</legend>
+                                        <legend>Crea nuovo riferimento</legend>
                                         <table class="adduser">
                                             <tr>
+                                                <td>SOGGETTO</td>
                                                 <td colspan="2">
-                                                    <select id="codutente">
+                                                    <select id="soggetto">
                                                         @foreach ($utenti as $key => $utente)
                                                             @if($utente['DESCRIZIONE'] != "")
                                                                 <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
@@ -28,20 +27,26 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Nome Utente</td>
-                                                <td><input type="text" id="username" name="username" required="required"></td>
+                                                <td>CLIENTE</td>
+                                                <td colspan="2">
+                                                    <select id="cliente">
+                                                        @foreach ($utenti as $key => $utente)
+                                                            @if($utente['DESCRIZIONE'] != "")
+                                                                <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td>Password</td>
-                                                <td><input type="text" id="password" name="password" required="required"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Livello</td>
-                                                <td>
-                                                    <select id="livello">
-                                                        <option value="3">Utente</option>
-                                                        <option value="2">Rivenditore</option>
-                                                        <option value="1">Amministratore</option>
+                                                <td>UBICAZIONE</td>
+                                                <td colspan="2">
+                                                    <select id="ubicazione">
+                                                        @foreach ($utenti as $key => $utente)
+                                                            @if($utente['DESCRIZIONE'] != "")
+                                                                <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
+                                                            @endif
+                                                        @endforeach
                                                     </select>
                                                 </td>
                                             </tr>
@@ -81,22 +86,27 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#btn").click(function(){
-                var sUsername = $("#username").val();
-                var sPassword = $("#password").val();
-                var sLivello = $("#livello").val();
-                var sCodutente = $("#codutente").val();
+                var soggetto = $("#soggetto").val();
+                var cliente = $("#cliente").val();
+                var ubicazione = $("#ubicazione").val();
+
                 $_token = "{{ csrf_token() }}";
-                $.post("{{ url('/createuser') }}", {username: sUsername, password: sPassword, livello: sLivello, codutente: sCodutente, _token: $_token})
-                        .done(function (json) {
-                            var parsed = JSON.parse(json);
-                            $(".msg").html(parsed.msg);
+                $.post("{{ url('/riferimenti/savenew') }}", {soggetto: soggetto, cliente: cliente, ubicazione: ubicazione, _token: $_token})
+                        .done(function (data) {
+                            $(".msg").html(data);
+                            $('#savedModal').modal({
+                                show: 'true'
+                            });
+                        })
+                        .fail(function() {
+                            $(".msg").html("Si è verificato un errore durante il salvataggio");
                             $('#savedModal').modal({
                                 show: 'true'
                             });
                         });
             });
             $("#back").click(function(){
-               location.href='{{ url('/users') }}';
+               location.href='{{ url('/riferimenti') }}';
             });
         });
     </script>

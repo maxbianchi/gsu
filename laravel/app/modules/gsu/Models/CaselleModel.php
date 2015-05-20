@@ -11,6 +11,7 @@ class CaselleModel extends Model {
     public function getAllRequest(){
 
         $canone = Input::get('canone');
+        $cliente = Input::get('cliente');
 
         $sql = <<<EOF
         SELECT
@@ -46,6 +47,8 @@ EOF;
 
         if(!empty($canone))
             $sql .= " AND richieste.OGGETTO like '%$canone%'";
+        if(!empty($cliente))
+            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
 
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";

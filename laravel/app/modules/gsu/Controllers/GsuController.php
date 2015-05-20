@@ -5,6 +5,7 @@ use App\Modules\Gsu\Models\GsuModel;
 use App\Modules\Gsu\Utility;
 use DB;
 use Session;
+use Redirect;
 
 class GsuController extends MainController {
 
@@ -20,6 +21,11 @@ class GsuController extends MainController {
 	 */
 	public function index()
 	{
+        $livello = Session::get('livello');
+        if($livello != 1) {
+            return Redirect::to('/gsu/main');
+        }
+
 		return view("gsu::index");
 	}
 
@@ -54,6 +60,12 @@ class GsuController extends MainController {
     public function logout(){
         Session::flush();
         return Redirect::to('/');
+    }
+
+    public function getclienti(){
+        $model = new GsuModel();
+        $clienti = $model->getClientiByRivenditore();
+        return json_encode($clienti);
     }
 
 }

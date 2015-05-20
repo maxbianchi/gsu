@@ -8,7 +8,19 @@ use DB;
 
 class GsuModel extends Model {
 
+    //DA ATTIVARE
+//AND (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) = 0 OR ISNULL(RICHIESTE_EVASE.QUANTITA, 0) < RICHIESTE.QUANTITA))
+    //ATTIVATO
+//AND (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >=  RICHIESTE.QUANTITA))
+    //DISTATTIVATO
+//AND (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) <=  0))
+    //DA DISATTIVARE
+//AND (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >  0))
+
+
     public function getAllRequest(){
+        $cliente = Input::get('cliente');
+
         $sql = <<<EOF
         SELECT RICHIESTE.STATO, RICHIESTE.MANUTENZIONE, RICHIESTE_EVASE.CODICE_R, RICHIESTE.DATADOCUMENTO, RICHIESTE.OGGETTO CANONE, RICHIESTE.DESCRIZIONE AS DESCRCANONE,
         RICHIESTE.DESCRIZIONE2 AS DESCRCANONE2,
@@ -25,8 +37,13 @@ class GsuModel extends Model {
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA3 ON RICHIESTE.DESTINATARIOABITUALE = ANAGRAFICA3.SOGGETTO
         WHERE (NOT ( RICHIESTE.OGGETTO LIKE 'TRF%') AND NOT ( RICHIESTE.OGGETTO LIKE 'OR%') AND NOT ( RICHIESTE.OGGETTO LIKE 'NR%') AND NOT ( RICHIESTE.OGGETTO = '' ))
         AND RICHIESTE.STATO != 'D'
-        ORDER BY RICHIESTE.STATO, RICHIESTE_EVASE.QUANTITA
+
 EOF;
+
+        if(!empty($cliente))
+            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+
+        $sql .= " ORDER BY RICHIESTE.STATO, RICHIESTE_EVASE.QUANTITA";
 
         $request  = DB::select($sql);
         return $request;
@@ -41,7 +58,10 @@ EOF;
         $data_contratto = Input::get('data_contratto');
         $descrizione = Input::get('descrizione');
         $descrizione2 = Input::get('descrizione2');
-        $dismessi = Input::get('dismessi');
+        $daattivare = Input::get('daattivare');
+        $attivati = Input::get('attivati');
+        $dadisattivare = Input::get('dadisattivare');
+        $disattivati = Input::get('disattivati');
 
 
         $sql = <<<EOF
@@ -83,10 +103,38 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($dismessi))
-            $sql .= " AND RICHIESTE.STATO = 'D'";
-        else
-            $sql .= " AND RICHIESTE.STATO = 'A'";
+        $stati = [];
+        if(!empty($daattivare))
+            $stati[] = " (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) = 0 OR ISNULL(RICHIESTE_EVASE.QUANTITA, 0) < RICHIESTE.QUANTITA))";
+
+        if(!empty($attivati))
+            $stati[] = " (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >=  RICHIESTE.QUANTITA))";
+
+        if(!empty($dadisattivare))
+            $stati[] = " (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >  0))";
+
+        if(!empty($disattivati))
+            $stati[] = " (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) <=  0))";
+
+
+        if(count($stati) > 0){
+            $stati = implode(" OR ", $stati);
+            $stati = " AND ( ".$stati." )";
+            $sql .= $stati;
+        }
+
+
+
+        //DA ATTIVARE
+//AND (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) = 0 OR ISNULL(RICHIESTE_EVASE.QUANTITA, 0) < RICHIESTE.QUANTITA))
+        //ATTIVATO
+//AND (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >=  RICHIESTE.QUANTITA))
+        //DISTATTIVATO
+//AND (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) <=  0))
+        //DA DISATTIVARE
+//AND (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >  0))
+
+
 
         $sql .= " ORDER BY RICHIESTE.STATO, RICHIESTE_EVASE.QUANTITA";
 
@@ -121,5 +169,19 @@ EOF;
         }
         return $result;
     }
+
+    public function getClientiByRivenditore(){
+        $q = Input::get('term');
+        $res = Session::get('clienti_finali');
+        $result = "";
+        foreach($res as $keys => $value){
+            if(empty($values))
+                continue;
+            $tmp = explode(" - ", $value);
+            $result[] = trim($tmp[0]);
+        }
+        return $result;
+    }
+
 }
 

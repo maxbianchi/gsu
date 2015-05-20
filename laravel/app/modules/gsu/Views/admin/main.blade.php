@@ -25,7 +25,7 @@
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
                     <div class="col-md-1 cliente">CLIENTE FINALE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" name="cliente_finale" ></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente_finale')}}" id="cliente_finale" class="search_clienti" name="cliente_finale" ></div>
                     <div class="col-md-2 destinatarioabituale">UBICAZIONE IMPIANTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('ubicazione')}}" id="ubicazione" name="ubicazione" ></div>
                     <div class="col-md-3"></div>
@@ -44,8 +44,11 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('descrizione')}}" id="descrizione" name="descrizione" ></div>
                     <div class="col-md-1">DESCRIZIONE 2</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('descrizione2')}}" id="descrizione2" name="descrizione2" ></div>
-                    <div class="col-md-2">DISMESSI</div>
-                    <div class="col-md-2"><input type="checkbox" <?php if(!empty(Input::get('dismessi'))) echo "checked" ?> id="dismessi" name="dismessi"></div>
+
+                    <div class="col-md-1"><input type="checkbox" <?php echo Input::get('daattivare') != 'on' ? '' :  "checked" ?> id="daattivare" name="daattivare">da attivare</div>
+                    <div class="col-md-1"><input type="checkbox" <?php echo Input::get('attivati')!= 'on' ? '' :  "checked" ?> id="attivati" name="attivati">attivati</div>
+                    <div class="col-md-1"><input type="checkbox" <?php echo Input::get('dadisattivare')!= 'on' ? '' :  "checked" ?> id="dadisattivare" name="dadisattivare">da disattivare</div>
+                    <div class="col-md-1"><input type="checkbox" <?php echo Input::get('disattivati')!= 'on' ? '' :  "checked" ?> id="disattivati" name="disattivati">disattivati</div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">

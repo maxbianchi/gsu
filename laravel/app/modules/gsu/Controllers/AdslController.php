@@ -27,7 +27,7 @@ class AdslController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.adsl.adsl", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.adsl.adsl", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){

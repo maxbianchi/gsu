@@ -12,6 +12,8 @@ use Input;
 
 class MainController extends Controller {
 
+    protected $view_folder;
+
     public function __construct()
     {
 
@@ -22,6 +24,18 @@ class MainController extends Controller {
             } else {
                 Session::set('alive', 1);
             }
+
+            $livello = Session::get('livello');
+            if($livello != 1) {
+                $cliente = Session::get('user');
+                Input::merge(array('cliente' => $cliente['DESCRIZIONE']));
+            }
+            $this->view_folder = "admin";
+            if($livello == 2)
+                $this->view_folder = "rivenditore";
+            if($livello == 3)
+                $this->view_folder = "user";
+
         });
 
     }

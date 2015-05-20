@@ -19,6 +19,8 @@ class UserController extends Controller {
             }
         });
 
+        $this->beforeFilter('csrf', ['on' => 'post']);
+
 	}
 
 	/**
@@ -68,6 +70,23 @@ class UserController extends Controller {
         $model = new Utenti();
         $num = $model->autoSetRiferimenti();
         return json_encode($num);
+    }
+
+    public function riferimentiaddnew(){
+        $utenti = new Utenti();
+        $utenti = $utenti->getAllUserFromMago();
+        return view('users.addriferimenti', ['utenti' => $utenti]);
+    }
+
+    public function riferimentisavenew(){
+        try {
+            $model = new Utenti();
+            $model->saveRiferimento();
+        }
+        catch (Exception $e) {
+            return 'Caught exception: '. $e->getMessage() . "\n";
+        }
+        return "Riferimento registrato correttamente";
     }
 
 }

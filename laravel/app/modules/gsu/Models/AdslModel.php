@@ -9,18 +9,20 @@ use DB;
 class AdslModel extends Model {
 
     public function getAllRequest(){
+        $cliente = Input::get('cliente');
+
         $sql = <<<EOF
 			SELECT
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
-			anagrafica.DESCRIZIONE		AS SOGGETTO,
-			anagrafica.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
-			anagrafica.CAP		AS SOGGETTO_CAP,
-			anagrafica.LOCALITA		AS SOGGETTO_LOCALITA,
-			anagrafica.PROVINCIA		AS SOGGETTO_PROVINCIA,
-			anagrafica.TELEFONO		AS SOGGETTO_TELEFONO,
-			anagrafica.PARTITAIVA		AS SOGGETTO_PARTITAIVA,
+			anagrafica1.DESCRIZIONE		AS SOGGETTO,
+			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
+			anagrafica1.CAP		AS SOGGETTO_CAP,
+			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
+			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
+			anagrafica1.TELEFONO		AS SOGGETTO_TELEFONO,
+			anagrafica1.PARTITAIVA		AS SOGGETTO_PARTITAIVA,
 			anagrafica2.DESCRIZIONE 	AS CLIENTE,
 			anagrafica2.INDIRIZZO 		AS CLIENTE_INDIRIZZO,
 			anagrafica2.CAP		AS CLIENTE_CAP,
@@ -51,11 +53,16 @@ class AdslModel extends Model {
 			ADSL.CODICE_R
 			FROM gsu.dbo.ADSL
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ADSL.codice_r = richieste.MANUTENZIONE
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica	ON richieste.SOGGETTO				= anagrafica.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE
+            WHERE 1 = 1
 EOF;
+
+        if(!empty($cliente))
+            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+
+        $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
         return $request;
