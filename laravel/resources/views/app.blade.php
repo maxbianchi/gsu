@@ -7,6 +7,7 @@
 	<title>Laravel</title>
 
     <link href="{{ asset('/css/jqueryui/1.11.4/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery.dataTables.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
@@ -39,6 +40,7 @@
 				<ul class="nav navbar-nav navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         @if (Session::get('livello')  == 1)
+                            <li><a href="{{ url('/riferimenti') }}">Gestione Riferimenti</a></li>
                             <li><a href="{{ url('/users') }}">Gestione Utenti</a></li>
                         @endif
                         @if (Session::get('logged')  == 1)
@@ -70,6 +72,7 @@
     <script type="text/javascript" src="{{ URL::asset('js/jqueryui/1.11.4/jquery-ui.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('js/dataTables.bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
 
     @yield('script')
 </body>

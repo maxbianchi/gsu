@@ -56,4 +56,17 @@ class UserController extends Controller {
         $res = ['msg' => 'Nuovo utente creato'];
         return json_encode($res);
     }
+
+    public function riferimenti(){
+        $model = new Utenti();
+        $riferimenti = $model->getAllRiferimenti();
+        return view('users.riferimenti', ['riferimenti' => $riferimenti]);
+    }
+
+    public function AutoSetRiferimenti(){
+        $model = new Utenti();
+        $num = $model->autoSetRiferimenti();
+        return json_encode($num);
+    }
+
 }

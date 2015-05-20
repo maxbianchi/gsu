@@ -21,3 +21,6 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('/users', 'UserController@index');
 Route::get('/adduser', 'UserController@adduser');
 Route::post('/createuser', 'UserController@createuser');
+
+Route::get('/riferimenti', 'UserController@riferimenti');
+Route::get('/riferimenti/autoimport', 'UserController@autosetriferimenti');
