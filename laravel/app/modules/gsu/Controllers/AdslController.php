@@ -36,7 +36,7 @@ class AdslController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.adsl.adsl", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.adsl.adsl", ['request' => $res, 'class' => $class]);
     }
 
     public function show(){
@@ -45,7 +45,7 @@ class AdslController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::admin.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
     }
 
     public function edit(){
@@ -54,7 +54,7 @@ class AdslController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::admin.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
     }
 
     private function manageShow(){

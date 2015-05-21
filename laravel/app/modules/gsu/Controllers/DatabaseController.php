@@ -27,7 +27,7 @@ class DatabaseController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.database.database", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.database.database", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){
@@ -36,21 +36,21 @@ class DatabaseController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.database.database", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.database.database", ['request' => $res, 'class' => $class]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.database.database-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.database.database-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.database.database-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.database.database-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     private function manageShow(){

@@ -1,5 +1,7 @@
 <?php namespace App\Modules\Gsu\Models;
 
+use App\Modules\Gsu\Utility;
+use App\Utenti;
 use Illuminate\Database\Eloquent\Model;
 use Input;
 use Session;
@@ -8,18 +10,12 @@ use DB;
 
 class GsuModel extends Model {
 
-    //DA ATTIVARE
-//AND (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) = 0 OR ISNULL(RICHIESTE_EVASE.QUANTITA, 0) < RICHIESTE.QUANTITA))
-    //ATTIVATO
-//AND (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >=  RICHIESTE.QUANTITA))
-    //DISTATTIVATO
-//AND (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) <=  0))
-    //DA DISATTIVARE
-//AND (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >  0))
-
-
     public function getAllRequest(){
         $cliente = Input::get('cliente');
+        $daattivare = Input::get('daattivare');
+        $attivati = Input::get('attivati');
+        $dadisattivare = Input::get('dadisattivare');
+        $disattivati = Input::get('disattivati');
 
         $sql = <<<EOF
         SELECT RICHIESTE.STATO, RICHIESTE.MANUTENZIONE, RICHIESTE_EVASE.CODICE_R, RICHIESTE.DATADOCUMENTO, RICHIESTE.OGGETTO CANONE, RICHIESTE.DESCRIZIONE AS DESCRCANONE,
@@ -36,12 +32,31 @@ class GsuModel extends Model {
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA2 ON RICHIESTE.CLIENTE = ANAGRAFICA2.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA3 ON RICHIESTE.DESTINATARIOABITUALE = ANAGRAFICA3.SOGGETTO
         WHERE (NOT ( RICHIESTE.OGGETTO LIKE 'TRF%') AND NOT ( RICHIESTE.OGGETTO LIKE 'OR%') AND NOT ( RICHIESTE.OGGETTO LIKE 'NR%') AND NOT ( RICHIESTE.OGGETTO = '' ))
-        AND RICHIESTE.STATO != 'D'
-
 EOF;
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+
+        $stati = [];
+        if(!empty($daattivare))
+            $stati[] = " (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) = 0 OR ISNULL(RICHIESTE_EVASE.QUANTITA, 0) < RICHIESTE.QUANTITA))";
+
+        if(!empty($attivati))
+            $stati[] = " (RICHIESTE.STATO = 'A' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >=  RICHIESTE.QUANTITA))";
+
+        if(!empty($dadisattivare))
+            $stati[] = " (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) >  0))";
+
+        if(!empty($disattivati))
+            $stati[] = " (RICHIESTE.STATO = 'D' AND (ISNULL(RICHIESTE_EVASE.QUANTITA, 0) <=  0))";
+
+
+        if(count($stati) > 0){
+            $stati = implode(" OR ", $stati);
+            $stati = " AND ( ".$stati." )";
+            $sql .= $stati;
+        }
+
 
         $sql .= " ORDER BY RICHIESTE.STATO, RICHIESTE_EVASE.QUANTITA";
 
@@ -172,13 +187,15 @@ EOF;
 
     public function getClientiByRivenditore(){
         $q = Input::get('term');
-        $res = Session::get('clienti_finali');
+        $soggetto = Session::get('user')['SOGGETTO'];
+        $model = new Utenti();
+        $res = $model->getAllRiferimenti($soggetto,$q);
+
         $result = "";
         foreach($res as $keys => $value){
-            if(empty($values))
+            if(empty($value))
                 continue;
-            $tmp = explode(" - ", $value);
-            $result[] = trim($tmp[0]);
+            $result[] = trim($value['CLIENTE_FINALE']);
         }
         return $result;
     }

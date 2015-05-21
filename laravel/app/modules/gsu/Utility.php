@@ -17,6 +17,7 @@ class Utility{
 
             $QTAGSU = is_null($QTAGSU) ? 0 : $QTAGSU;
 
+            //Per la vista admin
             $res["GESTIONALE"]['color'] = ($STATO == 'A') ? "green" : "red";
             if (($QTAAOF70 > $QTAGSU) && ($QTAGSU == 0)) {
                 $res["GSU"]['color'] = "red";
@@ -36,6 +37,27 @@ class Utility{
                 $res["GSU"]['text'] = "A";
                 $res["GSU"]['action'] = "search";
             }
+
+            //Per la Vista Rivenditori
+            if($STATO == 'A'){
+                if (($QTAAOF70 > $QTAGSU) || ($QTAGSU == 0)) {
+                    $res["GSU"]['rivenditore']['text'] = "In attivazione";
+                    $res["GSU"]['rivenditore']['color'] = "blue";
+                } else if (($QTAAOF70 == $QTAGSU) || ($QTAGSU > $QTAAOF70)) {
+                    $res["GSU"]['rivenditore']['text'] = "Attivo";
+                    $res["GSU"]['rivenditore']['color'] = "green";
+                }
+            } else {
+                if (($QTAGSU == 0)) {
+                    $res["GSU"]['rivenditore']['text'] = "Disattivo";
+                    $res["GSU"]['rivenditore']['color'] = "red";
+                } else if (($QTAGSU > 0)) {
+                    $res["GSU"]['rivenditore']['text'] = "Da disattivare";
+                    $res["GSU"]['rivenditore']['color'] = "yellow";
+                }
+
+            }
+
             $class[$row['MANUTENZIONE']] = $res;
 
             //Sistemo Data

@@ -6253,7 +6253,7 @@ table.dataTable, div.border{
     background-color: green;
 }
 .blue{
-    background-color: blue;
+    background-color: lightseagreen;
 }
 
 .yellow{
@@ -6261,16 +6261,25 @@ table.dataTable, div.border{
 }
 
 div.stato_left,
-div.stato_right{
+div.stato_right,
+div.stato_rivenditore{
     width:25px;
     height: 20px;
     text-align: center;
     float:left;
     font-weight: bold;
+    white-space: nowrap;
 }
 div.stato_right{
     float:right;
 }
+
+div.stato_rivenditore{
+    width:auto;
+    height: 20px;
+    padding:2px;
+}
+
 table.tbl_clienti {
     border-spacing: 5px;
     border-collapse: separate;

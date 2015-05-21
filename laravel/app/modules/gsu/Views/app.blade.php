@@ -109,6 +109,9 @@
 
                 }
             });
+
+            $("#cliente").attr("disabled", "disabled");
+
             @endif;
 
         });

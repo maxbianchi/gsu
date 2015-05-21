@@ -22,27 +22,12 @@ class Utenti extends Model {
 
         if (count($res) == 1) {
             $utente  = DB::select("SELECT * FROM UNIWEB.dbo.AGE10 A WHERE A.SOGGETTO ='".$res[0]['CODUTENTE']."'");
-            $riferimenti  = $this->getAllRiferimenti($res[0]['CODUTENTE']);
-            $clienti_finali = [];
-            $ubicazioni = [];
-
-            if($res[0]['LIVELLO'] != 1) {
-                foreach ($riferimenti as $rif) {
-                    if (!in_array($rif['CLIENTE_FINALE'], $clienti_finali))
-                        $clienti_finali[] = $rif['CLIENTE_FINALE'];
-                    if (!in_array($rif['UBICAZIONE_IMPIANTO'], $ubicazioni))
-                        $ubicazioni[] = $rif['UBICAZIONE_IMPIANTO'];
-                }
-            }
-
-            $utente[0]['username'] = $usr;
+             $utente[0]['username'] = $usr;
             $utente[0]['password'] = $pwd;
 
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
-            Session::put('clienti_finali', $clienti_finali);
-            Session::put('ubicazioni', $ubicazioni);
 
             return true;
         } else {
@@ -73,16 +58,20 @@ class Utenti extends Model {
     }
 
 
-    public function getAllRiferimenti($soggetto = ""){
+    public function getAllRiferimenti($soggetto = "", $q = ""){
         $sql = <<<EOF
         SELECT A1.DESCRIZIONE SOGGETTO, A2.DESCRIZIONE CLIENTE_FINALE, ISNULL(NULLIF(A3.DESCRIZIONE, ''), ISNULL(NULLIF(A3.DESCRIZIONE, ''), ISNULL(NULLIF((A2.DESCRIZIONE), ''), A1.DESCRIZIONE)) + ' - ' + ISNULL(NULLIF((A2.LOCALITA), ''), A1.LOCALITA)) + ' - ' + ISNULL(NULLIF(A3.INDIRIZZO, ''), ISNULL(NULLIF((A2.INDIRIZZO), ''), A1.INDIRIZZO)) UBICAZIONE_IMPIANTO FROM UNIWEB.dbo.riferimenti R
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON R.SOGGETTO = A1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON R.CLIENTE_FINALE = A2.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON R.UBICAZIONE_IMPIANTO = A3.SOGGETTO
+        Where 1=1
 EOF;
 
         if(!empty($soggetto))
-            $sql .=" WHERE A1.SOGGETTO like '%$soggetto%'";
+            $sql .=" AND A1.SOGGETTO = '$soggetto'";
+
+        if(!empty($q))
+            $sql .=" AND A2.DESCRIZIONE like '%$q%'";
 
         $sql .= " ORDER BY SOGGETTO";
 

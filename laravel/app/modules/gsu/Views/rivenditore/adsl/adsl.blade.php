@@ -94,47 +94,8 @@
         @endforeach
         </tbody>
 
-        @if(Input::get('add') == 1)
-            <tfoot>
-            <tr>
-                <th colspan="12"><a class="btn btn-small edit" href="{{url('/gsu/adsl/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
-            </tr>
-            </tfoot>
-        @endif
     </table>
 
-    <div id="delete" class="modal fade" style="z-index:99999;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminare il record selezionato ?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
-                    <button type="button" class="btn btn-primary" id="btn_elimina">ELIMINA</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 
 
-
-@section('script')
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/adsl/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
-                        .done(function( data ) {
-                            $("#delete").modal('toggle');
-                            $("#cerca").trigger("click");
-                        });
-            });
-
-        });
-    </script>
-@endsection

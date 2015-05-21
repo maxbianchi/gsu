@@ -27,7 +27,7 @@ class MplsController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.mpls.mpls", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.mpls.mpls", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){
@@ -36,7 +36,7 @@ class MplsController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.mpls.mpls", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.mpls.mpls", ['request' => $res, 'class' => $class]);
     }
 
     public function show(){
@@ -45,7 +45,7 @@ class MplsController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::admin.mpls.mpls-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.mpls.mpls-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
     }
 
     public function edit(){
@@ -54,7 +54,7 @@ class MplsController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::admin.mpls.mpls-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.mpls.mpls-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
     }
 
     private function manageShow(){

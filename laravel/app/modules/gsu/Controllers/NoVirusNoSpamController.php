@@ -27,7 +27,7 @@ class NoVirusNoSpamController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){
@@ -36,21 +36,21 @@ class NoVirusNoSpamController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     private function manageShow(){

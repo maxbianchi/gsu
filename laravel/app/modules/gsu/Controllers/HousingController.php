@@ -27,7 +27,7 @@ class HousingController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.housing.housing", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.housing.housing", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){
@@ -36,21 +36,21 @@ class HousingController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.housing.housing", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.housing.housing", ['request' => $res, 'class' => $class]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.housing.housing-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.housing.housing-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::admin.housing.housing-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.housing.housing-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     private function manageShow(){

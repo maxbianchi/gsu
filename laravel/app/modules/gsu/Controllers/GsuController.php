@@ -34,7 +34,7 @@ class GsuController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->getClassColorStato($res);
-        return view("gsu::admin.main", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.main", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){
@@ -42,7 +42,7 @@ class GsuController extends MainController {
         $res = $res->getFilteredRequest();
         $utility = new Utility();
         $class = $utility->getClassColorStato($res);
-        return view("gsu::admin.main", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.main", ['request' => $res, 'class' => $class]);
     }
 
     public function anagrafica(){

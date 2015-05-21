@@ -27,7 +27,7 @@ class CaselleController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.caselle.caselle", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.caselle.caselle", ['request' => $res, 'class' => $class]);
     }
 
     public function search(){
@@ -36,7 +36,7 @@ class CaselleController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::admin.caselle.caselle", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.caselle.caselle", ['request' => $res, 'class' => $class]);
     }
 
     public function show(){
@@ -45,7 +45,7 @@ class CaselleController extends MainController {
         $btn = $return['btn'];
         $activesync = $return['activesync'];
         $outlookconnector = $return['outlookconnector'];
-        return view("gsu::admin.caselle.caselle-detail", ['request' => $res, 'btn' => $btn, 'activesync' => $activesync, 'outlookconnector' => $outlookconnector]);
+        return view("gsu::$this->view_folder.caselle.caselle-detail", ['request' => $res, 'btn' => $btn, 'activesync' => $activesync, 'outlookconnector' => $outlookconnector]);
     }
 
     public function edit(){
@@ -54,7 +54,7 @@ class CaselleController extends MainController {
         $btn = $return['btn'];
         $activesync = $return['activesync'];
         $outlookconnector = $return['outlookconnector'];
-        return view("gsu::admin.caselle.caselle-detail", ['request' => $res, 'btn' => $btn, 'activesync' => $activesync, 'outlookconnector' => $outlookconnector]);
+        return view("gsu::$this->view_folder.caselle.caselle-detail", ['request' => $res, 'btn' => $btn, 'activesync' => $activesync, 'outlookconnector' => $outlookconnector]);
     }
 
     private function manageShow(){

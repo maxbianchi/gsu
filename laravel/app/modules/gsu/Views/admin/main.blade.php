@@ -72,9 +72,9 @@
             <th>MANTUTENZIONE</th>
             <th>DATA INIZIO CONTRATTO</th>
             <th>CANONE</th>
-            <th>CLIENTE</th>
-            <th>CLIENTE FINALE</th>
-            <th>UBICAZIONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
             <th>DESCRIZIONE</th>
             <th>DESCRIZIONE2</th>
             <th>QTAAFO70</th>
@@ -92,9 +92,9 @@
                 <td><a href="{{url($class['link'][$req['MANUTENZIONE']])."?manutenzione=".$req['MANUTENZIONE']."&".$class[$req['MANUTENZIONE']]['GSU']['queryString']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
-                <td>{{$req['SOGGETTO']}}</td>
-                <td>{{$req['CLIENTE']}}</td>
-                <td>{{$req['DESTINATARIOABITUALE']}}</td>
+                <td class="soggetto">{{$req['SOGGETTO']}}</td>
+                <td class="cliente">{{$req['CLIENTE']}}</td>
+                <td class="destinatarioabituale">{{$req['DESTINATARIOABITUALE']}}</td>
                 <td>{{$req['DESCRCANONE']}}</td>
                 <td>{{$req['DESCRCANONE2']}}</td>
                 <td>{{$req['QTAAOF70']}}</td>

@@ -6,7 +6,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row" style="margin-top:20px;">
-            <div class="col-md-4"><input type="button" value="TUTTE LE RICHIESTE" class="btn btn-primary" pagina="{{url('/gsu/main')}}"></div>
+            <div class="col-md-4"><input type="button" value="TUTTE LE RICHIESTE" class="btn btn-primary" pagina="{{url('/gsu/main')."?daattivare=on"}}"></div>
             <div class="col-md-4 col-md-offset-4" >
                 @if (Session::get('livello')  == 1)
                     <div class="pull-right ui-widget">Ricerca anagrafica<form method="get" action="{{url('/gsu/anagrafica')}}"><input type="text" id="search_anagrafica" class="search_anagrafica" name="search_anagrafica"><input type="submit" value="cerca"></form></div>
