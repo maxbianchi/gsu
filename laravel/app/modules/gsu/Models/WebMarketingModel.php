@@ -13,6 +13,7 @@ class WebMarketingModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -28,17 +29,21 @@ class WebMarketingModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             MOTORIDIRICERCA.IDMOTORIDIRICERCA,
 			MOTORIDIRICERCA.NOMEDOMINIO,
 			MOTORIDIRICERCA.UTENTE,
 			MOTORIDIRICERCA.PASSWORD,
-			MOTORIDIRICERCA.CODICE_R
+			MOTORIDIRICERCA.CODICE_R,
+			MOTORIDIRICERCA.ELIMINATO
 			FROM		gsu.dbo.MOTORIDIRICERCA
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MOTORIDIRICERCA.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE MOTORIDIRICERCA.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -61,10 +66,12 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
         $nome_dominio = Input::get('nome_dominio');
+        $eliminati = Input::get('eliminati');
 
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -111,14 +118,15 @@ EOF;
 			MOTORIDIRICERCA.PAROLA8,
 			MOTORIDIRICERCA.PAROLA9,
 			MOTORIDIRICERCA.PAROLA10,
-			MOTORIDIRICERCA.CODICE_R
+			MOTORIDIRICERCA.CODICE_R,
+			MOTORIDIRICERCA.ELIMINATO
 			FROM		gsu.dbo.MOTORIDIRICERCA
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MOTORIDIRICERCA.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1 = 1
 EOF;
 
         if(!empty($id))
@@ -144,6 +152,10 @@ EOF;
         if(!empty($nome_dominio))
             $sql .= " AND MOTORIDIRICERCA.NOMEDOMINIO like '%$nome_dominio%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND MOTORIDIRICERCA.ELIMINATO = 1";
+        else
+            $sql .= " AND MOTORIDIRICERCA.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -157,7 +169,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.MOTORIDIRICERCA WHERE IDMOTORIDIRICERCA='$id'";
+            $sql = "UPDATE gsu.dbo.MOTORIDIRICERCA SET ELIMINATO=1 WHERE IDMOTORIDIRICERCA='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -165,9 +177,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -193,10 +205,12 @@ EOF;
         $parola8 = Input::get('parola8');
         $parola9 = Input::get('parola9');
         $parola10 = Input::get('parola10');
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.MOTORIDIRICERCA (Codice_R, NOMEDOMINIO, UTENTE, PASSWORD, PAROLA1, PAROLA2,PAROLA3,PAROLA4,PAROLA5,PAROLA6,PAROLA7,PAROLA8,PAROLA9,PAROLA10) VALUES ('$manutenzione','$nome_dominio','$utente','$password','$parola1','$parola2','$parola3','$parola4','$parola5','$parola6','$parola7','$parola8','$parola9','$parola10')");
+                DB::insert("INSERT INTO gsu.dbo.MOTORIDIRICERCA (Codice_R, NOMEDOMINIO, UTENTE, PASSWORD, PAROLA1, PAROLA2,PAROLA3,PAROLA4,PAROLA5,PAROLA6,PAROLA7,PAROLA8,PAROLA9,PAROLA10,ELIMINATO) VALUES ('$manutenzione','$nome_dominio','$utente','$password','$parola1','$parola2','$parola3','$parola4','$parola5','$parola6','$parola7','$parola8','$parola9','$parola10',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -209,8 +223,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.MOTORIDIRICERCA SET Codice_R='$manutenzione', NOMEDOMINIO='$nome_dominio', UTENTE='$utente', PASSWORD='$password', PAROLA1='$parola1', PAROLA2='$parola2',PAROLA3='$parola3',PAROLA4='$parola4',PAROLA5='$parola5',PAROLA6='$parola6',PAROLA7='$parola7',PAROLA8='$parola8',PAROLA9='$parola9',PAROLA10='$parola10' WHERE IDMOTORIDIRICERCA=$id");
-
+                DB::update("UPDATE gsu.dbo.MOTORIDIRICERCA SET Codice_R='$manutenzione', NOMEDOMINIO='$nome_dominio', UTENTE='$utente', PASSWORD='$password', PAROLA1='$parola1', PAROLA2='$parola2',PAROLA3='$parola3',PAROLA4='$parola4',PAROLA5='$parola5',PAROLA6='$parola6',PAROLA7='$parola7',PAROLA8='$parola8',PAROLA9='$parola9',PAROLA10='$parola10',ELIMINATO=$eliminato WHERE IDMOTORIDIRICERCA=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -13,6 +13,7 @@ class DatabaseModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -28,6 +29,8 @@ class DatabaseModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             DATA_BASE.IDDATABASE,
 			DATA_BASE.CODICE_R,
 			DATA_BASE.SOGGETTO AS SOGGETTO_AGG,
@@ -37,13 +40,15 @@ class DatabaseModel extends Model {
 			DATA_BASE.SERVER_,
 			DATA_BASE.LOGIN,
 			DATA_BASE.PASSWORD,
-			DATA_BASE.CODICE_R
+			DATA_BASE.CODICE_R,
+			DATA_BASE.ELIMINATO
 			FROM gsu.dbo.DATA_BASE
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DATA_BASE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE DATA_BASE.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -66,10 +71,11 @@ EOF;
         $data_contratto = Input::get('data_contratto');
         $tipo = Input::get('tipo');
         $server = Input::get('server');
-
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -111,14 +117,15 @@ EOF;
 			DATA_BASE.SERVER_,
 			DATA_BASE.LOGIN,
 			DATA_BASE.PASSWORD,
-			DATA_BASE.CODICE_R
+			DATA_BASE.CODICE_R,
+			DATA_BASE.ELIMINATO
 			FROM gsu.dbo.DATA_BASE
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DATA_BASE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -146,6 +153,10 @@ EOF;
         if(!empty($server))
             $sql .= " AND DATA_BASE.SERVER_ like '%$server%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND DATA_BASE.ELIMINATO = 1";
+        else
+            $sql .= " AND DATA_BASE.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -159,7 +170,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.DATA_BASE WHERE IDDATABASE='$id'";
+            $sql = "UPDATE gsu.dbo.DATA_BASE SET ELIMINATO=1 WHERE IDDATABASE='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -167,9 +178,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -187,10 +198,12 @@ EOF;
         $login = Input::get('login');
         $password = Input::get('password');
         $manutenzione = Input::get('manutenzione');
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.DATA_BASE (Codice_R, TIPO, SERVER_, IP, GESTIONE, LOGIN,PASSWORD) VALUES ('$manutenzione','$tipo','$server','$ip','$gestione','$login','$password')");
+                DB::insert("INSERT INTO gsu.dbo.DATA_BASE (Codice_R, TIPO, SERVER_, IP, GESTIONE, LOGIN,PASSWORD,ELIMINATO) VALUES ('$manutenzione','$tipo','$server','$ip','$gestione','$login','$password',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -203,8 +216,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.DATA_BASE SET Codice_R='$manutenzione', TIPO='$tipo', SERVER_='$server', IP='$ip', GESTIONE='$gestione', LOGIN='$login',PASSWORD='$password' WHERE IDDATABASE=$id");
-
+                DB::update("UPDATE gsu.dbo.DATA_BASE SET Codice_R='$manutenzione', TIPO='$tipo', SERVER_='$server', IP='$ip', GESTIONE='$gestione', LOGIN='$login',PASSWORD='$password', ELIMINATO=$eliminato WHERE IDDATABASE=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

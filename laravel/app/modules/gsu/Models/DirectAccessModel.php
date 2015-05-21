@@ -13,6 +13,7 @@ class DirectAccessModel extends Model {
 
         $sql = <<<EOF
 			SELECT
+			RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -39,6 +40,8 @@ class DirectAccessModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
 			anagrafica3.TELEFONO		AS DESTINATARIOABITUALE_TELEFONO,
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 	        DIRECTACCESS.IDDIRECTACCESS,
 			DIRECTACCESS.LINEA_FORNITORE,
 			DIRECTACCESS.TIPO_LINEA,
@@ -47,13 +50,15 @@ class DirectAccessModel extends Model {
 			DIRECTACCESS.GATEWAY_WAN_PUNTO_PUNTO,
 			DIRECTACCESS.GATEWAY_INTERFACCIA_LAN,
 			DIRECTACCESS.NUMERO_IP_STATICI,
-			DIRECTACCESS.CODICE_R
+			DIRECTACCESS.CODICE_R,
+			DIRECTACCESS.ELIMINATO
 			FROM gsu.dbo.DIRECTACCESS
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DIRECTACCESS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE DIRECTACCESS.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -78,9 +83,11 @@ EOF;
         $tgu = Input::get('tgu');
         $ip_router = Input::get('ip_router');
         $numero_telefono = Input::get('numero_telefono');
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
 			SELECT
+			RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -133,14 +140,15 @@ EOF;
 			DIRECTACCESS.WANSUB,
 			DIRECTACCESS.LANSUB,
 			DIRECTACCESS.RUTSUB,
-			DIRECTACCESS.CODICE_R
+			DIRECTACCESS.CODICE_R,
+			DIRECTACCESS.ELIMINATO
 			FROM gsu.dbo.DIRECTACCESS
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DIRECTACCESS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -170,6 +178,11 @@ EOF;
         if(!empty($numero_telefono))
             $sql .= " AND DIRECTACCESS.NUMERO_TELEFONO like '%$numero_telefono%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND DIRECTACCESS.ELIMINATO = 1";
+        else
+            $sql .= " AND DIRECTACCESS.ELIMINATO = 0";
+
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
@@ -182,7 +195,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.DIRECTACCESS WHERE IDDIRECTACCESS='$id'";
+            $sql = "UPDATE gsu.dbo.DIRECTACCESS SET ELIMINATO=1 WHERE IDDIRECTACCESS='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -190,9 +203,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -227,12 +240,12 @@ EOF;
         $incapsulamento = Input::get('incapsulamento');
         $dlci = Input::get('dlci');
         $lmi_type = Input::get('lmi_type');
-
-
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.DIRECTACCESS (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,NUMERO_IP_STATICI,IP_STATICI_SUBNET,IPSUB,GATEWAY_WAN_PUNTO_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,DLCI,LMI_TYPE) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$numero_ip_statici','$ip_statici_subnet','$ipsub','$gateway_wan_punto_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$dlci','$lmi_type')");
+                DB::insert("INSERT INTO gsu.dbo.DIRECTACCESS (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,NUMERO_IP_STATICI,IP_STATICI_SUBNET,IPSUB,GATEWAY_WAN_PUNTO_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,DLCI,LMI_TYPE,ELIMINATO) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$numero_ip_statici','$ip_statici_subnet','$ipsub','$gateway_wan_punto_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$dlci','$lmi_type',$eliminato)");
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
@@ -246,8 +259,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.DIRECTACCESS SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',NUMERO_IP_STATICI='$numero_ip_statici',IP_STATICI_SUBNET='$ip_statici_subnet',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_PUNTO='$gateway_wan_punto_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',DLCI='$dlci',LMI_TYPE='$lmi_type' WHERE IDDIRECTACCESS=$id");
-
+                DB::update("UPDATE gsu.dbo.DIRECTACCESS SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',NUMERO_IP_STATICI='$numero_ip_statici',IP_STATICI_SUBNET='$ip_statici_subnet',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_PUNTO='$gateway_wan_punto_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',DLCI='$dlci',LMI_TYPE='$lmi_type',ELIMINATO=$eliminato WHERE IDDIRECTACCESS=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

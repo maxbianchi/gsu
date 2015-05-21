@@ -13,6 +13,7 @@ class NoVirusNoSpamModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -28,14 +29,18 @@ class NoVirusNoSpamModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             NOVIRUSNOSPAM.IDNOVIRUSNOSPAM,
-  			NOVIRUSNOSPAM.DOMINIO
+  			NOVIRUSNOSPAM.DOMINIO,
+  			NOVIRUSNOSPAM.ELIMINATO
 			FROM		gsu.dbo.NOVIRUSNOSPAM
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON NOVIRUSNOSPAM.codice_r		= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE NOVIRUSNOSPAM.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -58,9 +63,11 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
         $dominio = Input::get('dominio');
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -94,14 +101,15 @@ EOF;
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             NOVIRUSNOSPAM.IDNOVIRUSNOSPAM,
-  			NOVIRUSNOSPAM.DOMINIO
+  			NOVIRUSNOSPAM.DOMINIO,
+  			NOVIRUSNOSPAM.ELIMINATO
 			FROM		gsu.dbo.NOVIRUSNOSPAM
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON NOVIRUSNOSPAM.codice_r		= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -127,6 +135,11 @@ EOF;
         if(!empty($dominio))
             $sql .= " AND NOVIRUSNOSPAM.DOMINIO like '%$dominio%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND NOVIRUSNOSPAM.ELIMINATO = 1";
+        else
+            $sql .= " AND NOVIRUSNOSPAM.ELIMINATO = 0";
+
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
@@ -139,7 +152,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.NOVIRUSNOSPAM WHERE IDNOVIRUSNOSPAM='$id'";
+            $sql = "UPDATE gsu.dbo.NOVIRUSNOSPAM SET ELIMINATO=1 WHERE IDNOVIRUSNOSPAM='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -147,9 +160,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -162,11 +175,12 @@ EOF;
         $id = Input::get('id_tbl');
         $manutenzione = Input::get('manutenzione');
         $dominio = Input::get('dominio');
-
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.NOVIRUSNOSPAM (Codice_R, DOMINIO) VALUES ('$manutenzione','$dominio')");
+                DB::insert("INSERT INTO gsu.dbo.NOVIRUSNOSPAM (Codice_R, DOMINIO,ELIMINATO) VALUES ('$manutenzione','$dominio',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -179,8 +193,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.NOVIRUSNOSPAM SET Codice_R='$manutenzione', DOMINIO='$dominio' WHERE IDNOVIRUSNOSPAM=$id");
-
+                DB::update("UPDATE gsu.dbo.NOVIRUSNOSPAM SET Codice_R='$manutenzione', DOMINIO='$dominio', ELIMINATO=$eliminato WHERE IDNOVIRUSNOSPAM=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

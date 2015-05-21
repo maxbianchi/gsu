@@ -15,6 +15,7 @@ class CaselleModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -30,19 +31,23 @@ class CaselleModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             CASELLE.IDCASELLA,
 			CASELLE.ACCOUNT,
 			CASELLE.PASSWORD,
 			CASELLE.MEGABYTE,
 			CASELLE.TIPO,
 			CASELLE.CODICE_R,
-			CASELLE.EMAIL
+			CASELLE.EMAIL,
+			CASELLE.ELIMINATO
 			FROM		gsu.dbo.CASELLE
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CASELLE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1=1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE CASELLE.ELIMINATO = 0
 EOF;
 
         if(!empty($canone))
@@ -69,10 +74,11 @@ EOF;
         $account = Input::get('account');
         $email = Input::get('email');
         $megabyte = Input::get('megabyte');
-
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -129,14 +135,15 @@ EOF;
             CASELLE.ALIAS_11,
             CASELLE.ALIAS_12,
             CASELLE.FORWARD,
-            CASELLE.COPIA
+            CASELLE.COPIA,
+            CASELLE.ELIMINATO
 			FROM		gsu.dbo.CASELLE
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CASELLE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -166,6 +173,10 @@ EOF;
         if(!empty($megabyte))
             $sql .= " AND CASELLE.MEGABYTE like '%$megabyte%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND CASELLE.ELIMINATO = 1";
+        else
+            $sql .= " AND CASELLE.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -179,7 +190,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.MOTORIDIRICERCA WHERE IDMOTORIDIRICERCA='$id'";
+            $sql = "UPDATE gsu.dbo.CASELLE SET ELIMINATO=1 WHERE IDCASELLA='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -187,9 +198,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -225,11 +236,12 @@ EOF;
         $alias_12 = Input::get('alias_12');
         $forward = Input::get('forward');
         $copia = Input::get('copia');
-
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.CASELLE (Codice_R, TIPO_UTENTE, TIPO,MEGABYTE,ACCOUNT,PASSWORD,EMAIL,POP3,SMTP,NOTE,ALIAS_1,ALIAS_2,ALIAS_3,ALIAS_4,ALIAS_5,ALIAS_6,ALIAS_7,ALIAS_8,ALIAS_9,ALIAS_10,ALIAS_11,ALIAS_12,FORWARD,COPIA) VALUES ('$manutenzione','$tipo_utente','$tipo_casella','$megabyte','$account','$password','$email','$pop3','$smtp','$note','$alias_1','$alias_2','$alias_3','$alias_4','$alias_5','$alias_6','$alias_7','$alias_8','$alias_9','$alias_10','$alias_11','$alias_12','$forward','$copia')");
+                DB::insert("INSERT INTO gsu.dbo.CASELLE (Codice_R, TIPO_UTENTE, TIPO,MEGABYTE,ACCOUNT,PASSWORD,EMAIL,POP3,SMTP,NOTE,ALIAS_1,ALIAS_2,ALIAS_3,ALIAS_4,ALIAS_5,ALIAS_6,ALIAS_7,ALIAS_8,ALIAS_9,ALIAS_10,ALIAS_11,ALIAS_12,FORWARD,COPIA,ELIMINATO) VALUES ('$manutenzione','$tipo_utente','$tipo_casella','$megabyte','$account','$password','$email','$pop3','$smtp','$note','$alias_1','$alias_2','$alias_3','$alias_4','$alias_5','$alias_6','$alias_7','$alias_8','$alias_9','$alias_10','$alias_11','$alias_12','$forward','$copia',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -242,7 +254,10 @@ EOF;
                 }
             }
             else {
-                DB::update("UPDATE gsu.dbo.CASELLE SET Codice_R='$manutenzione', TIPO_UTENTE='$tipo_utente', TIPO='$tipo_casella', MEGABYTE='$megabyte', ACCOUNT='$account', PASSWORD='$password',EMAIL='$email',POP3='$pop3',SMTP='$smtp',NOTE='$note',ALIAS_1='$alias_1',ALIAS_2='$alias_2',ALIAS_3='$alias_3',ALIAS_4='$alias_4',ALIAS_5='$alias_5',ALIAS_6='$alias_6',ALIAS_7='$alias_7',ALIAS_8='$alias_8',ALIAS_9='$alias_9',ALIAS_10='$alias_10',ALIAS_11='$alias_11',ALIAS_12='$alias_12',FORWARD='$forward',COPIA='$copia' WHERE IDCASELLA=$id");
+                DB::update("UPDATE gsu.dbo.CASELLE SET Codice_R='$manutenzione', TIPO_UTENTE='$tipo_utente', TIPO='$tipo_casella', MEGABYTE='$megabyte', ACCOUNT='$account', PASSWORD='$password',EMAIL='$email',POP3='$pop3',SMTP='$smtp',NOTE='$note',ALIAS_1='$alias_1',ALIAS_2='$alias_2',ALIAS_3='$alias_3',ALIAS_4='$alias_4',ALIAS_5='$alias_5',ALIAS_6='$alias_6',ALIAS_7='$alias_7',ALIAS_8='$alias_8',ALIAS_9='$alias_9',ALIAS_10='$alias_10',ALIAS_11='$alias_11',ALIAS_12='$alias_12',FORWARD='$forward',COPIA='$copia',ELIMINATO=$eliminato WHERE IDCASELLA=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
             }
         }
         catch (Exception $e) {
@@ -251,7 +266,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new WebMarketingModel();
+        $model = new CaselleModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

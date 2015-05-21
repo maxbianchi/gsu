@@ -13,6 +13,7 @@ class AdslModel extends Model {
 
         $sql = <<<EOF
 			SELECT
+			RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -39,6 +40,8 @@ class AdslModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
 			anagrafica3.TELEFONO		AS DESTINATARIOABITUALE_TELEFONO,
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			ADSL.IDADSL,
 			ADSL.LINEA_FORNITORE,
 			ADSL.TIPO_LINEA,
@@ -50,13 +53,15 @@ class AdslModel extends Model {
 			ADSL.GATEWAY_INTERFACCIA_LAN,
             ADSL.NUM_IP_STATICI,
 			ADSL.NUMERO_TELEFONO,
-			ADSL.CODICE_R
+			ADSL.CODICE_R,
+			ADSL.ELIMINATO
 			FROM gsu.dbo.ADSL
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ADSL.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE ADSL.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -81,9 +86,11 @@ EOF;
         $tgu = Input::get('tgu');
         $ip_router = Input::get('ip_router');
         $numero_telefono = Input::get('numero_telefono');
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -137,7 +144,8 @@ EOF;
 			ADSL.VCI,
 			ADSL.INSTALLAZIONE_MODEM,
 			ADSL.INCAPSULAMENTO,
-			ADSL.MULTIPLEX
+			ADSL.MULTIPLEX,
+			ADSL.ELIMINATO
 			FROM gsu.dbo.ADSL
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ADSL.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -174,6 +182,11 @@ EOF;
         if(!empty($numero_telefono))
             $sql .= " AND ADSL.NUMERO_TELEFONO like '%$numero_telefono%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND ADSL.ELIMINATO = 1";
+        else
+            $sql .= " AND ADSL.ELIMINATO = 0";
+
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
@@ -186,7 +199,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.ADSL WHERE IDADSL='$id'";
+            $sql = "UPDATE gsu.dbo.ADSL SET ELIMINATO=1 WHERE IDADSL='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -194,9 +207,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -232,11 +245,12 @@ EOF;
         $multiplex = Input::get('multiplex');
         $utente_radius = Input::get('utente_radius');
         $pass_radius = Input::get('pass_radius');
-
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.ADSL (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,IP_STATICI,IPSUB,GATEWAY_WAN_PUNTO_A_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,NUM_IP_STATICI,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,MULTIPLEX,UTENTE_RADIUS,PASS_RADIUS) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$ip_statici','$ipsub','$gateway_wan_punto_a_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$numero_ip_statici','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$multiplex','$utente_radius','$pass_radius')");
+                DB::insert("INSERT INTO gsu.dbo.ADSL (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,IP_STATICI,IPSUB,GATEWAY_WAN_PUNTO_A_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,NUM_IP_STATICI,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,MULTIPLEX,UTENTE_RADIUS,PASS_RADIUS, ELIMINATO) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$ip_statici','$ipsub','$gateway_wan_punto_a_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$numero_ip_statici','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$multiplex','$utente_radius','$pass_radius',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -251,8 +265,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.ADSL SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',IP_STATICI='$ip_statici',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_A_PUNTO='$gateway_wan_punto_a_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',NUM_IP_STATICI='$numero_ip_statici',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',MULTIPLEX='$multiplex',UTENTE_RADIUS='$utente_radius',PASS_RADIUS='$pass_radius' WHERE IDADSL=$id");
-
+                DB::update("UPDATE gsu.dbo.ADSL SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',IP_STATICI='$ip_statici',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_A_PUNTO='$gateway_wan_punto_a_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',NUM_IP_STATICI='$numero_ip_statici',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',MULTIPLEX='$multiplex',UTENTE_RADIUS='$utente_radius',PASS_RADIUS='$pass_radius', ELIMINATO=$eliminato WHERE IDADSL=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

@@ -46,8 +46,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
-                    <div class="col-md-offset-8"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
-
+                    <div class="col-md-1 col-md-offset-4"><input type="checkbox" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> id="eliminati" name="eliminati">eliminati</div>
                 </div>
             </form>
         </div>
@@ -63,6 +62,7 @@
         <thead>
         <tr>
             <th class="col-sm-1">AZIONI</th>
+            <th class="col-sm-1">STATO</th>
             <th class="col-sm-1">MANTUTENZIONE</th>
             <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
             <th class="col-sm-1">CANONE</th>
@@ -78,12 +78,16 @@
 
         <tbody>
         @foreach($request as $req)
-            <tr>
+            <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="btn btn-small edit" href="{{url('/gsu/dial-up/edit')."?id=".$req['IDDIALUP']}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="btn btn-small edit" href="{{url('/gsu/dial-up/edit')."?id=".$req['IDDIALUP']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
                     <a class="btn btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDDIALUP'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDIALUP']}}">{{$req['MANUTENZIONE']}}</a></td>
+                <td>
+                    <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
+                    <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
+                </td>
+                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDIALUP']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>

@@ -15,6 +15,7 @@ class DominiModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -30,6 +31,8 @@ class DominiModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			DOMINI.IDDOMINIO,
 			CONVERT(VARCHAR(10),DOMINI.DATAR,105) DATAR,
 			DOMINI.NOMEDOMINIO,
@@ -37,13 +40,15 @@ class DominiModel extends Model {
 			CONVERT(VARCHAR(10),DOMINI.SCADENZAEFFETTIVA,105) SCADENZAEFFETTIVA,
 			DOMINI.TIPODOMINIO,
 			DOMINI.NOVIRUSNOSPAM,
-			DOMINI.CODICE_R
+			DOMINI.CODICE_R,
+			DOMINI.ELIMINATO
 			FROM		gsu.dbo.DOMINI
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DOMINI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE DOMINI.ELIMINATO = 0
 EOF;
 
         if(!empty($tipo_dominio))
@@ -74,10 +79,11 @@ EOF;
         $scadenza_effettiva = Input::get('scadenza_effettiva');
         $tipo_dominio = Input::get('tipo_dominio');
         $novirusnospam = Input::get('novirusnospam');
-
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
            SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -102,14 +108,15 @@ EOF;
 			CONVERT(VARCHAR(10),DOMINI.SCADENZAEFFETTIVA,105) SCADENZAEFFETTIVA,
 			DOMINI.TIPODOMINIO,
 			DOMINI.NOVIRUSNOSPAM,
-			DOMINI.CODICE_R
+			DOMINI.CODICE_R,
+			DOMINI.ELIMINATO
 			FROM		gsu.dbo.DOMINI
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DOMINI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -145,6 +152,11 @@ EOF;
         if(!empty($novirusnospam))
             $sql .= " AND DOMINI.NOVIRUSNOSPAM like '%$novirusnospam%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND DOMINI.ELIMINATO = 1";
+        else
+            $sql .= " AND DOMINI.ELIMINATO = 0";
+
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
@@ -155,7 +167,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.DOMINI WHERE IDDOMINIO='$id'";
+            $sql = "UPDATE gsu.dbo.DOMINI SET ELIMINATO=1 WHERE IDDOMINIO='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -163,9 +175,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -183,10 +195,12 @@ EOF;
         $tipo_dominio = Input::get('tipo_dominio');
         $novirusnospam = Input::get('novirusnospam');
         $manutenzione = Input::get('manutenzione');
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.DOMINI (Codice_R, DATAR, NOMEDOMINIO, SCADENZA, SCADENZAEFFETTIVA, TIPODOMINIO,NOVIRUSNOSPAM) VALUES ('$manutenzione',convert(datetime, '$data_registrazione', 105),'$nome_dominio',convert(datetime, '$scadenza', 105),convert(datetime, '$scadenza_effettiva', 105),'$tipo_dominio','$novirusnospam')");
+                DB::insert("INSERT INTO gsu.dbo.DOMINI (Codice_R, DATAR, NOMEDOMINIO, SCADENZA, SCADENZAEFFETTIVA, TIPODOMINIO,NOVIRUSNOSPAM,ELIMINATO) VALUES ('$manutenzione',convert(datetime, '$data_registrazione', 105),'$nome_dominio',convert(datetime, '$scadenza', 105),convert(datetime, '$scadenza_effettiva', 105),'$tipo_dominio','$novirusnospam',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -199,8 +213,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.DOMINI SET Codice_R='$manutenzione', DATAR=convert(datetime, '$data_registrazione', 105), NOMEDOMINIO='$nome_dominio', SCADENZA=convert(datetime, '$scadenza', 105), SCADENZAEFFETTIVA=convert(datetime, '$scadenza_effettiva', 105), TIPODOMINIO='$tipo_dominio',NOVIRUSNOSPAM='$novirusnospam' WHERE IDDOMINIO=$id");
-
+                DB::update("UPDATE gsu.dbo.DOMINI SET Codice_R='$manutenzione', DATAR=convert(datetime, '$data_registrazione', 105), NOMEDOMINIO='$nome_dominio', SCADENZA=convert(datetime, '$scadenza', 105), SCADENZAEFFETTIVA=convert(datetime, '$scadenza_effettiva', 105), TIPODOMINIO='$tipo_dominio',NOVIRUSNOSPAM='$novirusnospam', ELIMINATO=$eliminato WHERE IDDOMINIO=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

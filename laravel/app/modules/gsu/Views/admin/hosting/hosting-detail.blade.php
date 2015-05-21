@@ -63,6 +63,7 @@
                         @if($btn == 'save')
                             <input type="button" value="SALVA" id="btn_salva" class="btn btn-primary btn-xs">
                             <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-default btn-xs pull right">
+                            <div class="pull-right"><input type="checkbox" name="eliminato" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> >ELIMINATO</div>
                         @else
                             <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
                         @endif

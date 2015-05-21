@@ -6357,7 +6357,6 @@ body.gsu input[type="text"] {
     border: solid 1px #dcdcdc;
     transition: box-shadow 0.3s, border 0.3s;
     border-radius: 5px;
-    min-width: 250px;
 }
 
 input[type="text"]:focus,
@@ -6424,4 +6423,8 @@ table.dataTable.detail{
 
 table.adduser tr td{
     padding: 10px;
+}
+
+.eliminato{
+    text-decoration: line-through;
 }

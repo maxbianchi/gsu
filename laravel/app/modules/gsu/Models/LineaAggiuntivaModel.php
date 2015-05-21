@@ -13,6 +13,7 @@ class LineaAggiuntivaModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -28,15 +29,19 @@ class LineaAggiuntivaModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			LINEA_AGGIUNTIVA.IDLINEA,
 			LINEA_AGGIUNTIVA.CODICE_R,
-			LINEA_AGGIUNTIVA.TGU
+			LINEA_AGGIUNTIVA.TGU,
+			LINEA_AGGIUNTIVA.ELIMINATO
 			FROM		gsu.dbo.LINEA_AGGIUNTIVA
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON LINEA_AGGIUNTIVA.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE LINEA_AGGIUNTIVA.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -59,10 +64,12 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
         $tgu = Input::get('tgu');
+        $eliminati = Input::get('eliminati');
 
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -97,14 +104,15 @@ EOF;
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             LINEA_AGGIUNTIVA.IDLINEA,
 			LINEA_AGGIUNTIVA.CODICE_R,
-			LINEA_AGGIUNTIVA.TGU
+			LINEA_AGGIUNTIVA.TGU,
+			LINEA_AGGIUNTIVA.ELIMINATO
 			FROM		gsu.dbo.LINEA_AGGIUNTIVA
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON LINEA_AGGIUNTIVA.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -130,6 +138,10 @@ EOF;
         if(!empty($tgu))
             $sql .= " AND LINEA_AGGIUNTIVA.TGU like '%$tgu%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND LINEA_AGGIUNTIVA.ELIMINATO = 1";
+        else
+            $sql .= " AND LINEA_AGGIUNTIVA.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -143,7 +155,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.LINEA_AGGIUNTIVA WHERE IDLINEA='$id'";
+            $sql = "UPDATE gsu.dbo.LINEA_AGGIUNTIVA SET ELIMINATO=1 WHERE IDLINEA='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -151,9 +163,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -166,10 +178,12 @@ EOF;
         $id = Input::get('id_tbl');
         $manutenzione = Input::get('manutenzione');
         $tgu = Input::get('tgu');
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.LINEA_AGGIUNTIVA (Codice_R, TGU) VALUES ('$manutenzione','$tgu')");
+                DB::insert("INSERT INTO gsu.dbo.LINEA_AGGIUNTIVA (Codice_R, TGU, ELIMINATO) VALUES ('$manutenzione','$tgu',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -182,8 +196,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.LINEA_AGGIUNTIVA SET Codice_R='$manutenzione', TGU='$tgu' WHERE IDLINEA=$id");
-
+                DB::update("UPDATE gsu.dbo.LINEA_AGGIUNTIVA SET Codice_R='$manutenzione', TGU='$tgu', ELIMINATO=$eliminato WHERE IDLINEA=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

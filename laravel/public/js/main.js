@@ -26,10 +26,6 @@ $(document).ready(function () {
         }
     } );
 
-    $("#reimposta").click(function(){
-        $("input[type=text]").val("");
-        $("input[type=checkbox]").attr("checked", false);
-    });
 
     $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 

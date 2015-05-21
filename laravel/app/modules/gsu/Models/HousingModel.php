@@ -13,6 +13,7 @@ class HousingModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -28,6 +29,8 @@ class HousingModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 	        HOUSING.IDHOUSING,
 			HOUSING.CODICE_R,
 			HOUSING.TIPO,
@@ -35,13 +38,15 @@ class HousingModel extends Model {
 			HOUSING.LOGIN,
 			HOUSING.PASSWORD,
 			HOUSING.SERIALE,
-			HOUSING.CODICE_R
+			HOUSING.CODICE_R,
+			HOUSING.ELIMINATO
 			FROM gsu.dbo.HOUSING
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE HOUSING.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -64,9 +69,11 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
         $pagina = Input::get('pagina');
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -107,14 +114,15 @@ EOF;
 			HOUSING.PASSWORD,
 			HOUSING.SERIALE,
 			HOUSING.GESTIONE,
-			HOUSING.CODICE_R
+			HOUSING.CODICE_R,
+			HOUSING.ELIMINATO
 			FROM gsu.dbo.HOUSING
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -140,6 +148,11 @@ EOF;
         if(!empty($pagina))
             $sql .= " AND HOUSING.PAGINA like '%$pagina%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND HOUSING.ELIMINATO = 1";
+        else
+            $sql .= " AND HOUSING.ELIMINATO = 0";
+
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
@@ -152,7 +165,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.HOUSING WHERE IDHOUSING='$id'";
+            $sql = "UPDATE gsu.dbo.HOUSING SET ELIMINATO=1 WHERE IDHOUSING='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -160,9 +173,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
-                    DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                //if($qta == 0)
+                    //DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
+                //else
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -178,10 +191,12 @@ EOF;
         $server = Input::get('server');
         $gestione = Input::get('gestione');
         $manutenzione = Input::get('manutenzione');
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.HOUSING (Codice_R, SERIALE, TIPO, SERVER_, GESTIONE) VALUES ('$manutenzione','$seriale','$tipo','$server','$gestione')");
+                DB::insert("INSERT INTO gsu.dbo.HOUSING (Codice_R, SERIALE, TIPO, SERVER_, GESTIONE, ELIMINATO) VALUES ('$manutenzione','$seriale','$tipo','$server','$gestione',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -194,7 +209,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.HOUSING SET Codice_R='$manutenzione', SERIALE='$seriale', TIPO='$tipo',SERVER_='$server', GESTIONE='$gestione' WHERE IDHOUSING=$id");
+                DB::update("UPDATE gsu.dbo.HOUSING SET Codice_R='$manutenzione', SERIALE='$seriale', TIPO='$tipo',SERVER_='$server', GESTIONE='$gestione', ELIMINATO=$eliminato WHERE IDHOUSING=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
 
         }
         catch (Exception $e) {

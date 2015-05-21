@@ -218,13 +218,13 @@
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         @if($btn == 'save')
                             <input type="button" value="SALVA" id="btn_salva" class="btn btn-primary btn-xs">
-                            <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-default btn-xs pull right">
+                            <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-default btn-xs">
+                            <div class="pull-right"><input type="checkbox" name="eliminato" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> >ELIMINATO</div>
                         @else
                             <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
                         @endif
                     </td>
                 </tr>
-
             </form>
         </table>
         

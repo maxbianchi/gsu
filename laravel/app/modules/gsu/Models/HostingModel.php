@@ -13,6 +13,7 @@ class HostingModel extends Model {
 
         $sql = <<<EOF
         SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -28,6 +29,8 @@ class HostingModel extends Model {
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+            RICHIESTE.QUANTITA AS QTAAOF70,
+            ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			HOSTING.IDHOSTING,
   			HOSTING.CODICE_R,
 			HOSTING.DATA_R,
@@ -35,13 +38,15 @@ class HostingModel extends Model {
 			HOSTING.PIATTAFORMA,
 			HOSTING.PAGINA,
 			HOSTING.SPAZIOWEB,
-			HOSTING.SERVIZIO
+			HOSTING.SERVIZIO,
+			HOSTING.ELIMINATO
 			FROM		gsu.dbo.HOSTING
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOSTING.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
-            WHERE 1 = 1
+            LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            WHERE HOSTING.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -64,9 +69,11 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
         $pagina = Input::get('pagina');
+        $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			richieste.DATADOCUMENTO	AS DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
@@ -108,14 +115,15 @@ EOF;
 			HOSTING.SPAZIOWEB,
 			HOSTING.SERVIZIO,
 			HOSTING.FTPUTENTE,
-			HOSTING.FTPPASSWORD
+			HOSTING.FTPPASSWORD,
+			HOSTING.ELIMINATO
 			FROM		gsu.dbo.HOSTING
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOSTING.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-			WHERE 1 = 1
+            WHERE 1=1
 EOF;
 
         if(!empty($id))
@@ -141,6 +149,11 @@ EOF;
         if(!empty($pagina))
             $sql .= " AND HOSTING.PAGINA like '%$pagina%'";
 
+        if(!empty($eliminati))
+            $sql .= " AND HOSTING.ELIMINATO = 1";
+        else
+            $sql .= " AND HOSTING.ELIMINATO = 0";
+
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
         $request  = DB::select($sql);
@@ -153,7 +166,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "DELETE FROM gsu.dbo.HOSTING WHERE IDHOSTING='$id'";
+            $sql = "UPDATE gsu.dbo.HOSTING SET ELIMINATO=1 WHERE IDHOSTING='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -161,9 +174,9 @@ EOF;
             if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
-                if($qta == 0)
+                /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else
+                else*/
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
@@ -182,10 +195,12 @@ EOF;
         $ftp_utente = Input::get('ftp_utente');
         $ftp_password = Input::get('ftp_password');
         $manutenzione = Input::get('manutenzione');
+        $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
+        $stato_precedente = Input::get('stato_precedente');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.HOSTING (Codice_R, SERVER_, PIATTAFORMA, SERVIZIO, PAGINA, SPAZIOWEB,FTPUTENTE,FTPPASSWORD) VALUES ('$manutenzione','$server','$piattaforma','$servizio','$pagina','$spazioweb','$ftp_utente','$ftp_password')");
+                DB::insert("INSERT INTO gsu.dbo.HOSTING (Codice_R, SERVER_, PIATTAFORMA, SERVIZIO, PAGINA, SPAZIOWEB,FTPUTENTE,FTPPASSWORD,ELIMINATO) VALUES ('$manutenzione','$server','$piattaforma','$servizio','$pagina','$spazioweb','$ftp_utente','$ftp_password',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -198,8 +213,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.HOSTING SET Codice_R='$manutenzione', SERVER_='$server', PIATTAFORMA='$piattaforma',SERVIZIO='$servizio', PAGINA='$pagina', SPAZIOWEB='$spazioweb',FTPUTENTE='$ftp_utente',FTPPASSWORD='$ftp_password'  WHERE IDHOSTING=$id");
-
+                DB::update("UPDATE gsu.dbo.HOSTING SET Codice_R='$manutenzione', SERVER_='$server', PIATTAFORMA='$piattaforma',SERVIZIO='$servizio', PAGINA='$pagina', SPAZIOWEB='$spazioweb',FTPUTENTE='$ftp_utente',FTPPASSWORD='$ftp_password', ELIMINATO=$eliminato  WHERE IDHOSTING=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

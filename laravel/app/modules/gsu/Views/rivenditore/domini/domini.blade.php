@@ -55,8 +55,6 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
-                    <div class="col-md-offset-8"><input type="button" value="REIMPOSTA" id="reimposta" name="reimposta" class="btn btn-default btn-xs"></div>
-
                 </div>
             </form>
         </div>
@@ -72,6 +70,7 @@
         <thead>
         <tr>
             <th style="width:5%">MANTUTENZIONE</th>
+            <th style="width:5%">STATO</th>
             <th style="width:5%">DATA INIZIO CONTRATTO</th>
             <th style="width:5%">CANONE</th>
             <th style="width:20%" class="soggetto">CLIENTE</th>
@@ -90,6 +89,9 @@
         @foreach($request as $req)
             <tr>
                 <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDDOMINIO']}}">{{$req['MANUTENZIONE']}}</a></td>
+                <td>
+                    <div class="stato_rivenditore {{$class[$req['MANUTENZIONE']]['GSU']['rivenditore']['color']}}" >{{$class[$req['MANUTENZIONE']]['GSU']['rivenditore']['text']}}</div>
+                </td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
