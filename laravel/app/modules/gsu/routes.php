@@ -160,4 +160,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/url-filtering/edit', 'UrlFilteringController@edit');
     Route::post('gsu/url-filtering/save', 'UrlFilteringController@save');
     Route::get('gsu/url-filtering/delete', 'UrlFilteringController@delete');
+
+    //APPARATI NETWORKING
+    Route::get('gsu/apparati-networking', 'ApparatiNetworkingController@main');
+    Route::get('gsu/apparati-networking/search', 'ApparatiNetworkingController@search');
+    Route::get('gsu/apparati-networking/show', 'ApparatiNetworkingController@show');
+    Route::get('gsu/apparati-networking/edit', 'ApparatiNetworkingController@edit');
+    Route::post('gsu/apparati-networking/save', 'ApparatiNetworkingController@save');
+    Route::get('gsu/apparati-networking/delete', 'ApparatiNetworkingController@delete');
 });

@@ -50,9 +50,9 @@
                 <li><a href="{{url('/gsu/url-filtering')}}">URL Filtering</a></li>
                 <li><a href="#">Apparati</a>
                     <ul>
-                        <li><a href="/apparati-networking.asp?PRD=Firewall">Ip-Safe</a></li>
-                        <li><a href="/apparati-networking.asp?PRD=Router">Router</a></li>
-                        <li><a href="/apparati-networking.asp?PRD=Networking">Networking</a></li>
+                        <li><a href="{{url('/gsu/apparati-networking')}}?prodotto=Firewall">Ip-Safe</a></li>
+                        <li><a href="{{url('/gsu/apparati-networking')}}?prodotto=Router">Router</a></li>
+                        <li><a href="{{url('/gsu/apparati-networking')}}?prodotto=Networking">Networking</a></li>
                     </ul>
                 </li>
                 <li><a href="/multifunzione.asp">Multifunzione</a></li>
