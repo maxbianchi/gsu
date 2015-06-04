@@ -128,4 +128,20 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/caselle/edit', 'CaselleController@edit');
     Route::post('gsu/caselle/save', 'CaselleController@save');
     Route::get('gsu/caselle/delete', 'CaselleController@delete');
+
+    //CMS
+    Route::get('gsu/cms', 'CmsController@main');
+    Route::get('gsu/cms/search', 'CmsController@search');
+    Route::get('gsu/cms/show', 'CmsController@show');
+    Route::get('gsu/cms/edit', 'CmsController@edit');
+    Route::post('gsu/cms/save', 'CmsController@save');
+    Route::get('gsu/cms/delete', 'CmsController@delete');
+
+    //IP STATICI
+    Route::get('gsu/ipstatici', 'IpstaticiController@main');
+    Route::get('gsu/ipstatici/search', 'IpstaticiController@search');
+    Route::get('gsu/ipstatici/show', 'IpstaticiController@show');
+    Route::get('gsu/ipstatici/edit', 'IpstaticiController@edit');
+    Route::post('gsu/ipstatici/save', 'IpstaticiController@save');
+    Route::get('gsu/ipstatici/delete', 'IpstaticiController@delete');
 });

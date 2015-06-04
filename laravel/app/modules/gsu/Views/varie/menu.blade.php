@@ -31,8 +31,8 @@
                         <li><a href="{{url('/gsu/caselle')."?canone=CAN-E11"}}">PEC</a></li>
                     </ul>
                 </li>
-                <li><a href="/web-hat.asp">CMS</a></li>
-                <li><a href="/ipstatici.asp">IP statici</a></li>
+                <li><a href="{{url('/gsu/cms')}}">CMS</a></li>
+                <li><a href="{{url('/gsu/ipstatici')}}">IP statici</a></li>
                 <li><a href="#">Servizi Web</a>
                     <ul>
                         <li><a href="/servizi-web.asp?servizio=Area Riservata">Area riservata</a></li>

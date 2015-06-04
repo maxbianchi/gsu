@@ -6260,9 +6260,9 @@ table.dataTable, div.border{
     background-color: yellow;
 }
 
-div.stato_left,
-div.stato_right,
-div.stato_rivenditore{
+.stato_left,
+.stato_right,
+.stato_rivenditore{
     width:25px;
     height: 20px;
     text-align: center;
@@ -6270,11 +6270,11 @@ div.stato_rivenditore{
     font-weight: bold;
     white-space: nowrap;
 }
-div.stato_right{
+.stato_right{
     float:right;
 }
 
-div.stato_rivenditore{
+.stato_rivenditore{
     width:auto;
     height: 20px;
     padding:2px;

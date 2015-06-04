@@ -62,7 +62,7 @@ class Canoni{
         $this->canoni['/gsu/vpn'] = ['CAN-G011A', 'CAN-G011B', 'CAN-G011M'];
         $this->canoni['/gsu/mpls'] = ['CAN-L001M', 'CAN-L001B', 'CAN-L002M', 'CAN-L002B', 'CAN-L003M', 'CAN-L003B', 'CAN-L004M', 'CAN-L004B', 'CAN-L005B', 'CAN-L006B', 'CAN-L007B', 'CAN-L008B'];
         $this->canoni['/gsu/mpls-direct-access'] = ['CAN-M001M', 'CAN-M001B', 'CAN-M002M', 'CAN-M002B', 'CAN-M003M', 'CAN-M003B', 'CAN-M004M', 'CAN-M004B', 'CAN-M005B', 'CAN-M006B', 'CAN-M007B', 'CAN-M008B', 'CAN-M011B', 'CAN-M021B', 'CAN-M031B'];
-        $this->canoni['/gsu/web-hat'] = ['CAN-E071A', 'CAN-E071B', 'CAN-E072A', 'CAN-E072B', 'CAN-E073A', 'CAN-E073B', 'CAN-E074A', 'CAN-E074B', 'CAN-E075A'];
+        $this->canoni['/gsu/cms'] = ['CAN-E071A', 'CAN-E071B', 'CAN-E072A', 'CAN-E072B', 'CAN-E073A', 'CAN-E073B', 'CAN-E074A', 'CAN-E074B', 'CAN-E075A'];
         $this->canoni['/gsu/unigate'] = ['CAN-H001A'	,'CAN-H001B', 'CAN-H002A', 'CAN-H002B', 'CAN-H002-001A', 'CAN-H002-001B', 'CAN-H002-001B','CAN-H002-002A', 'CAN-H002-002B', 'CAN-H002-003A', 'CAN-H002-003B', 'CAN-H003A', 'CAN-H003B', 'CAN-H003B','CAN-H003-001A', 'CAN-H003-001B', 'CAN-H003-002A', 'CAN-H003-002B', 'CAN-H003-002B', 'CAN-H003-004B', 'CAN-H011B', 'CAN-H101M', 'CAN-H004-001B', 'CAN-H004-002B', 'CAN-H004-003B', 'CAN-H004-004B', 'CAN-H005-001B', 'CAN-H005-002B'];
         $this->canoni['/gsu/unigate-numeri'] = ['CAN-H102A', 'CAN-H102B','CAN-H101A', 'CAN-H101B'];
         $this->canoni['/gsu/url-filtering'] = ['CAN-F031A', 'CAN-F031B'];

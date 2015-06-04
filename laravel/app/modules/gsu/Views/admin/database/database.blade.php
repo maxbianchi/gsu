@@ -80,8 +80,8 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="btn btn-small edit" href="{{url('/gsu/database/edit')."?id=".$req['IDDATABASE']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDDATABASE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/database/edit')."?id=".$req['IDDATABASE']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDDATABASE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td>
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
