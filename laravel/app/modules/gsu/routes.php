@@ -144,4 +144,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/ipstatici/edit', 'IpstaticiController@edit');
     Route::post('gsu/ipstatici/save', 'IpstaticiController@save');
     Route::get('gsu/ipstatici/delete', 'IpstaticiController@delete');
+
+    //SERVIZI WEB
+    Route::get('gsu/servizi-web', 'ServiziWebController@main');
+    Route::get('gsu/servizi-web/search', 'ServiziWebController@search');
+    Route::get('gsu/servizi-web/show', 'ServiziWebController@show');
+    Route::get('gsu/servizi-web/edit', 'ServiziWebController@edit');
+    Route::post('gsu/servizi-web/save', 'ServiziWebController@save');
+    Route::get('gsu/servizi-web/delete', 'ServiziWebController@delete');
 });

@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/gsu/ipstatici/search')}}" name="form_search">
+            <form method="GET" action="{{url('/gsu/servizi-web/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
@@ -36,11 +36,10 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">TGU LINEA</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('tgu_linea')}}" id="tgu_linea" name="tgu_linea" ></div>
-                    <div class="col-md-1">NUMERO IP</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('numero_ip')}}" id="numero_ip" name="numero_ip" ></div>
-                    <div class="col-md-2">TIPO ACCOUNT</div>
+                    <div class="col-md-1">SERVER</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('server')}}" id="server" name="server" ></div>
+                    <div class="col-md-1">TIPO SERVIZIO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('tipo_servizio')}}" id="tipo_servizio" name="tipo_servizio" ></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
@@ -59,16 +58,14 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th class="col-sm-2">AZIONI</th>
-            <th class="col-sm-1">STATO</th>
-            <th class="col-sm-1">MANTUTENZIONE</th>
-            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
-            <th class="col-sm-1">CANONE</th>
-            <th class="col-sm-1 soggetto">CLIENTE</th>
-            <th class="col-sm-1 cliente">CLIENTE FINALE</th>
-            <th class="col-sm-1 destinatarioabituale">UBICAZIONE</th>
-            <th class="col-sm-1">TGU LINEA</th>
-            <th class="col-sm-1">NUMERO IP</th>
+            <th class="col-sm-1">AZIONI</th>
+            <th class="col-sm-2 soggetto">CLIENTE</th>
+            <th class="col-sm-2 cliente">CLIENTE FINALE</th>
+            <th class="col-sm-2 destinatarioabituale">UBICAZIONE</th>
+            <th class="col-sm-2">TIPO SERVIZIO</th>
+            <th class="col-sm-2">SERVER</th>
+            <th class="col-sm-1">LOGIN</th>
+            <th class="col-sm-1">PASSWORD</th>
         </tr>
         </thead>
 
@@ -76,32 +73,26 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="btn-small edit stato_left" href="{{url('/gsu/ipstatici/edit')."?id=".$req['IDIPSTATICO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn-small edit delete stato_right" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDIPSTATICO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/servizi-web/edit')."?id=".$req['IDSERVIZIOWEB']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDSERVIZIOWEB'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td>
-                    <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
-                    <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
-                </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDIPSTATICO']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
-                <td>{{$req['DATADOCUMENTO']}}</td>
-                <td>{{$req['CANONE']}}</td>
+
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
                 <td class="destinatarioabituale">{{$req['DESTINATARIOABITUALE']}}</td>
-                <td>{{$req['TGU_LINEA']}}</td>
-                <td>{{$req['NUM_IP']}}</td>
+                <td>{{$req['TIPO_SERVIZIO']}}</td>
+                <td>{{$req['SERVER_']}}</td>
+                <td>{{$req['LOGIN']}}</td>
+                <td>{{$req['PASSWORD']}}</td>
             </tr>
         @endforeach
         </tbody>
 
-        @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="10"><a class="btn btn-small edit" href="{{url('/gsu/ipstatici/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="8"><a class="btn btn-small edit" href="{{url('/gsu/servizi-web/edit')."?isnew=1&manutenzione=".(isset($req['MANUTENZIONE']) ? $req['MANUTENZIONE'] : "" )}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
-        @endif
     </table>
 
     <div id="delete" class="modal fade" style="z-index:99999;">
@@ -129,7 +120,7 @@
         $(document).ready(function () {
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/ipstatici/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
+                $.get( "{{url('/gsu/servizi-web/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");

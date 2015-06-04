@@ -35,12 +35,12 @@
                 <li><a href="{{url('/gsu/ipstatici')}}">IP statici</a></li>
                 <li><a href="#">Servizi Web</a>
                     <ul>
-                        <li><a href="/servizi-web.asp?servizio=Area Riservata">Area riservata</a></li>
-                        <li><a href="/servizi-web.asp?servizio=Banca Sella">Banca Sella</a></li>
-                        <li><a href="/servizi-web.asp?servizio=Directory Riservata">Directory riservata</a></li>
-                        <li><a href="/servizi-web.asp?servizio=Ftp Negozio">Ftp Negozio</a></li>
-                        <li><a href="/servizi-web.asp?servizio=Internet Emporium">Internet Emporium</a></li>
-                        <li><a href="/servizi-web.asp?servizio=MRTG">Mrtg</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Area Riservata">Area riservata</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Banca Sella">Banca Sella</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Directory Riservata">Directory riservata</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Ftp Negozio">Ftp Negozio</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Internet Emporium">Internet Emporium</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=MRTG">Mrtg</a></li>
                     </ul>
                 </li>
             </ul>
