@@ -47,7 +47,7 @@
         </li>
         <li><a href="#">Networking</a>
             <ul>
-                <li><a href="/url-filtering.asp">URL Filtering</a></li>
+                <li><a href="{{url('/gsu/url-filtering')}}">URL Filtering</a></li>
                 <li><a href="#">Apparati</a>
                     <ul>
                         <li><a href="/apparati-networking.asp?PRD=Firewall">Ip-Safe</a></li>

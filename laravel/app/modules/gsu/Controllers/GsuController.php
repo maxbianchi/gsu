@@ -22,9 +22,9 @@ class GsuController extends MainController {
 	public function index()
 	{
         $livello = Session::get('livello');
-        if($livello != 1) {
+        /*if($livello != 1) {
             return Redirect::to('/gsu/main');
-        }
+        }*/
 
 		return view("gsu::index");
 	}

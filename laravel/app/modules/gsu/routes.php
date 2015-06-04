@@ -152,4 +152,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/servizi-web/edit', 'ServiziWebController@edit');
     Route::post('gsu/servizi-web/save', 'ServiziWebController@save');
     Route::get('gsu/servizi-web/delete', 'ServiziWebController@delete');
+
+    //URL FILTERING
+    Route::get('gsu/url-filtering', 'UrlFilteringController@main');
+    Route::get('gsu/url-filtering/search', 'UrlFilteringController@search');
+    Route::get('gsu/url-filtering/show', 'UrlFilteringController@show');
+    Route::get('gsu/url-filtering/edit', 'UrlFilteringController@edit');
+    Route::post('gsu/url-filtering/save', 'UrlFilteringController@save');
+    Route::get('gsu/url-filtering/delete', 'UrlFilteringController@delete');
 });
