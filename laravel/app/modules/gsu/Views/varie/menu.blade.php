@@ -57,7 +57,7 @@
                 </li>
                 <li><a href="{{url('/gsu/multifunzione')}}">Multifunzione</a></li>
                 <li><a href="{{url('/gsu/centralini')}}">Centralini</a></li>
-                <li><a href="/apparati-mobile.asp">Apparati Mobile</a></li>
+                <li><a href="{{url('/gsu/apparati-mobile')}}">Apparati Mobile</a></li>
                 <li><a href="/hardware.asp">Hardware</a></li>
                 <li><a href="/faxvirtuale.asp">Fax Virtuale</a></li>
                 <li><a href="/videoconference.asp">Videoconference</a></li>

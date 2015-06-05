@@ -184,4 +184,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/centralini/edit', 'CentraliniController@edit');
     Route::post('gsu/centralini/save', 'CentraliniController@save');
     Route::get('gsu/centralini/delete', 'CentraliniController@delete');
+
+    //APPARATI MOBILE
+    Route::get('gsu/apparati-mobile', 'ApparatiMobileController@main');
+    Route::get('gsu/apparati-mobile/search', 'ApparatiMobileController@search');
+    Route::get('gsu/apparati-mobile/show', 'ApparatiMobileController@show');
+    Route::get('gsu/apparati-mobile/edit', 'ApparatiMobileController@edit');
+    Route::post('gsu/apparati-mobile/save', 'ApparatiMobileController@save');
+    Route::get('gsu/apparati-mobile/delete', 'ApparatiMobileController@delete');
 });
