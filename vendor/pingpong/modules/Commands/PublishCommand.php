@@ -2,10 +2,11 @@
 
 use Illuminate\Console\Command;
 use Pingpong\Modules\Publishing\AssetPublisher;
+use Pingpong\Modules\Publishing\LangPublisher;
 use Symfony\Component\Console\Input\InputArgument;
 
-class PublishCommand extends Command {
-
+class PublishCommand extends Command
+{
     /**
      * The console command name.
      *
@@ -27,23 +28,21 @@ class PublishCommand extends Command {
      */
     public function fire()
     {
-        if ($name = $this->argument('module'))
-        {
+        if ($name = $this->argument('module')) {
             return $this->publish($name);
         }
 
-        $this->publishAll(); 
+        $this->publishAll();
     }
 
     /**
      * Publish assets from all modules.
-     * 
+     *
      * @return void
      */
     public function publishAll()
     {
-        foreach ($this->laravel['modules']->enabled() as $module)
-        {
+        foreach ($this->laravel['modules']->enabled() as $module) {
             $name = $module->getStudlyName();
 
             $this->publish($name);
@@ -52,7 +51,7 @@ class PublishCommand extends Command {
 
     /**
      * Publish assets from the specified module.
-     * 
+     *
      * @param  string $name
      * @return void
      */
@@ -64,6 +63,13 @@ class PublishCommand extends Command {
             ->setRepository($this->laravel['modules'])
             ->setConsole($this)
             ->publish();
+
+        with(new LangPublisher($module))
+            ->setRepository($this->laravel['modules'])
+            ->setConsole($this)
+            ->publish();
+
+        $this->line("<info>Published</info>: {$module->getStudlyName()}");
     }
 
     /**
@@ -77,5 +83,4 @@ class PublishCommand extends Command {
             array('module', InputArgument::OPTIONAL, 'The name of module will be used.'),
         );
     }
-
 }

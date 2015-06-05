@@ -4,7 +4,8 @@ use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-abstract class Generator {
+abstract class Generator
+{
 
     use AppNamespaceDetectorTrait;
 
@@ -70,11 +71,11 @@ abstract class Generator {
      */
     public function getStub()
     {
-        return (new Stub(
-            __DIR__ . '/Stubs/' . $this->stub . '.stub',
-            $this->getReplacements()
-        )
-        )->render();
+        $stub = new Stub($this->stub . '.stub', $this->getReplacements());
+
+        $stub->setBasePath(__DIR__ . '/Stubs/');
+
+        return $stub->render();
     }
 
     /**
@@ -120,13 +121,11 @@ abstract class Generator {
     {
         $name = $this->name;
 
-        if (str_contains($this->name, '\\'))
-        {
+        if (str_contains($this->name, '\\')) {
             $name = str_replace('\\', '/', $this->name);
         }
 
-        if (str_contains($this->name, '/'))
-        {
+        if (str_contains($this->name, '/')) {
             $name = str_replace('/', '/', $this->name);
         }
 
@@ -176,8 +175,9 @@ abstract class Generator {
 
         $rootNamespace = $this->getRootNamespace();
 
-        if ($rootNamespace == false)
+        if ($rootNamespace == false) {
             return null;
+        }
 
         return 'namespace ' . rtrim($rootNamespace . implode($segments, '\\'), '\\') . ';';
     }
@@ -202,13 +202,11 @@ abstract class Generator {
     {
         $this->setUp();
 
-        if ($this->filesystem->exists($path = $this->getPath()) && ! $this->force)
-        {
+        if ($this->filesystem->exists($path = $this->getPath()) && ! $this->force) {
             throw new FileAlreadyExistsException($path);
         }
 
-        if ( ! $this->filesystem->isDirectory($dir = dirname($path)))
-        {
+        if (! $this->filesystem->isDirectory($dir = dirname($path))) {
             $this->filesystem->makeDirectory($dir, 0777, true, true);
         }
 
@@ -245,8 +243,9 @@ abstract class Generator {
      */
     public function getOption($key, $default = null)
     {
-        if ( ! $this->hasOption($key))
+        if (! $this->hasOption($key)) {
             return $default;
+        }
 
         return $this->options[$key] ?: $default;
     }
@@ -271,12 +270,10 @@ abstract class Generator {
      */
     public function __get($key)
     {
-        if (property_exists($this, $key))
-        {
+        if (property_exists($this, $key)) {
             return $this->{$key};
         }
 
         return $this->option($key);
     }
-
 }

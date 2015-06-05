@@ -2,10 +2,11 @@
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Pingpong\Generators\Stub;
+use Pingpong\Support\Stub;
 use Pingpong\Modules\Commands;
 
-class ModulesServiceProvider extends ServiceProvider {
+class ModulesServiceProvider extends ServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -22,6 +23,18 @@ class ModulesServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->registerNamespaces();
+
+        $this->registerModules();
+    }
+
+    /**
+     * Register all modules.
+     * 
+     * @return void
+     */
+    protected function registerModules()
+    {
+        $this->app->register('Pingpong\Modules\Providers\BootstrapServiceProvider');
     }
 
     /**
@@ -43,12 +56,10 @@ class ModulesServiceProvider extends ServiceProvider {
      */
     public function setupStubPath()
     {
-        $this->app->booted(function ($app)
-        {
+        $this->app->booted(function ($app) {
             Stub::setBasePath(__DIR__ . '/Commands/stubs');
 
-            if ($app['modules']->config('stubs.enabled') === true)
-            {
+            if ($app['modules']->config('stubs.enabled') === true) {
                 Stub::setBasePath($app['modules']->config('stubs.path'));
             }
         });
@@ -91,8 +102,7 @@ class ModulesServiceProvider extends ServiceProvider {
      */
     protected function registerServices()
     {
-        $this->app->bindShared('modules', function ($app)
-        {
+        $this->app->bindShared('modules', function ($app) {
             $path = $app['config']->get('modules.paths.modules');
 
             return new Repository($app, $path);

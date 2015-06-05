@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <xs:annotation>
-    <xs:documentation source="https://phpunit.de/manual/4.6/en/appendixes.configuration.html">
-      This Schema file defines the rules by which the XML configuration file of PHPUnit 4.6 may be structured.
+    <xs:documentation source="https://phpunit.de/manual/5.0/en/appendixes.configuration.html">
+      This Schema file defines the rules by which the XML configuration file of PHPUnit 5.0 may be structured.
     </xs:documentation>
     <xs:appinfo source="http://www.phpunit.de/manual/current/en/appendixes.configuration.html"/>
   </xs:annotation>
@@ -227,21 +227,8 @@
       <xs:element name="logging" type="loggersType" minOccurs="0"/>
       <xs:element name="listeners" type="listenersType" minOccurs="0"/>
       <xs:element name="php" type="phpType" minOccurs="0"/>
-      <xs:element name="selenium" type="seleniumType" minOccurs="0"/>
     </xs:all>
   </xs:group>
-  <xs:complexType name="seleniumType">
-    <xs:sequence>
-      <xs:element name="browser" type="browserType"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="browserType">
-    <xs:attribute name="name" type="xs:string"/>
-    <xs:attribute name="browser" type="xs:string"/>
-    <xs:attribute name="host" type="xs:anyURI"/>
-    <xs:attribute name="port" type="xs:nonNegativeInteger"/>
-    <xs:attribute name="timeout" type="xs:nonNegativeInteger"/>
-  </xs:complexType>
   <xs:element name="testSuiteFacet" abstract="true"/>
   <xs:element name="testsuite" type="testSuiteType" substitutionGroup="testSuiteFacet"/>
   <xs:element name="testsuites" type="testSuitesType" substitutionGroup="testSuiteFacet"/>

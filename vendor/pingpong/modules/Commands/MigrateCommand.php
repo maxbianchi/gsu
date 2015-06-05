@@ -1,10 +1,12 @@
 <?php namespace Pingpong\Modules\Commands;
 
 use Illuminate\Console\Command;
+use Pingpong\Modules\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class MigrateCommand extends Command {
+class MigrateCommand extends Command
+{
 
     /**
      * The console command name.
@@ -36,14 +38,14 @@ class MigrateCommand extends Command {
 
         $name = $this->argument('module');
 
-        if ($name)
-        {
+        if ($name) {
             return $this->migrate($name);
         }
 
-        foreach ($this->module->getOrdered($this->option('direction')) as $name)
-        {
-            $this->migrate($name);
+        foreach ($this->module->getOrdered($this->option('direction')) as $module) {
+            $this->line('Running for module: <info>'.$module->getName().'</info>');
+            
+            $this->migrate($module);
         }
     }
 
@@ -55,18 +57,23 @@ class MigrateCommand extends Command {
      */
     protected function migrate($name)
     {
-        $this->line("<comment>Migrating module</comment> : {$name}");
-
         $module = $this->module->findOrFail($name);
 
-        $path = $module->getExtraPath($this->module->config('paths.generator.migration'));
+        $migrator = new Migrator($module);
 
-        $path = str_replace(base_path(), '', $path);
+        $migrated = $migrator->migrate();
 
-        $this->call('migrate', $this->getParameter($path));
+        if (count($migrated)) {
+            foreach ($migrated as $migration) {
+                $this->line("Migrated: <info>{$migration}</info>");
+            }
 
-        if ($this->option('seed'))
-        {
+            return;
+        }
+
+        $this->comment('Nothing to migrate.');
+
+        if ($this->option('seed')) {
             $this->call('module:seed', ['module' => $name]);
         }
     }
@@ -83,18 +90,15 @@ class MigrateCommand extends Command {
 
         $params['--path'] = $path;
 
-        if ($option = $this->option('database'))
-        {
+        if ($option = $this->option('database')) {
             $params['--database'] = $option;
         }
 
-        if ($option = $this->option('pretend'))
-        {
+        if ($option = $this->option('pretend')) {
             $params['--pretend'] = $option;
         }
 
-        if ($option = $this->option('force'))
-        {
+        if ($option = $this->option('force')) {
             $params['--force'] = $option;
         }
 
@@ -128,5 +132,4 @@ class MigrateCommand extends Command {
             array('seed', null, InputOption::VALUE_NONE, 'Indicates if the seed task should be re-run.'),
         );
     }
-
 }

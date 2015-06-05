@@ -1,6 +1,13 @@
 <?php namespace Pingpong\Modules\Publishing;
 
-class AssetPublisher extends Publisher {
+class AssetPublisher extends Publisher
+{
+    /**
+     * Determine whether the result message will shown in the console.
+     * 
+     * @var boolean
+     */
+    protected $showMessage = false;
 
     /**
      * Get destination path.
@@ -23,5 +30,4 @@ class AssetPublisher extends Publisher {
             $this->repository->config('paths.generator.assets')
         );
     }
-
 }

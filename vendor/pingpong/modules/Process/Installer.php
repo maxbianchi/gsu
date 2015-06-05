@@ -1,119 +1,285 @@
 <?php namespace Pingpong\Modules\Process;
 
-class Installer extends Runner {
+use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+use Pingpong\Modules\Repository;
+use Symfony\Component\Process\Process;
+
+class Installer
+{
 
     /**
-     * Install the specified module by given name.
+     * The module name.
      *
-     * @param  string $name
-     * @param  string|null $path
-     * @param bool $subtree
-     * @return void
+     * @var string
      */
-    public function install($name, $path = null, $subtree)
+    protected $name;
+    
+    /**
+     * The version of module being installed.
+     *
+     * @var string
+     */
+    protected $version;
+
+    /**
+     * The module repository instance.
+     *
+     * @var \Pingpong\Modules\Repository
+     */
+    protected $repository;
+
+    /**
+     * The console command instance.
+     *
+     * @var \Illuminate\Console\Command
+     */
+    protected $console;
+
+    /**
+     * The destionation path.
+     *
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * The process timeout.
+     *
+     * @var integer
+     */
+    protected $timeout = 3360;
+
+    /**
+     * The constructor.
+     *
+     * @param string  $name
+     * @param string  $version
+     * @param string  $type
+     * @param boolean $tree
+     */
+    public function __construct($name, $version = null, $type = null, $tree = false)
     {
-        if ($subtree)
-        {
-            $command = $this->getSubtreeCommand($name, $path);
+        $this->name = $name;
+        $this->version = $version;
+        $this->type = $type;
+        $this->tree = $tree;
+    }
+
+    /**
+     * Set destination path.
+     *
+     * @param string $path
+     * @return $this
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Set the module repository instance.
+     *
+     * @param \Pingpong\Modules\Repository $repository
+     * @return $this
+     */
+    public function setRepository(Repository $repository)
+    {
+        $this->repository = $repository;
+
+        return $this;
+    }
+
+    /**
+     * Set console command instance.
+     *
+     * @param \Illuminate\Console\Command $console
+     * @return $this
+     */
+    public function setConsole(Command $console)
+    {
+        $this->console = $console;
+
+        return $this;
+    }
+
+    /**
+     * Set process timeout.
+     *
+     * @param  int $timeout
+     * @return $this
+     */
+    public function setTimeout($timeout)
+    {
+        $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    /**
+     * Run the installation process.
+     *
+     * @return \Symfony\Component\Process\Process
+     */
+    public function run()
+    {
+        $process = $this->getProcess();
+
+        $process->setTimeout($this->timeout);
+
+        if ($this->console instanceof Command) {
+            $process->run(function ($type, $line) {
+                $this->console->line($line);
+            });
         }
-        else
-        {
-            $command = $this->getCommand($name);
+
+        return $process;
+    }
+
+    /**
+     * Get process instance.
+     *
+     * @return \Symfony\Component\Process\Process
+     */
+    public function getProcess()
+    {
+        switch ($this->type) {
+            case 'github':
+            case 'bitbucket':
+                if ($this->tree) {
+                    $process = $this->installViaSubtree();
+                }
+
+                $process = $this->installViaGit();
+                break;
+            
+            default:
+                $process = $this->installViaComposer();
+                break;
         }
 
-        $this->run($command);
+        return $process;
     }
 
     /**
-     * Get command.
+     * Get destination path.
      *
-     * @param  string $name
      * @return string
      */
-    protected function getCommand($name)
+    public function getDestinationPath()
     {
-        chdir(base_path());
+        if ($this->path) {
+            return $this->path;
+        }
 
-        return "composer require \"$name\"";
+        return $this->repository->getModulePath($this->getModuleName());
     }
 
     /**
-     * Get the git subtree command
+     * Get git repo url.
      *
-     * @param $name
-     * @param $path
+     * @return string|null
+     */
+    public function getRepoUrl()
+    {
+        switch ($this->type) {
+            case 'github':
+                return "git@github.com:{$this->name}.git";
+                break;
+
+            case 'bitbucket':
+                return "git@bitbucket.org:{$this->name}.git";
+                break;
+            
+            default:
+                return null;
+                break;
+        }
+    }
+
+    /**
+     * Get branch name.
+     *
      * @return string
      */
-    protected function getSubtreeCommand($name, $path)
+    public function getBranch()
     {
-        $repoUrl = $this->getRepoPath($name);
-
-        $moduleName = strtolower($this->getModuleName($name));
-
-        $path = $this->getModulePathName($this->getModulePath($path)) . '/' . $this->getModuleName($name);
-
-        return "git remote add {$moduleName} {$repoUrl} && git subtree add --prefix={$path} --squash {$moduleName} master";
+        return is_null($this->version) ? 'master' : $this->version;
     }
 
     /**
-     * Get module path.
+     * Get module name.
      *
-     * @param  string|null $path
      * @return string
      */
-    protected function getModulePath($path = null)
+    public function getModuleName()
     {
-        return realpath($path ?: $this->module->getPath());
+        $parts = explode('/', $this->name);
+
+        return Str::studly(end($parts));
     }
 
     /**
-     * Get git path.
+     * Get composer package name.
      *
-     * @param  string $name
      * @return string
      */
-    protected function getGitPath($name)
+    public function getPackageName()
     {
-        return realpath($this->module->getModulePath(static::getModuleName($name)) . '/.git/');
+        if (is_null($this->version)) {
+            return $this->name . ':dev-master';
+        }
+
+        return $this->name . ':' . $this->version;
     }
 
     /**
-     * Get repo path.
+     * Install the module via git.
      *
-     * @param  string $name
-     * @return string
+     * @return \Symfony\Component\Process\Process
      */
-    protected function getRepoPath($name)
+    public function installViaGit()
     {
-        return "https://github.com/{$name}.git";
+        return new Process(sprintf(
+            'cd %s && git clone %s %s && git checkout %s',
+            base_path(),
+            $this->getRepoUrl(),
+            $this->getDestinationPath(),
+            $this->getBranch()
+        ));
     }
 
     /**
-     * Get module name for the given name.
+     * Install the module via git subtree.
      *
-     * @param  string $name
-     * @return mixed
+     * @return \Symfony\Component\Process\Process
      */
-    public static function getModuleName($name)
+    public function installViaSubtree()
     {
-        list($vendor, $module) = explode('/', $name);
-
-        return $module;
+        return new Process(sprintf(
+            'cd %s && git remote add %s %s && git subtree add --prefix=%s --squash %s %s',
+            base_path(),
+            $this->getModuleName(),
+            $this->getRepoUrl(),
+            $this->getDestinationPath(),
+            $this->getModuleName(),
+            $this->getBranch()
+        ));
     }
 
     /**
-     * Get module path name.
+     * Install the module via composer.
      *
-     * @param  string $path
-     * @return string
+     * @return \Symfony\Component\Process\Process
      */
-    private function getModulePathName($path)
+    public function installViaComposer()
     {
-        $parts = explode('/', $path);
-
-        return array_last($parts, function ($key, $value)
-        {
-            return $value;
-        });
+        return new Process(sprintf(
+            'cd %s && composer require %s',
+            base_path(),
+            $this->getPackageName()
+        ));
     }
 }

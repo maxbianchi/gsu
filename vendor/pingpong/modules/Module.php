@@ -5,7 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
-class Module extends ServiceProvider {
+class Module extends ServiceProvider
+{
 
     /**
      * The laravel application instance.
@@ -40,6 +41,16 @@ class Module extends ServiceProvider {
         $this->app = $app;
         $this->name = $name;
         $this->path = realpath($path);
+    }
+
+    /**
+     * Get laravel instance.
+     *
+     * @return \Illuminate\Foundation\Application
+     */
+    public function getLaravel()
+    {
+        return $this->app;
     }
 
     /**
@@ -192,8 +203,7 @@ class Module extends ServiceProvider {
     protected function registerAliases()
     {
         $loader = AliasLoader::getInstance();
-        foreach ($this->get('aliases', []) as $aliasName => $aliasClass)
-        {
+        foreach ($this->get('aliases', []) as $aliasName => $aliasClass) {
             $loader->alias($aliasName, $aliasClass);
         }
     }
@@ -205,8 +215,7 @@ class Module extends ServiceProvider {
      */
     protected function registerProviders()
     {
-        foreach ($this->get('providers', []) as $provider)
-        {
+        foreach ($this->get('providers', []) as $provider) {
             $this->app->register($provider);
         }
     }
@@ -218,8 +227,7 @@ class Module extends ServiceProvider {
      */
     protected function registerFiles()
     {
-        foreach ($this->get('files', []) as $file)
-        {
+        foreach ($this->get('files', []) as $file) {
             include $this->path . '/' . $file;
         }
     }
@@ -355,5 +363,4 @@ class Module extends ServiceProvider {
     {
         return $this->get($key);
     }
-
 }

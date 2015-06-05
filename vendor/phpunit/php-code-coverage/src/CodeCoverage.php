@@ -81,6 +81,11 @@ class PHP_CodeCoverage
     private $ignoredLines = array();
 
     /**
+     * @var bool
+     */
+    private $disableIgnoredLines = false;
+
+    /**
      * Test data.
      *
      * @var array
@@ -99,13 +104,11 @@ class PHP_CodeCoverage
         if ($driver === null) {
             $runtime = new Runtime;
 
-            if ($runtime->isHHVM()) {
-                $driver = new PHP_CodeCoverage_Driver_HHVM;
-            } elseif ($runtime->hasXdebug()) {
-                $driver = new PHP_CodeCoverage_Driver_Xdebug;
-            } else {
+            if (!$runtime->hasXdebug()) {
                 throw new PHP_CodeCoverage_Exception('No code coverage driver available');
             }
+
+            $driver = new PHP_CodeCoverage_Driver_Xdebug;
         }
 
         if ($filter === null) {
@@ -349,9 +352,9 @@ class PHP_CodeCoverage
      */
     public function merge(PHP_CodeCoverage $that)
     {
-        foreach ($that->getData() as $file => $lines) {
+        foreach ($that->data as $file => $lines) {
             if (!isset($this->data[$file])) {
-                if (!$that->filter()->isFiltered($file)) {
+                if (!$this->filter->isFiltered($file)) {
                     $this->data[$file] = $lines;
                 }
 
@@ -372,6 +375,14 @@ class PHP_CodeCoverage
         }
 
         $this->tests = array_merge($this->tests, $that->getTests());
+
+        $this->filter->setBlacklistedFiles(
+            array_merge($this->filter->getBlacklistedFiles(), $that->filter()->getBlacklistedFiles())
+        );
+
+        $this->filter->setWhitelistedFiles(
+            array_merge($this->filter->getWhitelistedFiles(), $that->filter()->getWhitelistedFiles())
+        );
     }
 
     /**
@@ -478,6 +489,22 @@ class PHP_CodeCoverage
         }
 
         $this->processUncoveredFilesFromWhitelist = $flag;
+    }
+
+    /**
+     * @param  boolean                    $flag
+     * @throws PHP_CodeCoverage_Exception
+     */
+    public function setDisableIgnoredLines($flag)
+    {
+        if (!is_bool($flag)) {
+            throw PHP_CodeCoverage_Util_InvalidArgumentHelper::factory(
+                1,
+                'boolean'
+            );
+        }
+
+        $this->disableIgnoredLines = $flag;
     }
 
     /**
@@ -655,6 +682,10 @@ class PHP_CodeCoverage
             $lines                         = file($filename);
             $numLines                      = count($lines);
 
+            if ($this->disableIgnoredLines) {
+                return $this->ignoredLines[$filename];
+            }
+
             foreach ($lines as $index => $line) {
                 if (!trim($line)) {
                     $this->ignoredLines[$filename][] = $index + 1;
@@ -705,7 +736,7 @@ class PHP_CodeCoverage
 
                             // A DOC_COMMENT token or a COMMENT token starting with "/*"
                             // does not contain the final \n character in its text
-                            if (0 === strpos($_token, '/*') && '*/' === substr(trim($lines[$i-1]), -2)) {
+                            if (isset($lines[$i-1]) && 0 === strpos($_token, '/*') && '*/' === substr(trim($lines[$i-1]), -2)) {
                                 $this->ignoredLines[$filename][] = $i;
                             }
                         }
