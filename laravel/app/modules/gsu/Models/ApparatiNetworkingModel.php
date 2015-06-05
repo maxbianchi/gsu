@@ -34,7 +34,7 @@ class ApparatiNetworkingModel extends Model {
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             APPARATI.ID,
             APPARATI.CODICE_R,
-            APPARATI.DATA_R,
+            CONVERT(VARCHAR(10),APPARATI.DATA_R,105) DATA_R,
             APPARATI.CANONE_R,
             APPARATI.PRODOTTO,
             APPARATI.ACQUISTO_NOLEGGIO,
@@ -48,8 +48,8 @@ class ApparatiNetworkingModel extends Model {
             APPARATI.IOS,
             APPARATI.ASDM_PDM,
             APPARATI.DES_AES,
-            APPARATI.SCADENZAGARANZIA,
-            APPARATI.SCARINNGARANZIA,
+            CONVERT(VARCHAR(10),APPARATI.SCADENZAGARANZIA,105) SCADENZAGARANZIA,
+            CONVERT(VARCHAR(10),APPARATI.SCARINNGARANZIA,105) SCARINNGARANZIA,
             APPARATI.IPAPPARATO,
             APPARATI.SMAPPARATO,
             APPARATI.OGGETTO,
@@ -129,7 +129,7 @@ EOF;
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
             APPARATI.ID,
             APPARATI.CODICE_R,
-            APPARATI.DATA_R,
+            CONVERT(VARCHAR(10),APPARATI.DATA_R,105) DATA_R,
             APPARATI.CANONE_R,
             APPARATI.PRODOTTO,
             APPARATI.ACQUISTO_NOLEGGIO,
@@ -143,8 +143,8 @@ EOF;
             APPARATI.IOS,
             APPARATI.ASDM_PDM,
             APPARATI.DES_AES,
-            APPARATI.SCADENZAGARANZIA,
-            APPARATI.SCARINNGARANZIA,
+            CONVERT(VARCHAR(10),APPARATI.SCADENZAGARANZIA,105) SCADENZAGARANZIA,
+            CONVERT(VARCHAR(10),APPARATI.SCARINNGARANZIA,105) SCARINNGARANZIA,
             APPARATI.IPAPPARATO,
             APPARATI.SMAPPARATO,
             APPARATI.OGGETTO,
@@ -230,12 +230,32 @@ EOF;
         $stato_precedente = Input::get('stato_precedente');
         $manutenzione = Input::get('manutenzione');
 
-        $cliente = Input::get('cliente');
-        $cliente_finale = Input::get('cliente_finale');
-        $ubicazione_impianto = Input::get('ubicazione_impianto');
+        $data_r = Input::get('data_r');
+        $canone_r = Input::get('canone_r');
+        $prodotto = Input::get('prodotto');
+        $acquisto_noleggio = Input::get('acquisto_noleggio');
         $marca = Input::get('marca');
         $modello = Input::get('modello');
-        $seriale = Input::get('seriale');
+        $pn = Input::get('pn');
+        $sn = Input::get('sn');
+        $ram = Input::get('ram');
+        $flash = Input::get('flash');
+        $software = Input::get('software');
+        $ios = Input::get('ios');
+        $asdm_pdm = Input::get('asdm_pdm');
+        $des_aes = Input::get('des_aes');
+        $scadenzagaranzia = empty(Input::get('scadenzagaranzia')) ? "00-00-0000" : Input::get('scadenzagaranzia');
+        $scarinngaranzia = empty(Input::get('scarinngaranzia')) ? "00-00-0000" : Input::get('scarinngaranzia');
+        $ipapparato = Input::get('ipapparato');
+        $smapparato = Input::get('smapparato');
+        $oggetto = Input::get('oggetto');
+        $ip_statico_router = Input::get('ip_statico_router');
+        $rut_sub = Input::get('rut_sub');
+        $gateway_interfaccia_lan = Input::get('gateway_interfaccia_lan');
+        $lansub = Input::get('lansub');
+
+
+
 
 
 
@@ -243,7 +263,7 @@ EOF;
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.APPARATI (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,IP_STATICI,IPSUB,GATEWAY_WAN_PUNTO_A_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,NUM_IP_STATICI,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,MULTIPLEX,UTENTE_RADIUS,PASS_RADIUS, ELIMINATO) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$ip_statici','$ipsub','$gateway_wan_punto_a_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$numero_ip_statici','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$multiplex','$utente_radius','$pass_radius',$eliminato)");
+                DB::insert("insert into APPARATI (CODICE_R,DATA_R,CANONE_R,PRODOTTO,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,RAM,FLASH,SOFTWARE,IOS,ASDM_PDM,DES_AES,SCADENZAGARANZIA,SCARINNGARANZIA,IPAPPARATO,SMAPPARATO,OGGETTO,IP_STATICO_ROUTER,RUTSUB,GATEWAY_INTERFACCIA_LAN,LANSUB) values ('$manutenzione','$data_r','$canone_r','$prodotto','$acquisto_noleggio','$marca','$modello','$pn','$sn','$ram','$flash','$software','$ios','$asdm_pdm','$des_aes','$scadenzagaranzia','$scarinngaranzia','$ipapparato','$smapparato','$oggetto','$ip_statico_router','$rut_sub','$gateway_interfaccia_lan','$lansub')");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -258,7 +278,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.APPARATI SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',IP_STATICI='$ip_statici',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_A_PUNTO='$gateway_wan_punto_a_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',NUM_IP_STATICI='$numero_ip_statici',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',MULTIPLEX='$multiplex',UTENTE_RADIUS='$utente_radius',PASS_RADIUS='$pass_radius', ELIMINATO=$eliminato WHERE ID=$id");
+                DB::update("Update APPARATI Set CODICE_R = '$manutenzione', DATA_R = '$data_r', CANONE_R = '$canone_r', PRODOTTO = '$prodotto', ACQUISTO_NOLEGGIO = '$acquisto_noleggio', MARCA = '$marca', MODELLO = '$modello', PN = '$pn', SN = '$sn', RAM = '$ram', FLASH = '$flash', SOFTWARE = '$software', IOS = '$ios', ASDM_PDM = '$asdm_pdm', DES_AES = '$des_aes', SCADENZAGARANZIA = CONVERT(VARCHAR(10),'$scadenzagaranzia',105), SCARINNGARANZIA = '$scarinngaranzia', IPAPPARATO = '$ipapparato', SMAPPARATO = '$smapparato', OGGETTO = '$oggetto', IP_STATICO_ROUTER = '$ip_statico_router', RUTSUB = '$rut_sub', GATEWAY_INTERFACCIA_LAN = '$gateway_interfaccia_lan', LANSUB = '$lansub' WHERE ID=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }
@@ -286,5 +306,46 @@ EOF;
         }
     }
 
+    public function getUrlFiltering($SN){
+        $sql = "SELECT * FROM URLFILTERING WHERE (SN= '" . $SN . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getSmartNet($SN){
+        $sql = "SELECT * FROM SMARTNET WHERE (SERIALE= '" . $SN . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getVpn($SN){
+        $sql = "SELECT * FROM VPN WHERE (SEDE1= '" . $SN . "' OR SEDE2='" . $SN . "' OR SEDE3='" . $SN . "' OR SEDE4='" . $SN . "' OR SEDE5='" . $SN . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getIpMultimedia($SN){
+        $sql = "SELECT * FROM IPMULTIMEDIA WHERE (SN= '" . $SN . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getGestioneApparati($SN){
+        $sql = "SELECT * FROM GESTIONE_APPARATI WHERE (SERIALE= '" . $SN . "')";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
 }
+
 

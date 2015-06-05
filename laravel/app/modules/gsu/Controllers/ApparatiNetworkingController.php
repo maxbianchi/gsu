@@ -44,23 +44,33 @@ class ApparatiNetworkingController extends MainController {
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
+        $urlfiltering = $return['urlfiltering'];
+        $smartnet = $return['smartnet'];
+        $vpn = $return['vpn'];
+        $ipmultimedia = $return['ipmultimedia'];
+        $gestioneapparati = $return['gestioneapparati'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.apparati-networking.apparati-networking-detail", ['request' => $res, 'btn' => $btn, 'users' => $users]);
+        return view("gsu::$this->view_folder.apparati-networking.apparati-networking-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'urlfiltering' => $urlfiltering, 'smartnet' => $smartnet, 'vpn' => $vpn, 'ipmultimedia' => $ipmultimedia, 'gestioneapparato' => $gestioneapparati]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
+        $urlfiltering = $return['urlfiltering'];
+        $smartnet = $return['smartnet'];
+        $vpn = $return['vpn'];
+        $ipmultimedia = $return['ipmultimedia'];
+        $gestioneapparati = $return['gestioneapparati'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.apparati-networking.apparati-networking-detail", ['request' => $res, 'btn' => $btn, 'users' => $users]);
+        return view("gsu::$this->view_folder.apparati-networking.apparati-networking-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'urlfiltering' => $urlfiltering, 'smartnet' => $smartnet, 'vpn' => $vpn, 'ipmultimedia' => $ipmultimedia, 'gestioneapparato' => $gestioneapparati]);
     }
 
     private function manageShow(){
-        $res = new ApparatiNetworkingModel();
-        $res = $res->getFilteredRequest();
+        $model = new ApparatiNetworkingModel();
+        $res = $model->getFilteredRequest();
 
         $action = Route::currentRouteAction();
         $action = explode("@", $action);
@@ -80,8 +90,31 @@ class ApparatiNetworkingController extends MainController {
         else
             $res = $res[0];
 
+        $urlfiltering = "NO";
+        $smartnet = "NO";
+        $vpn = "NO";
+        $ipmultimedia = "NO";
+        $gestioneapparati = "NO";
+        if(count($res) == 0) {
+            $res = ['MANUTENZIONE' => Input::get('manutenzione')];
+        }
+        else {
+            if(isset($res['SN'])) {
+                $urlfiltering = $model->getUrlFiltering($res['SN']);
+                $smartnet = $model->getSmartNet($res['SN']);
+                $vpn = $model->getVpn($res['SN']);
+                $ipmultimedia = $model->getIpMultimedia($res['SN']);
+                $gestioneapparati = $model->getGestioneApparati($res['SN']);
+            }
+        }
+
         $return['res'] = $res;
         $return['btn'] = $btn;
+        $return['urlfiltering'] = $urlfiltering;
+        $return['smartnet'] = $smartnet;
+        $return['vpn'] = $vpn;
+        $return['ipmultimedia'] = $ipmultimedia;
+        $return['gestioneapparati'] = $gestioneapparati;
 
         return $return;
     }
