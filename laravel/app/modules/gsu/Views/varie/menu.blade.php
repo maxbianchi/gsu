@@ -55,8 +55,8 @@
                         <li><a href="{{url('/gsu/apparati-networking')}}?prodotto=Networking">Networking</a></li>
                     </ul>
                 </li>
-                <li><a href="/multifunzione.asp">Multifunzione</a></li>
-                <li><a href="/centralini.asp">Centralini</a></li>
+                <li><a href="{{url('/gsu/multifunzione')}}">Multifunzione</a></li>
+                <li><a href="{{url('/gsu/centralini')}}">Centralini</a></li>
                 <li><a href="/apparati-mobile.asp">Apparati Mobile</a></li>
                 <li><a href="/hardware.asp">Hardware</a></li>
                 <li><a href="/faxvirtuale.asp">Fax Virtuale</a></li>

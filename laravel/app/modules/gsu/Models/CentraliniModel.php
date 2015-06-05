@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class ApparatiNetworkingModel extends Model {
+class CentraliniModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
@@ -32,38 +32,22 @@ class ApparatiNetworkingModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            APPARATI.ID,
-            APPARATI.CODICE_R,
-            CONVERT(VARCHAR(10),APPARATI.DATA_R,105) DATA_R,
-            APPARATI.CANONE_R,
-            APPARATI.PRODOTTO,
-            APPARATI.ACQUISTO_NOLEGGIO,
-            APPARATI.MARCA,
-            APPARATI.MODELLO,
-            APPARATI.PN,
-            APPARATI.SN,
-            APPARATI.RAM,
-            APPARATI.FLASH,
-            APPARATI.SOFTWARE,
-            APPARATI.IOS,
-            APPARATI.ASDM_PDM,
-            APPARATI.DES_AES,
-            CONVERT(VARCHAR(10),APPARATI.SCADENZAGARANZIA,105) SCADENZAGARANZIA,
-            CONVERT(VARCHAR(10),APPARATI.SCARINNGARANZIA,105) SCARINNGARANZIA,
-            APPARATI.IPAPPARATO,
-            APPARATI.SMAPPARATO,
-            APPARATI.OGGETTO,
-            APPARATI.IP_STATICO_ROUTER,
-            APPARATI.RUTSUB,
-            APPARATI.GATEWAY_INTERFACCIA_LAN,
-            APPARATI.LANSUB
-			FROM		gsu.dbo.APPARATI
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON APPARATI.codice_r				= richieste.MANUTENZIONE
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(APPARATI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(APPARATI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(APPARATI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
+            CENTRALINI.IDCENTRALINO,
+            CENTRALINI.CODICE_R,
+            CONVERT(VARCHAR(10),CENTRALINI.DATA_R,105) DATA_R,
+            CENTRALINI.ACQUISTO_NOLEGGIO,
+            CENTRALINI.DESCRIZIONE,
+            CENTRALINI.VERSIONE,
+            CENTRALINI.PRODUTTORE,
+            CENTRALINI.SERIALE,
+            CENTRALINI.OGGETTO
+			FROM		gsu.dbo.CENTRALINI
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CENTRALINI.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(CENTRALINI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(CENTRALINI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(CENTRALINI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
             LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE APPARATI.ELIMINATO = 0
+            WHERE CENTRALINI.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -87,9 +71,9 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $marca = Input::get('marca');
+        $produttore = Input::get('produttore');
         $modello = Input::get('modello');
-        $seriale = Input::get('seriale');
+        $sn = Input::get('sn');
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
@@ -127,42 +111,26 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            APPARATI.ID,
-            APPARATI.CODICE_R,
-            CONVERT(VARCHAR(10),APPARATI.DATA_R,105) DATA_R,
-            APPARATI.CANONE_R,
-            APPARATI.PRODOTTO,
-            APPARATI.ACQUISTO_NOLEGGIO,
-            APPARATI.MARCA,
-            APPARATI.MODELLO,
-            APPARATI.PN,
-            APPARATI.SN,
-            APPARATI.RAM,
-            APPARATI.FLASH,
-            APPARATI.SOFTWARE,
-            APPARATI.IOS,
-            APPARATI.ASDM_PDM,
-            APPARATI.DES_AES,
-            CONVERT(VARCHAR(10),APPARATI.SCADENZAGARANZIA,105) SCADENZAGARANZIA,
-            CONVERT(VARCHAR(10),APPARATI.SCARINNGARANZIA,105) SCARINNGARANZIA,
-            APPARATI.IPAPPARATO,
-            APPARATI.SMAPPARATO,
-            APPARATI.OGGETTO,
-            APPARATI.IP_STATICO_ROUTER,
-            APPARATI.RUTSUB,
-            APPARATI.GATEWAY_INTERFACCIA_LAN,
-            APPARATI.LANSUB
-			FROM		gsu.dbo.APPARATI
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON APPARATI.codice_r				= richieste.MANUTENZIONE
-		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(APPARATI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(APPARATI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(APPARATI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
+            CENTRALINI.IDCENTRALINO,
+            CENTRALINI.CODICE_R,
+            CONVERT(VARCHAR(10),CENTRALINI.DATA_R,105) DATA_R,
+            CENTRALINI.ACQUISTO_NOLEGGIO,
+            CENTRALINI.DESCRIZIONE,
+            CENTRALINI.VERSIONE,
+            CENTRALINI.PRODUTTORE,
+            CENTRALINI.SERIALE,
+            CENTRALINI.OGGETTO
+			FROM		gsu.dbo.CENTRALINI
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CENTRALINI.codice_r				= richieste.MANUTENZIONE
+		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(CENTRALINI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(CENTRALINI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(CENTRALINI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
             WHERE 1=1
 EOF;
 
         if(!empty($id))
-            $sql .= " AND APPARATI.ID = '$id'";
+            $sql .= " AND CENTRALINI.IDCENTRALINO = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -181,17 +149,19 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
+        if(!empty($produttore))
+            $sql .= " AND CENTRALINI.PRODUTTORE like '%$produttore%'";
         if(!empty($marca))
-            $sql .= " AND APPARATI.MARCA like '%$marca%'";
+            $sql .= " AND CENTRALINI.DESCRIZIONE like '%$marca%'";
         if(!empty($modello))
-            $sql .= " AND APPARATI.MODELLO like '%$modello%'";
-        if(!empty($seriale))
-            $sql .= " AND APPARATI.SN like '%$seriale%'";
+            $sql .= " AND CENTRALINI.VERSIONE like '%$modello%'";
+        if(!empty($sn))
+            $sql .= " AND CENTRALINI.SERIALE like '%$sn%'";
 
         if(!empty($eliminati))
-            $sql .= " AND APPARATI.ELIMINATO = 1";
+            $sql .= " AND CENTRALINI.ELIMINATO = 1";
         else
-            $sql .= " AND APPARATI.ELIMINATO = 0";
+            $sql .= " AND CENTRALINI.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -205,7 +175,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.APPARATI SET ELIMINATO=1 WHERE ID='$id'";
+            $sql = "UPDATE gsu.dbo.CENTRALINI SET ELIMINATO=1 WHERE ID='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -234,39 +204,16 @@ EOF;
         $cliente = Input::get('cliente_finale');
         $destinatarioabituale = Input::get('ubicazione_impianto');
         $data_r = Input::get('data_r');
-        $canone_r = Input::get('canone_r');
-        $prodotto = Input::get('prodotto');
         $acquisto_noleggio = Input::get('acquisto_noleggio');
         $marca = Input::get('marca');
         $modello = Input::get('modello');
-        $pn = Input::get('pn');
+        $produttore = Input::get('produttore');
         $sn = Input::get('sn');
-        $ram = Input::get('ram');
-        $flash = Input::get('flash');
-        $software = Input::get('software');
-        $ios = Input::get('ios');
-        $asdm_pdm = Input::get('asdm_pdm');
-        $des_aes = Input::get('des_aes');
-        $scadenzagaranzia = empty(Input::get('scadenzagaranzia')) ? "00-00-0000" : Input::get('scadenzagaranzia');
-        $scarinngaranzia = empty(Input::get('scarinngaranzia')) ? "00-00-0000" : Input::get('scarinngaranzia');
-        $ipapparato = Input::get('ipapparato');
-        $smapparato = Input::get('smapparato');
         $oggetto = Input::get('oggetto');
-        $ip_statico_router = Input::get('ip_statico_router');
-        $rut_sub = Input::get('rut_sub');
-        $gateway_interfaccia_lan = Input::get('gateway_interfaccia_lan');
-        $lansub = Input::get('lansub');
-
-
-
-
-
-
-
 
         try {
             if(empty($id)) {
-                DB::insert("insert into APPARATI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,PRODOTTO,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,RAM,FLASH,SOFTWARE,IOS,ASDM_PDM,DES_AES,SCADENZAGARANZIA,SCARINNGARANZIA,IPAPPARATO,SMAPPARATO,OGGETTO,IP_STATICO_ROUTER,RUTSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$canone_r','$prodotto','$acquisto_noleggio','$marca','$modello','$pn','$sn','$ram','$flash','$software','$ios','$asdm_pdm','$des_aes','$scadenzagaranzia','$scarinngaranzia','$ipapparato','$smapparato','$oggetto','$ip_statico_router','$rut_sub','$gateway_interfaccia_lan','$lansub',$eliminato)");
+                DB::insert("insert into CENTRALINI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,ACQUISTO_NOLEGGIO,DESCRIZIONE,VERSIONE,PRODUTTORE,SERIALE,OGGETTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$acquisto_noleggio','$marca','$modello','$produttore','$sn','$oggetto',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -281,7 +228,7 @@ EOF;
                 }
             }
             else
-                DB::update("Update APPARATI Set SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', CANONE_R = '$canone_r', PRODOTTO = '$prodotto', ACQUISTO_NOLEGGIO = '$acquisto_noleggio', MARCA = '$marca', MODELLO = '$modello', PN = '$pn', SN = '$sn', RAM = '$ram', FLASH = '$flash', SOFTWARE = '$software', IOS = '$ios', ASDM_PDM = '$asdm_pdm', DES_AES = '$des_aes', SCADENZAGARANZIA = CONVERT(VARCHAR(10),'$scadenzagaranzia',105), SCARINNGARANZIA = '$scarinngaranzia', IPAPPARATO = '$ipapparato', SMAPPARATO = '$smapparato', OGGETTO = '$oggetto', IP_STATICO_ROUTER = '$ip_statico_router', RUTSUB = '$rut_sub', GATEWAY_INTERFACCIA_LAN = '$gateway_interfaccia_lan', LANSUB = '$lansub', ELIMINATO=$eliminato WHERE ID=$id");
+                DB::update("Update CENTRALINI Set SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', ACQUISTO_NOLEGGIO = '$acquisto_noleggio', DESCRIZIONE = '$marca', VERSIONE = '$modello', PRODUTTORE = '$produttore', SERIALE = '$sn', OGGETTO = '$oggetto', ELIMINATO = $eliminato WHERE IDCENTRALINO=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }
@@ -292,7 +239,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new ApparatiNetworkingModel();
+        $model = new CentraliniModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
@@ -309,45 +256,17 @@ EOF;
         }
     }
 
-    public function getUrlFiltering($SN){
-        $sql = "SELECT * FROM URLFILTERING WHERE (SN= '" . $SN . "')";
+    public function getAssistenzaCentralino($SN){
+        $sql = "SELECT * FROM ASSISTENZACENTRALINI WHERE (SERIALE= '" . $SN . "')";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
         return "NO";
     }
 
-    public function getSmartNet($SN){
-        $sql = "SELECT * FROM SMARTNET WHERE (SERIALE= '" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
 
-    public function getVpn($SN){
-        $sql = "SELECT * FROM VPN WHERE (SEDE1= '" . $SN . "' OR SEDE2='" . $SN . "' OR SEDE3='" . $SN . "' OR SEDE4='" . $SN . "' OR SEDE5='" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
 
-    public function getIpMultimedia($SN){
-        $sql = "SELECT * FROM IPMULTIMEDIA WHERE (SN= '" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
 
-    public function getGestioneApparati($SN){
-        $sql = "SELECT * FROM GESTIONE_APPARATI WHERE (SERIALE= '" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
 
 }
 

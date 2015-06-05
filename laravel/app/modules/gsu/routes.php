@@ -168,4 +168,20 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/apparati-networking/edit', 'ApparatiNetworkingController@edit');
     Route::post('gsu/apparati-networking/save', 'ApparatiNetworkingController@save');
     Route::get('gsu/apparati-networking/delete', 'ApparatiNetworkingController@delete');
+
+    //MULTIFUNZIONE
+    Route::get('gsu/multifunzione', 'MultifunzioneController@main');
+    Route::get('gsu/multifunzione/search', 'MultifunzioneController@search');
+    Route::get('gsu/multifunzione/show', 'MultifunzioneController@show');
+    Route::get('gsu/multifunzione/edit', 'MultifunzioneController@edit');
+    Route::post('gsu/multifunzione/save', 'MultifunzioneController@save');
+    Route::get('gsu/multifunzione/delete', 'MultifunzioneController@delete');
+
+    //CENTRALINI
+    Route::get('gsu/centralini', 'CentraliniController@main');
+    Route::get('gsu/centralini/search', 'CentraliniController@search');
+    Route::get('gsu/centralini/show', 'CentraliniController@show');
+    Route::get('gsu/centralini/edit', 'CentraliniController@edit');
+    Route::post('gsu/centralini/save', 'CentraliniController@save');
+    Route::get('gsu/centralini/delete', 'CentraliniController@delete');
 });
