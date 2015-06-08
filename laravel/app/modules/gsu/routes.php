@@ -192,4 +192,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/apparati-mobile/edit', 'ApparatiMobileController@edit');
     Route::post('gsu/apparati-mobile/save', 'ApparatiMobileController@save');
     Route::get('gsu/apparati-mobile/delete', 'ApparatiMobileController@delete');
+
+    //HARDWARE
+    Route::get('gsu/hardware', 'HardwareController@main');
+    Route::get('gsu/hardware/search', 'HardwareController@search');
+    Route::get('gsu/hardware/show', 'HardwareController@show');
+    Route::get('gsu/hardware/edit', 'HardwareController@edit');
+    Route::post('gsu/hardware/save', 'HardwareController@save');
+    Route::get('gsu/hardware/delete', 'HardwareController@delete');
 });

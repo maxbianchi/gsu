@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="" />
+    <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/HardwareModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware-detail.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gsu.iml" afterPath="$PROJECT_DIR$/.idea/gsu.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="gsu.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -25,59 +34,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="centralini-detail.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/centralini/centralini-detail.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.18518518" vertical-offset="2191" max-vertical-offset="2916">
-              <caret line="122" column="1" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
-              <folding>
-                <element signature="e#4232#4309#0#HTML" expanded="true" />
-                <element signature="e#5740#5762#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="apparati-networking-detail.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-networking/apparati-networking-detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.0" vertical-offset="1890" max-vertical-offset="4068">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1890" max-vertical-offset="4068">
               <caret line="129" column="133" selection-start-line="129" selection-start-column="115" selection-end-line="129" selection-end-column="133" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApparatiMobileController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiMobileController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.518518" vertical-offset="607" max-vertical-offset="2268">
-              <caret line="63" column="201" selection-start-line="63" selection-start-column="201" selection-end-line="63" selection-end-column="201" />
-              <folding>
-                <element signature="e#46#82#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ApparatiMobileModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiMobileModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.0" vertical-offset="3492" max-vertical-offset="5220">
-              <caret line="212" column="103" selection-start-line="212" selection-start-column="103" selection-end-line="212" selection-end-column="103" />
-              <folding>
-                <marker date="1433513567478" expanded="true" signature="7927:7983" placeholder="UPDATE gsu.d..." />
-                <marker date="1433513567478" expanded="true" signature="8037:8107" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-                <marker date="1433513567478" expanded="true" signature="8529:8614" placeholder="UPDATE gsu.d..." />
-                <marker date="1433513567478" expanded="true" signature="9886:10300" placeholder="insert into ..." />
-                <marker date="1433513567478" expanded="true" signature="10330:10400" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-                <marker date="1433513567478" expanded="true" signature="10684:10769" placeholder="UPDATE gsu.d..." />
-                <marker date="1433513567478" expanded="true" signature="10845:10930" placeholder="INSERT INTO ..." />
-                <marker date="1433513567478" expanded="true" signature="11011:11434" placeholder="Update APPAR..." />
-                <marker date="1433513567478" expanded="true" signature="11553:11646" placeholder="UPDATE gsu.d..." />
-                <marker date="1433513567478" expanded="true" signature="12523:12575" placeholder="SELECT * FRO..SIM..." />
-                <marker date="1433513567478" expanded="true" signature="12746:12794" placeholder="SELECT * FRO..SIM_TELEFONI..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -85,7 +47,7 @@
       <file leaf-file-name="ApparatiNetworkingModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiNetworkingModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.333333" vertical-offset="4122" max-vertical-offset="6480">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4122" max-vertical-offset="6480">
               <caret line="249" column="114" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="114" />
               <folding>
                 <element signature="e#41#80#0#PHP" expanded="true" />
@@ -108,35 +70,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apparati-mobile.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-mobile/apparati-mobile.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.185185" vertical-offset="895" max-vertical-offset="2538">
-              <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
-              <folding>
-                <element signature="e#3206#3227#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apparati-mobile-detail.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="apparati-mobile-detail.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-mobile/apparati-mobile-detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35008103" vertical-offset="0" max-vertical-offset="3240">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            <state vertical-scroll-proportion="-15.333333" vertical-offset="1620" max-vertical-offset="3240">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="116" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HardwareController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.407408" vertical-offset="520" max-vertical-offset="2250">
+              <caret line="61" column="202" selection-start-line="61" selection-start-column="202" selection-end-line="61" selection-end-column="202" />
               <folding>
-                <element signature="e#5273#5347#0#HTML" expanded="true" />
+                <element signature="e#46#82#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adsl-detail.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/adsl/adsl-detail.blade.php">
+      <file leaf-file-name="HardwareModel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/HardwareModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.222222" vertical-offset="2991" max-vertical-offset="4968">
-              <caret line="189" column="179" selection-start-line="189" selection-start-column="60" selection-end-line="189" selection-end-column="179" />
+            <state vertical-scroll-proportion="0.554295" vertical-offset="3474" max-vertical-offset="5724">
+              <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+              <folding>
+                <marker date="1433753991979" expanded="true" signature="8232:8288" placeholder="UPDATE gsu.d..." />
+                <marker date="1433753991979" expanded="true" signature="8342:8412" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1433753991979" expanded="true" signature="8834:8919" placeholder="UPDATE gsu.d..." />
+                <marker date="1433753991979" expanded="true" signature="10418:11092" placeholder="insert into ..." />
+                <marker date="1433753991979" expanded="true" signature="11122:11192" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1433753991979" expanded="true" signature="11476:11561" placeholder="UPDATE gsu.d..." />
+                <marker date="1433753991979" expanded="true" signature="11637:11722" placeholder="INSERT INTO ..." />
+                <marker date="1433753991979" expanded="true" signature="11803:12539" placeholder="Update Set S..." />
+                <marker date="1433753991979" expanded="true" signature="12500:12539" placeholder="Update SERVE..." />
+                <marker date="1433753991979" expanded="true" signature="12658:12751" placeholder="UPDATE gsu.d..." />
+                <marker date="1433753991979" expanded="true" signature="13628:13687" placeholder="SELECT * FRO..TELEASSISTENZA..." />
+                <marker date="1433753991979" expanded="true" signature="13862:13919" placeholder="SELECT * FRO..POSTWARRANTY..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.7777777" vertical-offset="1284" max-vertical-offset="4698">
+              <caret line="89" column="61" selection-start-line="89" selection-start-column="61" selection-end-line="89" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -145,9 +128,32 @@
       <file leaf-file-name="menu.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.333334" vertical-offset="432" max-vertical-offset="2322">
-              <caret line="59" column="56" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
+            <state vertical-scroll-proportion="-24.0" vertical-offset="432" max-vertical-offset="2322">
+              <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hardware.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-43.333332" vertical-offset="702" max-vertical-offset="2682">
+              <caret line="104" column="31" selection-start-line="104" selection-start-column="31" selection-end-line="104" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hardware-detail.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware-detail.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.333333" vertical-offset="2412" max-vertical-offset="3798">
+              <caret line="151" column="98" selection-start-line="151" selection-start-column="98" selection-end-line="151" selection-end-column="98" />
+              <folding>
+                <element signature="e#6680#6754#0#HTML" expanded="true" />
+                <element signature="e#6957#7027#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -155,8 +161,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.0" vertical-offset="2880" max-vertical-offset="3600">
-              <caret line="193" column="70" selection-start-line="193" selection-start-column="70" selection-end-line="193" selection-end-column="70" />
+            <state vertical-scroll-proportion="-33.88889" vertical-offset="2703" max-vertical-offset="3744">
+              <caret line="201" column="57" selection-start-line="201" selection-start-column="57" selection-end-line="201" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -170,10 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/direct-access/direct-access.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/domini/domini.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hosting/hosting.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/housing/housing.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/linea-aggiuntiva/linea-aggiuntiva.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mailarchive/mailarchive.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mpls/mpls.blade.php" />
@@ -215,12 +217,16 @@
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/CentraliniModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/centralini/centralini-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-mobile/apparati-mobile.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiMobileController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiMobileModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-mobile/apparati-mobile-detail.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware-detail.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/HardwareModel.php" />
       </list>
     </option>
   </component>
@@ -288,23 +294,12 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="gsu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -651,6 +646,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hardware" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -687,6 +720,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -733,6 +767,9 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="be71d8f1-daa9-40bd-8d4f-ee3b7ce8dab1" server_name="gsu">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -740,9 +777,6 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="be71d8f1-daa9-40bd-8d4f-ee3b7ce8dab1" server_name="gsu">
       <method />
     </configuration>
     <list size="1">
@@ -768,8 +802,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -778,18 +812,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18490566" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3184524" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3184524" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09821428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09821428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -837,41 +871,11 @@
           <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="62" />
+      <option name="time" value="63" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.111111" vertical-offset="969" max-vertical-offset="5400">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Routing/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7777777" vertical-offset="21210" max-vertical-offset="25110">
-          <caret line="1200" column="0" selection-start-line="1200" selection-start-column="0" selection-end-line="1200" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/cms/cms.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.851852" vertical-offset="1363" max-vertical-offset="1980">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/ipstatici/ipstatici.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.851852" vertical-offset="1219" max-vertical-offset="1836">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/servizi-web/servizi-web.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.851852" vertical-offset="1057" max-vertical-offset="1674">
@@ -925,7 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="1728">
           <caret line="55" column="131" selection-start-line="55" selection-start-column="111" selection-end-line="55" selection-end-column="131" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,7 +936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="2466">
           <caret line="92" column="180" selection-start-line="92" selection-start-column="180" selection-end-line="92" selection-end-column="180" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +943,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="2754">
           <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -949,7 +950,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="86.0" vertical-offset="2322" max-vertical-offset="3762">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,7 +957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-34.0" vertical-offset="630" max-vertical-offset="1854">
           <caret line="86" column="55" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,7 +964,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="25.333334" vertical-offset="1620" max-vertical-offset="2916">
           <caret line="52" column="163" selection-start-line="52" selection-start-column="163" selection-end-line="52" selection-end-column="163" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,15 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.333333" vertical-offset="432" max-vertical-offset="1944">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.7777777" vertical-offset="1248" max-vertical-offset="4698">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -989,7 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.666667" vertical-offset="441" max-vertical-offset="1098">
           <caret line="42" column="71" selection-start-line="42" selection-start-column="71" selection-end-line="42" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -997,7 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.666666" vertical-offset="162" max-vertical-offset="2772">
           <caret line="34" column="162" selection-start-line="34" selection-start-column="144" selection-end-line="34" selection-end-column="162" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1005,9 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="16.481482" vertical-offset="1399" max-vertical-offset="2502">
           <caret line="53" column="270" selection-start-line="53" selection-start-column="270" selection-end-line="53" selection-end-column="270" />
-          <folding>
-            <element signature="e#46#82#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,19 +999,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-48.851852" vertical-offset="3883" max-vertical-offset="5688">
           <caret line="292" column="0" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
-          <folding>
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..SERVIZI_PLUS..." />
-            <marker date="1432307922458" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..servizi_access..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1035,19 +1006,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="138.0" vertical-offset="3726" max-vertical-offset="5562">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..ACTIVESYNC..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..OUTLOOKCONNECTOR..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1055,9 +1014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-100.666664" vertical-offset="2376" max-vertical-offset="5742">
           <caret line="283" column="719" selection-start-line="283" selection-start-column="699" selection-end-line="283" selection-end-column="719" />
-          <folding>
-            <element signature="e#41#80#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1065,17 +1021,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="120.0" vertical-offset="3240" max-vertical-offset="4518">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1083,7 +1028,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-148.66667" vertical-offset="162" max-vertical-offset="4518">
           <caret line="235" column="59" selection-start-line="235" selection-start-column="59" selection-end-line="235" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1091,19 +1035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="154.0" vertical-offset="4158" max-vertical-offset="5580">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..SERVIZI_PLUS..." />
-            <marker date="1432307922462" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..servizi_access..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1111,17 +1042,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.333333" vertical-offset="270" max-vertical-offset="4464">
           <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="52" />
-          <folding>
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1432307922470" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1129,7 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.851852" vertical-offset="1363" max-vertical-offset="1980">
           <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1137,7 +1056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.851852" vertical-offset="1201" max-vertical-offset="1818">
           <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1145,7 +1063,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="46.0" vertical-offset="1242" max-vertical-offset="2358">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1153,7 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2340">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1161,11 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-48.0" vertical-offset="1458" max-vertical-offset="3060">
           <caret line="153" column="59" selection-start-line="153" selection-start-column="59" selection-end-line="153" selection-end-column="59" />
-          <folding>
-            <element signature="e#4196#4273#0#HTML" expanded="true" />
-            <element signature="e#4482#4555#0#HTML" expanded="true" />
-            <element signature="e#4770#4845#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1173,7 +1084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.666666" vertical-offset="1080" max-vertical-offset="2628">
           <caret line="85" column="94" selection-start-line="85" selection-start-column="94" selection-end-line="85" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1181,7 +1091,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-42.666668" vertical-offset="216" max-vertical-offset="2610">
           <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,21 +1098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="15.814815" vertical-offset="4531" max-vertical-offset="5238">
           <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
-          <folding>
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="Update MULTI..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="Update APPAR..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="SELECT SN FR..ASSISTENZA_TECNICA_MULTIFUNZIONE..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="SELECT SN FR..ASSISTENZA_TECNICA_CONSUMABILE_NERO..." />
-            <marker date="1433500349186" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..VPN..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1211,9 +1105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-43.333332" vertical-offset="0" max-vertical-offset="2358">
           <caret line="65" column="227" selection-start-line="65" selection-start-column="227" selection-end-line="65" selection-end-column="227" />
-          <folding>
-            <element signature="e#46#82#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1221,9 +1112,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.666666" vertical-offset="648" max-vertical-offset="2178">
           <caret line="61" column="151" selection-start-line="61" selection-start-column="131" selection-end-line="61" selection-end-column="151" />
-          <folding>
-            <element signature="e#46#82#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1231,18 +1119,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="28.481482" vertical-offset="3451" max-vertical-offset="4968">
           <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-          <folding>
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="Update CENTR..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1433501560131" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..ASSISTENZACENTRALINI..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1250,50 +1126,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.068966" vertical-offset="512" max-vertical-offset="2718">
           <caret line="77" column="45" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/centralini/centralini-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.18518518" vertical-offset="2191" max-vertical-offset="2916">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2191" max-vertical-offset="2916">
           <caret line="122" column="1" selection-start-line="122" selection-start-column="1" selection-end-line="122" selection-end-column="1" />
-          <folding>
-            <element signature="e#4232#4309#0#HTML" expanded="true" />
-            <element signature="e#5740#5762#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.0" vertical-offset="2880" max-vertical-offset="3600">
-          <caret line="193" column="70" selection-start-line="193" selection-start-column="70" selection-end-line="193" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.333334" vertical-offset="432" max-vertical-offset="2322">
-          <caret line="59" column="56" selection-start-line="59" selection-start-column="56" selection-end-line="59" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiMobileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.518518" vertical-offset="607" max-vertical-offset="2268">
+        <state vertical-scroll-proportion="0.0" vertical-offset="607" max-vertical-offset="2268">
           <caret line="63" column="201" selection-start-line="63" selection-start-column="201" selection-end-line="63" selection-end-column="201" />
           <folding>
-            <element signature="e#46#82#0#PHP" expanded="true" />
+            <element signature="e#46#82#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/adsl/adsl-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.222222" vertical-offset="2991" max-vertical-offset="4968">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2991" max-vertical-offset="4968">
           <caret line="189" column="179" selection-start-line="189" selection-start-column="60" selection-end-line="189" selection-end-column="179" />
           <folding />
         </state>
@@ -1301,37 +1157,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-mobile/apparati-mobile.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.185185" vertical-offset="895" max-vertical-offset="2538">
+        <state vertical-scroll-proportion="0.0" vertical-offset="895" max-vertical-offset="2538">
           <caret line="71" column="29" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
-          <folding>
-            <element signature="e#3206#3227#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiMobileModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="3492" max-vertical-offset="5220">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3492" max-vertical-offset="5220">
           <caret line="212" column="103" selection-start-line="212" selection-start-column="103" selection-end-line="212" selection-end-column="103" />
           <folding>
-            <marker date="1433513567478" expanded="true" signature="7927:7983" placeholder="UPDATE gsu.d..." />
-            <marker date="1433513567478" expanded="true" signature="8037:8107" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1433513567478" expanded="true" signature="8529:8614" placeholder="UPDATE gsu.d..." />
-            <marker date="1433513567478" expanded="true" signature="9886:10300" placeholder="insert into ..." />
-            <marker date="1433513567478" expanded="true" signature="10330:10400" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1433513567478" expanded="true" signature="10684:10769" placeholder="UPDATE gsu.d..." />
-            <marker date="1433513567478" expanded="true" signature="10845:10930" placeholder="INSERT INTO ..." />
-            <marker date="1433513567478" expanded="true" signature="11011:11434" placeholder="Update APPAR..." />
-            <marker date="1433513567478" expanded="true" signature="11553:11646" placeholder="UPDATE gsu.d..." />
-            <marker date="1433513567478" expanded="true" signature="12523:12575" placeholder="SELECT * FRO..SIM..." />
-            <marker date="1433513567478" expanded="true" signature="12746:12794" placeholder="SELECT * FRO..SIM_TELEFONI..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="Update APPAR..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..SIM..." />
+            <marker date="1433513567478" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..SIM_TELEFONI..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiNetworkingModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333" vertical-offset="4122" max-vertical-offset="6480">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4122" max-vertical-offset="6480">
           <caret line="249" column="114" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="114" />
           <folding>
             <element signature="e#41#80#0#PHP" expanded="true" />
@@ -1355,18 +1209,90 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-networking/apparati-networking-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.0" vertical-offset="1890" max-vertical-offset="4068">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1890" max-vertical-offset="4068">
           <caret line="129" column="133" selection-start-line="129" selection-start-column="115" selection-end-line="129" selection-end-column="133" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.0" vertical-offset="432" max-vertical-offset="2322">
+          <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.88889" vertical-offset="2703" max-vertical-offset="3744">
+          <caret line="201" column="57" selection-start-line="201" selection-start-column="57" selection-end-line="201" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-43.333332" vertical-offset="702" max-vertical-offset="2682">
+          <caret line="104" column="31" selection-start-line="104" selection-start-column="31" selection-end-line="104" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/apparati-mobile/apparati-mobile-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35008103" vertical-offset="0" max-vertical-offset="3240">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        <state vertical-scroll-proportion="-15.333333" vertical-offset="1620" max-vertical-offset="3240">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="116" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.407408" vertical-offset="520" max-vertical-offset="2250">
+          <caret line="61" column="202" selection-start-line="61" selection-start-column="202" selection-end-line="61" selection-end-column="202" />
           <folding>
-            <element signature="e#5273#5347#0#HTML" expanded="true" />
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.333333" vertical-offset="2412" max-vertical-offset="3798">
+          <caret line="151" column="98" selection-start-line="151" selection-start-column="98" selection-end-line="151" selection-end-column="98" />
+          <folding>
+            <element signature="e#6680#6754#0#HTML" expanded="true" />
+            <element signature="e#6957#7027#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.7777777" vertical-offset="1284" max-vertical-offset="4698">
+          <caret line="89" column="61" selection-start-line="89" selection-start-column="61" selection-end-line="89" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/HardwareModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.554295" vertical-offset="3474" max-vertical-offset="5724">
+          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
+          <folding>
+            <marker date="1433753991979" expanded="true" signature="8232:8288" placeholder="UPDATE gsu.d..." />
+            <marker date="1433753991979" expanded="true" signature="8342:8412" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1433753991979" expanded="true" signature="8834:8919" placeholder="UPDATE gsu.d..." />
+            <marker date="1433753991979" expanded="true" signature="10418:11092" placeholder="insert into ..." />
+            <marker date="1433753991979" expanded="true" signature="11122:11192" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1433753991979" expanded="true" signature="11476:11561" placeholder="UPDATE gsu.d..." />
+            <marker date="1433753991979" expanded="true" signature="11637:11722" placeholder="INSERT INTO ..." />
+            <marker date="1433753991979" expanded="true" signature="11803:12539" placeholder="Update Set S..." />
+            <marker date="1433753991979" expanded="true" signature="12500:12539" placeholder="Update SERVE..." />
+            <marker date="1433753991979" expanded="true" signature="12658:12751" placeholder="UPDATE gsu.d..." />
+            <marker date="1433753991979" expanded="true" signature="13628:13687" placeholder="SELECT * FRO..TELEASSISTENZA..." />
+            <marker date="1433753991979" expanded="true" signature="13862:13919" placeholder="SELECT * FRO..POSTWARRANTY..." />
           </folding>
         </state>
       </provider>
