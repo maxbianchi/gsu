@@ -60,7 +60,7 @@
                 <li><a href="{{url('/gsu/apparati-mobile')}}">Apparati Mobile</a></li>
                 <li><a href="{{url('/gsu/hardware')}}">Hardware</a></li>
                 <li><a href="{{url('/gsu/fax-virtuale')}}">Fax Virtuale</a></li>
-                <li><a href="/videoconference.asp">Videoconference</a></li>
+                <li><a href="{{url('/gsu/videoconference')}}">Videoconference</a></li>
             </ul>
         </li>
         <li><a href="#">System Integration</a>

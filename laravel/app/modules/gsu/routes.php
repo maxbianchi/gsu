@@ -208,4 +208,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/fax-virtuale/edit', 'FaxVirtualeController@edit');
     Route::post('gsu/fax-virtuale/save', 'FaxVirtualeController@save');
     Route::get('gsu/fax-virtuale/delete', 'FaxVirtualeController@delete');
+
+    //VIDEOCONFERENCE
+    Route::get('gsu/videoconference', 'VideoconferenceController@main');
+    Route::get('gsu/videoconference/search', 'VideoconferenceController@search');
+    Route::get('gsu/videoconference/show', 'VideoconferenceController@show');
+    Route::get('gsu/videoconference/edit', 'VideoconferenceController@edit');
+    Route::post('gsu/videoconference/save', 'VideoconferenceController@save');
+    Route::get('gsu/videoconference/delete', 'VideoconferenceController@delete');
 });
