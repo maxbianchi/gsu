@@ -59,15 +59,15 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th class="col-sm-1">STATO</th>
-            <th class="col-sm-1">MANTUTENZIONE</th>
-            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
-            <th class="col-sm-1">CANONE</th>
-            <th class="col-sm-1 soggetto">CLIENTE</th>
-            <th class="col-sm-1 cliente">CLIENTE FINALE</th>
-            <th class="col-sm-1 destinatarioabituale">UBICAZIONE</th>
-            <th class="col-sm-1">TGU LINEA</th>
-            <th class="col-sm-1">NUMERO IP</th>
+            <th>STATO</th>
+            <th>MANTUTENZIONE</th>
+            <th>DATA INIZIO CONTRATTO</th>
+            <th>CANONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>TGU LINEA</th>
+            <th>NUMERO IP</th>
         </tr>
         </thead>
 

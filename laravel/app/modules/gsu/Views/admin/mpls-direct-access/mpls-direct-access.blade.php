@@ -61,19 +61,19 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th class="col-sm-1">AZIONI</th>
-            <th class="col-sm-1">STATO</th>
-            <th class="col-sm-1">MANTUTENZIONE</th>
-            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
-            <th class="col-sm-1">CANONE</th>
-            <th class="col-sm-2 soggetto">CLIENTE</th>
-            <th class="col-sm-2 cliente">CLIENTE FINALE</th>
-            <th class="col-sm-2 destinatarioabituale">UBICAZIONE</th>
-            <th class="col-sm-2">TGU</th>
-            <th class="col-sm-2">IP ROUTER</th>
-            <th class="col-sm-1">IP PUNTO-P</th>
-            <th class="col-sm-1">IP LAN</th>
-            <th class="col-sm-1">IP STATICI</th>
+            <th>AZIONI</th>
+            <th>STATO</th>
+            <th>MANTUTENZIONE</th>
+            <th>DATA INIZIO CONTRATTO</th>
+            <th>CANONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>TGU</th>
+            <th>IP ROUTER</th>
+            <th>IP PUNTO-P</th>
+            <th>IP LAN</th>
+            <th>IP STATICI</th>
         </tr>
         </thead>
 
@@ -106,7 +106,7 @@
         @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="12"><a class="btn btn-small edit" href="{{url('/gsu/mpls-direct-access/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="13"><a class="btn btn-small edit" href="{{url('/gsu/mpls-direct-access/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
         @endif

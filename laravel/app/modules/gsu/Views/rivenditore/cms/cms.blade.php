@@ -61,18 +61,18 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th class="col-sm-1">STATO</th>
-            <th class="col-sm-1">MANTUTENZIONE</th>
-            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
-            <th class="col-sm-1">CANONE</th>
-            <th class="col-sm-1 soggetto">CLIENTE</th>
-            <th class="col-sm-1 cliente">CLIENTE FINALE</th>
-            <th class="col-sm-1 destinatarioabituale">UBICAZIONE</th>
-            <th class="col-sm-1">SERVIZIO</th>
-            <th class="col-sm-1">INDIRIZZO</th>
-            <th class="col-sm-1">TIPO ACCOUNT</th>
-            <th class="col-sm-1">USERNAME</th>
-            <th class="col-sm-1">PASSWORD</th>
+            <th>STATO</th>
+            <th>MANTUTENZIONE</th>
+            <th>DATA INIZIO CONTRATTO</th>
+            <th>CANONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>SERVIZIO</th>
+            <th>INDIRIZZO</th>
+            <th>TIPO ACCOUNT</th>
+            <th>USERNAME</th>
+            <th>PASSWORD</th>
         </tr>
         </thead>
 

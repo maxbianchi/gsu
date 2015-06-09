@@ -69,19 +69,19 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0"  style="display:none; width:100%">
         <thead>
         <tr>
-            <th style="width:5%">MANTUTENZIONE</th>
-            <th style="width:5%">STATO</th>
-            <th style="width:5%">DATA INIZIO CONTRATTO</th>
-            <th style="width:5%">CANONE</th>
-            <th style="width:20%" class="soggetto">CLIENTE</th>
-            <th style="width:20%" class="cliente">CLIENTE FINALE</th>
-            <th style="width:20%" class="destinatarioabituale">UBICAZIONE</th>
-            <th style="width:5%">DATA REGISTRAZIONE</th>
-            <th style="width:10%">NOME DOMINIO</th>
-            <th style="width:5%">SCADENZA</th>
-            <th style="width:5%">SCADENZA EFFETTIVA</th>
-            <th style="width:6%">TIPO DOMINIO</th>
-            <th style="width:2%">NOVIRUSNOSPAM</th>
+            <th>MANTUTENZIONE</th>
+            <th>STATO</th>
+            <th>DATA INIZIO CONTRATTO</th>
+            <th>CANONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>DATA REGISTRAZIONE</th>
+            <th>NOME DOMINIO</th>
+            <th>SCADENZA</th>
+            <th>SCADENZA EFFETTIVA</th>
+            <th>TIPO DOMINIO</th>
+            <th>NOVIRUSNOSPAM</th>
         </tr>
         </thead>
 

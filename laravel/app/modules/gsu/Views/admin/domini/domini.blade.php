@@ -70,20 +70,20 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0"  style="display:none; width:100%">
         <thead>
         <tr>
-            <th style="width:10%">AZIONI</th>
-            <th style="width:10%">STATO</th>
-            <th style="width:5%">MANTUTENZIONE</th>
-            <th style="width:5%">DATA INIZIO CONTRATTO</th>
-            <th style="width:5%">CANONE</th>
-            <th style="width:20%" class="soggetto">CLIENTE</th>
-            <th style="width:20%" class="cliente">CLIENTE FINALE</th>
-            <th style="width:20%" class="destinatarioabituale">UBICAZIONE</th>
-            <th style="width:5%">DATA REGISTRAZIONE</th>
-            <th style="width:10%">NOME DOMINIO</th>
-            <th style="width:5%">SCADENZA</th>
-            <th style="width:5%">SCADENZA EFFETTIVA</th>
-            <th style="width:6%">TIPO DOMINIO</th>
-            <th style="width:2%">NOVIRUSNOSPAM</th>
+            <th>AZIONI</th>
+            <th>STATO</th>
+            <th>MANTUTENZIONE</th>
+            <th>DATA INIZIO CONTRATTO</th>
+            <th>CANONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>DATA REGISTRAZIONE</th>
+            <th>NOME DOMINIO</th>
+            <th>SCADENZA</th>
+            <th>SCADENZA EFFETTIVA</th>
+            <th>TIPO DOMINIO</th>
+            <th>NOVIRUSNOSPAM</th>
         </tr>
         </thead>
 
@@ -117,7 +117,7 @@
         @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="11"><a class="btn btn-small edit" href="{{url('/gsu/domini/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="14"><a class="btn btn-small edit" href="{{url('/gsu/domini/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
         @endif

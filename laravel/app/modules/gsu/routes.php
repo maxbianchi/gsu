@@ -200,4 +200,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/hardware/edit', 'HardwareController@edit');
     Route::post('gsu/hardware/save', 'HardwareController@save');
     Route::get('gsu/hardware/delete', 'HardwareController@delete');
+
+    //FAX VIRTUALE
+    Route::get('gsu/fax-virtuale', 'FaxVirtualeController@main');
+    Route::get('gsu/fax-virtuale/search', 'FaxVirtualeController@search');
+    Route::get('gsu/fax-virtuale/show', 'FaxVirtualeController@show');
+    Route::get('gsu/fax-virtuale/edit', 'FaxVirtualeController@edit');
+    Route::post('gsu/fax-virtuale/save', 'FaxVirtualeController@save');
+    Route::get('gsu/fax-virtuale/delete', 'FaxVirtualeController@delete');
 });

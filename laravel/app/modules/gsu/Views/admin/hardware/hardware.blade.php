@@ -57,21 +57,21 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th class="col-sm-1">AZIONI</th>
-            <th class="col-sm-1">MANUTENZIONE</th>
-            <th class="col-sm-1">DATA INIZIO CONTRATTO</th>
-            <th class="col-sm-1">CANONE</th>
-            <th class="col-sm-1 soggetto">CLIENTE</th>
-            <th class="col-sm-1 cliente">CLIENTE FINALE</th>
-            <th class="col-sm-1 destinatarioabituale">UBICAZIONE</th>
-            <th class="col-sm-1">MARCA</th>
-            <th class="col-sm-1">MODELLO</th>
-            <th class="col-sm-1">PART NUMBER</th>
-            <th class="col-sm-1">SERIALE</th>
-            <th class="col-sm-1">PIN</th>
-            <th class="col-sm-1">ACQUISTO</th>
-            <th class="col-sm-1">SCADENZA</th>
-            <th class="col-sm-1">RINNOVO</th>
+            <th>AZIONI</th>
+            <th>MANUTENZIONE</th>
+            <th>DATA INIZIO CONTRATTO</th>
+            <th>CANONE</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>MARCA</th>
+            <th>MODELLO</th>
+            <th>PART NUMBER</th>
+            <th>SERIALE</th>
+            <th>PIN</th>
+            <th>ACQUISTO</th>
+            <th>SCADENZA</th>
+            <th>RINNOVO</th>
         </tr>
         </thead>
 

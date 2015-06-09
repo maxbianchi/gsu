@@ -58,14 +58,14 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th class="col-sm-1">AZIONI</th>
-            <th class="col-sm-2 soggetto">CLIENTE</th>
-            <th class="col-sm-2 cliente">CLIENTE FINALE</th>
-            <th class="col-sm-2 destinatarioabituale">UBICAZIONE</th>
-            <th class="col-sm-2">TIPO SERVIZIO</th>
-            <th class="col-sm-2">SERVER</th>
-            <th class="col-sm-1">LOGIN</th>
-            <th class="col-sm-1">PASSWORD</th>
+            <th>AZIONI</th>
+            <th class="soggetto">CLIENTE</th>
+            <th class="cliente">CLIENTE FINALE</th>
+            <th class="destinatarioabituale">UBICAZIONE</th>
+            <th>TIPO SERVIZIO</th>
+            <th>SERVER</th>
+            <th>LOGIN</th>
+            <th>PASSWORD</th>
         </tr>
         </thead>
 

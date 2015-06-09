@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/gsu/mailarchive/search')}}" name="form_search">
+            <form method="GET" action="{{url('/gsu/fax-virtuale/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
@@ -60,8 +60,7 @@
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
-            <th>PAGINA</th>
-            <th>SPAZIO WEB</th>
+            <th>NUMERO</th>
         </tr>
         </thead>
 
@@ -69,21 +68,20 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="stato_left btn-small edit" href="{{url('/gsu/mailarchive/edit')."?id=".$req['IDMAILARCHIVE']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDMAILARCHIVE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/fax-virtuale/edit')."?id=".$req['IDFAXVIRTUALE']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDFAXVIRTUALE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td>
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDMAILARCHIVE']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
+                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDFAXVIRTUALE']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
                 <td class="destinatarioabituale">{{$req['DESTINATARIOABITUALE']}}</td>
-                <td>{{$req['PAGINA']}}</td>
-                <td>{{$req['SPAZIOWEB']}}</td>
+                <td>{{$req['NUMERO']}}</td>
             </tr>
         @endforeach
         </tbody>
@@ -91,7 +89,7 @@
         @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="10"><a class="btn btn-small edit" href="{{url('/gsu/mailarchive/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="9"><a class="btn btn-small edit" href="{{url('/gsu/fax-virtuale/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
         @endif
@@ -122,7 +120,7 @@
         $(document).ready(function () {
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/mailarchive/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
+                $.get( "{{url('/gsu/fax-virtuale/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");

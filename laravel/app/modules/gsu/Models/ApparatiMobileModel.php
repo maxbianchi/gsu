@@ -180,7 +180,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.CENTRALINI SET ELIMINATO=1 WHERE ID='$id'";
+            $sql = "UPDATE gsu.dbo.APPARATI_MOBILE SET ELIMINATO=1 WHERE ID='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -249,7 +249,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new CentraliniModel();
+        $model = new ApparatiMobileModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

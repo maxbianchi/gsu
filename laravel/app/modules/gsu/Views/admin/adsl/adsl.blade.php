@@ -106,7 +106,7 @@
         @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="12"><a class="btn btn-small edit" href="{{url('/gsu/adsl/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="13"><a class="btn btn-small edit" href="{{url('/gsu/adsl/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
         @endif

@@ -6,11 +6,10 @@ use Session;
 use DB;
 
 
-class MultifunzioneModel extends Model {
+class FaxVirtualeModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
-        $prodotto = Input::get('prodotto');
 
         $sql = <<<EOF
         SELECT
@@ -32,30 +31,23 @@ class MultifunzioneModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            MULTIFUNZIONE.ID,
-            MULTIFUNZIONE.CODICE_R,
-            CONVERT(VARCHAR(10),MULTIFUNZIONE.DATA_R,105) DATA_R,
-            MULTIFUNZIONE.CANONE_R,
-            MULTIFUNZIONE.ACQUISTO_NOLEGGIO,
-            MULTIFUNZIONE.MARCA,
-            MULTIFUNZIONE.MODELLO,
-            MULTIFUNZIONE.PN,
-            MULTIFUNZIONE.SN,
-            MULTIFUNZIONE.OGGETTO
-			FROM		gsu.dbo.MULTIFUNZIONE
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MULTIFUNZIONE.codice_r				= richieste.MANUTENZIONE
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(MULTIFUNZIONE.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(MULTIFUNZIONE.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(MULTIFUNZIONE.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
+			FAXVIRTUALE.IDFAXVIRTUALE,
+			FAXVIRTUALE.CODICE_R,
+			FAXVIRTUALE.DATA_R,
+			FAXVIRTUALE.NUMERO,
+			FAXVIRTUALE.OGGETTO,
+			FAXVIRTUALE.ELIMINATO
+			FROM		gsu.dbo.FAXVIRTUALE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON FAXVIRTUALE.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
             LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE MULTIFUNZIONE.ELIMINATO = 0
+            WHERE FAXVIRTUALE.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
-
-        if(!empty($prodotto))
-            $sql .= " AND APPARATI.PRODOTTO like '%$prodotto%'";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -72,9 +64,9 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $pn = Input::get('pn');
-        $modello = Input::get('modello');
-        $sn = Input::get('sn');
+        $connessione = Input::get('connessione');
+        $tipo_connessione = Input::get('tipo_connessione');
+        $ip = Input::get('ip');
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
@@ -112,27 +104,23 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            MULTIFUNZIONE.ID,
-            MULTIFUNZIONE.CODICE_R,
-            CONVERT(VARCHAR(10),MULTIFUNZIONE.DATA_R,105) DATA_R,
-            MULTIFUNZIONE.CANONE_R,
-            MULTIFUNZIONE.ACQUISTO_NOLEGGIO,
-            MULTIFUNZIONE.MARCA,
-            MULTIFUNZIONE.MODELLO,
-            MULTIFUNZIONE.PN,
-            MULTIFUNZIONE.SN,
-            MULTIFUNZIONE.OGGETTO
-			FROM		gsu.dbo.MULTIFUNZIONE
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MULTIFUNZIONE.codice_r				= richieste.MANUTENZIONE
-		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(MULTIFUNZIONE.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(MULTIFUNZIONE.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(MULTIFUNZIONE.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
+			FAXVIRTUALE.IDFAXVIRTUALE,
+			FAXVIRTUALE.CODICE_R,
+			FAXVIRTUALE.DATA_R,
+			FAXVIRTUALE.NUMERO,
+			FAXVIRTUALE.OGGETTO,
+			FAXVIRTUALE.ELIMINATO
+			FROM		gsu.dbo.FAXVIRTUALE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON FAXVIRTUALE.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
             WHERE 1=1
 EOF;
 
         if(!empty($id))
-            $sql .= " AND MULTIFUNZIONE.ID = '$id'";
+            $sql .= " AND FAXVIRTUALE.IDFAXVIRTUALE = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -151,17 +139,10 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($pn))
-            $sql .= " AND MULTIFUNZIONE.PN like '%$pn%'";
-        if(!empty($modello))
-            $sql .= " AND MULTIFUNZIONE.MODELLO like '%$modello%'";
-        if(!empty($sn))
-            $sql .= " AND MULTIFUNZIONE.SN like '%$sn%'";
-
         if(!empty($eliminati))
-            $sql .= " AND MULTIFUNZIONE.ELIMINATO = 1";
+            $sql .= " AND FAXVIRTUALE.ELIMINATO = 1";
         else
-            $sql .= " AND MULTIFUNZIONE.ELIMINATO = 0";
+            $sql .= " AND FAXVIRTUALE.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -174,52 +155,40 @@ EOF;
     public function deleteByID(){
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
+
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.MULTIFUNZIONE SET ELIMINATO=1 WHERE ID='$id'";
+            $sql = "UPDATE gsu.dbo.FAXVIRTUALE SET ELIMINATO=1 WHERE IDFAXVIRTUALE='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
             $richieste_evase = DB::select($sql);
-            if(count($richieste_evase) > 0 && !empty($manutenzione)){
+            if(count($richieste_evase) > 0){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
                 /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
                 else*/
-                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
 
-        }
+            }
     }
 
 
     public function saveData(){
         $id = Input::get('id_tbl');
+        $numero = Input::get('numero');
+        $manutenzione = Input::get('manutenzione');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
-        $manutenzione = Input::get('manutenzione');
-
-        $soggetto = Input::get('cliente');
-        $cliente = Input::get('cliente_finale');
-        $destinatarioabituale = Input::get('ubicazione_impianto');
-        $data_r = Input::get('data_r');
-        $canone_r = Input::get('canone_r');
-        $acquisto_noleggio = Input::get('acquisto_noleggio');
-        $marca = Input::get('marca');
-        $modello = Input::get('modello');
-        $pn = Input::get('pn');
-        $sn = Input::get('sn');
-        $oggetto = Input::get('oggetto');
 
         try {
             if(empty($id)) {
-                DB::insert("insert into MULTIFUNZIONE (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,OGGETTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$canone_r','$acquisto_noleggio','$marca','$modello','$pn','$sn','$oggetto',$eliminato)");
-
-
+                DB::insert("INSERT INTO gsu.dbo.FAXVIRTUALE (Codice_R,NUMERO, ELIMINATO) VALUES ('$manutenzione','$numero',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
-                if(count($richieste_evase) > 0 && !empty($manutenzione)) {
+                if(count($richieste_evase) > 0) {
                     $richieste_evase = $richieste_evase[0];
                     $qta = $richieste_evase['QUANTITA'] + 1;
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
@@ -229,10 +198,10 @@ EOF;
                 }
             }
             else
-                DB::update("Update MULTIFUNZIONE Set SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', CANONE_R = '$canone_r', ACQUISTO_NOLEGGIO = '$acquisto_noleggio', MARCA = '$marca', MODELLO = '$modello', PN = '$pn', SN = '$sn', OGGETTO = '$oggetto',ELIMINATO=$eliminato WHERE ID=$id");
-            if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
-                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
-            }
+                DB::update("UPDATE gsu.dbo.FAXVIRTUALE SET Codice_R='$manutenzione', NUMERO='$numero', ELIMINATO=$eliminato WHERE IDFAXVIRTUALE=$id");
+                if($stato_precedente == 1 && $eliminato == 0){
+                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+                }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -240,7 +209,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new MultifunzioneModel();
+        $model = new FaxVirtualeModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
@@ -257,32 +226,5 @@ EOF;
         }
     }
 
-    public function getManutenzione($SN){
-        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_MULTIFUNZIONE WHERE (SN= '" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
-
-    public function getConsumabileNero($SN){
-        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_CONSUMABILE_NERO WHERE (SN= '" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
-
-    public function getConsumabileColori($SN){
-        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_CONSUMABILE_COLORI WHERE (SN= '" . $SN . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
-
-
-
 }
-
 

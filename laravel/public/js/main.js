@@ -10,6 +10,7 @@ $(document).ready(function () {
         "iDisplayLength": 30,
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
         "aaSorting": [],
+        "bAutoWidth"       : true,
         "fnInitComplete": function(oSettings, json) {
             $("#loader").hide();
             $("#main").show();
