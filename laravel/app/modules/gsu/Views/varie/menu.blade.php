@@ -68,8 +68,8 @@
                 <li><a href="{{url('/gsu/assistenza-tecnica-hw')}}">Assistenza tecnica HW</a></li>
                 <li><a href="{{url('/gsu/post-warranty')}}">Post Warranty HW</a></li>
                 <li><a href="{{url('/gsu/assistenza-tecnica-multifunzione')}}">Assistenza multifunzione</a></li>
-                <li><a href="/consumabile_nero.asp">Consumabile Nero</a></li>
-                <li><a href="/consumabile_colori.asp">Consumabile Colori</a></li>
+                <li><a href="{{url('/gsu/assistenza-tecnica-consumabile-nero')}}">Consumabile Nero</a></li>
+                <li><a href="{{url('/gsu/assistenza-tecnica-consumabile-colori')}}">Consumabile Colori</a></li>
                 <li><a href="/smartNet.asp">Smart Net</a></li>
                 <li><a href="/gestione_apparato.asp">Gestione apparato</a></li>
                 <li><a href="/assistenza_centralini.asp">Assistenza centralino</a></li>

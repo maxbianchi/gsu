@@ -240,4 +240,20 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/assistenza-tecnica-multifunzione/edit', 'AssistenzaMultifunzioneController@edit');
     Route::post('gsu/assistenza-tecnica-multifunzione/save', 'AssistenzaMultifunzioneController@save');
     Route::get('gsu/assistenza-tecnica-multifunzione/delete', 'AssistenzaMultifunzioneController@delete');
+
+    //ASSISTENZA TECNICA CONSUMABILE NERO
+    Route::get('gsu/assistenza-tecnica-consumabile-nero', 'AssistenzaTecnicaConsumabileNeroController@main');
+    Route::get('gsu/assistenza-tecnica-consumabile-nero/search', 'AssistenzaTecnicaConsumabileNeroController@search');
+    Route::get('gsu/assistenza-tecnica-consumabile-nero/show', 'AssistenzaTecnicaConsumabileNeroController@show');
+    Route::get('gsu/assistenza-tecnica-consumabile-nero/edit', 'AssistenzaTecnicaConsumabileNeroController@edit');
+    Route::post('gsu/assistenza-tecnica-consumabile-nero/save', 'AssistenzaTecnicaConsumabileNeroController@save');
+    Route::get('gsu/assistenza-tecnica-consumabile-nero/delete', 'AssistenzaTecnicaConsumabileNeroController@delete');
+
+    //ASSISTENZA TECNICA CONSUMABILE COLORI
+    Route::get('gsu/assistenza-tecnica-consumabile-colori', 'AssistenzaTecnicaConsumabileColoriController@main');
+    Route::get('gsu/assistenza-tecnica-consumabile-colori/search', 'AssistenzaTecnicaConsumabileColoriController@search');
+    Route::get('gsu/assistenza-tecnica-consumabile-colori/show', 'AssistenzaTecnicaConsumabileColoriController@show');
+    Route::get('gsu/assistenza-tecnica-consumabile-colori/edit', 'AssistenzaTecnicaConsumabileColoriController@edit');
+    Route::post('gsu/assistenza-tecnica-consumabile-colori/save', 'AssistenzaTecnicaConsumabileColoriController@save');
+    Route::get('gsu/assistenza-tecnica-consumabile-colori/delete', 'AssistenzaTecnicaConsumabileColoriController@delete');
 });
