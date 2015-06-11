@@ -264,4 +264,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/smartnet/edit', 'SmartnetController@edit');
     Route::post('gsu/smartnet/save', 'SmartnetController@save');
     Route::get('gsu/smartnet/delete', 'SmartnetController@delete');
+
+    //GESTIONE APPARATI
+    Route::get('gsu/gestione-apparati', 'GestioneApparatiController@main');
+    Route::get('gsu/gestione-apparati/search', 'GestioneApparatiController@search');
+    Route::get('gsu/gestione-apparati/show', 'GestioneApparatiController@show');
+    Route::get('gsu/gestione-apparati/edit', 'GestioneApparatiController@edit');
+    Route::post('gsu/gestione-apparati/save', 'GestioneApparatiController@save');
+    Route::get('gsu/gestione-apparati/delete', 'GestioneApparatiController@delete');
 });
