@@ -52,7 +52,7 @@ class Canoni{
         $this->canoni['/gsu/ipstatici'] = ['CAN-E091A', 'CAN-E091B' , 'CAN-E092A', 'CAN-E092B', 'CAN-E093B'];
         $this->canoni['/gsu/webmarketing'] = ['CAN-E041A', 'CAN-E041B'];
         $this->canoni['/gsu/novirusnospam'] = ['CAN-E051A', 'CAN-E051B', 'CAN-E052-001A', 'CAN-E052-002A', 'CAN-E052-003A', 'CAN-E052-004A', 'CAN-E052-005A', 'CAN-E052-006A', 'CAN-E052-007A', 'CAN-E052-008A', 'CAN-E052-009A', 'CAN-E052-010A'];
-        $this->canoni['/gsu/postwarranty'] = ['CAN-G041A', 'CAN-G041B'];
+        $this->canoni['/gsu/post-warranty'] = ['CAN-G041A', 'CAN-G041B'];
         $this->canoni['/gsu/smartnet'] = ['CAN-G021A', 'CAN-G021B'];
         $this->canoni['/gsu/gestione-apparato'] = ['CAN-G022A', 'CAN-G022B'];
         $this->canoni['/gsu/software'] = ['SOFTWARE', 'CAN-SW001A', 'CAN-SW011A', 'CAN-SW021-001A', 'CAN-SW022-001A','CAN-SW022-002A','CAN-SW022-003A','CAN-SW022-004A','CAN-SW022-005A','CAN-SW022-006A','CAN-SW022-007A','CAN-SW022-008A','CAN-SW022-009A','CAN-SW031A','CAN-SW032A','CAN-SW033A','CAN-SW034A','CAN-SW035A','CAN-SW036A','CAN-SW037A','CAN-SW038A','CAN-SW039A','CAN-SW041A','CAN-SW042A','CAN-SW043A','CAN-SW044A','CAN-SW045A','CAN-SW046A','CAN-SW047A','CAN-SW048A','CAN-SW049A','CAN-SW051A','CAN-SW052A','CAN-SW053A','CAN-SW054A','CAN-SW055A','CAN-SW056A','CAN-SW057A','CAN-SW058A', 'CAN-SW062A', 'CAN-SW061A', 'CAN-SW067A'];
