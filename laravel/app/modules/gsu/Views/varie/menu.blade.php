@@ -65,7 +65,7 @@
         </li>
         <li><a href="#">System Integration</a>
             <ul>
-                <li><a href="/assistenza_tecnica_hardware.asp">Assistenza tecnica HW</a></li>
+                <li><a href="{{url('/gsu/assistenza-tecnica-hw')}}">Assistenza tecnica HW</a></li>
                 <li><a href="/postwarranty.asp">Post Warranty HW</a></li>
                 <li><a href="/assistenza_tecnica_multifunzione.asp">Assistenza multifunzione</a></li>
                 <li><a href="/consumabile_nero.asp">Consumabile Nero</a></li>

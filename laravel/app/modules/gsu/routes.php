@@ -216,4 +216,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/videoconference/edit', 'VideoconferenceController@edit');
     Route::post('gsu/videoconference/save', 'VideoconferenceController@save');
     Route::get('gsu/videoconference/delete', 'VideoconferenceController@delete');
+
+    //ASSISTENZA TECNICA HW
+    Route::get('gsu/assistenza-tecnica-hw', 'AssistenzaTecnicaHWController@main');
+    Route::get('gsu/assistenza-tecnica-hw/search', 'AssistenzaTecnicaHWController@search');
+    Route::get('gsu/assistenza-tecnica-hw/show', 'AssistenzaTecnicaHWController@show');
+    Route::get('gsu/assistenza-tecnica-hw/edit', 'AssistenzaTecnicaHWController@edit');
+    Route::post('gsu/assistenza-tecnica-hw/save', 'AssistenzaTecnicaHWController@save');
+    Route::get('gsu/assistenza-tecnica-hw/delete', 'AssistenzaTecnicaHWController@delete');
 });

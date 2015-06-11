@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/gsu/adsl/search')}}" name="form_search">
+            <form method="GET" action="{{url('/gsu/assistenza-tecnica-hw/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
@@ -36,12 +36,17 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">TGU</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
-                    <div class="col-md-1">IP ROUTER</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('ip_router')}}" id="ip_router" name="ip_router" ></div>
-                    <div class="col-md-2">NUMERO TELEFONO</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('numero_telefono')}}" id="numero_telefono" name="numero_telefono" ></div>
+                    <div class="col-md-1">NOME PC</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('nomepc')}}" id="nomepc" name="nomepc" ></div>
+                    <div class="col-md-1">SERIALE</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('seriale')}}" id="seriale" name="seriale" ></div>
+                    <div class="col-md-2">SISTEMA OPERATIVO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('os')}}" id="os" name="os" ></div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">ACCESSO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('accesso')}}" id="accesso" name="accesso" ></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
@@ -69,11 +74,10 @@
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
-            <th>TGU</th>
-            <th>IP ROUTER</th>
-            <th>IP PUNTO-P</th>
-            <th>IP LAN</th>
-            <th>IP STATICI</th>
+            <th>SERIALE</th>
+            <th>NOME PC</th>
+            <th>SISTEMA OPERATIVO</th>
+            <th>ACCESSO</th>
         </tr>
         </thead>
 
@@ -81,24 +85,23 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="btn-small edit stato_left" href="{{url('/gsu/adsl/edit')."?id=".$req['IDADSL']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn-small edit delete stato_right" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDADSL'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="btn-small edit stato_left" href="{{url('/gsu/assistenza-tecnica-hw/edit')."?id=".$req['IDTELEASSISTENZA']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="btn-small edit delete stato_right" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDTELEASSISTENZA'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td>
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDADSL']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
+                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDTELEASSISTENZA']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
                 <td class="destinatarioabituale">{{$req['DESTINATARIOABITUALE']}}</td>
-                <td>{{$req['TGU']}}</td>
-                <td>{{$req['IP_STATICO_ROUTER']}}</td>
-                <td>{{$req['GATEWAY_WAN_PUNTO_A_PUNTO']}}</td>
-                <td>{{$req['GATEWAY_INTERFACCIA_LAN']}}</td>
-                <td>{{$req['NUM_IP_STATICI']}}</td>
+                <td>{{$req['SERIALE']}}</td>
+                <td>{{$req['NOMEPC']}}</td>
+                <td>{{$req['OS']}}</td>
+                <td>{{$req['ACCESSO']}}</td>
             </tr>
         @endforeach
         </tbody>
@@ -106,7 +109,7 @@
         @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="13"><a class="btn btn-small edit" href="{{url('/gsu/adsl/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="12"><a class="btn btn-small edit" href="{{url('/gsu/assistenza-tecnica-hw/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
         @endif
@@ -137,7 +140,7 @@
         $(document).ready(function () {
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/adsl/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
+                $.get( "{{url('/gsu/assistenza-tecnica-hw/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");
