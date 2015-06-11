@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class PostWarrantyModel extends Model {
+class AssistenzaMultifunzioneModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
@@ -42,17 +42,16 @@ class PostWarrantyModel extends Model {
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			POSTWARRANTY.IDPOSTWARRANTY,
-			POSTWARRANTY.SERIALE,
-			POSTWARRANTY.CODICE_R,
-			POSTWARRANTY.ELIMINATO
-			FROM gsu.dbo.POSTWARRANTY
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON POSTWARRANTY.codice_r = richieste.MANUTENZIONE
+			ASSISTENZA_TECNICA_MULTIFUNZIONE.ID,
+			ASSISTENZA_TECNICA_MULTIFUNZIONE.SN,
+			ASSISTENZA_TECNICA_MULTIFUNZIONE.CODICE_R
+			FROM gsu.dbo.ASSISTENZA_TECNICA_MULTIFUNZIONE
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ASSISTENZA_TECNICA_MULTIFUNZIONE.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE POSTWARRANTY.ELIMINATO = 0
+            WHERE ASSISTENZA_TECNICA_MULTIFUNZIONE.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -108,12 +107,11 @@ EOF;
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			POSTWARRANTY.IDPOSTWARRANTY,
-			POSTWARRANTY.SERIALE,
-			POSTWARRANTY.CODICE_R,
-			POSTWARRANTY.ELIMINATO
-			FROM gsu.dbo.POSTWARRANTY
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON POSTWARRANTY.codice_r = richieste.MANUTENZIONE
+			ASSISTENZA_TECNICA_MULTIFUNZIONE.ID,
+			ASSISTENZA_TECNICA_MULTIFUNZIONE.SN,
+			ASSISTENZA_TECNICA_MULTIFUNZIONE.CODICE_R
+			FROM gsu.dbo.ASSISTENZA_TECNICA_MULTIFUNZIONE
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ASSISTENZA_TECNICA_MULTIFUNZIONE.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -122,7 +120,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND POSTWARRANTY.IDPOSTWARRANTY = '$id'";
+            $sql .= " AND ASSISTENZA_TECNICA_MULTIFUNZIONE.ID = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -142,13 +140,13 @@ EOF;
         }
 
         if(!empty($seriale))
-            $sql .= " AND POSTWARRANTY.SERIALE like '%$seriale%'";
+            $sql .= " AND ASSISTENZA_TECNICA_MULTIFUNZIONE.SN like '%$seriale%'";
 
 
         if(!empty($eliminati))
-            $sql .= " AND POSTWARRANTY.ELIMINATO = 1";
+            $sql .= " AND ASSISTENZA_TECNICA_MULTIFUNZIONE.ELIMINATO = 1";
         else
-            $sql .= " AND POSTWARRANTY.ELIMINATO = 0";
+            $sql .= " AND ASSISTENZA_TECNICA_MULTIFUNZIONE.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -162,7 +160,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.POSTWARRANTY SET ELIMINATO=1 WHERE IDPOSTWARRANTY='$id'";
+            $sql = "UPDATE gsu.dbo.ASSISTENZA_TECNICA_MULTIFUNZIONE SET ELIMINATO=1 WHERE ID='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -190,7 +188,7 @@ EOF;
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.POSTWARRANTY (CODICE_R,SERIALE, ELIMINATO) VALUES ('$manutenzione','$seriale',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.ASSISTENZA_TECNICA_MULTIFUNZIONE (CODICE_R,SN, ELIMINATO) VALUES ('$manutenzione','$seriale',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -205,7 +203,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.POSTWARRANTY SET Codice_R='$manutenzione',SERIALE='$seriale',ELIMINATO=$eliminato WHERE IDPOSTWARRANTY=$id");
+                DB::update("UPDATE gsu.dbo.ASSISTENZA_TECNICA_MULTIFUNZIONE SET Codice_R='$manutenzione',SN='$seriale',ELIMINATO=$eliminato WHERE ID=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -214,7 +212,6 @@ EOF;
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-
 
 
     public function checkAddNew(){

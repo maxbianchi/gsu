@@ -232,4 +232,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/post-warranty/edit', 'PostWarrantyController@edit');
     Route::post('gsu/post-warranty/save', 'PostWarrantyController@save');
     Route::get('gsu/post-warranty/delete', 'PostWarrantyController@delete');
+
+    //ASSISTENZA TECNICA MULTIFUNZIONE
+    Route::get('gsu/assistenza-tecnica-multifunzione', 'AssistenzaMultifunzioneController@main');
+    Route::get('gsu/assistenza-tecnica-multifunzione/search', 'AssistenzaMultifunzioneController@search');
+    Route::get('gsu/assistenza-tecnica-multifunzione/show', 'AssistenzaMultifunzioneController@show');
+    Route::get('gsu/assistenza-tecnica-multifunzione/edit', 'AssistenzaMultifunzioneController@edit');
+    Route::post('gsu/assistenza-tecnica-multifunzione/save', 'AssistenzaMultifunzioneController@save');
+    Route::get('gsu/assistenza-tecnica-multifunzione/delete', 'AssistenzaMultifunzioneController@delete');
 });
