@@ -72,7 +72,7 @@
                 <li><a href="{{url('/gsu/assistenza-tecnica-consumabile-colori')}}">Consumabile Colori</a></li>
                 <li><a href="{{url('/gsu/smartnet')}}">Smart Net</a></li>
                 <li><a href="{{url('/gsu/gestione-apparati')}}">Gestione apparato</a></li>
-                <li><a href="/assistenza_centralini.asp">Assistenza centralino</a></li>
+                <li><a href="{{url('/gsu/assistenza-centralini')}}">Assistenza centralino</a></li>
                 <li><a href="/vpn.asp">VPN</a></li>
                 <li><a href="/voiceGate.asp">VoiceGate</a></li>
                 <li><a href="/ipmultimedia.asp">IP Multimedia</a></li>

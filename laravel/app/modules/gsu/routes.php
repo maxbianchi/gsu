@@ -272,4 +272,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/gestione-apparati/edit', 'GestioneApparatiController@edit');
     Route::post('gsu/gestione-apparati/save', 'GestioneApparatiController@save');
     Route::get('gsu/gestione-apparati/delete', 'GestioneApparatiController@delete');
+
+    //ASSISTENZA CENTRALINO
+    Route::get('gsu/assistenza-centralini', 'AssistenzaCentraliniController@main');
+    Route::get('gsu/assistenza-centralini/search', 'AssistenzaCentraliniController@search');
+    Route::get('gsu/assistenza-centralini/show', 'AssistenzaCentraliniController@show');
+    Route::get('gsu/assistenza-centralini/edit', 'AssistenzaCentraliniController@edit');
+    Route::post('gsu/assistenza-centralini/save', 'AssistenzaCentraliniController@save');
+    Route::get('gsu/assistenza-centralini/delete', 'AssistenzaCentraliniController@delete');
 });
