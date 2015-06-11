@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class AssistenzaTecnicaConsumabileNeroModel extends Model {
+class SmartnetModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
@@ -42,16 +42,21 @@ class AssistenzaTecnicaConsumabileNeroModel extends Model {
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			ASSISTENZA_TECNICA_CONSUMABILE_NERO.ID,
-			ASSISTENZA_TECNICA_CONSUMABILE_NERO.SN,
-			ASSISTENZA_TECNICA_CONSUMABILE_NERO.CODICE_R
-			FROM gsu.dbo.ASSISTENZA_TECNICA_CONSUMABILE_NERO
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ASSISTENZA_TECNICA_CONSUMABILE_NERO.codice_r = richieste.MANUTENZIONE
+			SMARTNET.IDSMARTNET,
+			SMARTNET.SERIALE,
+			SMARTNET.TOKEN,
+			SMARTNET.SERVICE,
+			SMARTNET.PRODUCT_CODE,
+            SMARTNET.CONTRATTO,
+			SMARTNET.CODICE_R,
+			SMARTNET.ELIMINATO
+			FROM gsu.dbo.SMARTNET
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SMARTNET.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE ASSISTENZA_TECNICA_CONSUMABILE_NERO.ELIMINATO = 0
+            WHERE SMARTNET.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -72,9 +77,14 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
+        $eliminati = Input::get('eliminati');
 
         $seriale = Input::get('seriale');
-        $eliminati = Input::get('eliminati');
+        $token = Input::get('token');
+        $service = Input::get('service');
+        $product_code = Input::get('product_code');
+        $contratto = Input::get('contratto');
+
 
         $sql = <<<EOF
             SELECT
@@ -107,11 +117,16 @@ EOF;
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			ASSISTENZA_TECNICA_CONSUMABILE_NERO.ID,
-			ASSISTENZA_TECNICA_CONSUMABILE_NERO.SN,
-			ASSISTENZA_TECNICA_CONSUMABILE_NERO.CODICE_R
-			FROM gsu.dbo.ASSISTENZA_TECNICA_CONSUMABILE_NERO
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ASSISTENZA_TECNICA_CONSUMABILE_NERO.codice_r = richieste.MANUTENZIONE
+			SMARTNET.IDSMARTNET,
+			SMARTNET.SERIALE,
+			SMARTNET.TOKEN,
+			SMARTNET.SERVICE,
+			SMARTNET.PRODUCT_CODE,
+            SMARTNET.CONTRATTO,
+			SMARTNET.CODICE_R,
+			SMARTNET.ELIMINATO
+			FROM gsu.dbo.SMARTNET
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SMARTNET.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -120,7 +135,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND ASSISTENZA_TECNICA_CONSUMABILE_NERO.ID = '$id'";
+            $sql .= " AND SMARTNET.IDSMARTNET = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -140,13 +155,21 @@ EOF;
         }
 
         if(!empty($seriale))
-            $sql .= " AND ASSISTENZA_TECNICA_CONSUMABILE_NERO.SN like '%$seriale%'";
+            $sql .= " AND SMARTNET.SERIALE like '%$seriale%'";
+        if(!empty($token))
+            $sql .= " AND SMARTNET.TOKEN like '%$token%'";
+        if(!empty($service))
+            $sql .= " AND SMARTNET.SERVICE like '%$service%'";
+        if(!empty($product_code))
+            $sql .= " AND SMARTNET.PRODUCT_CODE like '%$product_code%'";
+        if(!empty($contratto))
+            $sql .= " AND SMARTNET.CONTRATTO like '%$contratto%'";
 
 
         if(!empty($eliminati))
-            $sql .= " AND ASSISTENZA_TECNICA_CONSUMABILE_NERO.ELIMINATO = 1";
+            $sql .= " AND SMARTNET.ELIMINATO = 1";
         else
-            $sql .= " AND ASSISTENZA_TECNICA_CONSUMABILE_NERO.ELIMINATO = 0";
+            $sql .= " AND SMARTNET.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -160,7 +183,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.ASSISTENZA_TECNICA_CONSUMABILE_NERO SET ELIMINATO=1 WHERE ID='$id'";
+            $sql = "UPDATE gsu.dbo.SMARTNET SET ELIMINATO=1 WHERE IDSMARTNET='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -184,11 +207,16 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
+
         $seriale = Input::get('seriale');
+        $token = Input::get('token');
+        $service = Input::get('service');
+        $product_code = Input::get('product_code');
+        $contratto = Input::get('contratto');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.ASSISTENZA_TECNICA_CONSUMABILE_NERO (CODICE_R,SN, ELIMINATO) VALUES ('$manutenzione','$seriale',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SMARTNET (CODICE_R,SERIALE,TOKEN,SERVICE,PRODUCT_CODE,CONTRATTO,ELIMINATO) VALUES ('$manutenzione','$seriale','$token','$service','$product_code','$contratto',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -203,7 +231,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.ASSISTENZA_TECNICA_CONSUMABILE_NERO SET Codice_R='$manutenzione',SN='$seriale',ELIMINATO=$eliminato WHERE ID=$id");
+                DB::update("UPDATE gsu.dbo.SMARTNET SET Codice_R='$manutenzione',SERIALE='$seriale',TOKEN='$token',SERVICE='$service',PRODUCT_CODE='$product_code',CONTRATTO='$contratto',ELIMINATO=$eliminato WHERE IDSMARTNET=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -215,7 +243,7 @@ EOF;
 
 
     public function checkAddNew(){
-        $model = new AssistenzaTecnicaConsumabileNeroModel();
+        $model = new SmartnetModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

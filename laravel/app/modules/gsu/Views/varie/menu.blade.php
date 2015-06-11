@@ -70,7 +70,7 @@
                 <li><a href="{{url('/gsu/assistenza-tecnica-multifunzione')}}">Assistenza multifunzione</a></li>
                 <li><a href="{{url('/gsu/assistenza-tecnica-consumabile-nero')}}">Consumabile Nero</a></li>
                 <li><a href="{{url('/gsu/assistenza-tecnica-consumabile-colori')}}">Consumabile Colori</a></li>
-                <li><a href="/smartNet.asp">Smart Net</a></li>
+                <li><a href="{{url('/gsu/smartnet')}}">Smart Net</a></li>
                 <li><a href="/gestione_apparato.asp">Gestione apparato</a></li>
                 <li><a href="/assistenza_centralini.asp">Assistenza centralino</a></li>
                 <li><a href="/vpn.asp">VPN</a></li>

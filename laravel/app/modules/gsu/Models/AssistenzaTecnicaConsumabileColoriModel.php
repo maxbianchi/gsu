@@ -1,5 +1,6 @@
 <?php namespace App\Modules\Gsu\Models;
 
+use App\Modules\Gsu\Controllers\AssistenzaTecnicaConsumabileColoriController;
 use Illuminate\Database\Eloquent\Model;
 use Input;
 use Session;
@@ -215,7 +216,7 @@ EOF;
 
 
     public function checkAddNew(){
-        $model = new AdslModel();
+        $model = new AssistenzaTecnicaConsumabileColoriModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

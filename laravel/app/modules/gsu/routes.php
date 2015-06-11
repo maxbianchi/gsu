@@ -256,4 +256,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/assistenza-tecnica-consumabile-colori/edit', 'AssistenzaTecnicaConsumabileColoriController@edit');
     Route::post('gsu/assistenza-tecnica-consumabile-colori/save', 'AssistenzaTecnicaConsumabileColoriController@save');
     Route::get('gsu/assistenza-tecnica-consumabile-colori/delete', 'AssistenzaTecnicaConsumabileColoriController@delete');
+
+    //SMARTNET
+    Route::get('gsu/smartnet', 'SmartnetController@main');
+    Route::get('gsu/smartnet/search', 'SmartnetController@search');
+    Route::get('gsu/smartnet/show', 'SmartnetController@show');
+    Route::get('gsu/smartnet/edit', 'SmartnetController@edit');
+    Route::post('gsu/smartnet/save', 'SmartnetController@save');
+    Route::get('gsu/smartnet/delete', 'SmartnetController@delete');
 });
