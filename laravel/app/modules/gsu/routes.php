@@ -304,4 +304,20 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/ipmultimedia/edit', 'IpmultimediaController@edit');
     Route::post('gsu/ipmultimedia/save', 'IpmultimediaController@save');
     Route::get('gsu/ipmultimedia/delete', 'IpmultimediaController@delete');
+
+    //DPSS
+    Route::get('gsu/dpss', 'DpssController@main');
+    Route::get('gsu/dpss/search', 'DpssController@search');
+    Route::get('gsu/dpss/show', 'DpssController@show');
+    Route::get('gsu/dpss/edit', 'DpssController@edit');
+    Route::post('gsu/dpss/save', 'DpssController@save');
+    Route::get('gsu/dpss/delete', 'DpssController@delete');
+
+    //SERVIZI ACCESS
+    Route::get('gsu/servizi-access', 'ServiziAccessController@main');
+    Route::get('gsu/servizi-access/search', 'ServiziAccessController@search');
+    Route::get('gsu/servizi-access/show', 'ServiziAccessController@show');
+    Route::get('gsu/servizi-access/edit', 'ServiziAccessController@edit');
+    Route::post('gsu/servizi-access/save', 'ServiziAccessController@save');
+    Route::get('gsu/servizi-access/delete', 'ServiziAccessController@delete');
 });
