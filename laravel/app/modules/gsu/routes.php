@@ -288,4 +288,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/vpn/edit', 'VpnController@edit');
     Route::post('gsu/vpn/save', 'VpnController@save');
     Route::get('gsu/vpn/delete', 'VpnController@delete');
+
+    //VOICEGATE
+    Route::get('gsu/voicegate', 'VoicegateController@main');
+    Route::get('gsu/voicegate/search', 'VoicegateController@search');
+    Route::get('gsu/voicegate/show', 'VoicegateController@show');
+    Route::get('gsu/voicegate/edit', 'VoicegateController@edit');
+    Route::post('gsu/voicegate/save', 'VoicegateController@save');
+    Route::get('gsu/voicegate/delete', 'VoicegateController@delete');
 });
