@@ -296,4 +296,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/voicegate/edit', 'VoicegateController@edit');
     Route::post('gsu/voicegate/save', 'VoicegateController@save');
     Route::get('gsu/voicegate/delete', 'VoicegateController@delete');
+
+    //IPMULTIMEDIA
+    Route::get('gsu/ipmultimedia', 'IpmultimediaController@main');
+    Route::get('gsu/ipmultimedia/search', 'IpmultimediaController@search');
+    Route::get('gsu/ipmultimedia/show', 'IpmultimediaController@show');
+    Route::get('gsu/ipmultimedia/edit', 'IpmultimediaController@edit');
+    Route::post('gsu/ipmultimedia/save', 'IpmultimediaController@save');
+    Route::get('gsu/ipmultimedia/delete', 'IpmultimediaController@delete');
 });

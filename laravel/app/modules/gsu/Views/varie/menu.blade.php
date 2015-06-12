@@ -75,7 +75,7 @@
                 <li><a href="{{url('/gsu/assistenza-centralini')}}">Assistenza centralino</a></li>
                 <li><a href="{{url('/gsu/vpn')}}">VPN</a></li>
                 <li><a href="{{url('/gsu/voicegate')}}">VoiceGate</a></li>
-                <li><a href="/ipmultimedia.asp">IP Multimedia</a></li>
+                <li><a href="{{url('/gsu/ipmultimedia')}}">IP Multimedia</a></li>
                 <li><a href="/dpss.asp">Dpss</a></li>
                 <li><a href="/servizi_access.asp">Servizi Access</a></li>
                 <li><a href="/servizi_plus.asp">Servizi Plus / Sinfonia</a></li>
