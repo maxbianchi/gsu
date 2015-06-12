@@ -320,4 +320,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/servizi-access/edit', 'ServiziAccessController@edit');
     Route::post('gsu/servizi-access/save', 'ServiziAccessController@save');
     Route::get('gsu/servizi-access/delete', 'ServiziAccessController@delete');
+
+    //SERVIZI PLUS
+    Route::get('gsu/servizi-plus', 'ServiziPlusController@main');
+    Route::get('gsu/servizi-plus/search', 'ServiziPlusController@search');
+    Route::get('gsu/servizi-plus/show', 'ServiziPlusController@show');
+    Route::get('gsu/servizi-plus/edit', 'ServiziPlusController@edit');
+    Route::post('gsu/servizi-plus/save', 'ServiziPlusController@save');
+    Route::get('gsu/servizi-plus/delete', 'ServiziPlusController@delete');
 });
