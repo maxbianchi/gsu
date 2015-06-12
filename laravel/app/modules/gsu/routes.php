@@ -328,4 +328,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/servizi-plus/edit', 'ServiziPlusController@edit');
     Route::post('gsu/servizi-plus/save', 'ServiziPlusController@save');
     Route::get('gsu/servizi-plus/delete', 'ServiziPlusController@delete');
+
+    //SOFTWARE
+    Route::get('gsu/software', 'SoftwareController@main');
+    Route::get('gsu/software/search', 'SoftwareController@search');
+    Route::get('gsu/software/show', 'SoftwareController@show');
+    Route::get('gsu/software/edit', 'SoftwareController@edit');
+    Route::post('gsu/software/save', 'SoftwareController@save');
+    Route::get('gsu/software/delete', 'SoftwareController@delete');
 });

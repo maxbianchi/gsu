@@ -106,14 +106,14 @@
             <ul>
                 <li><a href="#">Software</a>
                     <ul>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW00">Antivirus</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW01">Backup</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW02">Mdaemon</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW03">Outlook Connector</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW06">ActiveSync</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW04">Security Plus</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=CAN-SW05">Backup Workplace</a></li>
-                        <li><a href="/software.asp?ACT=SRC&Canone=SOFTWARE">Software</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW00">Antivirus</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW01">Backup</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW02">Mdaemon</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW03">Outlook Connector</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW06">ActiveSync</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW04">Security Plus</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=CAN-SW05">Backup Workplace</a></li>
+                        <li><a href="{{url('/gsu/software')}}?canone=SOFTWARE">Software</a></li>
                     </ul>
                 </li>
             </ul>
