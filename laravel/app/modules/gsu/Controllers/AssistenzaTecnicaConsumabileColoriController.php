@@ -43,18 +43,14 @@ class AssistenzaTecnicaConsumabileColoriController extends MainController {
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        $servizi_plus = $return['servizi_plus'];
-        $servizi_access = $return['servizi_access'];
-        return view("gsu::$this->view_folder.assistenza-tecnica-consumabile-colori.assistenza-tecnica-consumabile-colori-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.assistenza-tecnica-consumabile-colori.assistenza-tecnica-consumabile-colori-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        $servizi_plus = $return['servizi_plus'];
-        $servizi_access = $return['servizi_access'];
-        return view("gsu::$this->view_folder.assistenza-tecnica-consumabile-colori.assistenza-tecnica-consumabile-colori-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.assistenza-tecnica-consumabile-colori.assistenza-tecnica-consumabile-colori-detail", ['request' => $res, 'btn' => $btn]);
     }
 
     private function manageShow(){
@@ -74,23 +70,12 @@ class AssistenzaTecnicaConsumabileColoriController extends MainController {
             $res = [];
         }
 
-        $servizi_plus = "NO";
-        $servizi_access = "NO";
-        if(count($res) == 0) {
-            $res = ['MANUTENZIONE' => Input::get('manutenzione')];
-        }
-        else {
+        if(count($res) > 0) {
             $res = $res[0];
-            if(isset($res['TGU'])) {
-                $servizi_plus = $model->getServiziPlus($res['TGU']);
-                $servizi_access = $model->getServiziAccess($res['TGU']);
-            }
         }
 
         $return['res'] = $res;
         $return['btn'] = $btn;
-        $return['servizi_plus'] = $servizi_plus;
-        $return['servizi_access'] = $servizi_access;
 
         return $return;
     }

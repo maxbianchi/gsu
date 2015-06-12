@@ -280,4 +280,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/assistenza-centralini/edit', 'AssistenzaCentraliniController@edit');
     Route::post('gsu/assistenza-centralini/save', 'AssistenzaCentraliniController@save');
     Route::get('gsu/assistenza-centralini/delete', 'AssistenzaCentraliniController@delete');
+
+    //VPN
+    Route::get('gsu/vpn', 'VpnController@main');
+    Route::get('gsu/vpn/search', 'VpnController@search');
+    Route::get('gsu/vpn/show', 'VpnController@show');
+    Route::get('gsu/vpn/edit', 'VpnController@edit');
+    Route::post('gsu/vpn/save', 'VpnController@save');
+    Route::get('gsu/vpn/delete', 'VpnController@delete');
 });
