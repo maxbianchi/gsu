@@ -336,4 +336,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/software/edit', 'SoftwareController@edit');
     Route::post('gsu/software/save', 'SoftwareController@save');
     Route::get('gsu/software/delete', 'SoftwareController@delete');
+
+    //UNIGATE
+    Route::get('gsu/unigate', 'UnigateController@main');
+    Route::get('gsu/unigate/search', 'UnigateController@search');
+    Route::get('gsu/unigate/show', 'UnigateController@show');
+    Route::get('gsu/unigate/edit', 'UnigateController@edit');
+    Route::post('gsu/unigate/save', 'UnigateController@save');
+    Route::get('gsu/unigate/delete', 'UnigateController@delete');
 });

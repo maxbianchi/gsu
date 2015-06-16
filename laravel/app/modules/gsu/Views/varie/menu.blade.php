@@ -83,7 +83,7 @@
         </li>
         <li><a href="#">Voce</a>
             <ul>
-                <li><a href="/unigate.asp">UniGate</a></li>
+                <li><a href="{{url('/gsu/unigate')}}">UniGate</a></li>
                 <li><a href="#">Mobile</a>
                     <ul>
                         <li><a href="/sim.asp?ACT=SRC&canone=CAN-I00">SIM voce</a></li>
