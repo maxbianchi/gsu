@@ -13,6 +13,7 @@ $(document).ready(function () {
         "bAutoWidth"       : true,
         "fnInitComplete": function(oSettings, json) {
             $("#loader").hide();
+            $("#main_wrapper .row").first().before($("#main_wrapper .row").last())
             $("#main").show();
         }
     });

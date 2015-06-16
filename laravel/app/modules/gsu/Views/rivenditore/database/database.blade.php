@@ -36,7 +36,7 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">TIPO</div>
+                    <div class="col-md-1">SERVIZIO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('tipo')}}" id="tipo" name="tipo" ></div>
                     <div class="col-md-1">SERVER</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('server')}}" id="server" name="server" ></div>

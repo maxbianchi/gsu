@@ -28,24 +28,20 @@
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
                 </tr>
                 <tr>
-                    <td>SERVER</td>
-                    <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>PIATTAFORMA</td>
-                    <td><input type="text" name="piattaforma" value="{{$request['PIATTAFORMA'] or ""}}"></td>
-                </tr>
-                <tr>
                     <td>SERVIZIO</td>
                     <td><input type="text" name="servizio" value="{{$request['SERVIZIO'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>PAGINA</td>
+                    <td>SERVER</td>
+                    <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
+                </tr>
+                <tr>
+                    <td>INDIRIZZO</td>
                     <td><input type="text" name="pagina" value="{{$request['PAGINA'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>SPAZIOWEB</td>
-                    <td><input type="text" name="spazioweb" value="{{$request['SPAZIOWEB'] or ""}}"></td>
+                    <td>PIATTAFORMA</td>
+                    <td><input type="text" name="piattaforma" value="{{$request['PIATTAFORMA'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>FTP UTENTE</td>
@@ -54,6 +50,10 @@
                 <tr>
                     <td>FTP PASSWORD</td>
                     <td><input type="text" name="ftp_password" value="{{$request['FTPPASSWORD'] or ""}}"></td>
+                </tr>
+                <tr>
+                    <td>SPAZIOWEB</td>
+                    <td><input type="text" name="spazioweb" value="{{$request['SPAZIOWEB'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">

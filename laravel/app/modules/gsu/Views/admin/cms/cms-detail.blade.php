@@ -32,11 +32,15 @@
                     <td><input type="text" name="servizio" value="{{$request['SERVIZIO'] or ""}}"></td>
                 </tr>
                 <tr>
+                    <td>SERVER</td>
+                    <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
+                </tr>
+                <tr>
                     <td>TIPO ACCOUNT</td>
                     <td><input type="text" name="tipo_account" value="{{$request['TIPO_ACCOUNT'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>USERNAME</td>
+                    <td>UTENTE</td>
                     <td><input type="text" name="username" value="{{$request['USERNAME'] or ""}}"></td>
                 </tr>
                 <tr>

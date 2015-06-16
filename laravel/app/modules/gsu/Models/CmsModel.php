@@ -60,6 +60,7 @@ class CmsModel extends Model {
 			WEBHAT.LIVE_HELP_MESSENGER,
 			WEBHAT.SPIDER_MAKER_VERIFIER,
 			WEBHAT.TUTTI,
+			WEBHAT.SERVER_,
 			WEBHAT.ELIMINATO
 			FROM		gsu.dbo.WEBHAT
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON WEBHAT.codice_r				= richieste.MANUTENZIONE
@@ -157,6 +158,7 @@ EOF;
 			WEBHAT.LIVE_HELP_MESSENGER,
 			WEBHAT.SPIDER_MAKER_VERIFIER,
 			WEBHAT.TUTTI,
+			WEBHAT.SERVER_,
 			WEBHAT.ELIMINATO
 			FROM		gsu.dbo.WEBHAT
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON WEBHAT.codice_r				= richieste.MANUTENZIONE
@@ -264,11 +266,12 @@ EOF;
         $live_help_messenger = Input::get('live_help_messenger');
         $spider_maker_verifier = Input::get('spider_maker_verifier');
         $tutti = Input::get('tutti');
+        $server = Input::get('server');
 
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.WEBHAT (Codice_R, SERVIZIO,INDIRIZZO,TIPO_ACCOUNT,USERNAME,PASSWORD,STATS,E_COMMERCE,NEWSLETTER,NEWS,CALENDARIO,BANNER,ADDRESS,DOWNLOAD,PHP,FORUM,GENERACTION,FAQ,IMMOBILIARE,MAGAZINE,MOTORE_RICERCA,ON_LINE_USERS,SMS,SONDAGGIO,FOTO_GALLERY,LIVE_HELP_MESSENGER,SPIDER_MAKER_VERIFIER,TUTTI,ELIMINATO) VALUES ('$manutenzione','$servizio','$indirizzo','$tipo_account','$username','$password','$stats','$e_commerce','$newsletter','$news','$calendario','$banner','$address','$download','$php','$forum','$generaction','$faq','$immobiliare','$magazine','$motore_ricerca','$on_line_users','$sms','$sondaggio','$foto_gallery','$live_help_messenger','$spider_maker_verifier','$tutti',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.WEBHAT (Codice_R, SERVIZIO,INDIRIZZO,TIPO_ACCOUNT,USERNAME,PASSWORD,STATS,E_COMMERCE,NEWSLETTER,NEWS,CALENDARIO,BANNER,ADDRESS,DOWNLOAD,PHP,FORUM,GENERACTION,FAQ,IMMOBILIARE,MAGAZINE,MOTORE_RICERCA,ON_LINE_USERS,SMS,SONDAGGIO,FOTO_GALLERY,LIVE_HELP_MESSENGER,SPIDER_MAKER_VERIFIER,TUTTI,SERVER_,ELIMINATO) VALUES ('$manutenzione','$servizio','$indirizzo','$tipo_account','$username','$password','$stats','$e_commerce','$newsletter','$news','$calendario','$banner','$address','$download','$php','$forum','$generaction','$faq','$immobiliare','$magazine','$motore_ricerca','$on_line_users','$sms','$sondaggio','$foto_gallery','$live_help_messenger','$spider_maker_verifier','$tutti','$server',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -281,7 +284,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.WEBHAT SET Codice_R='$manutenzione', SERVIZIO='$servizio',INDIRIZZO='$indirizzo',TIPO_ACCOUNT='$tipo_account',USERNAME='$username',PASSWORD='$password',STATS='$stats',E_COMMERCE='$e_commerce',NEWSLETTER='$newsletter',NEWS='$news',CALENDARIO='$calendario',BANNER='$banner',ADDRESS='$address',DOWNLOAD='$download',PHP='$php',FORUM='$forum',GENERACTION='$generaction',FAQ='$faq',IMMOBILIARE='$immobiliare',MAGAZINE='$magazine',MOTORE_RICERCA='$motore_ricerca',ON_LINE_USERS='$on_line_users',SMS='$sms',SONDAGGIO='$sondaggio',FOTO_GALLERY='$foto_gallery',LIVE_HELP_MESSENGER='$live_help_messenger',SPIDER_MAKER_VERIFIER='$spider_maker_verifier',TUTTI='$tutti',ELIMINATO=$eliminato WHERE IDWEBHAT=$id");
+                DB::update("UPDATE gsu.dbo.WEBHAT SET Codice_R='$manutenzione', SERVIZIO='$servizio',INDIRIZZO='$indirizzo',TIPO_ACCOUNT='$tipo_account',USERNAME='$username',PASSWORD='$password',STATS='$stats',E_COMMERCE='$e_commerce',NEWSLETTER='$newsletter',NEWS='$news',CALENDARIO='$calendario',BANNER='$banner',ADDRESS='$address',DOWNLOAD='$download',PHP='$php',FORUM='$forum',GENERACTION='$generaction',FAQ='$faq',IMMOBILIARE='$immobiliare',MAGAZINE='$magazine',MOTORE_RICERCA='$motore_ricerca',ON_LINE_USERS='$on_line_users',SMS='$sms',SONDAGGIO='$sondaggio',FOTO_GALLERY='$foto_gallery',LIVE_HELP_MESSENGER='$live_help_messenger',SPIDER_MAKER_VERIFIER='$spider_maker_verifier',TUTTI='$tutti',SERVER_='$server',ELIMINATO=$eliminato WHERE IDWEBHAT=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -304,7 +307,7 @@ EOF;
         }
         Input::merge(array('add' => '0'));
         if(count($res) > 0 && count($codici_manutenzione) == 1) {
-            if ($res[0]['QTAAOF70'] > $res[0]['QTAGSU'])
+            //if ($res[0]['QTAAOF70'] > $res[0]['QTAGSU'])
                 Input::merge(array('add' => '1'));
         }
     }

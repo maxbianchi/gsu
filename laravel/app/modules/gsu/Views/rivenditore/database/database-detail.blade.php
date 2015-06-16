@@ -28,7 +28,7 @@
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
                 </tr>
                 <tr>
-                    <td>TIPO</td>
+                    <td>SERVIZIO</td>
                     <td><input type="text" name="tipo" value="{{$request['TIPO'] or ""}}"></td>
                 </tr>
                 <tr>
@@ -36,15 +36,15 @@
                     <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>IP</td>
+                    <td>INDIRIZZO</td>
                     <td><input type="text" name="ip" value="{{$request['IP'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>GESTIONE</td>
+                    <td>TIPO ACCOUNT</td>
                     <td><input type="text" name="gestione" value="{{$request['GESTIONE'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>LOGIN</td>
+                    <td>UTENTE</td>
                     <td><input type="text" name="login" value="{{$request['LOGIN'] or ""}}"></td>
                 </tr>
                 <tr>
