@@ -31,7 +31,15 @@
                 </tr>
                 <tr>
                     <td>TIPO LINEA</td>
-                    <td><input type="text" name="tipo_linea" value="{{$request['TIPO_LINEA'] or ""}}"></td>
+                    <td>
+                        <select name="tipo_linea">
+                            <option value="">-----</option>
+                            @foreach($tipolinea as $row)
+                                <option value="{{$row['LINEA_UNIWEB']}}" {{isset($request['TIPO_LINEA']) && $request['TIPO_LINEA'] == $row['LINEA_UNIWEB'] ? 'selected="selected"' : ""  }}>{{$row['LINEA_UNIWEB']}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>

@@ -6,10 +6,11 @@ use Session;
 use DB;
 
 
-class AdslModel extends Model {
+class SimModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
+        $canone = Input::get('canone');
 
         $sql = <<<EOF
 			SELECT
@@ -42,30 +43,44 @@ class AdslModel extends Model {
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			ADSL.IDADSL,
-			ADSL.LINEA_FORNITORE,
-			ADSL.TIPO_LINEA,
-			ADSL.TGU,
-			ADSL.IP_STATICO_ROUTER,
-            ADSL.UTENTE_RADIUS,
-            ADSL.PASS_RADIUS,
-			ADSL.GATEWAY_WAN_PUNTO_A_PUNTO,
-			ADSL.GATEWAY_INTERFACCIA_LAN,
-            ADSL.NUM_IP_STATICI,
-			ADSL.NUMERO_TELEFONO,
-			ADSL.CODICE_R,
-			ADSL.ELIMINATO
-			FROM gsu.dbo.ADSL
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ADSL.codice_r = richieste.MANUTENZIONE
+			SIM.IDSIM,
+			SIM.CODICE_R,
+			SIM.CCID,
+			SIM.NTELEFONO,
+			SIM.TIPOSIM,
+            SIM.TEC_UMTS,
+            SIM.TEC_GSM,
+			SIM.TEC_EDGE,
+			SIM.TGC,
+			SIM.CATCHIAMATE,
+			SIM.PIANOTARIFFARIO,
+			SIM.PROMOZIONE,
+			SIM.NORIGINALE,
+			SIM.NEXTENSION,
+			SIM.TIPOSERVIZIO,
+			SIM.OPZDATI,
+			SIM.NMU,
+			SIM.SERIALE_TEL,
+			SIM.OPZROAMING,
+			SIM.PROMOVOCE,
+			SIM.NBREVE,
+			SIM.RESTRIZIONI,
+			SIM.OPZINTERCOM,
+			SIM.FILTROACCESSI,
+			SIM.ELIMINATO
+			FROM gsu.dbo.SIM
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE ADSL.ELIMINATO = 0
+            WHERE SIM.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+        if(!empty($canone))
+            $sql .= " AND richieste.OGGETTO like '%$canone%'";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -83,10 +98,10 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
 
-        $tgu = Input::get('tgu');
-        $ip_router = Input::get('ip_router');
-        $numero_telefono = Input::get('numero_telefono');
-        $eliminati = Input::get('eliminati');
+        $ntelefono = Input::get('ntelefono');
+        $ccid = Input::get('ccid');
+        $pianotariffario = Input::get('pianotariffario');
+        $nbreve = Input::get('nbreve');
 
         $sql = <<<EOF
             SELECT
@@ -119,35 +134,33 @@ EOF;
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			ADSL.IDADSL,
-			ADSL.LINEA_FORNITORE,
-			ADSL.TIPO_LINEA,
-			ADSL.TGU,
-			ADSL.IP_STATICO_ROUTER,
-            ADSL.UTENTE_RADIUS,
-            ADSL.PASS_RADIUS,
-			ADSL.GATEWAY_WAN_PUNTO_A_PUNTO,
-			ADSL.GATEWAY_INTERFACCIA_LAN,
-			ADSL.NUM_IP_STATICI,
-			ADSL.CODICE_R,
-			ADSL.NUMERO_TELEFONO,
-			ADSL.IP_STATICI,
-			ADSL.IPSUB,
-			ADSL.WANSUB,
-			ADSL.LANSUB,
-			ADSL.RUTSUB,
-			ADSL.MODALITA,
-			ADSL.DNS_PRIMARIO,
-			ADSL.DNS_SECONDARIO,
-			ADSL.N_VERDE,
-			ADSL.VPI,
-			ADSL.VCI,
-			ADSL.INSTALLAZIONE_MODEM,
-			ADSL.INCAPSULAMENTO,
-			ADSL.MULTIPLEX,
-			ADSL.ELIMINATO
-			FROM gsu.dbo.ADSL
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON ADSL.codice_r = richieste.MANUTENZIONE
+			SIM.IDSIM,
+			SIM.CODICE_R,
+			SIM.CCID,
+			SIM.NTELEFONO,
+			SIM.TIPOSIM,
+            SIM.TEC_UMTS,
+            SIM.TEC_GSM,
+			SIM.TEC_EDGE,
+			SIM.TGC,
+			SIM.CATCHIAMATE,
+			SIM.PIANOTARIFFARIO,
+			SIM.PROMOZIONE,
+			SIM.NORIGINALE,
+			SIM.NEXTENSION,
+			SIM.TIPOSERVIZIO,
+			SIM.OPZDATI,
+			SIM.NMU,
+			SIM.SERIALE_TEL,
+			SIM.OPZROAMING,
+			SIM.PROMOVOCE,
+			SIM.NBREVE,
+			SIM.RESTRIZIONI,
+			SIM.OPZINTERCOM,
+			SIM.FILTROACCESSI,
+			SIM.ELIMINATO
+			FROM gsu.dbo.SIM
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -156,7 +169,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND ADSL.IDADSL = '$id'";
+            $sql .= " AND SIM.IDSIM = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -175,17 +188,19 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($tgu))
-            $sql .= " AND ADSL.TGU like '%$tgu%'";
-        if(!empty($ip_router))
-            $sql .= " AND ADSL.IP_STATICO_ROUTER like '%$ip_router%'";
-        if(!empty($numero_telefono))
-            $sql .= " AND ADSL.NUMERO_TELEFONO like '%$numero_telefono%'";
+        if(!empty($ntelefono))
+            $sql .= " AND SIM.NTELEFONO like '%$ntelefono%'";
+        if(!empty($ccid))
+            $sql .= " AND SIM.CCID like '%$ccid%'";
+        if(!empty($pianotariffario))
+            $sql .= " AND SIM.PIANOTARIFFARIO like '%$pianotariffario%'";
+        if(!empty($nbreve))
+            $sql .= " AND SIM.NBREVE like '%$nbreve%'";
 
         if(!empty($eliminati))
-            $sql .= " AND ADSL.ELIMINATO = 1";
+            $sql .= " AND SIM.ELIMINATO = 1";
         else
-            $sql .= " AND ADSL.ELIMINATO = 0";
+            $sql .= " AND SIM.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -221,36 +236,24 @@ EOF;
     public function saveData(){
         $id = Input::get('id_tbl');
         $manutenzione = Input::get('manutenzione');
-        $tipo_linea = Input::get('tipo_linea');
-        $linea_fornitore = Input::get('linea_fornitore');
-        $numero_telefono = Input::get('numero_telefono');
-        $tgu = Input::get('tgu');
-        $ip_statici = Input::get('ip_statici');
-        $ipsub = Input::get('ipsub');
-        $gateway_wan_punto_a_punto = Input::get('gateway_wan_punto_a_punto');
-        $wansub = Input::get('wansub');
-        $gateway_interfaccia_lan = Input::get('gateway_interfaccia_lan');
-        $lansub = Input::get('lansub');
-        $ip_statico_router = Input::get('ip_statico_router');
-        $rutsub = Input::get('rutsub');
-        $numero_ip_statici = Input::get('numero_ip_statici');
-        $modalita = Input::get('modalita');
-        $dns_primario = Input::get('dns_primario');
-        $dns_secondario = Input::get('dns_secondario');
-        $numero_verde = Input::get('numero_verde');
-        $vpi = Input::get('vpi');
-        $vci = Input::get('vci');
-        $installazione_modem = Input::get('installazione_modem');
-        $incapsulamento = Input::get('incapsulamento');
-        $multiplex = Input::get('multiplex');
-        $utente_radius = Input::get('utente_radius');
-        $pass_radius = Input::get('pass_radius');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
 
+        $ntelefono = Input::get('ntelefono');
+        $ccid = Input::get('ccid');
+        $tiposim = Input::get('tiposim');
+        $tec_gsm = Input::get('tec_gsm') == "on" ? 1 : 0 ;
+        $tec_umts = Input::get('tec_umts') == "on" ? 1 : 0 ;
+        $tec_edge = Input::get('tec_edge') == "on" ? 1 : 0 ;
+        $tgc = Input::get('tgc');
+        $catchiamate = Input::get('catchiamate');
+        $promovoce = Input::get('promovoce');
+        $nbreve = Input::get('nbreve');
+        $restrisioni = Input::get('restrizioni');
+
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.ADSL (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,IP_STATICI,IPSUB,GATEWAY_WAN_PUNTO_A_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,NUM_IP_STATICI,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,MULTIPLEX,UTENTE_RADIUS,PASS_RADIUS, ELIMINATO) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$ip_statici','$ipsub','$gateway_wan_punto_a_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$numero_ip_statici','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$multiplex','$utente_radius','$pass_radius',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -265,7 +268,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.ADSL SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',IP_STATICI='$ip_statici',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_A_PUNTO='$gateway_wan_punto_a_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',NUM_IP_STATICI='$numero_ip_statici',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',MULTIPLEX='$multiplex',UTENTE_RADIUS='$utente_radius',PASS_RADIUS='$pass_radius', ELIMINATO=$eliminato WHERE IDADSL=$id");
+                DB::update("UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',ELIMINATO=$eliminato WHERE IDSIM=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -275,27 +278,23 @@ EOF;
         }
     }
 
-    public function getServiziPlus($TGU){
-        $sql = "SELECT * FROM SERVIZI_PLUS WHERE (TGU_1= '" . $TGU . "' OR TGU_2='" . $TGU . "' OR TGU_3='" . $TGU . "' OR TGU_4='" . $TGU . "' OR TGU_5='" . $TGU . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
+    public function getPianoTariffario($canone){
+        $sql = "SELECT NOME_PIANO FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE CANONE ='" . $canone . "' ORDER BY NOME_PIANO";
+        $piani  = DB::select($sql);
+        $pianotariffario = "";
+        foreach($piani as $row)
+            $pianotariffario = $row["NOME_PIANO"];
+
+        $sql = "SELECT * FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE NOME_PIANO ='" . strtoupper($pianotariffario) . "' ORDER BY NOME_PIANO";
+        $notes  = DB::select($sql);
+        foreach($notes as $row)
+            $note = $row["NOTE_PIANO"];
+        $piano['NOME_PIANO'] = $pianotariffario;
+        $piano['NOTE_PIANO'] = $note;
+        return $piano;
     }
 
-    public function getServiziAccess($TGU){
-        $sql = "SELECT * FROM servizi_access WHERE (TGU_PRIMARIA= '" . $TGU . "' OR TGU_SECONDARIA='" . $TGU . "')";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
 
-    public function getTipoLinea(){
-        $sql = "SELECT * FROM ADSL_TIPO_LINEA ORDER BY LINEA_UNIWEB";
-        $tipolinea  = DB::select($sql);
-        return $tipolinea;
-    }
 
     public function checkAddNew(){
         $model = new AdslModel();

@@ -344,4 +344,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/unigate/edit', 'UnigateController@edit');
     Route::post('gsu/unigate/save', 'UnigateController@save');
     Route::get('gsu/unigate/delete', 'UnigateController@delete');
+
+    //SIM
+    Route::get('gsu/sim', 'SimController@main');
+    Route::get('gsu/sim/search', 'SimController@search');
+    Route::get('gsu/sim/show', 'SimController@show');
+    Route::get('gsu/sim/edit', 'SimController@edit');
+    Route::post('gsu/sim/save', 'SimController@save');
+    Route::get('gsu/sim/delete', 'SimController@delete');
 });

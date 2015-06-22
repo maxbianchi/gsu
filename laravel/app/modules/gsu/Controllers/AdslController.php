@@ -45,7 +45,8 @@ class AdslController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::$this->view_folder.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        $tipolinea = $return['tipolinea'];
+        return view("gsu::$this->view_folder.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access, 'tipolinea' => $tipolinea]);
     }
 
     public function edit(){
@@ -54,7 +55,8 @@ class AdslController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::$this->view_folder.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        $tipolinea = $return['tipolinea'];
+        return view("gsu::$this->view_folder.adsl.adsl-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access, 'tipolinea' => $tipolinea]);
     }
 
     private function manageShow(){
@@ -74,6 +76,8 @@ class AdslController extends MainController {
             $res = [];
         }
 
+        $tipolinea = $model->getTipoLinea();
+
         $servizi_plus = "NO";
         $servizi_access = "NO";
         if(count($res) == 0) {
@@ -91,6 +95,8 @@ class AdslController extends MainController {
         $return['btn'] = $btn;
         $return['servizi_plus'] = $servizi_plus;
         $return['servizi_access'] = $servizi_access;
+        $return['tipolinea'] = $tipolinea;
+
 
         return $return;
     }
