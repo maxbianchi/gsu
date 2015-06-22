@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class SimModel extends Model {
+class Simm2mModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
@@ -226,11 +226,11 @@ EOF;
                 /*if($qta == 0)
                     DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
                 else*/
-                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
+                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
 
 
-            }
+        }
     }
 
 
@@ -278,24 +278,6 @@ EOF;
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-
-    public function getPianoTariffario($canone){
-        $sql = "SELECT NOME_PIANO FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE CANONE ='" . $canone . "' ORDER BY NOME_PIANO";
-        $piani  = DB::select($sql);
-        $pianotariffario = "";
-        foreach($piani as $row)
-            $pianotariffario = $row["NOME_PIANO"];
-
-        $sql = "SELECT * FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE NOME_PIANO ='" . strtoupper($pianotariffario) . "' ORDER BY NOME_PIANO";
-        $notes  = DB::select($sql);
-        foreach($notes as $row)
-            $note = $row["NOTE_PIANO"];
-        $piano['NOME_PIANO'] = $pianotariffario;
-        $piano['NOTE_PIANO'] = $note;
-        return $piano;
-    }
-
-
 
     public function checkAddNew(){
         $model = new AdslModel();

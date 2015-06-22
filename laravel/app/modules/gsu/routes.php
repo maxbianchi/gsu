@@ -352,4 +352,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim/edit', 'SimController@edit');
     Route::post('gsu/sim/save', 'SimController@save');
     Route::get('gsu/sim/delete', 'SimController@delete');
+
+    //SIM
+    Route::get('gsu/sim-m2m', 'Simm2mController@main');
+    Route::get('gsu/sim-m2m/search', 'Simm2mController@search');
+    Route::get('gsu/sim-m2m/show', 'Simm2mController@show');
+    Route::get('gsu/sim-m2m/edit', 'Simm2mController@edit');
+    Route::post('gsu/sim-m2m/save', 'Simm2mController@save');
+    Route::get('gsu/sim-m2m/delete', 'Simm2mController@delete');
 });

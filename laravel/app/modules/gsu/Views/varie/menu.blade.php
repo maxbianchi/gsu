@@ -87,7 +87,7 @@
                 <li><a href="#">Mobile</a>
                     <ul>
                         <li><a href="{{url('/gsu/sim')}}?canone=CAN-I00">SIM voce</a></li>
-                        <li><a href="/sim_m2m.asp?ACT=SRC&canone=CAN-I01">SIM M2M</a></li>
+                        <li><a href="{{url('/gsu/sim-m2m')}}?canone=CAN-I01">SIM M2M</a></li>
                         <li><a href="/sim_twin.asp?ACT=SRC&canone=CAN-I02">SIM TWIN</a></li>
                         <li><a href="/sim_extension.asp?ACT=SRC&canone=CAN-I03">EXTENSION</a></li>
                         <li><a href="/sim_fax_dati.asp?ACT=SRC&canone=CAN-I04">FAX e DATI</a></li>
