@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class SimModel extends Model {
+class SimTwinModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
@@ -98,8 +98,6 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
 
-        $pianotariffario = Input::get('pianotariffario');
-        $promovoce = Input::get('promovoce');
         $ntelefono = Input::get('ntelefono');
         $ccid = Input::get('ccid');
         $pianotariffario = Input::get('pianotariffario');
@@ -253,11 +251,10 @@ EOF;
         $promovoce = Input::get('promovoce');
         $nbreve = Input::get('nbreve');
         $restrisioni = Input::get('restrizioni');
-        $pianotariffario = Input::get('pianotariffario');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI,PIANOTARIFFARIO, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni','$pianotariffario',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -272,7 +269,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',PIANOTARIFFARIO='$pianotariffario',ELIMINATO=$eliminato WHERE IDSIM=$id");
+                DB::update("UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',ELIMINATO=$eliminato WHERE IDSIM=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -281,23 +278,6 @@ EOF;
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
     }
-
-    public function getPianoTariffario($canone){
-        $sql = "SELECT NOME_PIANO FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE CANONE ='" . $canone . "' ORDER BY NOME_PIANO";
-        $piani  = DB::select($sql);
-        $pianotariffario = "";
-        foreach($piani as $row)
-            $pianotariffario = $row["NOME_PIANO"];
-
-        $sql = "SELECT * FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE NOME_PIANO ='" . strtoupper($pianotariffario) . "' ORDER BY NOME_PIANO";
-        $notes  = DB::select($sql);
-        foreach($notes as $row)
-            $note = $row["NOTE_PIANO"];
-        $piano['NOME_PIANO'] = $pianotariffario;
-        $piano['NOTE_PIANO'] = $note;
-        return $piano;
-    }
-
 
 
     public function checkAddNew(){
