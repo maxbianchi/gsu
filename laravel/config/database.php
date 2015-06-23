@@ -89,12 +89,20 @@ return [
 
 		'sqlsrv' => [
 			'driver'   => 'sqlsrv',
-			'host'     => 'chioggia',
-			'database' => 'gsu',
+			'host'     => '172.27.13.14',
+			'database' => 'GSU',
 			'username' => 'sa',
-			'password' => '670-ariste',
+			'password' => '13171810',
 			'prefix'   => '',
 		],
+        'sqlsrv_2' => [
+            'driver'   => 'sqlsrv',
+            'host'     => 'chioggia',
+            'database' => 'gsu',
+            'username' => 'sa',
+            'password' => '670-ariste',
+            'prefix'   => '',
+        ],
 
 	],
 
