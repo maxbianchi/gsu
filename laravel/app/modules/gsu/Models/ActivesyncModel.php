@@ -6,64 +6,46 @@ use Session;
 use DB;
 
 
-class MplsModel extends Model {
+class ActivesyncModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
 
         $sql = <<<EOF
-			SELECT
-			RICHIESTE.STATO,
+        SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
 			anagrafica1.DESCRIZIONE		AS SOGGETTO,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
-			anagrafica1.CAP		AS SOGGETTO_CAP,
 			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
 			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
-			anagrafica1.TELEFONO		AS SOGGETTO_TELEFONO,
-			anagrafica1.PARTITAIVA		AS SOGGETTO_PARTITAIVA,
-			anagrafica2.DESCRIZIONE 	AS CLIENTE,
-			anagrafica2.INDIRIZZO 		AS CLIENTE_INDIRIZZO,
-			anagrafica2.CAP		AS CLIENTE_CAP,
-			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
-			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
-			anagrafica2.TELEFONO		AS CLIENTE_TELEFONO,
-			anagrafica2.PARTITAIVA		AS CLIENTE_PARTITAIVA,
+			anagrafica2.DESCRIZIONE	AS CLIENTE,
+			anagrafica2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
 			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
 			anagrafica3.DESCRIZIONE	AS DESTINATARIOABITUALE,
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
-			anagrafica3.CAP		AS DESTINATARIOABITUALE_CAP,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
-			anagrafica3.TELEFONO		AS DESTINATARIOABITUALE_TELEFONO,
-			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-	        MPLS.IDMPLS,
-			MPLS.LINEA_FORNITORE,
-			MPLS.TIPO_LINEA,
-			MPLS.TGU,
-			MPLS.IP_STATICO_ROUTER,
-			MPLS.GATEWAY_WAN_PUNTO_A_PUNTO,
-			MPLS.GATEWAY_INTERFACCIA_LAN,
-			MPLS.NUM_IP_STATICI,
-			MPLS.CODICE_R,
-			MPLS.ELIMINATO
-			FROM gsu.dbo.MPLS
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON MPLS.codice_r = richieste.MANUTENZIONE
+            ACTIVESYNC.ID,
+            ACTIVESYNC.CODICE_R,
+            ACTIVESYNC.EMAIL,
+            ACTIVESYNC.ELIMINATO
+			FROM		gsu.dbo.ACTIVESYNC
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON ACTIVESYNC.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
             LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE MPLS.ELIMINATO = 0
+            WHERE ACTIVESYNC.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
-
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -80,68 +62,50 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-
-        $tgu = Input::get('tgu');
-        $ip_router = Input::get('ip_router');
-        $numero_telefono = Input::get('numero_telefono');
+        $email = Input::get('email');
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
-			SELECT
-			RICHIESTE.STATO,
+            SELECT
+            RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
 			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
+
+			anagrafica1.SOGGETTO AS SOGGETTO_CODICE,
 			anagrafica1.DESCRIZIONE		AS SOGGETTO,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
-			anagrafica1.CAP		AS SOGGETTO_CAP,
 			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
 			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
+			anagrafica1.CAP		        AS SOGGETTO_CAP,
 			anagrafica1.TELEFONO		AS SOGGETTO_TELEFONO,
-			anagrafica1.PARTITAIVA		AS SOGGETTO_PARTITAIVA,
-			anagrafica2.DESCRIZIONE 	AS CLIENTE,
-			anagrafica2.INDIRIZZO 		AS CLIENTE_INDIRIZZO,
-			anagrafica2.CAP		AS CLIENTE_CAP,
+			ISNULL(anagrafica1.PARTITAIVA,anagrafica1.CODICEFISCALE) AS SOGGETTO_PIVA,
+
+            anagrafica2.SOGGETTO        AS CLIENTE_CODICE,
+			anagrafica2.DESCRIZIONE	    AS CLIENTE,
+			anagrafica2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
 			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
+            anagrafica2.CAP		        AS CLIENTE_CAP,
 			anagrafica2.TELEFONO		AS CLIENTE_TELEFONO,
-			anagrafica2.PARTITAIVA		AS CLIENTE_PARTITAIVA,
-			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
-			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
-			anagrafica3.DESCRIZIONE	AS DESTINATARIOABITUALE,
+			ISNULL(anagrafica2.PARTITAIVA,anagrafica2.CODICEFISCALE) AS CLIENTE_PIVA,
+
+            anagrafica3.SOGGETTO        AS DESTINATARIOABITUALE_CODICE,
+			anagrafica3.DESCRIZIONE	    AS DESTINATARIOABITUALE,
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
-			anagrafica3.CAP		AS DESTINATARIOABITUALE_CAP,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
+			anagrafica3.CAP		        AS DESTINATARIOABITUALE_CAP,
 			anagrafica3.TELEFONO		AS DESTINATARIOABITUALE_TELEFONO,
-			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
+			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-	        MPLS.IDMPLS,
-			MPLS.LINEA_FORNITORE,
-			MPLS.TIPO_LINEA,
-			MPLS.TGU,
-			MPLS.IP_STATICO_ROUTER,
-			MPLS.GATEWAY_WAN_PUNTO_A_PUNTO,
-			MPLS.GATEWAY_INTERFACCIA_LAN,
-			MPLS.NUM_IP_STATICI,
-			MPLS.MODALITA,
-            MPLS.NUMERO_TELEFONO,
-            MPLS.DNS_PRIMARIO,
-			MPLS.DNS_SECONDARIO,
-			MPLS.N_VERDE,
-			MPLS.VPI,
-			MPLS.VCI,
-            MPLS.INSTALLAZIONE_MODEM,
-			MPLS.INCAPSULAMENTO,
-            MPLS.IPSUB,
-			MPLS.WANSUB,
-			MPLS.LANSUB,
-			MPLS.RUTSUB,
-			MPLS.CODICE_R,
-			MPLS.ELIMINATO
-			FROM gsu.dbo.MPLS
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON MPLS.codice_r = richieste.MANUTENZIONE
+            ACTIVESYNC.ID,
+            ACTIVESYNC.CODICE_R,
+            ACTIVESYNC.EMAIL,
+            ACTIVESYNC.ELIMINATO
+			FROM		gsu.dbo.ACTIVESYNC
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON ACTIVESYNC.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -150,7 +114,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND MPLS.IDMPLS = '$id'";
+            $sql .= " AND ACTIVESYNC.ID = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -169,17 +133,13 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($tgu))
-            $sql .= " AND MPLS.TGU like '%$tgu%'";
-        if(!empty($ip_router))
-            $sql .= " AND MPLS.IP_STATICO_ROUTER like '%$ip_router%'";
-        if(!empty($numero_telefono))
-            $sql .= " AND MPLS.NUMERO_TELEFONO like '%$numero_telefono%'";
+        if(!empty($email))
+            $sql .= " AND ACTIVESYNC.EMAIL like '%$email%'";
 
         if(!empty($eliminati))
-            $sql .= " AND MPLS.ELIMINATO = 1";
+            $sql .= " AND ACTIVESYNC.ELIMINATO = 1";
         else
-            $sql .= " AND MPLS.ELIMINATO = 0";
+            $sql .= " AND ACTIVESYNC.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -192,8 +152,9 @@ EOF;
     public function deleteByID(){
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
+
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.MPLS SET ELIMINATO=1 WHERE IDMPLS='$id'";
+            $sql = "UPDATE gsu.dbo.ACTIVESYNC SET ELIMINATO=1 WHERE ID='$id'";
             DB::delete($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -215,36 +176,16 @@ EOF;
     public function saveData(){
         $id = Input::get('id_tbl');
         $manutenzione = Input::get('manutenzione');
-        $tipo_linea = Input::get('tipo_linea');
-        $linea_fornitore = Input::get('linea_fornitore');
-        $numero_telefono = Input::get('numero_telefono');
-        $tgu = Input::get('tgu');
-        $ip_statici_subnet = Input::get('ip_statici');
-        $ipsub = Input::get('ipsub');
-        $gateway_wan_punto_punto = Input::get('gateway_wan_punto_punto');
-        $wansub = Input::get('wansub');
-        $gateway_interfaccia_lan = Input::get('gateway_interfaccia_lan');
-        $lansub = Input::get('lansub');
-        $ip_statico_router = Input::get('ip_statico_router');
-        $rutsub = Input::get('rutsub');
-        $numero_ip_statici = Input::get('numero_ip_statici');
-        $modalita = Input::get('modalita');
-        $dns_primario = Input::get('dns_primario');
-        $dns_secondario = Input::get('dns_secondario');
-        $numero_verde = Input::get('numero_verde');
-        $vpi = Input::get('vpi');
-        $vci = Input::get('vci');
-        $installazione_modem = Input::get('installazione_modem');
-        $incapsulamento = Input::get('incapsulamento');
-        $dlci = Input::get('dlci');
-        $lmi_type = Input::get('lmi_type');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
+        $email = Input::get('email');
+
+
+
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.MPLS (CODICE_R,TIPO_LINEA,LINEA_FORNITORE,NUMERO_TELEFONO,TGU,NUM_IP_STATICI,IP_STATICI_SUBNET,IPSUB,GATEWAY_WAN_PUNTO_A_PUNTO,WANSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,IP_STATICO_ROUTER,RUTSUB,MODALITA,DNS_PRIMARIO,DNS_SECONDARIO,N_VERDE,VPI,VCI,INSTALLAZIONE_MODEM,INCAPSULAMENTO,DLCI,LMI_TYPE,ELIMINATO) VALUES ('$manutenzione','$tipo_linea','$linea_fornitore','$numero_telefono','$tgu','$numero_ip_statici','$ip_statici_subnet','$ipsub','$gateway_wan_punto_punto','$wansub','$gateway_interfaccia_lan','$lansub','$ip_statico_router','$rutsub','$modalita','$dns_primario','$dns_secondario','$numero_verde','$vpi','$vci','$installazione_modem','$incapsulamento','$dlci','$lmi_type',$eliminato)");
-
+                DB::insert("INSERT INTO gsu.dbo.ACTIVESYNC (Codice_R, EMAIL,ELIMINATO) VALUES ('$manutenzione','$email',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -257,7 +198,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.MPLS SET Codice_R='$manutenzione',TIPO_LINEA='$tipo_linea',LINEA_FORNITORE='$linea_fornitore',NUMERO_TELEFONO='$numero_telefono',TGU='$tgu',NUM_IP_STATICI='$numero_ip_statici',IP_STATICI_SUBNET='$ip_statici_subnet',IPSUB='$ipsub',GATEWAY_WAN_PUNTO_A_PUNTO='$gateway_wan_punto_punto',WANSUB='$wansub',GATEWAY_INTERFACCIA_LAN='$gateway_interfaccia_lan',LANSUB='$lansub',IP_STATICO_ROUTER='$ip_statico_router',RUTSUB='$rutsub',MODALITA='$modalita',DNS_PRIMARIO='$dns_primario',DNS_SECONDARIO='$dns_secondario',N_VERDE='$numero_verde',VPI='$vpi',VCI='$vci',INSTALLAZIONE_MODEM='$installazione_modem',INCAPSULAMENTO='$incapsulamento',DLCI='$dlci',LMI_TYPE='$lmi_type',ELIMINATO=$eliminato WHERE IDMPLS=$id");
+                DB::update("UPDATE gsu.dbo.ACTIVESYNC SET Codice_R='$manutenzione',EMAIL='$email',ELIMINATO=$eliminato  WHERE ID=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -267,24 +208,8 @@ EOF;
         }
     }
 
-    public function getServiziPlus($TGU){
-        $sql = "SELECT * FROM SERVIZI_PLUS WHERE (TGU_1= '" . $TGU . "' OR TGU_2='" . $TGU . "' OR TGU_3='" . $TGU . "' OR TGU_4='" . $TGU . "' OR TGU_5='" . $TGU . "')  AND ELIMINATO = 0";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
-
-    public function getServiziAccess($TGU){
-        $sql = "SELECT * FROM servizi_access WHERE (TGU_PRIMARIA= '" . $TGU . "' OR TGU_SECONDARIA='" . $TGU . "')  AND ELIMINATO = 0";
-        $res = DB::select($sql);
-        if(count($res) > 0)
-            return "SI";
-        return "NO";
-    }
-
     public function checkAddNew(){
-        $model = new MplsModel();
+        $model = new IpstaticiModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

@@ -286,7 +286,7 @@ EOF;
 
 
     public function getActivesync($email){
-        $sql = "SELECT * FROM ACTIVESYNC WHERE (EMAIL= '" . $email . "')";
+        $sql = "SELECT * FROM ACTIVESYNC WHERE (EMAIL= '" . $email . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -294,7 +294,7 @@ EOF;
     }
 
     public function getOutlookconnector($email){
-        $sql = "SELECT * FROM OUTLOOKCONNECTOR WHERE (EMAIL= '" . $email . "')";
+        $sql = "SELECT * FROM OUTLOOKCONNECTOR WHERE (EMAIL= '" . $email . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";

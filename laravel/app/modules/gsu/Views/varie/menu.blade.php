@@ -43,6 +43,12 @@
                         <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=MRTG">Mrtg</a></li>
                     </ul>
                 </li>
+                <li><a href="#">Servizi Posta avanzati</a>
+                    <ul>
+                        <li><a href="{{url('/gsu/activesync')}}">Activesync</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}">Outlook Connector</a></li>
+                    </ul>
+                </li>
             </ul>
         </li>
         <li><a href="#">Networking</a>

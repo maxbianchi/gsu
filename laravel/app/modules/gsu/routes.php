@@ -368,4 +368,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-twin/edit', 'SimTwinController@edit');
     Route::post('gsu/sim-twin/save', 'SimTwinController@save');
     Route::get('gsu/sim-twin/delete', 'SimTwinController@delete');
+
+    //ACTIVESYNC
+    Route::get('gsu/activesync', 'ActivesyncController@main');
+    Route::get('gsu/activesync/search', 'ActivesyncController@search');
+    Route::get('gsu/activesync/show', 'ActivesyncController@show');
+    Route::get('gsu/activesync/edit', 'ActivesyncController@edit');
+    Route::post('gsu/activesync/save', 'ActivesyncController@save');
+    Route::get('gsu/activesync/delete', 'ActivesyncController@delete');
 });

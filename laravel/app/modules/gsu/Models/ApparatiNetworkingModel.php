@@ -310,7 +310,7 @@ EOF;
     }
 
     public function getUrlFiltering($SN){
-        $sql = "SELECT * FROM URLFILTERING WHERE (SN= '" . $SN . "')";
+        $sql = "SELECT * FROM URLFILTERING WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -318,7 +318,7 @@ EOF;
     }
 
     public function getSmartNet($SN){
-        $sql = "SELECT * FROM SMARTNET WHERE (SERIALE= '" . $SN . "')";
+        $sql = "SELECT * FROM SMARTNET WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -326,7 +326,7 @@ EOF;
     }
 
     public function getVpn($SN){
-        $sql = "SELECT * FROM VPN WHERE (SEDE1= '" . $SN . "' OR SEDE2='" . $SN . "' OR SEDE3='" . $SN . "' OR SEDE4='" . $SN . "' OR SEDE5='" . $SN . "')";
+        $sql = "SELECT * FROM VPN WHERE (SEDE1= '" . $SN . "' OR SEDE2='" . $SN . "' OR SEDE3='" . $SN . "' OR SEDE4='" . $SN . "' OR SEDE5='" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -334,7 +334,7 @@ EOF;
     }
 
     public function getIpMultimedia($SN){
-        $sql = "SELECT * FROM IPMULTIMEDIA WHERE (SN= '" . $SN . "')";
+        $sql = "SELECT * FROM IPMULTIMEDIA WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -342,7 +342,7 @@ EOF;
     }
 
     public function getGestioneApparati($SN){
-        $sql = "SELECT * FROM GESTIONE_APPARATI WHERE (SERIALE= '" . $SN . "')";
+        $sql = "SELECT * FROM GESTIONE_APPARATI WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";

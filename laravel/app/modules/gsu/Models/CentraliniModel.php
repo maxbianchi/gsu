@@ -257,7 +257,7 @@ EOF;
     }
 
     public function getAssistenzaCentralino($SN){
-        $sql = "SELECT * FROM ASSISTENZACENTRALINI WHERE (SERIALE= '" . $SN . "')";
+        $sql = "SELECT * FROM ASSISTENZACENTRALINI WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";

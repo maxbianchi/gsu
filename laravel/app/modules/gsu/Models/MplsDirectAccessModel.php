@@ -271,7 +271,7 @@ EOF;
     }
 
     public function getServiziPlus($TGU){
-        $sql = "SELECT * FROM SERVIZI_PLUS WHERE (TGU_1= '" . $TGU . "' OR TGU_2='" . $TGU . "' OR TGU_3='" . $TGU . "' OR TGU_4='" . $TGU . "' OR TGU_5='" . $TGU . "')";
+        $sql = "SELECT * FROM SERVIZI_PLUS WHERE (TGU_1= '" . $TGU . "' OR TGU_2='" . $TGU . "' OR TGU_3='" . $TGU . "' OR TGU_4='" . $TGU . "' OR TGU_5='" . $TGU . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -279,7 +279,7 @@ EOF;
     }
 
     public function getServiziAccess($TGU){
-        $sql = "SELECT * FROM servizi_access WHERE (TGU_PRIMARIA= '" . $TGU . "' OR TGU_SECONDARIA='" . $TGU . "')";
+        $sql = "SELECT * FROM servizi_access WHERE (TGU_PRIMARIA= '" . $TGU . "' OR TGU_SECONDARIA='" . $TGU . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";

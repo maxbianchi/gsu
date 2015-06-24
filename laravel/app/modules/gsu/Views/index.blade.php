@@ -61,7 +61,7 @@
             <div class="col-md-3"><input type="button" value="CASELLE DI POSTA PEC" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E11')}}"></div>
         </div>
         <div class="row">
-            <div class="col-md-3"><input type="button" value="EMAIL BACKUP" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E121')}}"></div>
+            <div class="col-md-3"><input type="button" value="EMAIL BACKUP" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E12')}}"></div>
             <div class="col-md-3"><input type="button" value="SERVIZI POSTA AVANZATI" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E13')}}"></div>
             <div class="col-md-3"></div>
             <div class="col-md-3"></div>

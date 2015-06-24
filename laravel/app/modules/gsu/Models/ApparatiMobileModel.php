@@ -267,7 +267,7 @@ EOF;
     }
 
     public function getAssistenzaTecnica($SN){
-        $sql = "SELECT * FROM SIM WHERE (SERIALE_TEL= '" . $SN . "')";
+        $sql = "SELECT * FROM SIM WHERE (SERIALE_TEL= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";

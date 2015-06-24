@@ -258,7 +258,7 @@ EOF;
     }
 
     public function getManutenzione($SN){
-        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_MULTIFUNZIONE WHERE (SN= '" . $SN . "')";
+        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_MULTIFUNZIONE WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -266,7 +266,7 @@ EOF;
     }
 
     public function getConsumabileNero($SN){
-        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_CONSUMABILE_NERO WHERE (SN= '" . $SN . "')";
+        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_CONSUMABILE_NERO WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -274,7 +274,7 @@ EOF;
     }
 
     public function getConsumabileColori($SN){
-        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_CONSUMABILE_COLORI WHERE (SN= '" . $SN . "')";
+        $sql = "SELECT SN FROM ASSISTENZA_TECNICA_CONSUMABILE_COLORI WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";

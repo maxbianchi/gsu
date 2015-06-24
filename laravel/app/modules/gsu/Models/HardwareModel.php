@@ -293,7 +293,7 @@ EOF;
     }
 
     public function getAssistenzaTecnica($SN){
-        $sql = "SELECT * FROM TELEASSISTENZA WHERE (SERIALE= '" . $SN . "')";
+        $sql = "SELECT * FROM TELEASSISTENZA WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
@@ -301,7 +301,7 @@ EOF;
     }
 
     public function getPostWarranty($SN){
-        $sql = "SELECT * FROM POSTWARRANTY WHERE (SERIALE= '" . $SN . "')";
+        $sql = "SELECT * FROM POSTWARRANTY WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
