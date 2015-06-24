@@ -103,7 +103,7 @@
                         <li><a href="{{url('/gsu/sim-opzione-dati')}}?canone=CAN-I11">Opzione Dati</a></li>
                         <li><a href="{{url('/gsu/sim-opzione-dati')}}?canone=CAN-I12">Opzione Dati Estero</a></li>
                         <li><a href="{{url('/gsu/sim-assistenza-tecnica')}}?canone=CAN-I20">Assistenza tecnica</a></li>
-                        <li><a href="/sim_filtro_accessi.asp?ACT=SRC&canone=CAN-I21">Filtro accessi</a></li>
+                        <li><a href="{{url('/gsu/sim-filtro-accessi')}}?canone=CAN-I21">Filtro accessi</a></li>
                     </ul>
                 </li>
             </ul>

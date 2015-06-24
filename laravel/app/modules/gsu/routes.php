@@ -440,4 +440,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-assistenza-tecnica/edit', 'SimAssistenzaTecnicaController@edit');
     Route::post('gsu/sim-assistenza-tecnica/save', 'SimAssistenzaTecnicaController@save');
     Route::get('gsu/sim-assistenza-tecnica/delete', 'SimAssistenzaTecnicaController@delete');
+
+    //SIM FILTRO ACCESSI
+    Route::get('gsu/sim-filtro-accessi', 'SimFiltroAccessiController@main');
+    Route::get('gsu/sim-filtro-accessi/search', 'SimFiltroAccessiController@search');
+    Route::get('gsu/sim-filtro-accessi/show', 'SimFiltroAccessiController@show');
+    Route::get('gsu/sim-filtro-accessi/edit', 'SimFiltroAccessiController@edit');
+    Route::post('gsu/sim-filtro-accessi/save', 'SimFiltroAccessiController@save');
+    Route::get('gsu/sim-filtro-accessi/delete', 'SimFiltroAccessiController@delete');
 });
