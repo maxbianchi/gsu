@@ -416,4 +416,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-intercom/edit', 'SimIntercomController@edit');
     Route::post('gsu/sim-intercom/save', 'SimIntercomController@save');
     Route::get('gsu/sim-intercom/delete', 'SimIntercomController@delete');
+
+    //SIM INTERCOM
+    Route::get('gsu/sim-tassa-governativa', 'SimTassaGovernativaController@main');
+    Route::get('gsu/sim-tassa-governativa/search', 'SimTassaGovernativaController@search');
+    Route::get('gsu/sim-tassa-governativa/show', 'SimTassaGovernativaController@show');
+    Route::get('gsu/sim-tassa-governativa/edit', 'SimTassaGovernativaController@edit');
+    Route::post('gsu/sim-tassa-governativa/save', 'SimTassaGovernativaController@save');
+    Route::get('gsu/sim-tassa-governativa/delete', 'SimTassaGovernativaController@delete');
 });
