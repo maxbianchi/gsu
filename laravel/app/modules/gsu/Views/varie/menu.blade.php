@@ -101,7 +101,7 @@
                         <li><a href="{{url('/gsu/sim-intercom')}}?canone=CAN-I06">Opzioni Intercom</a></li>
                         <li><a href="{{url('/gsu/sim-tassa-governativa')}}?canone=CAN-I10">Tassa governativa</a></li>
                         <li><a href="{{url('/gsu/sim-opzione-dati')}}?canone=CAN-I11">Opzione Dati</a></li>
-                        <li><a href="/sim_opzione_dati.asp?ACT=SRC&canone=CAN-I12">Opzione Dati Estero</a></li>
+                        <li><a href="{{url('/gsu/sim-opzione-dati')}}?canone=CAN-I12">Opzione Dati Estero</a></li>
                         <li><a href="/sim_assistenza_tecnica.asp?ACT=SRC&canone=CAN-I20">Assistenza tecnica</a></li>
                         <li><a href="/sim_filtro_accessi.asp?ACT=SRC&canone=CAN-I21">Filtro accessi</a></li>
                     </ul>
