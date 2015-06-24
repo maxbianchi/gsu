@@ -408,4 +408,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-roaming/edit', 'SimRoamingController@edit');
     Route::post('gsu/sim-roaming/save', 'SimRoamingController@save');
     Route::get('gsu/sim-roaming/delete', 'SimRoamingController@delete');
+
+    //SIM INTERCOM
+    Route::get('gsu/sim-intercom', 'SimIntercomController@main');
+    Route::get('gsu/sim-intercom/search', 'SimIntercomController@search');
+    Route::get('gsu/sim-intercom/show', 'SimIntercomController@show');
+    Route::get('gsu/sim-intercom/edit', 'SimIntercomController@edit');
+    Route::post('gsu/sim-intercom/save', 'SimIntercomController@save');
+    Route::get('gsu/sim-intercom/delete', 'SimIntercomController@delete');
 });
