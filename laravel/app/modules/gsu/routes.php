@@ -376,4 +376,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/activesync/edit', 'ActivesyncController@edit');
     Route::post('gsu/activesync/save', 'ActivesyncController@save');
     Route::get('gsu/activesync/delete', 'ActivesyncController@delete');
+
+    //OUTLOOKCONNECTOR
+    Route::get('gsu/outlookconnector', 'OutlookconnectorController@main');
+    Route::get('gsu/outlookconnector/search', 'OutlookconnectorController@search');
+    Route::get('gsu/outlookconnector/show', 'OutlookconnectorController@show');
+    Route::get('gsu/outlookconnector/edit', 'OutlookconnectorController@edit');
+    Route::post('gsu/outlookconnector/save', 'OutlookconnectorController@save');
+    Route::get('gsu/outlookconnector/delete', 'OutlookconnectorController@delete');
 });

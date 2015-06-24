@@ -46,7 +46,7 @@
                 <li><a href="#">Servizi Posta avanzati</a>
                     <ul>
                         <li><a href="{{url('/gsu/activesync')}}">Activesync</a></li>
-                        <li><a href="{{url('/gsu/servizi-web')}}">Outlook Connector</a></li>
+                        <li><a href="{{url('/gsu/outlookconnector')}}">Outlook Connector</a></li>
                     </ul>
                 </li>
             </ul>
