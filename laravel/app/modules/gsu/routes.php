@@ -400,4 +400,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-fax-dati/edit', 'SimFaxDatiController@edit');
     Route::post('gsu/sim-fax-dati/save', 'SimFaxDatiController@save');
     Route::get('gsu/sim-fax-dati/delete', 'SimFaxDatiController@delete');
+
+    //SIM FAX DATI
+    Route::get('gsu/sim-roaming', 'SimRoamingController@main');
+    Route::get('gsu/sim-roaming/search', 'SimRoamingController@search');
+    Route::get('gsu/sim-roaming/show', 'SimRoamingController@show');
+    Route::get('gsu/sim-roaming/edit', 'SimRoamingController@edit');
+    Route::post('gsu/sim-roaming/save', 'SimRoamingController@save');
+    Route::get('gsu/sim-roaming/delete', 'SimRoamingController@delete');
 });

@@ -97,7 +97,7 @@
                         <li><a href="{{url('/gsu/sim-twin')}}?canone=CAN-I02">SIM TWIN</a></li>
                         <li><a href="{{url('/gsu/sim-extension')}}?canone=CAN-I03">EXTENSION</a></li>
                         <li><a href="{{url('/gsu/sim-fax-dati')}}?canone=CAN-I04">FAX e DATI</a></li>
-                        <li><a href="/sim_opzioni_roaming.asp?ACT=SRC&canone=CAN-I05">Opzioni Roaming</a></li>
+                        <li><a href="{{url('/gsu/sim-roaming')}}?canone=CAN-I05">Opzioni Roaming</a></li>
                         <li><a href="/sim_opzioni_intercom.asp?ACT=SRC&canone=CAN-I06">Opzioni Intercom</a></li>
                         <li><a href="/sim_tassa_ministeriale.asp?ACT=SRC&canone=CAN-I10">Tassa governativa</a></li>
                         <li><a href="/sim_opzione_dati.asp?ACT=SRC&canone=CAN-I11">Opzione Dati</a></li>
