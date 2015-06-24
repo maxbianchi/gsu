@@ -281,7 +281,7 @@ EOF;
 
 
     public function checkAddNew(){
-        $model = new AdslModel();
+        $model = new SimTwinModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

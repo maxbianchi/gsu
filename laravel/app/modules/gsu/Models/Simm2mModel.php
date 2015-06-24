@@ -280,7 +280,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new AdslModel();
+        $model = new Simm2mModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

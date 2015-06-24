@@ -384,4 +384,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/outlookconnector/edit', 'OutlookconnectorController@edit');
     Route::post('gsu/outlookconnector/save', 'OutlookconnectorController@save');
     Route::get('gsu/outlookconnector/delete', 'OutlookconnectorController@delete');
+
+    //SIM TWIN
+    Route::get('gsu/sim-extension', 'SimExtensionController@main');
+    Route::get('gsu/sim-extension/search', 'SimExtensionController@search');
+    Route::get('gsu/sim-extension/show', 'SimExtensionController@show');
+    Route::get('gsu/sim-extension/edit', 'SimExtensionController@edit');
+    Route::post('gsu/sim-extension/save', 'SimExtensionController@save');
+    Route::get('gsu/sim-extension/delete', 'SimExtensionController@delete');
 });

@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class SimModel extends Model {
+class SimExtensionModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
@@ -98,12 +98,10 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
 
-        $pianotariffario = Input::get('pianotariffario');
-        $promovoce = Input::get('promovoce');
         $ntelefono = Input::get('ntelefono');
+        $noriginale = Input::get('noriginale');
         $ccid = Input::get('ccid');
         $pianotariffario = Input::get('pianotariffario');
-        $nbreve = Input::get('nbreve');
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
@@ -197,8 +195,8 @@ EOF;
             $sql .= " AND SIM.CCID like '%$ccid%'";
         if(!empty($pianotariffario))
             $sql .= " AND SIM.PIANOTARIFFARIO like '%$pianotariffario%'";
-        if(!empty($nbreve))
-            $sql .= " AND SIM.NBREVE like '%$nbreve%'";
+        if(!empty($noriginale))
+            $sql .= " AND SIM.NORIGINALE like '%$noriginale%'";
 
         if(!empty($eliminati))
             $sql .= " AND SIM.ELIMINATO = 1";
@@ -253,11 +251,11 @@ EOF;
         $promovoce = Input::get('promovoce');
         $nbreve = Input::get('nbreve');
         $restrisioni = Input::get('restrizioni');
-        $pianotariffario = Input::get('pianotariffario');
+        $noriginale = Input::get('noriginale');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI,PIANOTARIFFARIO, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni','$pianotariffario',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI,NORIGINALE ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni','$noriginale',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -272,7 +270,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',PIANOTARIFFARIO='$pianotariffario',ELIMINATO=$eliminato WHERE IDSIM=$id");
+                DB::update("UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',NORIGINALE='$noriginale',ELIMINATO=$eliminato WHERE IDSIM=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
@@ -282,26 +280,15 @@ EOF;
         }
     }
 
-    public function getPianoTariffario($canone){
-        $sql = "SELECT NOME_PIANO FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE CANONE ='" . $canone . "' ORDER BY NOME_PIANO";
+    public function getPianoTariffarioExtension(){
+        $sql = "SELECT NOME_PIANO FROM dbo.SIM_PIANI_TARIFFARI_EXTENSION ORDER BY NOME_PIANO";
         $piani  = DB::select($sql);
-        $pianotariffario = "";
-        foreach($piani as $row)
-            $pianotariffario = $row["NOME_PIANO"];
-
-        $sql = "SELECT * FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE NOME_PIANO ='" . strtoupper($pianotariffario) . "' ORDER BY NOME_PIANO";
-        $notes  = DB::select($sql);
-        foreach($notes as $row)
-            $note = $row["NOTE_PIANO"];
-        $piano['NOME_PIANO'] = $pianotariffario;
-        $piano['NOTE_PIANO'] = $note;
+        $piano['NOME_PIANO'] = $piani;
         return $piano;
     }
 
-
-
     public function checkAddNew(){
-        $model = new SimModel();
+        $model = new SimExtensionModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
