@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimAssistenzaTecnicaController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/SimAssistenzaTecnicaModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica-detail.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gsu.iws" />
@@ -31,19 +37,74 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.11111" vertical-offset="7197" max-vertical-offset="7920">
-              <caret line="433" column="71" selection-start-line="433" selection-start-column="71" selection-end-line="433" selection-end-column="71" />
+            <state vertical-scroll-proportion="-22.11111" vertical-offset="7341" max-vertical-offset="8064">
+              <caret line="441" column="83" selection-start-line="441" selection-start-column="83" selection-end-line="441" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="menu.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8815166" vertical-offset="1296" max-vertical-offset="2430">
-              <caret line="103" column="70" selection-start-line="103" selection-start-column="70" selection-end-line="103" selection-end-column="70" />
+            <state vertical-scroll-proportion="-21.333334" vertical-offset="1296" max-vertical-offset="2430">
+              <caret line="104" column="71" selection-start-line="104" selection-start-column="71" selection-end-line="104" selection-end-column="71" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimAssistenzaTecnicaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimAssistenzaTecnicaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.296296" vertical-offset="739" max-vertical-offset="1890">
+              <caret line="55" column="90" selection-start-line="55" selection-start-column="68" selection-end-line="55" selection-end-column="90" />
+              <folding>
+                <element signature="e#46#82#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimAssistenzaTecnicaModel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/SimAssistenzaTecnicaModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2612903" vertical-offset="4266" max-vertical-offset="5544">
+              <caret line="250" column="32" selection-start-line="250" selection-start-column="32" selection-end-line="250" selection-end-column="32" />
+              <folding>
+                <marker date="1435153710961" expanded="true" signature="7638:7690" placeholder="UPDATE gsu.d..." />
+                <marker date="1435153710961" expanded="true" signature="7744:7814" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435153710961" expanded="true" signature="8215:8300" placeholder="UPDATE gsu.d..." />
+                <marker date="1435153710961" expanded="true" signature="9221:9543" placeholder="INSERT INTO ..." />
+                <marker date="1435153710961" expanded="true" signature="9573:9643" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435153710961" expanded="true" signature="9902:9987" placeholder="UPDATE gsu.d..." />
+                <marker date="1435153710961" expanded="true" signature="10063:10148" placeholder="INSERT INTO ..." />
+                <marker date="1435153710961" expanded="true" signature="10225:10547" placeholder="UPDATE gsu.d..." />
+                <marker date="1435153710961" expanded="true" signature="10682:10775" placeholder="UPDATE gsu.d..." />
+                <marker date="1435153710961" expanded="true" signature="10977:11037" placeholder="SELECT * FRO..SIM_OPZIONI_INTERCOM..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sim-assistenza-tecnica.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.0" vertical-offset="0" max-vertical-offset="2556">
+              <caret line="88" column="39" selection-start-line="88" selection-start-column="39" selection-end-line="88" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sim-assistenza-tecnica-detail.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica-detail.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.11111" vertical-offset="123" max-vertical-offset="1728">
+              <caret line="31" column="53" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="53" />
+              <folding>
+                <element signature="e#980#1005#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-10.0" vertical-offset="54" max-vertical-offset="1584">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <caret line="18" column="596" selection-start-line="18" selection-start-column="596" selection-end-line="18" selection-end-column="596" />
               <folding />
             </state>
           </provider>
@@ -91,16 +152,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sim-opzione-dati.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-opzione-dati/sim-opzione-dati.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.962963" vertical-offset="1198" max-vertical-offset="2628">
-              <caret line="92" column="35" selection-start-line="92" selection-start-column="35" selection-end-line="92" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="sim-opzione-dati-detail.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-opzione-dati/sim-opzione-dati-detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -119,10 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/activesync/activesync.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/ActivesyncModel.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ActivesyncController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/activesync/activesync-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/AdslModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiMobileModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/ApparatiNetworkingModel.php" />
@@ -160,16 +207,20 @@
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimTassaGovernativaController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-tassa-governativa/sim-tassa-governativa.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-tassa-governativa/sim-tassa-governativa-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimOpzioniDatiController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-opzione-dati/sim-opzione-dati.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimOpzioneDatiController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-opzione-dati/sim-opzione-dati-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/SimOpzioneDatiModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/SimOpzioneDatiEsteroModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimOpzioneDatiEsteroController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimAssistenzaTecnicaController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica-detail.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/SimAssistenzaTecnicaModel.php" />
       </list>
     </option>
   </component>
@@ -467,6 +518,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sim-assistenza-tecnica" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -686,24 +775,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/VideoconferenceModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="124.59259" vertical-offset="3364" max-vertical-offset="4302">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-            <marker date="1435073774131" expanded="true" signature="-1:-1" placeholder="UPDATE gsu.d..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/VoicegateModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="131.44444" vertical-offset="3549" max-vertical-offset="4500">
@@ -1144,7 +1215,7 @@
         <state vertical-scroll-proportion="9.888889" vertical-offset="1257" max-vertical-offset="1890">
           <caret line="55" column="66" selection-start-line="55" selection-start-column="45" selection-end-line="55" selection-end-column="66" />
           <folding>
-            <element signature="e#46#82#0#PHP" expanded="true" />
+            <element signature="e#46#82#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1210,27 +1281,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.11111" vertical-offset="7197" max-vertical-offset="7920">
-          <caret line="433" column="71" selection-start-line="433" selection-start-column="71" selection-end-line="433" selection-end-column="71" />
+        <state vertical-scroll-proportion="-10.0" vertical-offset="54" max-vertical-offset="1584">
+          <caret line="18" column="596" selection-start-line="18" selection-start-column="596" selection-end-line="18" selection-end-column="596" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Canoni.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="54" max-vertical-offset="1584">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="-22.11111" vertical-offset="7341" max-vertical-offset="8064">
+          <caret line="441" column="83" selection-start-line="441" selection-start-column="83" selection-end-line="441" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8815166" vertical-offset="1296" max-vertical-offset="2430">
-          <caret line="103" column="70" selection-start-line="103" selection-start-column="70" selection-end-line="103" selection-end-column="70" />
+        <state vertical-scroll-proportion="-21.333334" vertical-offset="1296" max-vertical-offset="2430">
+          <caret line="104" column="71" selection-start-line="104" selection-start-column="71" selection-end-line="104" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimAssistenzaTecnicaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.296296" vertical-offset="739" max-vertical-offset="1890">
+          <caret line="55" column="90" selection-start-line="55" selection-start-column="68" selection-end-line="55" selection-end-column="90" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.0" vertical-offset="0" max-vertical-offset="2556">
+          <caret line="88" column="39" selection-start-line="88" selection-start-column="39" selection-end-line="88" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/sim-assistenza-tecnica/sim-assistenza-tecnica-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.11111" vertical-offset="123" max-vertical-offset="1728">
+          <caret line="31" column="53" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="53" />
+          <folding>
+            <element signature="e#980#1005#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/SimAssistenzaTecnicaModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2612903" vertical-offset="4266" max-vertical-offset="5544">
+          <caret line="250" column="32" selection-start-line="250" selection-start-column="32" selection-end-line="250" selection-end-column="32" />
+          <folding>
+            <marker date="1435153710961" expanded="true" signature="7638:7690" placeholder="UPDATE gsu.d..." />
+            <marker date="1435153710961" expanded="true" signature="7744:7814" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435153710961" expanded="true" signature="8215:8300" placeholder="UPDATE gsu.d..." />
+            <marker date="1435153710961" expanded="true" signature="9221:9543" placeholder="INSERT INTO ..." />
+            <marker date="1435153710961" expanded="true" signature="9573:9643" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435153710961" expanded="true" signature="9902:9987" placeholder="UPDATE gsu.d..." />
+            <marker date="1435153710961" expanded="true" signature="10063:10148" placeholder="INSERT INTO ..." />
+            <marker date="1435153710961" expanded="true" signature="10225:10547" placeholder="UPDATE gsu.d..." />
+            <marker date="1435153710961" expanded="true" signature="10682:10775" placeholder="UPDATE gsu.d..." />
+            <marker date="1435153710961" expanded="true" signature="10977:11037" placeholder="SELECT * FRO..SIM_OPZIONI_INTERCOM..." />
+          </folding>
         </state>
       </provider>
     </entry>

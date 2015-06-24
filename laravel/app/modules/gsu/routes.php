@@ -432,4 +432,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-opzione-dati/edit', 'SimOpzioneDatiController@edit');
     Route::post('gsu/sim-opzione-dati/save', 'SimOpzioneDatiController@save');
     Route::get('gsu/sim-opzione-dati/delete', 'SimOpzioneDatiController@delete');
+
+    //SIM OPZIONE DATI
+    Route::get('gsu/sim-assistenza-tecnica', 'SimAssistenzaTecnicaController@main');
+    Route::get('gsu/sim-assistenza-tecnica/search', 'SimAssistenzaTecnicaController@search');
+    Route::get('gsu/sim-assistenza-tecnica/show', 'SimAssistenzaTecnicaController@show');
+    Route::get('gsu/sim-assistenza-tecnica/edit', 'SimAssistenzaTecnicaController@edit');
+    Route::post('gsu/sim-assistenza-tecnica/save', 'SimAssistenzaTecnicaController@save');
+    Route::get('gsu/sim-assistenza-tecnica/delete', 'SimAssistenzaTecnicaController@delete');
 });
