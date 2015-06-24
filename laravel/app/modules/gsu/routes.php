@@ -392,4 +392,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-extension/edit', 'SimExtensionController@edit');
     Route::post('gsu/sim-extension/save', 'SimExtensionController@save');
     Route::get('gsu/sim-extension/delete', 'SimExtensionController@delete');
+
+    //SIM FAX DATI
+    Route::get('gsu/sim-fax-dati', 'SimFaxDatiController@main');
+    Route::get('gsu/sim-fax-dati/search', 'SimFaxDatiController@search');
+    Route::get('gsu/sim-fax-dati/show', 'SimFaxDatiController@show');
+    Route::get('gsu/sim-fax-dati/edit', 'SimFaxDatiController@edit');
+    Route::post('gsu/sim-fax-dati/save', 'SimFaxDatiController@save');
+    Route::get('gsu/sim-fax-dati/delete', 'SimFaxDatiController@delete');
 });
