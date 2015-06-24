@@ -424,4 +424,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-tassa-governativa/edit', 'SimTassaGovernativaController@edit');
     Route::post('gsu/sim-tassa-governativa/save', 'SimTassaGovernativaController@save');
     Route::get('gsu/sim-tassa-governativa/delete', 'SimTassaGovernativaController@delete');
+
+    //SIM OPZIONE DATI
+    Route::get('gsu/sim-opzione-dati', 'SimOpzioneDatiController@main');
+    Route::get('gsu/sim-opzione-dati/search', 'SimOpzioneDatiController@search');
+    Route::get('gsu/sim-opzione-dati/show', 'SimOpzioneDatiController@show');
+    Route::get('gsu/sim-opzione-dati/edit', 'SimOpzioneDatiController@edit');
+    Route::post('gsu/sim-opzione-dati/save', 'SimOpzioneDatiController@save');
+    Route::get('gsu/sim-opzione-dati/delete', 'SimOpzioneDatiController@delete');
 });
