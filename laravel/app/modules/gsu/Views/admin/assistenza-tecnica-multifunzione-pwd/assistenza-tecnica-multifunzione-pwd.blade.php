@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/gsu/apparati-networking-pwd/search')}}" name="form_search">
+            <form method="GET" action="{{url('/gsu/assistenza-tecnica-multifunzione-pwd/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
@@ -62,8 +62,8 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="stato_left btn-small edit" href="{{url('/gsu/apparati-networking-pwd/edit')."?apparato_id=".$req['APPARATO_ID']."&id=".$req['APPARATO_ID']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDAPPARATIPWD'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/assistenza-tecnica-multifunzione-pwd/edit')."?apparato_id=".$req['MULTIFUNZIONE_ID']."&id=".$req['MULTIFUNZIONE_ID']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['MULTIFUNZIONE_ID'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
@@ -78,7 +78,7 @@
 
             <tfoot>
             <tr>
-                <th colspan="8"><a class="btn btn-small edit" href="{{url('/gsu/apparati-networking-pwd/edit')."?id=".(isset($req['APPARATO_ID']) ? $req['APPARATO_ID'] : Input::get('apparato_id') )."&apparato_id=".(isset($req['APPARATO_ID']) ? $req['APPARATO_ID'] : Input::get('apparato_id') )."&isnew=1&manutenzione=".(isset($req['MANUTENZIONE']) ? $req['MANUTENZIONE'] : "" )}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="8"><a class="btn btn-small edit" href="{{url('/gsu/assistenza-tecnica-multifunzione-pwd/edit')."?id=".(isset($req['MULTIFUNZIONE_ID']) ? $req['MULTIFUNZIONE_ID'] : Input::get('apparato_id') )."&apparato_id=".(isset($req['MULTIFUNZIONE_ID']) ? $req['MULTIFUNZIONE_ID'] : Input::get('apparato_id') )."&isnew=1&manutenzione=".(isset($req['MANUTENZIONE']) ? $req['MANUTENZIONE'] : "" )}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
     </table>
@@ -108,7 +108,7 @@
         $(document).ready(function () {
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/apparati-networking-pwd/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
+                $.get( "{{url('/gsu/assistenza-tecnica-multifunzione-pwd/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");

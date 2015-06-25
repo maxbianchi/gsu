@@ -249,6 +249,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/assistenza-tecnica-multifunzione/save', 'AssistenzaMultifunzioneController@save');
     Route::get('gsu/assistenza-tecnica-multifunzione/delete', 'AssistenzaMultifunzioneController@delete');
 
+    //ASSISTENZA TECNICA MULTIFUNZIONE PWD
+    Route::get('gsu/assistenza-tecnica-multifunzione-pwd', 'AssistenzaMultifunzionePwdController@main');
+    Route::get('gsu/assistenza-tecnica-multifunzione-pwd/search', 'AssistenzaMultifunzionePwdController@search');
+    Route::get('gsu/assistenza-tecnica-multifunzione-pwd/show', 'AssistenzaMultifunzionePwdController@show');
+    Route::get('gsu/assistenza-tecnica-multifunzione-pwd/edit', 'AssistenzaMultifunzionePwdController@edit');
+    Route::post('gsu/assistenza-tecnica-multifunzione-pwd/save', 'AssistenzaMultifunzionePwdController@save');
+    Route::get('gsu/assistenza-tecnica-multifunzione-pwd/delete', 'AssistenzaMultifunzionePwdController@delete');
+
     //ASSISTENZA TECNICA CONSUMABILE NERO
     Route::get('gsu/assistenza-tecnica-consumabile-nero', 'AssistenzaTecnicaConsumabileNeroController@main');
     Route::get('gsu/assistenza-tecnica-consumabile-nero/search', 'AssistenzaTecnicaConsumabileNeroController@search');
