@@ -169,6 +169,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/apparati-networking/save', 'ApparatiNetworkingController@save');
     Route::get('gsu/apparati-networking/delete', 'ApparatiNetworkingController@delete');
 
+    //APPARATI NETWORKING PWD
+    Route::get('gsu/apparati-networking-pwd', 'ApparatiNetworkingPwdController@main');
+    Route::get('gsu/apparati-networking-pwd/search', 'ApparatiNetworkingPwdController@search');
+    Route::get('gsu/apparati-networking-pwd/show', 'ApparatiNetworkingPwdController@show');
+    Route::get('gsu/apparati-networking-pwd/edit', 'ApparatiNetworkingPwdController@edit');
+    Route::post('gsu/apparati-networking-pwd/save', 'ApparatiNetworkingPwdController@save');
+    Route::get('gsu/apparati-networking-pwd/delete', 'ApparatiNetworkingPwdController@delete');
+
     //MULTIFUNZIONE
     Route::get('gsu/multifunzione', 'MultifunzioneController@main');
     Route::get('gsu/multifunzione/search', 'MultifunzioneController@search');

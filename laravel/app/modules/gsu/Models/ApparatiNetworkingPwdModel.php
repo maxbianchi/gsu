@@ -6,10 +6,12 @@ use Session;
 use DB;
 
 
-class HousingModel extends Model {
+class ApparatiNetworkingPwdModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
+        $prodotto = Input::get('prodotto');
+        $id = Input::get('apparato_id');
 
         $sql = <<<EOF
         SELECT
@@ -31,27 +33,30 @@ class HousingModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-	        HOUSING.IDHOUSING,
-			HOUSING.CODICE_R,
-			HOUSING.TIPO,
-			HOUSING.SERVER_,
-			HOUSING.LOGIN,
-			HOUSING.PASSWORD,
-			HOUSING.SERIALE,
-			HOUSING.CODICE_R,
-			HOUSING.ELIMINATO
-			FROM gsu.dbo.HOUSING
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
+            APPARATIPWD.IDAPPARATIPWD,
+            APPARATIPWD.APPARATO_ID,
+            APPARATIPWD.ACCESSO,
+            APPARATIPWD.USERNAME,
+            APPARATIPWD.PWD,
+            APPARATIPWD.PWDPRIVILEGIATA,
+            APPARATIPWD.ELIMINATO
+			FROM		gsu.dbo.APPARATI
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON APPARATI.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(APPARATI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(APPARATI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(APPARATI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
             LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE HOUSING.ELIMINATO = 0
+            FULL OUTER JOIN dbo.APPARATIPWD ON dbo.APPARATI.ID = dbo.APPARATIPWD.APPARATO_ID
+            WHERE APPARATIPWD.ELIMINATO = 0
 EOF;
+
+        $sql .= " AND APPARATIPWD.APPARATO_ID = $id";
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
 
+        if(!empty($prodotto))
+            $sql .= " AND APPARATI.PRODOTTO like '%$prodotto%'";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -61,15 +66,17 @@ EOF;
 
     public function getFilteredRequest(){
 
-        $id = Input::get('id');
         $cliente = Input::get('cliente');
         $cliente_finale = Input::get('cliente_finale');
         $ubicazione = Input::get('ubicazione');
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $pagina = Input::get('pagina');
+        $marca = Input::get('marca');
+        $modello = Input::get('modello');
+        $seriale = Input::get('seriale');
         $eliminati = Input::get('eliminati');
+        $id = Input::get('apparato_id');
 
         $sql = <<<EOF
             SELECT
@@ -106,27 +113,27 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			HOUSING.IDHOUSING,
-			HOUSING.CODICE_R,
-			HOUSING.TIPO,
-			HOUSING.SERVER_,
-			HOUSING.LOGIN,
-			HOUSING.PASSWORD,
-			HOUSING.SERIALE,
-			HOUSING.GESTIONE,
-			HOUSING.CODICE_R,
-			HOUSING.ELIMINATO
-			FROM gsu.dbo.HOUSING
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
+            APPARATIPWD.IDAPPARATIPWD,
+            APPARATIPWD.APPARATO_ID,
+            APPARATIPWD.ACCESSO,
+            APPARATIPWD.USERNAME,
+            APPARATIPWD.PWD,
+            APPARATIPWD.PWDPRIVILEGIATA,
+            APPARATIPWD.ELIMINATO
+			FROM		gsu.dbo.APPARATI
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON APPARATI.codice_r				= richieste.MANUTENZIONE
+		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(APPARATI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(APPARATI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(APPARATI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+			FULL OUTER JOIN dbo.APPARATIPWD ON dbo.APPARATI.ID = dbo.APPARATIPWD.APPARATO_ID
             WHERE 1=1
 EOF;
 
+        $sql .= " AND APPARATIPWD.APPARATO_ID = $id";
+
         if(!empty($id))
-            $sql .= " AND HOUSING.IDHOUSING = '$id'";
+            $sql .= " AND APPARATI.ID = '$id'";
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -145,13 +152,17 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        if(!empty($pagina))
-            $sql .= " AND HOUSING.PAGINA like '%$pagina%'";
+        if(!empty($marca))
+            $sql .= " AND APPARATI.MARCA like '%$marca%'";
+        if(!empty($modello))
+            $sql .= " AND APPARATI.MODELLO like '%$modello%'";
+        if(!empty($seriale))
+            $sql .= " AND APPARATI.SN like '%$seriale%'";
 
         if(!empty($eliminati))
-            $sql .= " AND HOUSING.ELIMINATO = 1";
+            $sql .= " AND APPARATIPWD.ELIMINATO = 1";
         else
-            $sql .= " AND HOUSING.ELIMINATO = 0";
+            $sql .= " AND APPARATIPWD.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -165,41 +176,43 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.HOUSING SET ELIMINATO=1 WHERE IDHOUSING='$id'";
+            $sql = "UPDATE gsu.dbo.APPARATIPWD SET ELIMINATO=1 WHERE IDAPPARATIPWD='$id'";
             DB::update($sql);
-
-            $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
-            $richieste_evase = DB::select($sql);
-            if(count($richieste_evase) > 0){
-                $richieste_evase = $richieste_evase[0];
-                $qta = $richieste_evase['QUANTITA'] - 1;
-                //if($qta == 0)
-                    //DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                //else
-                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
-            }
-
-
-            }
+        }
     }
 
 
     public function saveData(){
         $id = Input::get('id_tbl');
-        $seriale = Input::get('seriale');
-        $tipo = Input::get('tipo');
-        $server = Input::get('server');
-        $gestione = Input::get('gestione');
-        $manutenzione = Input::get('manutenzione');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
+        $manutenzione = Input::get('manutenzione');
+
+        $soggetto = Input::get('cliente');
+        $cliente = Input::get('cliente_finale');
+        $destinatarioabituale = Input::get('ubicazione_impianto');
+
+        $apparato_id = Input::get('apparato_id');
+        $accesso = Input::get('accesso');
+        $username = Input::get('username');
+        $pwd = Input::get('pwd');
+        $pwdprivilegiata = Input::get('pwdprivilegiata');
+
+
+
+
+
+
+
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.HOUSING (Codice_R, SERIALE, TIPO, SERVER_, GESTIONE, ELIMINATO) VALUES ('$manutenzione','$seriale','$tipo','$server','$gestione',$eliminato)");
+                DB::insert("insert into APPARATIPWD (APPARATO_ID,ACCESSO,USERNAME,PWD,PWDPRIVILEGIATA,ELIMINATO) values ('$apparato_id','$accesso','$username','$pwd','$pwdprivilegiata',$eliminato)");
+
+
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
-                if(count($richieste_evase) > 0) {
+                if(count($richieste_evase) > 0 && !empty($manutenzione)) {
                     $richieste_evase = $richieste_evase[0];
                     $qta = $richieste_evase['QUANTITA'] + 1;
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
@@ -209,11 +222,10 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.HOUSING SET Codice_R='$manutenzione', SERIALE='$seriale', TIPO='$tipo',SERVER_='$server', GESTIONE='$gestione', ELIMINATO=$eliminato WHERE IDHOUSING=$id");
-                if($stato_precedente == 1 && $eliminato == 0){
-                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
-                }
-
+                DB::update("Update APPARATIPWD Set APPARATO_ID='$apparato_id',ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata', ELIMINATO=$eliminato WHERE IDAPPARATIPWD=$id");
+            if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
+                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
+            }
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -221,7 +233,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new HousingModel();
+        $model = new ApparatiNetworkingModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
@@ -238,5 +250,46 @@ EOF;
         }
     }
 
+    public function getUrlFiltering($SN){
+        $sql = "SELECT * FROM URLFILTERING WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getSmartNet($SN){
+        $sql = "SELECT * FROM SMARTNET WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getVpn($SN){
+        $sql = "SELECT * FROM VPN WHERE (SEDE1= '" . $SN . "' OR SEDE2='" . $SN . "' OR SEDE3='" . $SN . "' OR SEDE4='" . $SN . "' OR SEDE5='" . $SN . "')  AND ELIMINATO = 0";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getIpMultimedia($SN){
+        $sql = "SELECT * FROM IPMULTIMEDIA WHERE (SN= '" . $SN . "')  AND ELIMINATO = 0";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
+    public function getGestioneApparati($SN){
+        $sql = "SELECT * FROM GESTIONE_APPARATI WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
+
 }
+
 

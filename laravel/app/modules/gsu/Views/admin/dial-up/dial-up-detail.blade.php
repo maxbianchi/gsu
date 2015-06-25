@@ -94,6 +94,27 @@
         </div>
     </div>
 
+
+<table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+    <tr>
+        <td>
+            <a href="{{url('/gsu/apparati-networking/search')."?prodotto=Firewall&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP SAFE</a>
+        </td>
+        <td>
+            <a href="{{url('/gsu/apparati-networking/search')."?prodotto=Router&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ROUTING</a>
+        </td>
+        <td>
+            <a href="{{url('/gsu/apparati-networking/search')."?prodotto=Networking&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">NETWORKING</a>
+        </td>
+        <td>
+            <a href="{{url('/gsu/unigate/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">UNIGATE</a>
+        </td>
+        <td>
+            <a href="{{url('/gsu/ipstatici/search')."?prodotto=Firewall&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP STATICI</a>
+        </td>
+    </tr>
+</table>
+
 @endsection
 
 

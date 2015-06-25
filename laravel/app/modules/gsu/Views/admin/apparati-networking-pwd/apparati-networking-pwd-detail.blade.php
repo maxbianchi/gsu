@@ -18,35 +18,37 @@
         @include('gsu::varie.cliente-details')
     @endif
 
+
+
+
+    <form action="#" method="post" id="form">
+
     <br><br>
-    <fieldset class="dettaglio_dati">
+
         <legend align="right"></legend>
         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
-            <form action="#" method="post" id="form">
+
                 <tr>
-                    <td>COD MANUTENZIONE </td>
-                    <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
+                    <td>ACCESSO </td>
+                    <td><input type="text" name="accesso" value="{{$request['ACCESSO'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>MAC ADDRESS</td>
-                    <td><input type="text" name="mac_address" value="{{$request['MAC_ADDRESS'] or ""}}"></td>
+                    <td>USERNAME</td>
+                    <td><input type="text" name="username" value="{{$request['USERNAME'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>MODELLO</td>
-                    <td><input type="text" name="modello" value="{{$request['MODELLO'] or ""}}"></td>
+                    <td>PWD</td>
+                    <td><input type="text" name="pwd" value="{{$request['PWD'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>SERIALE</td>
-                    <td><input type="text" name="sn" value="{{$request['SN'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>ACTIVATION KEY</td>
-                    <td><input type="text" name="activation_key" value="{{$request['ACTIVATION_KEY'] or ""}}"></td>
+                    <td>PWD PRIVILEGIATA</td>
+                    <td><input type="text" name="pwdprivilegiata" value="{{$request['PWDPRIVILEGIATA'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
-                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDURLFILTERING'] or ""}}">
+                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDAPPARATIPWD'] or ""}}">
+                        <input type="hidden" id="apparato_id" name="apparato_id" value="{{Input::get('id')}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
                         @if($btn == 'save')
@@ -58,10 +60,8 @@
                         @endif
                     </td>
                 </tr>
-
-            </form>
         </table>
-        
+    </form>
     <hr>
 
     <div id="msg" class="modal fade" style="z-index:99999;">
@@ -78,19 +78,7 @@
         </div>
     </div>
 
-        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
-            <tr>
-                <td>
-                    <a href="{{url('/gsu/apparati-networking/search')."?prodotto=Firewall&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP SAFE</a>
-                </td>
-                <td>
-                    <a href="{{url('/gsu/apparati-networking/search')."?prodotto=Router&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ROUTING</a>
-                </td>
-                <td>
-                    <a href="{{url('/gsu/apparati-networking/search')."?prodotto=Networking&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">NETWORKING</a>
-                </td>
-            </tr>
-        </table>
+    <br><br>
 
 @endsection
 
@@ -105,7 +93,7 @@
             @endif
 
             $("#btn_salva").click(function(){
-                         $.post( "{{url('/gsu/url-filtering/save')}}", $("form#form").serialize())
+                         $.post( "{{url('/gsu/apparati-networking-pwd/save')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
                                     $("#btn_salva").hide();

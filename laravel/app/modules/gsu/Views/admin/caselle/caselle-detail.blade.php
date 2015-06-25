@@ -177,6 +177,21 @@
         </div>
     </div>
 
+        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+            <tr>
+                <td>
+                    <a href="{{url('/gsu/search/search')."?canone=CAN-G104A&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">MAIL SERVER</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/activesync/search')."?canone=CAN-E132&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ACTIVESYNC</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/outlookconnector/search')."?canone=CAN-E131&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">OUTLOOK CONNECTOR</a>
+                </td>
+            </tr>
+        </table>
+
+
 @endsection
 
 

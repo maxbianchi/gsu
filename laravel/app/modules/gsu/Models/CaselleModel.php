@@ -191,7 +191,7 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
             $sql = "UPDATE gsu.dbo.CASELLE SET ELIMINATO=1 WHERE IDCASELLA='$id'";
-            DB::delete($sql);
+            DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
             $richieste_evase = DB::select($sql);

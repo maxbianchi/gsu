@@ -6428,3 +6428,7 @@ table.adduser tr td{
 .eliminato{
     text-decoration: line-through;
 }
+
+table.servizi_collegati tr td {
+    padding: 5px !important;
+}

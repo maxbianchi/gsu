@@ -78,7 +78,20 @@
         </div>
     </div>
 
-@endsection
+
+        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+            <tr>
+                <td>
+                    <a href="{{url('/gsu/assistenza-tecnica-hw/search')."?canone=CAN-G10&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ASSISTENZA TECNICA HW</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/hardware/search')."?sn=".$request['SERIALE']."&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">HARDWARE</a>
+                </td>
+            </tr>
+        </table>
+
+
+        @endsection
 
 
 

@@ -197,7 +197,7 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
             $sql = "UPDATE gsu.dbo.MPLSDIRECTACCESS SET ELIMINATO=1 WHERE IDMPLSDIRECTACCESS='$id'";
-            DB::delete($sql);
+            DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
             $richieste_evase = DB::select($sql);

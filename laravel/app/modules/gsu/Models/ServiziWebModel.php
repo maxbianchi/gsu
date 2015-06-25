@@ -168,7 +168,7 @@ EOF;
 
         if(!empty($id)) {
             $sql = "UPDATE gsu.dbo.SERVIZIWEB SET ELIMINATO=1 WHERE IDSERVIZIOWEB='$id'";
-            DB::delete($sql);
+            DB::update($sql);
             }
     }
 

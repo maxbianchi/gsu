@@ -170,7 +170,7 @@ EOF;
 
         if(!empty($id)) {
             $sql = "UPDATE gsu.dbo.URLFILTERING SET ELIMINATO=1 WHERE IDURLFILTERING='$id'";
-            DB::delete($sql);
+            DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
             $richieste_evase = DB::select($sql);

@@ -215,7 +215,7 @@ EOF;
 
         if(!empty($id)) {
             $sql = "UPDATE gsu.dbo.WEBHAT SET ELIMINATO=1 WHERE IDWEBHAT='$id'";
-            DB::delete($sql);
+            DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
             $richieste_evase = DB::select($sql);

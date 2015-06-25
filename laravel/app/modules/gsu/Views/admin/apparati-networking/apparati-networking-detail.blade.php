@@ -194,6 +194,48 @@
         </div>
     </div>
 
+    <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+        <tr>
+            <td>
+                <a href="{{url('/gsu/dial-up/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIAL UP</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/adsl/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ADSL ACCESS</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/direct-access/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIRECT ACCESS</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/mpls/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">MPLS ADSL ACCESS</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/mpls-direct-access/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">MPLS DIRECT ACCESS</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/url-filtering/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">URL FILTERING</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/smartnet/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">SMART NET</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/gestione-apparati/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">GESTIONE APPARATO</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{url('/gsu/vpn/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">VPN</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/ipmultimedia/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP MULTIMEDIA</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/apparati-networking-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['ID']."&id=".$request['ID']}}">PASSWORD APPARATI NETWORKING</a>
+            </td>
+        </tr>
+    </table>
+
+    <br><br>
+
 @endsection
 
 

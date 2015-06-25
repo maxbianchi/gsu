@@ -67,6 +67,20 @@
         </div>
     </div>
 
+        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+            <tr>
+                <td>
+                    <a href="{{url('/gsu/search')."?canone=CAN-G104&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">MAIL SERVER</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/caselle/search')."?canone=CAN-E06&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&email=".$request['EMAIL']}}">CASELLE POSTA</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/caselle/search')."?canone=CAN-E08&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&email=".$request['EMAIL']}}">RELAY POSTA</a>
+                </td>
+            </tr>
+        </table>
+
 @endsection
 
 
