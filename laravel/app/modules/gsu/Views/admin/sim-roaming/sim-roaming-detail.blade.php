@@ -76,6 +76,9 @@
         </div>
     </div>
 
+        @if(View::exists('gsu::varie.sim-links'))
+            @include('gsu::varie.sim-links')
+        @endif
 @endsection
 
 

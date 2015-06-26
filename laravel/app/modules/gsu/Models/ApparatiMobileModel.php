@@ -10,6 +10,7 @@ class ApparatiMobileModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
+        $ntelefono = Input::get('ntelefono');
 
         $sql = <<<EOF
         SELECT
@@ -56,6 +57,8 @@ EOF;
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+        if(!empty($ntelefono))
+            $sql .= " AND APPARATI_MOBILE.NTELEFONO like '%$ntelefono%'";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -76,6 +79,7 @@ EOF;
         $modello = Input::get('modello');
         $imei = Input::get('imei');
         $eliminati = Input::get('eliminati');
+        $ntelefono = Input::get('ntelefono');
 
         $sql = <<<EOF
             SELECT
@@ -161,6 +165,9 @@ EOF;
             $sql .= " AND APPARATI_MOBILE.SN like '%$imei%'";
         if(!empty($modello))
             $sql .= " AND APPARATI_MOBILE.VERSIONE like '%$modello%'";
+        if(!empty($ntelefono))
+            $sql .= " AND APPARATI_MOBILE.NTELEFONO like '%$ntelefono%'";
+
 
 
         if(!empty($eliminati))
