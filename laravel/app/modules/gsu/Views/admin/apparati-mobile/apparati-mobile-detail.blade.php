@@ -148,6 +148,15 @@
         </div>
     </div>
 
+    <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+         <tr>
+            <td>
+                <a href="{{url('/gsu/sim-assistenza-tecnica/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&imei=".$request['SN']}}">MOBILE ASSISTENZA TECNICA</a>
+            </td>
+        </tr>
+    </table>
+
+
 @endsection
 
 

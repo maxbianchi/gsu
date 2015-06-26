@@ -130,6 +130,23 @@
         </div>
     </div>
 
+
+    <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+        <tr>
+            <td>
+                <a href="{{url('/gsu/centralini-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDCENTRALINO']."&id=".$request['IDCENTRALINO']}}">PASSWORD MULTIFUNZIONE</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{url('/gsu/centralini-componenti/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">COMPONENTI CENTRALINO</a>
+            </td>
+            <td>
+                <a href="{{url('/gsu/assistenza-centralini/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&seriale=".$request['SERIALE']}}">ASSISTENZA CENTRALINO</a>
+            </td>
+        </tr>
+    </table>
+
 @endsection
 
 

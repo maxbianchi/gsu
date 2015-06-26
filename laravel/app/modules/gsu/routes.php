@@ -193,6 +193,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/centralini/save', 'CentraliniController@save');
     Route::get('gsu/centralini/delete', 'CentraliniController@delete');
 
+    //CENTRALINI PWD
+    Route::get('gsu/centralini-pwd', 'CentraliniPwdController@main');
+    Route::get('gsu/centralini-pwd/search', 'CentraliniPwdController@search');
+    Route::get('gsu/centralini-pwd/show', 'CentraliniPwdController@show');
+    Route::get('gsu/centralini-pwd/edit', 'CentraliniPwdController@edit');
+    Route::post('gsu/centralini-pwd/save', 'CentraliniPwdController@save');
+    Route::get('gsu/centralini-pwd/delete', 'CentraliniPwdController@delete');
+
     //APPARATI MOBILE
     Route::get('gsu/apparati-mobile', 'ApparatiMobileController@main');
     Route::get('gsu/apparati-mobile/search', 'ApparatiMobileController@search');

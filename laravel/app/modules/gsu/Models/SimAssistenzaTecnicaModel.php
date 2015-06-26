@@ -100,7 +100,7 @@ EOF;
         $data_contratto = Input::get('data_contratto');
 
         $ntelefono = Input::get('ntelefono');
-        $imei = Input::get('seriale_tel');
+        $imei = Input::get('imei');
         $pianotariffario = Input::get('pianotariffario');
         $opzintercom = Input::get('opzintercom');
         $eliminati = Input::get('eliminati');
