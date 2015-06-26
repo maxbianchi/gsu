@@ -170,20 +170,7 @@ EOF;
         if(!empty($id)) {
             $sql = "UPDATE gsu.dbo.CENTRALINI_PASSWORD SET ELIMINATO=1 WHERE IDPASSWORD='$id'";
             DB::update($sql);
-
-            $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
-            $richieste_evase = DB::select($sql);
-            if(count($richieste_evase) > 0 && !empty($manutenzione)){
-                $richieste_evase = $richieste_evase[0];
-                $qta = $richieste_evase['QUANTITA'] - 1;
-                /*if($qta == 0)
-                    DB::delete("DELETE FROM gsu.dbo.RICHIESTE_EVASE where CODICE_R = '$manutenzione'");
-                else*/
-                DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
             }
-
-
-        }
     }
 
 

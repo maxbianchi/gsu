@@ -189,13 +189,6 @@ EOF;
         $pwd = Input::get('pwd');
         $pwdprivilegiata = Input::get('pwdprivilegiata');
 
-
-
-
-
-
-
-
         try {
             if(empty($id)) {
                 DB::insert("insert into MULTIFUNZIONEPWD (MULTIFUNZIONE_ID,ACCESSO,USERNAME,PWD,PWDPRIVILEGIATA,ELIMINATO) values ('$apparato_id','$accesso','$username','$pwd','$pwdprivilegiata',$eliminato)");

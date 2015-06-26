@@ -369,6 +369,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/software/save', 'SoftwareController@save');
     Route::get('gsu/software/delete', 'SoftwareController@delete');
 
+    //SOFTWARE PWD
+    Route::get('gsu/software-pwd', 'SoftwarePwdController@main');
+    Route::get('gsu/software-pwd/search', 'SoftwarePwdController@search');
+    Route::get('gsu/software-pwd/show', 'SoftwarePwdController@show');
+    Route::get('gsu/software-pwd/edit', 'SoftwarePwdController@edit');
+    Route::post('gsu/software-pwd/save', 'SoftwarePwdController@save');
+    Route::get('gsu/software-pwd/delete', 'SoftwarePwdController@delete');
+
     //UNIGATE
     Route::get('gsu/unigate', 'UnigateController@main');
     Route::get('gsu/unigate/search', 'UnigateController@search');
@@ -376,6 +384,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/unigate/edit', 'UnigateController@edit');
     Route::post('gsu/unigate/save', 'UnigateController@save');
     Route::get('gsu/unigate/delete', 'UnigateController@delete');
+
+    //UNIGATE PWD
+    Route::get('gsu/unigate-pwd', 'UnigatePwdController@main');
+    Route::get('gsu/unigate-pwd/search', 'UnigatePwdController@search');
+    Route::get('gsu/unigate-pwd/show', 'UnigatePwdController@show');
+    Route::get('gsu/unigate-pwd/edit', 'UnigatePwdController@edit');
+    Route::post('gsu/unigate-pwd/save', 'UnigatePwdController@save');
+    Route::get('gsu/unigate-pwd/delete', 'UnigatePwdController@delete');
 
     //SIM
     Route::get('gsu/sim', 'SimController@main');
