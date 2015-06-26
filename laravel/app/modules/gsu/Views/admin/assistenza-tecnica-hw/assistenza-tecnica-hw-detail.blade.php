@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <td>NOTE</td>
-                    <td><textarea rows="8" cols="70" name="note" value="{{$request['NOTE'] or ""}}"></textarea></td>
+                    <td><textarea rows="8" cols="70" name="note" value="{{$request['NOTE'] or ""}}">{{$request['NOTE'] or ""}}</textarea></td>
                 </tr>
                 <tr>
                     <td colspan="4" style="padding-top:20px;">
@@ -88,6 +88,29 @@
             </div>
         </div>
     </div>
+
+
+        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+            <tr>
+                <td>
+                    <a href="{{url('/gsu/hardware-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDTELEASSISTENZA']."&id=".$request['IDTELEASSISTENZA']."&seriale=".$request['SERIALE']}}">PASSWORD</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{url('/gsu/search')."?canone=CAN-G101A&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&seriale=".$request['SERIALE']}}">SERVER</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/search')."?canone=CAN-G102A&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&seriale=".$request['SERIALE']}}">CLIENT</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/search')."?canone=CAN-G101-&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&seriale=".$request['SERIALE']}}">UTENTE AGGIUNTIVO</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/hardware/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&sn=".$request['SERIALE']}}">HARDWARE</a>
+                </td>
+            </tr>
+        </table>
 
 @endsection
 

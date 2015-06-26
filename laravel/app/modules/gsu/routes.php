@@ -217,6 +217,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/hardware/save', 'HardwareController@save');
     Route::get('gsu/hardware/delete', 'HardwareController@delete');
 
+    //HARDWARE PWD
+    Route::get('gsu/hardware-pwd', 'HardwarePwdController@main');
+    Route::get('gsu/hardware-pwd/search', 'HardwarePwdController@search');
+    Route::get('gsu/hardware-pwd/show', 'HardwarePwdController@show');
+    Route::get('gsu/hardware-pwd/edit', 'HardwarePwdController@edit');
+    Route::post('gsu/hardware-pwd/save', 'HardwarePwdController@save');
+    Route::get('gsu/hardware-pwd/delete', 'HardwarePwdController@delete');
+
     //FAX VIRTUALE
     Route::get('gsu/fax-virtuale', 'FaxVirtualeController@main');
     Route::get('gsu/fax-virtuale/search', 'FaxVirtualeController@search');

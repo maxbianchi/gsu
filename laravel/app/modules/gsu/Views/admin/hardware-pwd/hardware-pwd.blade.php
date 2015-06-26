@@ -16,7 +16,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/gsu/post-warranty/search')}}" name="form_search">
+            <form method="GET" action="{{url('/gsu/hardware-pwd/search')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
@@ -27,17 +27,8 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">CANONE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('canone')}}" id="canone" name="canone" ></div>
-                    <div class="col-md-1">MANUTENZIONE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('manutenzione')}}" id="manutenzione" name="manutenzione" ></div>
-                    <div class="col-md-2">DATA INIZIO CONTRATTO</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('data_contratto')}}" id="data_contratto" name="data_contratto" class="datepicker" ></div>
-                    <div class="col-md-3"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">SERIALE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('seriale')}}" id="seriale" name="seriale" ></div>
+                    <div class="col-md-1">APPARATO ID</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('apparato_id')}}" id="apparato_id" name="apparato_id" ></div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
@@ -47,8 +38,7 @@
             </form>
         </div>
     </div>
-
-    <br>
+      <br>
 
     <div class="row" id="loader">
         <div class="col-md-2"><img src="{{ URL::asset('images/loader.gif')}}"></div>
@@ -57,15 +47,14 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th>AZIONI</th>
-            <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>CANONE</th>
+            <th >AZIONI</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
-            <th>SERIALE</th>
+            <th>TIPO PASSWORD</th>
+            <th>ACCESSO</th>
+            <th>USERNAME</th>
+            <th>PWD</th>
         </tr>
         </thead>
 
@@ -73,31 +62,25 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="btn-small edit stato_left" href="{{url('/gsu/post-warranty/edit')."?id=".$req['IDPOSTWARRANTY']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn-small edit delete stato_right" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDPOSTWARRANTY'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/hardware-pwd/edit')."?apparato_id=".$req['SERVER_ID']."&id=".$req['SERVER_ID']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDSERVERPWD'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td>
-                    <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
-                    <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
-                </td>
-                <td><a href="{{url($class['link'][$req['CANONE']])."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDPOSTWARRANTY']."&eliminati=".Input::get('eliminati')}}">{{$req['MANUTENZIONE']}}</a></td>
-                <td>{{$req['DATADOCUMENTO']}}</td>
-                <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
                 <td class="destinatarioabituale">{{$req['DESTINATARIOABITUALE']}}</td>
-                <td>{{$req['SERIALE']}}</td>
+                <td>{{$req['ACCESSO'] or ""}}</td>
+                <td>{{$req['USERNAME'] or ""}}</td>
+                <td>{{$req['PWD'] or ""}}</td>
+                <td>{{$req['TIPOPASSWORD'] or ""}}</td>
             </tr>
         @endforeach
         </tbody>
 
-        @if(Input::get('add') == 1)
             <tfoot>
             <tr>
-                <th colspan="9"><a class="btn btn-small edit" href="{{url('/gsu/post-warranty/edit')."?isnew=1&manutenzione=".$req['MANUTENZIONE']}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="8"><a class="btn btn-small edit" href="{{url('/gsu/hardware-pwd/edit')."?seriale=".Input::get('seriale')."&id=".(isset($req['SERVER_ID']) ? $req['SERVER_ID'] : Input::get('apparato_id') )."&apparato_id=".(isset($req['SERVER_ID']) ? $req['SERVER_ID'] : Input::get('apparato_id') )."&isnew=1&manutenzione=".(isset($req['MANUTENZIONE']) ? $req['MANUTENZIONE'] : "" )}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
-        @endif
     </table>
 
     <div id="delete" class="modal fade" style="z-index:99999;">
@@ -125,7 +108,7 @@
         $(document).ready(function () {
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/post-warranty/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
+                $.get( "{{url('/gsu/hardware-pwd/delete')}}", { id: id_elimina, manutenzione: manutenzione } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             $("#cerca").trigger("click");

@@ -208,18 +208,6 @@ EOF;
         try {
             if(empty($id)) {
                 DB::insert("insert into APPARATIPWD (APPARATO_ID,ACCESSO,USERNAME,PWD,PWDPRIVILEGIATA,ELIMINATO) values ('$apparato_id','$accesso','$username','$pwd','$pwdprivilegiata',$eliminato)");
-
-
-                $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
-                $richieste_evase = DB::select($sql);
-                if(count($richieste_evase) > 0 && !empty($manutenzione)) {
-                    $richieste_evase = $richieste_evase[0];
-                    $qta = $richieste_evase['QUANTITA'] + 1;
-                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
-                }
-                else{
-                    DB::insert("INSERT INTO gsu.dbo.RICHIESTE_EVASE (CODICE_R, QUANTITA) VALUES ('$manutenzione','1')");
-                }
             }
             else
                 DB::update("Update APPARATIPWD Set APPARATO_ID='$apparato_id',ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata', ELIMINATO=$eliminato WHERE IDAPPARATIPWD=$id");

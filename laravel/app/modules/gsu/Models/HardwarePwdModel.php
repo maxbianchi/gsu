@@ -6,17 +6,17 @@ use Session;
 use DB;
 
 
-class CentraliniPwdModel extends Model {
+class HardwarePwdModel extends Model {
 
     public function getAllRequest(){
+        $id = Input::get('apparato_id');
         $cliente = Input::get('cliente');
-        $prodotto = Input::get('prodotto');
 
         $sql = <<<EOF
         SELECT
             RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
-			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
+            CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
 			anagrafica1.DESCRIZIONE		AS SOGGETTO,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
@@ -32,33 +32,30 @@ class CentraliniPwdModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            CENTRALINI_PASSWORD.IDPASSWORD,
-            CENTRALINI_PASSWORD.GRUPPOCENTRALINO,
-            CENTRALINI_PASSWORD.TIPOPASSWORD,
-            CENTRALINI_PASSWORD.PRODUTTORE,
-            CENTRALINI_PASSWORD.ACCESSO,
-            CENTRALINI_PASSWORD.USERNAME,
-            CENTRALINI_PASSWORD.PWD,
-            CENTRALINI_PASSWORD.PWD_PRIVILEGIATA,
-            CENTRALINI_PASSWORD.NOTE,
-            CENTRALINI_PASSWORD.CODICE_R,
-            CONVERT(VARCHAR(10),CENTRALINI.DATA_R,105) DATA_R,
-            CENTRALINI_PASSWORD.OGGETTO,
-            CENTRALINI_PASSWORD.ELIMINATO
-			FROM		gsu.dbo.CENTRALINI
-			INNER JOIN CENTRALINI_PASSWORD ON CENTRALINI.IDCENTRALINO = CENTRALINI_PASSWORD.GRUPPOCENTRALINO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(CENTRALINI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(CENTRALINI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(CENTRALINI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
+            SERVER.SN SERIALE,
+            SERVERPWD.IDSERVERPWD,
+            SERVERPWD.SERVER_ID,
+            SERVERPWD.SN,
+            SERVERPWD.NOME,
+            SERVERPWD.ACCESSO,
+            SERVERPWD.USERNAME,
+            SERVERPWD.PWD,
+            SERVERPWD.PWDPRIVILEGIATA,
+            SERVERPWD.ELIMINATO
+            FROM gsu.dbo.SERVER
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(SERVER.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(SERVER.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(SERVER.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
             LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE CENTRALINI_PASSWORD.ELIMINATO = 0
+            FULL OUTER JOIN dbo.SERVERPWD ON dbo.SERVER.IDSERVER = dbo.SERVERPWD.SERVER_ID
+            WHERE SERVERPWD.ELIMINATO = 0
 EOF;
+
+        $sql .= " AND SERVERPWD.SERVER_ID = '$id'";
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
-
-        if(!empty($prodotto))
-            $sql .= " AND APPARATI.PRODOTTO like '%$prodotto%'";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -75,16 +72,19 @@ EOF;
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-        $produttore = Input::get('produttore');
+
+        $marca = Input::get('marca');
         $modello = Input::get('modello');
+        $pn = Input::get('pn');
         $sn = Input::get('sn');
+
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
             SELECT
             RICHIESTE.STATO,
 			richieste.OGGETTO			AS CANONE,
-			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
+            CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
 
 			anagrafica1.SOGGETTO AS SOGGETTO_CODICE,
@@ -115,33 +115,35 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            CENTRALINI.IDCENTRALINO,
-            CENTRALINI.CODICE_R,
-            CONVERT(VARCHAR(10),CENTRALINI.DATA_R,105) DATA_R,
-            CENTRALINI_PASSWORD.IDPASSWORD,
-            CENTRALINI_PASSWORD.GRUPPOCENTRALINO,
-            CENTRALINI_PASSWORD.TIPOPASSWORD,
-            CENTRALINI_PASSWORD.PRODUTTORE,
-            CENTRALINI_PASSWORD.ACCESSO,
-            CENTRALINI_PASSWORD.USERNAME,
-            CENTRALINI_PASSWORD.PWD,
-            CENTRALINI_PASSWORD.PWD_PRIVILEGIATA,
-            CENTRALINI_PASSWORD.NOTE,
-            CENTRALINI_PASSWORD.CODICE_R,
-            CONVERT(VARCHAR(10),CENTRALINI.DATA_R,105) DATA_R,
-            CENTRALINI_PASSWORD.OGGETTO,
-            CENTRALINI_PASSWORD.ELIMINATO
-			FROM		gsu.dbo.CENTRALINI
-			INNER JOIN CENTRALINI_PASSWORD ON CENTRALINI.IDCENTRALINO = CENTRALINI_PASSWORD.GRUPPOCENTRALINO
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CENTRALINI.codice_r				= richieste.MANUTENZIONE
-		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(CENTRALINI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(CENTRALINI.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
-			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(CENTRALINI.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
+            SERVER.IDSERVER,
+            SERVER.CODICE_R,
+            SERVER.ACQUISTO_NOLEGGIO,
+            SERVER.MODELLO,
+            SERVER.PN,
+            SERVER.SN SERIALE,
+            SERVER.PIN,
+            CONVERT(VARCHAR(10),SERVER.DATAACQUISTO,105) DATAACQUISTO,
+            CONVERT(VARCHAR(10),SERVER.SCADGARANZIAINIZ,105) SCADGARANZIAINIZ,
+            SERVERPWD.IDSERVERPWD,
+            SERVERPWD.SERVER_ID,
+            SERVERPWD.SN,
+            SERVERPWD.NOME,
+            SERVERPWD.ACCESSO,
+            SERVERPWD.USERNAME,
+            SERVERPWD.PWD,
+            SERVERPWD.PWDPRIVILEGIATA,
+            SERVERPWD.ELIMINATO
+            FROM gsu.dbo.SERVER
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
+		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(SERVER.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(SERVER.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
+			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(SERVER.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
+            FULL OUTER JOIN dbo.SERVERPWD ON dbo.SERVER.IDSERVER = dbo.SERVERPWD.SERVER_ID
             WHERE 1=1
 EOF;
 
-        $sql .= " AND CENTRALINI_PASSWORD.GRUPPOCENTRALINO = $id";
+        $sql .= " AND SERVERPWD.SERVER_ID = '$id'";
 
         if(!empty($cliente))
             $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
@@ -150,11 +152,21 @@ EOF;
         if(!empty($ubicazione))
             $sql .= " AND ANAGRAFICA3.DESCRIZIONE like '%$ubicazione%'";
 
+        if(!empty($canone))
+            $sql .= " AND RICHIESTE.OGGETTO like '%$canone%'";
+        if(!empty($manutenzione))
+            $sql .= " AND RICHIESTE.MANUTENZIONE like '%$manutenzione%'";
+
+        if(!empty($data_contratto)) {
+            $data_contratto = explode("-", $data_contratto);
+            $data_contratto = $data_contratto[2]."-".$data_contratto[1]."-".$data_contratto[0];
+            $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
+        }
 
         if(!empty($eliminati))
-            $sql .= " AND CENTRALINI_PASSWORD.ELIMINATO = 1";
+            $sql .= " AND SERVERPWD.ELIMINATO = 1";
         else
-            $sql .= " AND CENTRALINI_PASSWORD.ELIMINATO = 0";
+            $sql .= " AND SERVERPWD.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -168,7 +180,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.CENTRALINI_PASSWORD SET ELIMINATO=1 WHERE IDPASSWORD='$id'";
+            $sql = "UPDATE gsu.dbo.SERVERPWD SET ELIMINATO=1 WHERE IDSERVERPWD='$id'";
             DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -196,22 +208,22 @@ EOF;
         $soggetto = Input::get('cliente');
         $cliente = Input::get('cliente_finale');
         $destinatarioabituale = Input::get('ubicazione_impianto');
-        $data_r = Input::get('data_r');
-        $tipopassword = Input::get('tipopassword');
-        $produttore = Input::get('produttore');
+        $data_r = empty(Input::get('data_r')) ? "00-00-0000" : Input::get('data_r');
         $accesso = Input::get('accesso');
         $username = Input::get('username');
         $pwd = Input::get('pwd');
         $pwdprivilegiata = Input::get('pwdprivilegiata');
-        $note = Input::get('note');
         $apparato_id = Input::get('apparato_id');
+        $sn = Input::get('sn');
+
 
         try {
             if(empty($id)) {
-                DB::insert("insert into CENTRALINI_PASSWORD (GRUPPOCENTRALINO,SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,TIPOPASSWORD,PRODUTTORE,ACCESSO,USERNAME,PWD,PWD_PRIVILEGIATA,NOTE,ELIMINATO) values ('$apparato_id','$soggetto','$cliente','$destinatarioabituale','$data_r','$tipopassword','$produttore','$accesso','$username','$pwd','$pwdprivilegiata','$note',$eliminato)");
+                $sql = "insert into SERVERPWD (SN,SERVER_ID,ACCESSO,USERNAME,PWD,PWDPRIVILEGIATA,ELIMINATO) values ('$sn','$apparato_id','$accesso','$username','$pwd','$pwdprivilegiata',$eliminato)";
+                DB::insert($sql);
             }
             else
-                DB::update("Update CENTRALINI_PASSWORD Set GRUPPOCENTRALINO='$apparato_id', SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', TIPOPASSWORD = '$tipopassword', PRODUTTORE = '$produttore', ACCESSO = '$accesso', USERNAME = '$username', PWD = '$pwd', PWD_PRIVILEGIATA = '$pwdprivilegiata',NOTE='$note', ELIMINATO = $eliminato WHERE IDPASSWORD=$id");
+                DB::update("Update SERVERPWD  Set SN='$sn', SERVER_ID='$apparato_id',ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDSERVERPWD=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }
@@ -222,7 +234,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new CentraliniModel();
+        $model = new HardwareModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
@@ -239,15 +251,21 @@ EOF;
         }
     }
 
-    public function getAssistenzaCentralino($SN){
-        $sql = "SELECT * FROM ASSISTENZACENTRALINI WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
+    public function getAssistenzaTecnica($SN){
+        $sql = "SELECT * FROM TELEASSISTENZA WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
         $res = DB::select($sql);
         if(count($res) > 0)
             return "SI";
         return "NO";
     }
 
-
+    public function getPostWarranty($SN){
+        $sql = "SELECT * FROM POSTWARRANTY WHERE (SERIALE= '" . $SN . "')  AND ELIMINATO = 0";
+        $res = DB::select($sql);
+        if(count($res) > 0)
+            return "SI";
+        return "NO";
+    }
 
 
 

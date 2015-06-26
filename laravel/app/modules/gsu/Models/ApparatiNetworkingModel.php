@@ -91,6 +91,7 @@ EOF;
         $modello = Input::get('modello');
         $seriale = Input::get('seriale');
         $eliminati = Input::get('eliminati');
+        $prodotto = Input::get('prodotto');
 
         $sql = <<<EOF
             SELECT
@@ -180,6 +181,9 @@ EOF;
             $data_contratto = $data_contratto[2]."-".$data_contratto[1]."-".$data_contratto[0];
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
+
+        if(!empty($prodotto))
+            $sql .= " AND APPARATI.PRODOTTO like '%$prodotto%'";
 
         if(!empty($marca))
             $sql .= " AND APPARATI.MARCA like '%$marca%'";

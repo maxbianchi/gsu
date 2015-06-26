@@ -147,13 +147,13 @@
         </tr>
         <tr>
             <td>
-                <a href="{{url('/gsu/assistenza-tecnica-multifunzione/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP SAFE</a>
+                <a href="{{url('/gsu/assistenza-tecnica-multifunzione/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ASSISTENZA MULTIFUNZIONE</a>
             </td>
             <td>
-                <a href="{{url('/gsu/assistenza-tecnica-consumabile-nero/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ROUTER</a>
+                <a href="{{url('/gsu/assistenza-tecnica-consumabile-nero/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">CONSUMABILE NERO</a>
             </td>
             <td>
-                <a href="{{url('/gsu/assistenza-tecnica-consumabile-colori/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">NETWORKING</a>
+                <a href="{{url('/gsu/assistenza-tecnica-consumabile-colori/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">CONSUMABILE COLORI</a>
             </td>
         </tr>
     </table>

@@ -65,6 +65,20 @@
         </div>
     </div>
 
+        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+             <tr>
+                <td>
+                    <a href="{{url('/gsu/multifunzione/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">MULTIFUNZIONE</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/assistenza-tecnica-consumabile-nero/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">CONSUMABILE NERO</a>
+                </td>
+                <td>
+                    <a href="{{url('/gsu/assistenza-tecnica-consumabile-colori/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">CONSUMABILE COLORI</a>
+                </td>
+            </tr>
+        </table>
+
 @endsection
 
 
