@@ -2,70 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ActivesyncController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ActivesyncController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AdslController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AdslController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiMobileController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiMobileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiNetworkingController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiNetworkingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiNetworkingPwdController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ApparatiNetworkingPwdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaCentraliniController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaCentraliniController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaMultifunzioneController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaMultifunzioneController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaMultifunzionePwdController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaMultifunzionePwdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaTecnicaConsumabileColoriController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaTecnicaConsumabileColoriController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaTecnicaConsumabileNeroController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaTecnicaConsumabileNeroController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaTecnicaHWController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/AssistenzaTecnicaHWController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CaselleController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CaselleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniPwdController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniPwdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CmsController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CmsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DatabaseController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DatabaseController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DialUpController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DialUpController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DirectAccessController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DirectAccessController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DominiController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DominiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DpssController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DpssController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/FaxVirtualeController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/FaxVirtualeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GestioneApparatiController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GestioneApparatiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwarePwdController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwarePwdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HostingController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HostingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HousingController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HousingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/IpmultimediaController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/IpmultimediaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/IpstaticiController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/IpstaticiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/LineaAggiuntivaController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/LineaAggiuntivaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MailArchiveController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MailArchiveController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MplsController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MplsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MplsDirectAccessController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MplsDirectAccessController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MultifunzioneController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MultifunzioneController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/NoVirusNoSpamController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/NoVirusNoSpamController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/OutlookconnectorController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/OutlookconnectorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/PostWarrantyController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/PostWarrantyController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ServiziAccessController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ServiziAccessController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ServiziPlusController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ServiziPlusController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ServiziWebController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/ServiziWebController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimAssistenzaTecnicaController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimAssistenzaTecnicaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimExtensionController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimExtensionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimFaxDatiController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimFaxDatiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimFiltroAccessiController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimFiltroAccessiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimIntercomController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimIntercomController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimOpzioneDatiController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimOpzioneDatiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimRoamingController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimRoamingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimTassaGovernativaController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimTassaGovernativaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimTwinController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SimTwinController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/Simm2mController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/Simm2mController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SmartnetController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SmartnetController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SoftwareController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SoftwareController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SoftwarePwdController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/SoftwarePwdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UnigateController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UnigateController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UnigatePwdController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UnigatePwdController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UrlFilteringController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UrlFilteringController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VideoconferenceController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VideoconferenceController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VoicegateController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VoicegateController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VpnController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VpnController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/WebMarketingController.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/WebMarketingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gsu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,21 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UnigatePwdController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UnigatePwdController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.666666" vertical-offset="270" max-vertical-offset="2142">
-              <caret line="63" column="241" selection-start-line="63" selection-start-column="241" selection-end-line="63" selection-end-column="241" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UrlFilteringController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UrlFilteringController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-              <caret line="54" column="148" selection-start-line="54" selection-start-column="148" selection-end-line="54" selection-end-column="148" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="9072">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -153,31 +80,31 @@
       <file leaf-file-name="GsuController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.666666" vertical-offset="324" max-vertical-offset="1332">
-              <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+            <state vertical-scroll-proportion="-18.666666" vertical-offset="324" max-vertical-offset="1332">
+              <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GsuModel.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GsuModel.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2222223" vertical-offset="2721" max-vertical-offset="3672">
-              <caret line="161" column="68" selection-start-line="161" selection-start-column="68" selection-end-line="161" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.4090431" vertical-offset="2653" max-vertical-offset="3762">
+              <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
               <folding>
-                <marker date="1435580766063" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
-                <marker date="1435580766063" expanded="true" signature="6915:6945" placeholder="SELECT * FRO..AGE10..." />
-                <marker date="1435580766063" expanded="true" signature="7080:7173" placeholder="SELECT DISTI..AGE10..." />
+                <marker date="1435581493318" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
+                <marker date="1435581493318" expanded="true" signature="6953:6983" placeholder="SELECT * FRO..AGE10..." />
+                <marker date="1435581493318" expanded="true" signature="7234:7327" placeholder="SELECT DISTI..AGE10..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26865673" vertical-offset="756" max-vertical-offset="2358">
+            <state vertical-scroll-proportion="-9.333333" vertical-offset="756" max-vertical-offset="2358">
               <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -186,11 +113,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnigateController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UnigateController.php">
+      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-33.88889" vertical-offset="3" max-vertical-offset="1800">
-              <caret line="58" column="165" selection-start-line="58" selection-start-column="165" selection-end-line="58" selection-end-column="165" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1710">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Http/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -253,8 +190,8 @@
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VpnController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/WebMarketingController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" />
       </list>
     </option>
   </component>
@@ -494,70 +431,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="varie" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -755,30 +628,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniPwdController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.666666" vertical-offset="270" max-vertical-offset="2070">
-          <caret line="63" column="218" selection-start-line="63" selection-start-column="218" selection-end-line="63" selection-end-column="218" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CmsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-          <caret line="54" column="128" selection-start-line="54" selection-start-column="128" selection-end-line="54" selection-end-column="128" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DatabaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-          <caret line="54" column="138" selection-start-line="54" selection-start-column="138" selection-end-line="54" selection-end-column="138" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DialUpController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
@@ -1139,32 +988,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.333333" vertical-offset="756" max-vertical-offset="2358">
+          <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="978">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9072">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.666666" vertical-offset="324" max-vertical-offset="1332">
-          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+        <state vertical-scroll-proportion="-18.666666" vertical-offset="324" max-vertical-offset="1332">
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2222223" vertical-offset="2721" max-vertical-offset="3672">
-          <caret line="161" column="68" selection-start-line="161" selection-start-column="68" selection-end-line="161" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.4090431" vertical-offset="2653" max-vertical-offset="3762">
+          <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
           <folding>
-            <marker date="1435580766063" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
-            <marker date="1435580766063" expanded="true" signature="6915:6945" placeholder="SELECT * FRO..AGE10..." />
-            <marker date="1435580766063" expanded="true" signature="7080:7173" placeholder="SELECT DISTI..AGE10..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26865673" vertical-offset="756" max-vertical-offset="2358">
-          <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1435581493318" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
+            <marker date="1435581493318" expanded="true" signature="6953:6983" placeholder="SELECT * FRO..AGE10..." />
+            <marker date="1435581493318" expanded="true" signature="7234:7327" placeholder="SELECT DISTI..AGE10..." />
           </folding>
         </state>
       </provider>

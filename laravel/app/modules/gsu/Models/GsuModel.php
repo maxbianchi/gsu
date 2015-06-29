@@ -169,7 +169,12 @@ EOF;
 
 
     public function getAllAnagrafica(){
-        $res = DB::select("SELECT * FROM UNIWEB.dbo.AGE10");
+        $name = Input::get("search_anagrafica");
+        $sql = "SELECT * FROM UNIWEB.dbo.AGE10";
+        if(!empty($name))
+            $sql .= " WHERE DESCRIZIONE like '%$name%'";
+
+        $res = DB::select($sql);
         return $res;
     }
 
