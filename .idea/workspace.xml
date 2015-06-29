@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
     </list>
     <ignored path="gsu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,10 +87,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GsuModel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GsuModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4090431" vertical-offset="2653" max-vertical-offset="3762">
+            <state vertical-scroll-proportion="-14.407408" vertical-offset="2653" max-vertical-offset="3762">
               <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
               <folding>
                 <marker date="1435581493318" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
@@ -101,14 +101,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.333333" vertical-offset="756" max-vertical-offset="2358">
-              <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.26865673" vertical-offset="756" max-vertical-offset="2358">
+              <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,8 +188,8 @@
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VpnController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/WebMarketingController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
       </list>
     </option>
   </component>
@@ -402,6 +400,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -988,16 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.333333" vertical-offset="756" max-vertical-offset="2358">
-          <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
@@ -1032,13 +1050,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4090431" vertical-offset="2653" max-vertical-offset="3762">
+        <state vertical-scroll-proportion="-14.407408" vertical-offset="2653" max-vertical-offset="3762">
           <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
           <folding>
             <marker date="1435581493318" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
             <marker date="1435581493318" expanded="true" signature="6953:6983" placeholder="SELECT * FRO..AGE10..." />
             <marker date="1435581493318" expanded="true" signature="7234:7327" placeholder="SELECT DISTI..AGE10..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26865673" vertical-offset="756" max-vertical-offset="2358">
+          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
