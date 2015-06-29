@@ -12,6 +12,8 @@ use Input;
 
 class ApparatiMobileController extends MainController {
 
+    private $tableName = "APPARATI MOBILE";
+
     public function __construct()
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class ApparatiMobileController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +39,7 @@ class ApparatiMobileController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -49,7 +51,7 @@ class ApparatiMobileController extends MainController {
         $tel = $model->getAllTelefoni();
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'assistenzatecnica' => $assistenzatecnica, 'telefoni' => $tel]);
+        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'assistenzatecnica' => $assistenzatecnica, 'telefoni' => $tel, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -61,7 +63,7 @@ class ApparatiMobileController extends MainController {
         $tel = $model->getAllTelefoni();
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'assistenzatecnica' => $assistenzatecnica, 'telefoni' => $tel]);
+        return view("gsu::$this->view_folder.apparati-mobile.apparati-mobile-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'assistenzatecnica' => $assistenzatecnica, 'telefoni' => $tel, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

@@ -12,6 +12,8 @@ use Input;
 
 class CentraliniController extends MainController {
 
+    private $tableName = "CENTRALINI";
+
     public function __construct()
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class CentraliniController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.centralini.centralini", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.centralini.centralini", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +39,7 @@ class CentraliniController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.centralini.centralini", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.centralini.centralini", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -48,7 +50,7 @@ class CentraliniController extends MainController {
 
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.centralini.centralini-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'assistenzacentralino' => $assistenzacentralino]);
+        return view("gsu::$this->view_folder.centralini.centralini-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'assistenzacentralino' => $assistenzacentralino, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -59,7 +61,7 @@ class CentraliniController extends MainController {
 
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.centralini.centralini-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'assistenzacentralino' => $assistenzacentralino]);
+        return view("gsu::$this->view_folder.centralini.centralini-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'assistenzacentralino' => $assistenzacentralino, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

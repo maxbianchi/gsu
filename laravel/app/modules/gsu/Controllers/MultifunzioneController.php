@@ -12,6 +12,8 @@ use Input;
 
 class MultifunzioneController extends MainController {
 
+    private $tableName = "MULTIFUNZIONE";
+
     public function __construct()
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class MultifunzioneController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.multifunzione.multifunzione", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.multifunzione.multifunzione", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +39,7 @@ class MultifunzioneController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.multifunzione.multifunzione", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.multifunzione.multifunzione", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -50,7 +52,7 @@ class MultifunzioneController extends MainController {
 
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.multifunzione.multifunzione-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'manutenzioneapparato' => $manutenzioneapparato, 'consumabile_nero' => $consumabile_nero, 'consumabile_colori' => $consumabile_colori]);
+        return view("gsu::$this->view_folder.multifunzione.multifunzione-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'manutenzioneapparato' => $manutenzioneapparato, 'consumabile_nero' => $consumabile_nero, 'consumabile_colori' => $consumabile_colori, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -63,7 +65,7 @@ class MultifunzioneController extends MainController {
 
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.multifunzione.multifunzione-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'manutenzioneapparato' => $manutenzioneapparato, 'consumabile_nero' => $consumabile_nero, 'consumabile_colori' => $consumabile_colori]);
+        return view("gsu::$this->view_folder.multifunzione.multifunzione-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'manutenzioneapparato' => $manutenzioneapparato, 'consumabile_nero' => $consumabile_nero, 'consumabile_colori' => $consumabile_colori, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

@@ -11,6 +11,7 @@ use Input;
 
 class SimExtensionController extends MainController {
 
+    private $tableName = "SIM EXTENSION";
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class SimExtensionController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-extension.sim-extension", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-extension.sim-extension", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +38,7 @@ class SimExtensionController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-extension.sim-extension", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-extension.sim-extension", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -45,7 +46,7 @@ class SimExtensionController extends MainController {
         $pianotariffario = $return['pianotariffario']['NOME_PIANO'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-extension.sim-extension-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario]);
+        return view("gsu::$this->view_folder.sim-extension.sim-extension-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -53,7 +54,7 @@ class SimExtensionController extends MainController {
         $pianotariffario = $return['pianotariffario']['NOME_PIANO'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-extension.sim-extension-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario]);
+        return view("gsu::$this->view_folder.sim-extension.sim-extension-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

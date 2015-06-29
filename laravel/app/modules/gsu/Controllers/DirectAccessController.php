@@ -11,6 +11,8 @@ use Input;
 
 class DirectAccessController extends MainController {
 
+    private $tableName = "DIRECT ACCESS";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class DirectAccessController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.direct-access.direct-access", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.direct-access.direct-access", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,7 +38,7 @@ class DirectAccessController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.direct-access.direct-access", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.direct-access.direct-access", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -45,7 +47,7 @@ class DirectAccessController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::$this->view_folder.direct-access.direct-access-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.direct-access.direct-access-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -54,7 +56,7 @@ class DirectAccessController extends MainController {
         $btn = $return['btn'];
         $servizi_plus = $return['servizi_plus'];
         $servizi_access = $return['servizi_access'];
-        return view("gsu::$this->view_folder.direct-access.direct-access-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access]);
+        return view("gsu::$this->view_folder.direct-access.direct-access-detail", ['request' => $res, 'btn' => $btn, 'servizi_plus' => $servizi_plus, 'servizi_access' => $servizi_access, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

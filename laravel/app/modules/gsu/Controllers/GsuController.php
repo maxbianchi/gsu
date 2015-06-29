@@ -9,6 +9,8 @@ use Redirect;
 
 class GsuController extends MainController {
 
+    private $tableName = "PRINCIPALE";
+
 	public function __construct()
 	{
         parent::__construct();
@@ -34,7 +36,7 @@ class GsuController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->getClassColorStato($res);
-        return view("gsu::$this->view_folder.main", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.main", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -42,13 +44,13 @@ class GsuController extends MainController {
         $res = $res->getFilteredRequest();
         $utility = new Utility();
         $class = $utility->getClassColorStato($res);
-        return view("gsu::$this->view_folder.main", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.main", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function anagrafica(){
         $model = new GsuModel();
         $anagrafica = $model->getAllAnagrafica();
-        return view("gsu::admin.anagrafica", ['anagrafica' => $anagrafica]);
+        return view("gsu::admin.anagrafica", ['anagrafica' => $anagrafica, 'tableName' => $this->tableName]);
     }
 
     public function getanagrafica(){

@@ -11,6 +11,8 @@ use Input;
 
 class SmartnetController extends MainController {
 
+    private $tableName = "SMARTNET";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class SmartnetController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.smartnet.smartnet", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.smartnet.smartnet", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,21 +38,21 @@ class SmartnetController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.smartnet.smartnet", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.smartnet.smartnet", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.smartnet.smartnet-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.smartnet.smartnet-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.smartnet.smartnet-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.smartnet.smartnet-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

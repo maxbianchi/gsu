@@ -159,7 +159,7 @@ EOF;
     }
 
     public function getNameAnagrafica(){
-        $res = DB::select("SELECT DISTINCT DESCRIZIONE FROM UNIWEB.dbo.AGE10");
+        $res = DB::select("SELECT DISTINCT LTRIM(RTRIM(DESCRIZIONE)) FROM UNIWEB.dbo.AGE10");
 
         foreach($res as $key => $value)
             foreach($value as $key2 => $value2)
@@ -175,7 +175,7 @@ EOF;
 
     public function getAnagraficaByName(){
         $q = Input::get('term');
-        $res = DB::select("SELECT DISTINCT DESCRIZIONE FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
+        $res = DB::select("SELECT DISTINCT LTRIM(RTRIM(DESCRIZIONE)) FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
         $result = "";
         foreach($res as $keys => $values){
             foreach($values as $key => $value)

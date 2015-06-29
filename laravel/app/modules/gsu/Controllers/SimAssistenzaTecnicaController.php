@@ -11,6 +11,7 @@ use Input;
 
 class SimAssistenzaTecnicaController extends MainController {
 
+    private $tableName = "SIM ASSISTENZA TECNICA";
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class SimAssistenzaTecnicaController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +38,7 @@ class SimAssistenzaTecnicaController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -45,7 +46,7 @@ class SimAssistenzaTecnicaController extends MainController {
         $opz = $return['opz'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz]);
+        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -53,7 +54,7 @@ class SimAssistenzaTecnicaController extends MainController {
         $opz = $return['opz'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz]);
+        return view("gsu::$this->view_folder.sim-assistenza-tecnica.sim-assistenza-tecnica-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

@@ -12,6 +12,8 @@ use Input;
 
 class ServiziWebController extends MainController {
 
+    private $tableName = "SERVIZI WEB";
+
     public function __construct()
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class ServiziWebController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.servizi-web.servizi-web", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.servizi-web.servizi-web", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,14 +39,14 @@ class ServiziWebController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.servizi-web.servizi-web", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.servizi-web.servizi-web", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.servizi-web.servizi-web-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.servizi-web.servizi-web-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -53,7 +55,7 @@ class ServiziWebController extends MainController {
         $btn = $return['btn'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.servizi-web.servizi-web-detail", ['request' => $res, 'btn' => $btn, 'users' => $users]);
+        return view("gsu::$this->view_folder.servizi-web.servizi-web-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

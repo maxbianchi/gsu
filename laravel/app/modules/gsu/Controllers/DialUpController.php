@@ -11,6 +11,8 @@ use Input;
 
 class DialUpController extends MainController {
 
+    private $tableName = "DIAL UP";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class DialUpController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.dial-up.dial-up", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.dial-up.dial-up", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,21 +38,21 @@ class DialUpController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.dial-up.dial-up", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.dial-up.dial-up", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.dial-up.dial-up-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.dial-up.dial-up-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.dial-up.dial-up-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.dial-up.dial-up-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

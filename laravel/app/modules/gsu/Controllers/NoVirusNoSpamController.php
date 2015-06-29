@@ -11,6 +11,8 @@ use Input;
 
 class NoVirusNoSpamController extends MainController {
 
+    private $tableName = "NO VIRUS NO SPAM";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class NoVirusNoSpamController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,21 +38,21 @@ class NoVirusNoSpamController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.novirusnospam.novirusnospam-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

@@ -11,6 +11,8 @@ use Input;
 
 class VoicegateController extends MainController {
 
+    private $tableName = "VOICEGATE";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class VoicegateController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.voicegate.voicegate", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.voicegate.voicegate", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,14 +38,14 @@ class VoicegateController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.voicegate.voicegate", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.voicegate.voicegate", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.voicegate.voicegate-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.voicegate.voicegate-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -51,7 +53,7 @@ class VoicegateController extends MainController {
         $res = $return['res'];
         $btn = $return['btn'];
 
-        return view("gsu::$this->view_folder.voicegate.voicegate-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.voicegate.voicegate-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

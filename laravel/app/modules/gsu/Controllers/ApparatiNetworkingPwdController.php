@@ -12,6 +12,8 @@ use Input;
 
 class ApparatiNetworkingPwdController extends MainController {
 
+    private $tableName = "APPARATI NETWORKING PWD";
+
     public function __construct()
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class ApparatiNetworkingPwdController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +39,7 @@ class ApparatiNetworkingPwdController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -51,7 +53,7 @@ class ApparatiNetworkingPwdController extends MainController {
         $gestioneapparati = $return['gestioneapparati'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'urlfiltering' => $urlfiltering, 'smartnet' => $smartnet, 'vpn' => $vpn, 'ipmultimedia' => $ipmultimedia, 'gestioneapparato' => $gestioneapparati]);
+        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'urlfiltering' => $urlfiltering, 'smartnet' => $smartnet, 'vpn' => $vpn, 'ipmultimedia' => $ipmultimedia, 'gestioneapparato' => $gestioneapparati, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -65,7 +67,7 @@ class ApparatiNetworkingPwdController extends MainController {
         $gestioneapparati = $return['gestioneapparati'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'urlfiltering' => $urlfiltering, 'smartnet' => $smartnet, 'vpn' => $vpn, 'ipmultimedia' => $ipmultimedia, 'gestioneapparato' => $gestioneapparati]);
+        return view("gsu::$this->view_folder.apparati-networking-pwd.apparati-networking-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'urlfiltering' => $urlfiltering, 'smartnet' => $smartnet, 'vpn' => $vpn, 'ipmultimedia' => $ipmultimedia, 'gestioneapparato' => $gestioneapparati, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

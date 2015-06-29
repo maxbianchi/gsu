@@ -11,6 +11,7 @@ use Input;
 
 class SimFaxDatiController extends MainController {
 
+    private $tableName = "SIM FAX DATI";
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class SimFaxDatiController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,21 +38,21 @@ class SimFaxDatiController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.sim-fax-dati.sim-fax-dati-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

@@ -11,6 +11,8 @@ use Input;
 
 class UnigateController extends MainController {
 
+    private $tableName = "UNIGATE";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class UnigateController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.unigate.unigate", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.unigate.unigate", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,7 +38,7 @@ class UnigateController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.unigate.unigate", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.unigate.unigate", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -45,7 +47,7 @@ class UnigateController extends MainController {
         $apparecchi = $model->getAllApparecchi();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.unigate.unigate-detail", ['request' => $res, 'btn' => $btn, 'apparecchi' => $apparecchi]);
+        return view("gsu::$this->view_folder.unigate.unigate-detail", ['request' => $res, 'btn' => $btn, 'apparecchi' => $apparecchi, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -54,7 +56,7 @@ class UnigateController extends MainController {
         $apparecchi = $model->getAllApparecchi();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.unigate.unigate-detail", ['request' => $res, 'btn' => $btn, 'apparecchi' => $apparecchi]);
+        return view("gsu::$this->view_folder.unigate.unigate-detail", ['request' => $res, 'btn' => $btn, 'apparecchi' => $apparecchi, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

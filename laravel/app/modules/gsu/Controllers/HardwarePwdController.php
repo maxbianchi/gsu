@@ -12,6 +12,8 @@ use Input;
 
 class HardwarePwdController extends MainController {
 
+    private $tableName = "HARDWARE PWD";
+
     public function __construct()
     {
         parent::__construct();
@@ -28,7 +30,7 @@ class HardwarePwdController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +39,7 @@ class HardwarePwdController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -48,7 +50,7 @@ class HardwarePwdController extends MainController {
         $post_warranty = $return['post_warranty'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'assistenzatecnica' => $assistenzatecnica, 'post_warranty' => $post_warranty]);
+        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users,'assistenzatecnica' => $assistenzatecnica, 'post_warranty' => $post_warranty, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -59,7 +61,7 @@ class HardwarePwdController extends MainController {
         $post_warranty = $return['post_warranty'];
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'assistenzatecnica' => $assistenzatecnica, 'post_warranty' => $post_warranty]);
+        return view("gsu::$this->view_folder.hardware-pwd.hardware-pwd-detail", ['request' => $res, 'btn' => $btn, 'users' => $users, 'assistenzatecnica' => $assistenzatecnica, 'post_warranty' => $post_warranty, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

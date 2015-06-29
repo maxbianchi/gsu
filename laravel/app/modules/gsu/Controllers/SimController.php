@@ -11,6 +11,7 @@ use Input;
 
 class SimController extends MainController {
 
+    private $tableName = "SIM";
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class SimController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim.sim", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim.sim", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +38,7 @@ class SimController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim.sim", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim.sim", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -46,7 +47,7 @@ class SimController extends MainController {
         $note = $return['pianotariffario']['NOTE_PIANO'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim.sim-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario, 'note' => $note]);
+        return view("gsu::$this->view_folder.sim.sim-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario, 'note' => $note, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -55,7 +56,7 @@ class SimController extends MainController {
         $note = $return['pianotariffario']['NOTE_PIANO'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim.sim-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario, 'note' => $note]);
+        return view("gsu::$this->view_folder.sim.sim-detail", ['request' => $res, 'btn' => $btn,'pianotariffario' => $pianotariffario, 'note' => $note, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

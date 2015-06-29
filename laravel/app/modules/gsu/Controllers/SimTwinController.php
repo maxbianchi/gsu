@@ -11,6 +11,7 @@ use Input;
 
 class SimTwinController extends MainController {
 
+    private $tableName = "SIM TWIN";
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class SimTwinController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-twin.sim-twin", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-twin.sim-twin", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,21 +38,21 @@ class SimTwinController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-twin.sim-twin", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-twin.sim-twin", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-twin.sim-twin-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.sim-twin.sim-twin-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-twin.sim-twin-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.sim-twin.sim-twin-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

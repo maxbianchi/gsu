@@ -11,6 +11,7 @@ use Input;
 
 class SimRoamingController extends MainController {
 
+    private $tableName = "SIM ROAMING";
 
     public function __construct()
     {
@@ -28,7 +29,7 @@ class SimRoamingController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-roaming.sim-roaming", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-roaming.sim-roaming", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -37,7 +38,7 @@ class SimRoamingController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.sim-roaming.sim-roaming", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.sim-roaming.sim-roaming", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
@@ -45,7 +46,7 @@ class SimRoamingController extends MainController {
         $opz = $return['opz'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-roaming.sim-roaming-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz]);
+        return view("gsu::$this->view_folder.sim-roaming.sim-roaming-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
@@ -53,7 +54,7 @@ class SimRoamingController extends MainController {
         $opz = $return['opz'];
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.sim-roaming.sim-roaming-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz]);
+        return view("gsu::$this->view_folder.sim-roaming.sim-roaming-detail", ['request' => $res, 'btn' => $btn,'opz' => $opz, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){

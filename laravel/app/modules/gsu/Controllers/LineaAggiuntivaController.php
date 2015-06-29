@@ -11,6 +11,8 @@ use Input;
 
 class LineaAggiuntivaController extends MainController {
 
+    private $tableName = "LINEA AGGIUNTIVA";
+
     public function __construct()
     {
         parent::__construct();
@@ -27,7 +29,7 @@ class LineaAggiuntivaController extends MainController {
         $res = $res->getAllRequest();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function search(){
@@ -36,21 +38,21 @@ class LineaAggiuntivaController extends MainController {
         $addnew = $model->checkAddNew();
         $utility = new Utility();
         $class = $utility->setLinkData($res);
-        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva", ['request' => $res, 'class' => $class]);
+        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva", ['request' => $res, 'class' => $class, 'tableName' => $this->tableName]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva-detail", ['request' => $res, 'btn' => $btn]);
+        return view("gsu::$this->view_folder.linea-aggiuntiva.linea-aggiuntiva-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){
