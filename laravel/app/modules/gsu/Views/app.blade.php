@@ -95,26 +95,29 @@
             });
 
             @if (Session::get('livello')  == 1)
-            $('.search_anagrafica').autocomplete({
-                source: '/gsu/getanagrafica',
-                minLength: 2,
-                select: function(event, ui) {
+                $('.search_anagrafica').autocomplete({
+                    source: '/gsu/getanagrafica',
+                    minLength: 2,
+                    select: function(event, ui) {
 
-                }
-            });
+                    }
+                });
             @endif;
 
             @if (Session::get('livello')  == 2)
-            $('.search_clienti').autocomplete({
-                source: '/gsu/getclienti',
-                minLength: 2,
-                select: function(event, ui) {
+                $('.search_clienti').autocomplete({
+                    source: '/gsu/getclienti',
+                    minLength: 2,
+                    select: function(event, ui) {
 
-                }
-            });
+                    }
+                });
+                $("#cliente").attr("disabled", "disabled");
+            @endif;
 
-            $("#cliente").attr("disabled", "disabled");
-
+            @if (Session::get('livello')  == 3)
+                $("#cliente").attr("disabled", "disabled");
+                $("#cliente_finale").attr("disabled", "disabled");
             @endif;
 
         });
