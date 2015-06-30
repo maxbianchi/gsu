@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/Utenti.php" afterPath="$PROJECT_DIR$/laravel/app/Utenti.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gsu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,85 +28,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="9072">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VideoconferenceController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VideoconferenceController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-              <caret line="54" column="152" selection-start-line="54" selection-start-column="152" selection-end-line="54" selection-end-column="152" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VoicegateController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VoicegateController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
-              <caret line="55" column="140" selection-start-line="55" selection-start-column="140" selection-end-line="55" selection-end-column="140" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VpnController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/VpnController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
-              <caret line="55" column="128" selection-start-line="55" selection-start-column="128" selection-end-line="55" selection-end-column="128" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebMarketingController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/WebMarketingController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-              <caret line="54" column="146" selection-start-line="54" selection-start-column="146" selection-end-line="54" selection-end-column="146" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GsuController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.666666" vertical-offset="324" max-vertical-offset="1332">
+            <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1332">
               <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GsuModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
+      <file leaf-file-name="LoginController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/LoginController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.407408" vertical-offset="2653" max-vertical-offset="3762">
-              <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
-              <folding>
-                <marker date="1435581493318" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
-                <marker date="1435581493318" expanded="true" signature="6953:6983" placeholder="SELECT * FRO..AGE10..." />
-                <marker date="1435581493318" expanded="true" signature="7234:7327" placeholder="SELECT DISTI..AGE10..." />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="972">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26865673" vertical-offset="756" max-vertical-offset="2358">
-              <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DashboardController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/DashboardController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/Controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,8 +81,8 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1710">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="1710">
+              <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -124,8 +91,46 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utenti.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/app/Utenti.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5010661" vertical-offset="538" max-vertical-offset="2268">
+              <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+              <folding>
+                <marker date="1435653447728" expanded="true" signature="558:635" placeholder="SELECT * FRO..AGE10..." />
+                <marker date="1435653447728" expanded="true" signature="1127:1322" placeholder="SELECT U.IDU..AGE10..." />
+                <marker date="1435653447728" expanded="true" signature="1608:1750" placeholder="SELECT A.SOG..AGE10..." />
+                <marker date="1435653447728" expanded="true" signature="1882:2006" placeholder="insert into ..." />
+                <marker date="1435653447728" expanded="true" signature="4067:4249" placeholder="SELECT count..riferimenti..." />
+                <marker date="1435653447728" expanded="true" signature="4350:4520" placeholder="INSERT INTO ..." />
+                <marker date="1435653447728" expanded="true" signature="4852:4978" placeholder="insert into ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addriferimenti.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/resources/views/users/addriferimenti.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2124">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="riferimenti.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/resources/views/users/riferimenti.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-27.222221" vertical-offset="705" max-vertical-offset="1656">
+              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,8 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CentraliniPwdController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/CmsController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DatabaseController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DialUpController.php" />
@@ -190,6 +193,8 @@
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/users/riferimenti.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Utenti.php" />
       </list>
     </option>
   </component>
@@ -205,9 +210,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-4" />
+    <option name="y" value="24" />
     <option name="width" value="1855" />
-    <option name="height" value="1084" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -293,7 +298,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -311,29 +320,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="users" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -351,29 +346,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -392,74 +365,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="laravel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -512,9 +417,6 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="be71d8f1-daa9-40bd-8d4f-ee3b7ce8dab1" server_name="gsu">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -522,6 +424,9 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="be71d8f1-daa9-40bd-8d4f-ee3b7ce8dab1" server_name="gsu">
       <method />
     </configuration>
     <list size="1">
@@ -547,7 +452,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -562,13 +467,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.09821428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31646827" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -656,67 +561,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DialUpController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-          <caret line="54" column="136" selection-start-line="54" selection-start-column="136" selection-end-line="54" selection-end-column="136" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DirectAccessController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.0" vertical-offset="216" max-vertical-offset="1944">
-          <caret line="58" column="218" selection-start-line="58" selection-start-column="218" selection-end-line="58" selection-end-column="218" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DominiController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-          <caret line="54" column="134" selection-start-line="54" selection-start-column="134" selection-end-line="54" selection-end-column="134" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/DpssController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
-          <caret line="55" column="130" selection-start-line="55" selection-start-column="130" selection-end-line="55" selection-end-column="130" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/FaxVirtualeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
-          <caret line="54" column="146" selection-start-line="54" selection-start-column="146" selection-end-line="54" selection-end-column="146" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GestioneApparatiController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-33.407406" vertical-offset="16" max-vertical-offset="1980">
-          <caret line="58" column="226" selection-start-line="58" selection-start-column="226" selection-end-line="58" selection-end-column="226" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwareController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.666666" vertical-offset="216" max-vertical-offset="2142">
-          <caret line="63" column="235" selection-start-line="63" selection-start-column="235" selection-end-line="63" selection-end-column="235" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/HardwarePwdController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.666666" vertical-offset="216" max-vertical-offset="2142">
           <caret line="63" column="243" selection-start-line="63" selection-start-column="243" selection-end-line="63" selection-end-column="243" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,7 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="136" selection-start-line="54" selection-start-column="136" selection-end-line="54" selection-end-column="136" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -732,7 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="136" selection-start-line="54" selection-start-column="136" selection-end-line="54" selection-end-column="136" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,7 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
           <caret line="55" column="146" selection-start-line="55" selection-start-column="146" selection-end-line="55" selection-end-column="146" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,7 +601,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="154" selection-start-line="54" selection-start-column="154" selection-end-line="54" selection-end-column="154" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -764,7 +608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="144" selection-start-line="54" selection-start-column="144" selection-end-line="54" selection-end-column="144" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,7 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="978">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="54" max-vertical-offset="1944">
           <caret line="58" column="200" selection-start-line="58" selection-start-column="200" selection-end-line="58" selection-end-column="200" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -788,7 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-33.407406" vertical-offset="16" max-vertical-offset="1944">
           <caret line="58" column="228" selection-start-line="58" selection-start-column="228" selection-end-line="58" selection-end-column="228" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -796,7 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="216" max-vertical-offset="2250">
           <caret line="67" column="302" selection-start-line="67" selection-start-column="302" selection-end-line="67" selection-end-column="302" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -804,7 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="148" selection-start-line="54" selection-start-column="148" selection-end-line="54" selection-end-column="148" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -812,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="154" selection-start-line="54" selection-start-column="154" selection-end-line="54" selection-end-column="154" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,7 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1710">
           <caret line="54" column="148" selection-start-line="54" selection-start-column="148" selection-end-line="54" selection-end-column="148" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,7 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
           <caret line="55" column="150" selection-start-line="55" selection-start-column="150" selection-end-line="55" selection-end-column="150" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -836,7 +671,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
           <caret line="55" column="146" selection-start-line="55" selection-start-column="146" selection-end-line="55" selection-end-column="146" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -844,7 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-24.666666" vertical-offset="216" max-vertical-offset="1764">
           <caret line="57" column="163" selection-start-line="57" selection-start-column="163" selection-end-line="57" selection-end-column="163" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -852,7 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.666666" vertical-offset="270" max-vertical-offset="1782">
           <caret line="56" column="180" selection-start-line="56" selection-start-column="180" selection-end-line="56" selection-end-column="180" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-33.407406" vertical-offset="16" max-vertical-offset="1836">
           <caret line="58" column="183" selection-start-line="58" selection-start-column="183" selection-end-line="58" selection-end-column="183" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -868,7 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.666668" vertical-offset="0" max-vertical-offset="1782">
           <caret line="56" column="186" selection-start-line="56" selection-start-column="186" selection-end-line="56" selection-end-column="186" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,7 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1710">
           <caret line="54" column="146" selection-start-line="54" selection-start-column="146" selection-end-line="54" selection-end-column="146" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.666668" vertical-offset="0" max-vertical-offset="1782">
           <caret line="56" column="172" selection-start-line="56" selection-start-column="172" selection-end-line="56" selection-end-column="172" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +720,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.666668" vertical-offset="0" max-vertical-offset="1782">
           <caret line="56" column="160" selection-start-line="56" selection-start-column="160" selection-end-line="56" selection-end-column="160" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1710">
           <caret line="54" column="136" selection-start-line="54" selection-start-column="136" selection-end-line="54" selection-end-column="136" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,7 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.666668" vertical-offset="0" max-vertical-offset="1782">
           <caret line="56" column="168" selection-start-line="56" selection-start-column="168" selection-end-line="56" selection-end-column="168" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,7 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.666668" vertical-offset="0" max-vertical-offset="1782">
           <caret line="56" column="158" selection-start-line="56" selection-start-column="158" selection-end-line="56" selection-end-column="158" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -924,7 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.666668" vertical-offset="0" max-vertical-offset="1782">
           <caret line="56" column="178" selection-start-line="56" selection-start-column="178" selection-end-line="56" selection-end-column="178" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,7 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1710">
           <caret line="54" column="138" selection-start-line="54" selection-start-column="138" selection-end-line="54" selection-end-column="138" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,7 +762,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1746">
           <caret line="54" column="138" selection-start-line="54" selection-start-column="138" selection-end-line="54" selection-end-column="138" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,7 +769,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
           <caret line="55" column="138" selection-start-line="55" selection-start-column="138" selection-end-line="55" selection-end-column="138" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,7 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.666666" vertical-offset="216" max-vertical-offset="2142">
           <caret line="63" column="243" selection-start-line="63" selection-start-column="243" selection-end-line="63" selection-end-column="243" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -964,7 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-33.88889" vertical-offset="3" max-vertical-offset="1800">
           <caret line="58" column="165" selection-start-line="58" selection-start-column="165" selection-end-line="58" selection-end-column="165" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -972,7 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-26.666666" vertical-offset="270" max-vertical-offset="2142">
           <caret line="63" column="241" selection-start-line="63" selection-start-column="241" selection-end-line="63" selection-end-column="241" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -980,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="148" selection-start-line="54" selection-start-column="148" selection-end-line="54" selection-end-column="148" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -988,7 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="152" selection-start-line="54" selection-start-column="152" selection-end-line="54" selection-end-column="152" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -996,7 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
           <caret line="55" column="140" selection-start-line="55" selection-start-column="140" selection-end-line="55" selection-end-column="140" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-32.0" vertical-offset="0" max-vertical-offset="1728">
           <caret line="55" column="128" selection-start-line="55" selection-start-column="128" selection-end-line="55" selection-end-column="128" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1012,13 +825,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.333334" vertical-offset="0" max-vertical-offset="1728">
           <caret line="54" column="146" selection-start-line="54" selection-start-column="146" selection-end-line="54" selection-end-column="146" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9072">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.407408" vertical-offset="2653" max-vertical-offset="3762">
+          <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.0" vertical-offset="756" max-vertical-offset="2358">
+          <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1332">
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/LoginController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="978">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="978">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/DashboardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="978">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="978">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1032,39 +897,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9072">
+        <state vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="1710">
+          <caret line="64" column="38" selection-start-line="64" selection-start-column="38" selection-end-line="64" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/users/addriferimenti.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2124">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/GsuController.php">
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/users/riferimenti.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.666666" vertical-offset="324" max-vertical-offset="1332">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+        <state vertical-scroll-proportion="-27.222221" vertical-offset="705" max-vertical-offset="1656">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/GsuModel.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Utenti.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.407408" vertical-offset="2653" max-vertical-offset="3762">
-          <caret line="174" column="27" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.5010661" vertical-offset="538" max-vertical-offset="2268">
+          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
           <folding>
-            <marker date="1435581493318" expanded="true" signature="6610:6673" placeholder="SELECT DISTI..AGE10..." />
-            <marker date="1435581493318" expanded="true" signature="6953:6983" placeholder="SELECT * FRO..AGE10..." />
-            <marker date="1435581493318" expanded="true" signature="7234:7327" placeholder="SELECT DISTI..AGE10..." />
+            <marker date="1435653447728" expanded="true" signature="558:635" placeholder="SELECT * FRO..AGE10..." />
+            <marker date="1435653447728" expanded="true" signature="1127:1322" placeholder="SELECT U.IDU..AGE10..." />
+            <marker date="1435653447728" expanded="true" signature="1608:1750" placeholder="SELECT A.SOG..AGE10..." />
+            <marker date="1435653447728" expanded="true" signature="1882:2006" placeholder="insert into ..." />
+            <marker date="1435653447728" expanded="true" signature="4067:4249" placeholder="SELECT count..riferimenti..." />
+            <marker date="1435653447728" expanded="true" signature="4350:4520" placeholder="INSERT INTO ..." />
+            <marker date="1435653447728" expanded="true" signature="4852:4978" placeholder="insert into ..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26865673" vertical-offset="756" max-vertical-offset="2358">
-          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
