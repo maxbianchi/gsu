@@ -84,10 +84,10 @@
         <tbody>
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
-                <td><a href="{{url(isset($class['link'][$req['CANONE']]) ? '/gsu/centralini' : $class['link'][$req['CANONE']] )."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDCENTRALINO']."&eliminati=".Input::get('eliminati')}}">{{$req['CODICE_R']}}</a></td>
                 <td>
                     <div class="stato_rivenditore {{$class[$req['MANUTENZIONE']]['GSU']['rivenditore']['color']}}" >{{$class[$req['MANUTENZIONE']]['GSU']['rivenditore']['text']}}</div>
                 </td>
+                <td><a href="{{url(isset($class['link'][$req['CANONE']]) ? '/gsu/centralini' : $class['link'][$req['CANONE']] )."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDCENTRALINO']."&eliminati=".Input::get('eliminati')}}">{{$req['CODICE_R']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>

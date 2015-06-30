@@ -144,12 +144,12 @@ class Utility{
             $class[$row['MANUTENZIONE']] = $res;
 
             //Sistemo Data
-            if(!empty($row['DATADOCUMENTO'])) {
+            /*if(!empty($row['DATADOCUMENTO'])) {
                 $data = explode(" ", $row['DATADOCUMENTO']);
                 $data = explode("-", $data[0]);
                 $data = $data[2] . "-" . $data[1] . "-" . $data[0];
                 $request[$key]['DATADOCUMENTO'] = $data;
-            }
+            }*/
 
             //Imposto link dettaglio
             $link[$row['CANONE']] = $canone->getRouteByCanone($row['CANONE']);

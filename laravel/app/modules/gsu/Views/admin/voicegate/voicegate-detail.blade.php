@@ -53,7 +53,7 @@
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDVOICEGATE'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
-                        @if($btn == 'save')
+                        @if($btn == 'save' && Input::get("eliminato") != 1)
                             <input type="button" value="SALVA" id="btn_salva" class="btn btn-primary btn-xs">
                             <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-default btn-xs">
                             <div class="pull-right"><input type="checkbox" name="eliminato" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> >ELIMINATO</div>

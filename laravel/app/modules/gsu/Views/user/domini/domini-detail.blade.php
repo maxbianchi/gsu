@@ -62,13 +62,9 @@
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDDOMINIO'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
-                        @if($btn == 'save')
-                            <input type="button" value="SALVA" id="btn_salva" class="btn btn-primary btn-xs">
-                            <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-default btn-xs pull right">
-                            <div class="pull-right"><input type="checkbox" name="eliminato" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> >ELIMINATO</div>
-                        @else
+
                             <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
-                        @endif
+
                     </td>
                 </tr>
 
