@@ -57,8 +57,8 @@
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
         <thead>
         <tr>
-            <th>MANTUTENZIONE</th>
             <th>STATO</th>
+            <th>MANTUTENZIONE</th>
             <th>DATA INIZIO CONTRATTO</th>
             <th>CANONE</th>
             <th class="soggetto">CLIENTE</th>

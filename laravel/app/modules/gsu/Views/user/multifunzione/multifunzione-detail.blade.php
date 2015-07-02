@@ -120,6 +120,20 @@
     </form>
     <hr>
 
+    <?php
+    if(!isset($request['SOGGETTO']))
+        $request['SOGGETTO'] = "";
+    if(!isset($request['CLIENTE']))
+        $request['CLIENTE'] = "";
+    if(!isset($request['DESTINATARIOABITUALE']))
+        $request['DESTINATARIOABITUALE'] = "";
+    if(!isset($request['ID']))
+        $request['ID'] = "";
+    $request['SOGGETTO'] = trim($request['SOGGETTO']);
+    $request['CLIENTE'] = trim($request['CLIENTE']);
+    $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
+    ?>
+
     <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
         <tr>
             <td>
