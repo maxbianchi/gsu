@@ -98,9 +98,12 @@
         if(!isset($request['DESTINATARIOABITUALE']))
             $request['DESTINATARIOABITUALE'] = "";
         if(!isset($request['SERIALE']))
-            $request['SERIALE']
+            $request['SERIALE'] = "";
         if(!isset($request['IDTELEASSISTENZA']))
-            $request['IDTELEASSISTENZA']
+            $request['IDTELEASSISTENZA'] = "";
+        $request['SOGGETTO'] = trim($request['SOGGETTO']);
+        $request['CLIENTE'] = trim($request['CLIENTE']);
+        $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
         ?>
 
 
