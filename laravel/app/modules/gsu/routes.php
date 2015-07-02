@@ -496,4 +496,36 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-filtro-accessi/edit', 'SimFiltroAccessiController@edit');
     Route::post('gsu/sim-filtro-accessi/save', 'SimFiltroAccessiController@save');
     Route::get('gsu/sim-filtro-accessi/delete', 'SimFiltroAccessiController@delete');
+
+    //UTENTE AGGIUNTIVO
+    Route::get('gsu/utente-aggiuntivo', 'UtenteAggiuntivoController@main');
+    Route::get('gsu/utente-aggiuntivo/search', 'UtenteAggiuntivoController@search');
+    Route::get('gsu/utente-aggiuntivo/show', 'UtenteAggiuntivoController@show');
+    Route::get('gsu/utente-aggiuntivo/edit', 'UtenteAggiuntivoController@edit');
+    Route::post('gsu/utente-aggiuntivo/save', 'UtenteAggiuntivoController@save');
+    Route::get('gsu/utente-aggiuntivo/delete', 'UtenteAggiuntivoController@delete');
+
+    //UTENTE AGGIUNTIVO TS
+    Route::get('gsu/utente-aggiuntivo-ts', 'UtenteAggiuntivoTSController@main');
+    Route::get('gsu/utente-aggiuntivo-ts/search', 'UtenteAggiuntivoTSController@search');
+    Route::get('gsu/utente-aggiuntivo-ts/show', 'UtenteAggiuntivoTSController@show');
+    Route::get('gsu/utente-aggiuntivo-ts/edit', 'UtenteAggiuntivoTSController@edit');
+    Route::post('gsu/utente-aggiuntivo-ts/save', 'UtenteAggiuntivoTSController@save');
+    Route::get('gsu/utente-aggiuntivo-ts/delete', 'UtenteAggiuntivoTSController@delete');
+
+    //UTENTE AGGIUNTIVO MS
+    Route::get('gsu/utente-aggiuntivo-ms', 'UtenteAggiuntivoMSController@main');
+    Route::get('gsu/utente-aggiuntivo-ms/search', 'UtenteAggiuntivoMSController@search');
+    Route::get('gsu/utente-aggiuntivo-ms/show', 'UtenteAggiuntivoMSController@show');
+    Route::get('gsu/utente-aggiuntivo-ms/edit', 'UtenteAggiuntivoMSController@edit');
+    Route::post('gsu/utente-aggiuntivo-ms/save', 'UtenteAggiuntivoMSController@save');
+    Route::get('gsu/utente-aggiuntivo-ms/delete', 'UtenteAggiuntivoMSController@delete');
+
+    //MAIL SERVER
+    Route::get('gsu/mail-server', 'MailServerController@main');
+    Route::get('gsu/mail-server/search', 'MailServerController@search');
+    Route::get('gsu/mail-server/show', 'MailServerController@show');
+    Route::get('gsu/mail-server/edit', 'MailServerController@edit');
+    Route::post('gsu/mail-server/save', 'MailServerController@save');
+    Route::get('gsu/mail-server/delete', 'MailServerController@delete');
 });

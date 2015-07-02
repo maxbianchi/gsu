@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0492c907-ed83-4da9-adc5-3d5553beb126" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/main.blade.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/main.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MailServerController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/MailServerModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoMSController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoMSModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoTSController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoTSModel.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server-detail.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo/utente-aggiuntivo-detail.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms-detail.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ts/utente-aggiuntivo-ts-detail.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ts/utente-aggiuntivo-ts.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo/utente-aggiuntivo.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" afterPath="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gsu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,61 +44,125 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EventServiceProvider.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Providers/EventServiceProvider.php">
+      <file leaf-file-name="UtenteAggiuntivoMSModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoMSModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="666">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-23.46591" vertical-offset="1499" max-vertical-offset="4212">
+              <caret line="201" column="111" selection-start-line="201" selection-start-column="111" selection-end-line="201" selection-end-column="111" />
+              <folding>
+                <marker date="1435843036694" expanded="true" signature="6590:6662" placeholder="UPDATE gsu.d..." />
+                <marker date="1435843036694" expanded="true" signature="6716:6786" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435843036694" expanded="true" signature="7187:7272" placeholder="UPDATE gsu.d..." />
+                <marker date="1435843036694" expanded="true" signature="7712:7842" placeholder="INSERT INTO ..." />
+                <marker date="1435843036694" expanded="true" signature="7870:7940" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435843036694" expanded="true" signature="8199:8284" placeholder="UPDATE gsu.d..." />
+                <marker date="1435843036694" expanded="true" signature="8360:8445" placeholder="INSERT INTO ..." />
+                <marker date="1435843036694" expanded="true" signature="8526:8660" placeholder="UPDATE gsu.d..." />
+                <marker date="1435843036694" expanded="true" signature="8762:8855" placeholder="UPDATE gsu.d..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UtenteAggiuntivoTSModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoTSModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="128.92592" vertical-offset="3517" max-vertical-offset="4482">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+              <folding>
+                <element signature="e#41#80#0#PHP" expanded="true" />
+                <marker date="1435842374941" expanded="true" signature="6957:7029" placeholder="UPDATE gsu.d..." />
+                <marker date="1435842374941" expanded="true" signature="7083:7153" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435842374941" expanded="true" signature="7554:7639" placeholder="UPDATE gsu.d..." />
+                <marker date="1435842374941" expanded="true" signature="8189:8361" placeholder="INSERT INTO ..." />
+                <marker date="1435842374941" expanded="true" signature="8389:8459" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435842374941" expanded="true" signature="8718:8803" placeholder="UPDATE gsu.d..." />
+                <marker date="1435842374941" expanded="true" signature="8879:8964" placeholder="INSERT INTO ..." />
+                <marker date="1435842374941" expanded="true" signature="9045:9221" placeholder="UPDATE gsu.d..." />
+                <marker date="1435842374941" expanded="true" signature="9323:9416" placeholder="UPDATE gsu.d..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utente-aggiuntivo-ms-detail.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms-detail.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.407408" vertical-offset="196" max-vertical-offset="2268">
+              <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigServiceProvider.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Providers/ConfigServiceProvider.php">
+      <file leaf-file-name="MailServerController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MailServerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="522">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-3.3636363" vertical-offset="676" max-vertical-offset="1854">
+              <caret line="54" column="68" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="68" />
+              <folding>
+                <element signature="e#46#82#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MailServerModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/MailServerModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-28.74074" vertical-offset="3040" max-vertical-offset="4464">
+              <caret line="215" column="147" selection-start-line="215" selection-start-column="147" selection-end-line="215" selection-end-column="147" />
+              <folding>
+                <marker date="1435849161157" expanded="true" signature="6836:6904" placeholder="UPDATE gsu.d..." />
+                <marker date="1435849161157" expanded="true" signature="6958:7028" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435849161157" expanded="true" signature="7429:7514" placeholder="UPDATE gsu.d..." />
+                <marker date="1435849161157" expanded="true" signature="8068:8235" placeholder="INSERT INTO ..." />
+                <marker date="1435849161157" expanded="true" signature="8263:8333" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435849161157" expanded="true" signature="8592:8677" placeholder="UPDATE gsu.d..." />
+                <marker date="1435849161157" expanded="true" signature="8753:8838" placeholder="INSERT INTO ..." />
+                <marker date="1435849161157" expanded="true" signature="8919:9095" placeholder="UPDATE gsu.d..." />
+                <marker date="1435849161157" expanded="true" signature="9197:9290" placeholder="UPDATE gsu.d..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UtenteAggiuntivoModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="7.3333335" vertical-offset="234" max-vertical-offset="4482">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+              <folding>
+                <element signature="e#41#80#0#PHP" expanded="true" />
+                <marker date="1435841731342" expanded="true" signature="6883:6952" placeholder="UPDATE gsu.d..." />
+                <marker date="1435841731342" expanded="true" signature="7006:7076" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435841731342" expanded="true" signature="7477:7562" placeholder="UPDATE gsu.d..." />
+                <marker date="1435841731342" expanded="true" signature="8112:8281" placeholder="INSERT INTO ..." />
+                <marker date="1435841731342" expanded="true" signature="8309:8379" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435841731342" expanded="true" signature="8638:8723" placeholder="UPDATE gsu.d..." />
+                <marker date="1435841731342" expanded="true" signature="8799:8884" placeholder="INSERT INTO ..." />
+                <marker date="1435841731342" expanded="true" signature="8965:9138" placeholder="UPDATE gsu.d..." />
+                <marker date="1435841731342" expanded="true" signature="9240:9333" placeholder="UPDATE gsu.d..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mail-server.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.3977273" vertical-offset="1283" max-vertical-offset="2736">
+              <caret line="83" column="205" selection-start-line="83" selection-start-column="192" selection-end-line="83" selection-end-column="205" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Registrar.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/Services/Registrar.php">
+      <file leaf-file-name="mail-server-detail.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server-detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="774">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="101.44444" vertical-offset="2739" max-vertical-offset="3690">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/config/services.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="774">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="module.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/config/module.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3333334" vertical-offset="0" max-vertical-offset="252">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.48187634" vertical-offset="1330" max-vertical-offset="2484">
+              <caret line="99" column="68" selection-start-line="99" selection-start-column="68" selection-end-line="99" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -90,39 +171,29 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.666666" vertical-offset="0" max-vertical-offset="9072">
-              <caret line="25" column="64" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="64" />
+            <state vertical-scroll-proportion="-15.888889" vertical-offset="8607" max-vertical-offset="9648">
+              <caret line="502" column="61" selection-start-line="502" selection-start-column="61" selection-end-line="502" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
+      <file leaf-file-name="MailArchiveModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/MailArchiveModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="54.77778" vertical-offset="1479" max-vertical-offset="2430">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="4266">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="93.25926" vertical-offset="2518" max-vertical-offset="3456">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/main.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7697228" vertical-offset="1132" max-vertical-offset="2070">
-              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1435570459469" expanded="true" signature="6509:6577" placeholder="UPDATE gsu.d..." />
+                <marker date="1435570459469" expanded="true" signature="6631:6701" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435570459469" expanded="true" signature="7102:7187" placeholder="UPDATE gsu.d..." />
+                <marker date="1435570459469" expanded="true" signature="7718:7890" placeholder="INSERT INTO ..." />
+                <marker date="1435570459469" expanded="true" signature="7918:7988" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+                <marker date="1435570459469" expanded="true" signature="8247:8332" placeholder="UPDATE gsu.d..." />
+                <marker date="1435570459469" expanded="true" signature="8408:8493" placeholder="INSERT INTO ..." />
+                <marker date="1435570459469" expanded="true" signature="8574:8755" placeholder="UPDATE gsu.d..." />
+                <marker date="1435570459469" expanded="true" signature="8857:8950" placeholder="UPDATE gsu.d..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -135,23 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/dial-up/dial-up-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/direct-access/direct-access-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/hardware/hardware-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/housing/housing-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/ipmultimedia/ipmultimedia-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/ipstatici/ipstatici-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/linea-aggiuntiva/linea-aggiuntiva-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mpls/mpls-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mpls-direct-access/mpls-direct-access-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/multifunzione/multifunzione-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/outlookconnector/outlookconnector-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/post-warranty/post-warranty-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/servizi-access/servizi-access-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/servizi-plus/servizi-plus-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/smartnet/smartnet-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/software/software-detail.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/unigate/unigate-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/url-filtering/url-filtering-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/vpn/vpn-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/sim-links.blade.php" />
@@ -186,6 +240,23 @@
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/url-filtering/url-filtering-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/vpn/vpn-detail.blade.php" />
         <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/main.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo/utente-aggiuntivo.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoModel.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo/utente-aggiuntivo-detail.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoTSController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoTSModel.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ts/utente-aggiuntivo-ts.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ts/utente-aggiuntivo-ts-detail.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoMSController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoMSModel.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms-detail.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/routes.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MailServerController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Models/MailServerModel.php" />
+        <option value="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server-detail.blade.php" />
       </list>
     </option>
   </component>
@@ -446,6 +517,104 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mail-server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="laravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -460,11 +629,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views" />
-      <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore" />
+      <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin" />
       <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Models" />
       <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Controllers" />
-      <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin" />
+      <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views" />
+      <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie" />
@@ -638,125 +807,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/housing/housing-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.74074" vertical-offset="556" max-vertical-offset="1710">
-          <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/ipmultimedia/ipmultimedia-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.0" vertical-offset="1026" max-vertical-offset="2232">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="85" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/ipmultimedia/ipmultimedia-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.407408" vertical-offset="376" max-vertical-offset="1512">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/ipstatici/ipstatici-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.666667" vertical-offset="1026" max-vertical-offset="2340">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="83" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/ipstatici/ipstatici-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.407408" vertical-offset="502" max-vertical-offset="1620">
-          <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/linea-aggiuntiva/linea-aggiuntiva-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.0" vertical-offset="810" max-vertical-offset="2250">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="79" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/linea-aggiuntiva/linea-aggiuntiva-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.407408" vertical-offset="376" max-vertical-offset="1512">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mailarchive/mailarchive-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="36.11111" vertical-offset="975" max-vertical-offset="1980">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mpls/mpls-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.333334" vertical-offset="3780" max-vertical-offset="5526">
-          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="249" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/mpls/mpls-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.0" vertical-offset="3564" max-vertical-offset="4806">
-          <caret line="231" column="10" selection-start-line="231" selection-start-column="10" selection-end-line="231" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mpls-direct-access/mpls-direct-access-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333" vertical-offset="3942" max-vertical-offset="5508">
-          <caret line="239" column="0" selection-start-line="239" selection-start-column="0" selection-end-line="249" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/mpls-direct-access/mpls-direct-access-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.666666" vertical-offset="3510" max-vertical-offset="4788">
-          <caret line="232" column="8" selection-start-line="232" selection-start-column="8" selection-end-line="232" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/multifunzione/multifunzione-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333" vertical-offset="2160" max-vertical-offset="3654">
-          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="152" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/multifunzione/multifunzione-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.407408" vertical-offset="1726" max-vertical-offset="2916">
-          <caret line="134" column="6" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/novirusnospam/novirusnospam-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="30.11111" vertical-offset="813" max-vertical-offset="1764">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/outlookconnector/outlookconnector-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.0" vertical-offset="810" max-vertical-offset="2268">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="81" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/outlookconnector/outlookconnector-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.074074" vertical-offset="376" max-vertical-offset="1548">
-          <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/post-warranty/post-warranty-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.666667" vertical-offset="972" max-vertical-offset="2304">
@@ -820,13 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/software/software-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.333333" vertical-offset="1350" max-vertical-offset="2556">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/rivenditore/software/software-detail.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-33.407406" vertical-offset="646" max-vertical-offset="1854">
@@ -846,14 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1510" max-vertical-offset="2718">
           <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/url-filtering/url-filtering-detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="2448">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="90" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -986,14 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.666666" vertical-offset="0" max-vertical-offset="9072">
-          <caret line="25" column="64" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/varie/menu.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="54.77778" vertical-offset="1479" max-vertical-offset="2430">
@@ -1012,8 +1039,226 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/main.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7697228" vertical-offset="1132" max-vertical-offset="2070">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        <state vertical-scroll-proportion="-12.740741" vertical-offset="1132" max-vertical-offset="2070">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo/utente-aggiuntivo.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.715909" vertical-offset="1769" max-vertical-offset="2646">
+          <caret line="85" column="131" selection-start-line="85" selection-start-column="131" selection-end-line="85" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/url-filtering/url-filtering-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-43.333332" vertical-offset="216" max-vertical-offset="2448">
+          <caret line="77" column="14" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/software/software-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.0" vertical-offset="486" max-vertical-offset="2556">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="54" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo/utente-aggiuntivo-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.666667" vertical-offset="414" max-vertical-offset="2484">
+          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoTSController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6136364" vertical-offset="0" max-vertical-offset="1872">
+          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ts/utente-aggiuntivo-ts.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8977275" vertical-offset="1769" max-vertical-offset="2646">
+          <caret line="132" column="55" selection-start-line="132" selection-start-column="55" selection-end-line="132" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ts/utente-aggiuntivo-ts-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-80.666664" vertical-offset="0" max-vertical-offset="2484">
+          <caret line="121" column="66" selection-start-line="121" selection-start-column="66" selection-end-line="121" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.659091" vertical-offset="0" max-vertical-offset="1854">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/UtenteAggiuntivoMSController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.75" vertical-offset="982" max-vertical-offset="1872">
+          <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8977275" vertical-offset="1661" max-vertical-offset="2538">
+          <caret line="126" column="56" selection-start-line="126" selection-start-column="36" selection-end-line="126" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/utente-aggiuntivo-ms/utente-aggiuntivo-ms-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.407408" vertical-offset="196" max-vertical-offset="2268">
+          <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.888889" vertical-offset="8607" max-vertical-offset="9648">
+          <caret line="502" column="61" selection-start-line="502" selection-start-column="61" selection-end-line="502" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/MailArchiveModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4266">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1435570459469" expanded="true" signature="6509:6577" placeholder="UPDATE gsu.d..." />
+            <marker date="1435570459469" expanded="true" signature="6631:6701" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435570459469" expanded="true" signature="7102:7187" placeholder="UPDATE gsu.d..." />
+            <marker date="1435570459469" expanded="true" signature="7718:7890" placeholder="INSERT INTO ..." />
+            <marker date="1435570459469" expanded="true" signature="7918:7988" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435570459469" expanded="true" signature="8247:8332" placeholder="UPDATE gsu.d..." />
+            <marker date="1435570459469" expanded="true" signature="8408:8493" placeholder="INSERT INTO ..." />
+            <marker date="1435570459469" expanded="true" signature="8574:8755" placeholder="UPDATE gsu.d..." />
+            <marker date="1435570459469" expanded="true" signature="8857:8950" placeholder="UPDATE gsu.d..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="7.3333335" vertical-offset="234" max-vertical-offset="4482">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding>
+            <element signature="e#41#80#0#PHP" expanded="true" />
+            <marker date="1435841731342" expanded="true" signature="6883:6952" placeholder="UPDATE gsu.d..." />
+            <marker date="1435841731342" expanded="true" signature="7006:7076" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435841731342" expanded="true" signature="7477:7562" placeholder="UPDATE gsu.d..." />
+            <marker date="1435841731342" expanded="true" signature="8112:8281" placeholder="INSERT INTO ..." />
+            <marker date="1435841731342" expanded="true" signature="8309:8379" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435841731342" expanded="true" signature="8638:8723" placeholder="UPDATE gsu.d..." />
+            <marker date="1435841731342" expanded="true" signature="8799:8884" placeholder="INSERT INTO ..." />
+            <marker date="1435841731342" expanded="true" signature="8965:9138" placeholder="UPDATE gsu.d..." />
+            <marker date="1435841731342" expanded="true" signature="9240:9333" placeholder="UPDATE gsu.d..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoMSModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.46591" vertical-offset="1499" max-vertical-offset="4212">
+          <caret line="201" column="111" selection-start-line="201" selection-start-column="111" selection-end-line="201" selection-end-column="111" />
+          <folding>
+            <marker date="1435843036694" expanded="true" signature="6590:6662" placeholder="UPDATE gsu.d..." />
+            <marker date="1435843036694" expanded="true" signature="6716:6786" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435843036694" expanded="true" signature="7187:7272" placeholder="UPDATE gsu.d..." />
+            <marker date="1435843036694" expanded="true" signature="7712:7842" placeholder="INSERT INTO ..." />
+            <marker date="1435843036694" expanded="true" signature="7870:7940" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435843036694" expanded="true" signature="8199:8284" placeholder="UPDATE gsu.d..." />
+            <marker date="1435843036694" expanded="true" signature="8360:8445" placeholder="INSERT INTO ..." />
+            <marker date="1435843036694" expanded="true" signature="8526:8660" placeholder="UPDATE gsu.d..." />
+            <marker date="1435843036694" expanded="true" signature="8762:8855" placeholder="UPDATE gsu.d..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/UtenteAggiuntivoTSModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="128.92592" vertical-offset="3517" max-vertical-offset="4482">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding>
+            <element signature="e#41#80#0#PHP" expanded="true" />
+            <marker date="1435842374941" expanded="true" signature="6957:7029" placeholder="UPDATE gsu.d..." />
+            <marker date="1435842374941" expanded="true" signature="7083:7153" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435842374941" expanded="true" signature="7554:7639" placeholder="UPDATE gsu.d..." />
+            <marker date="1435842374941" expanded="true" signature="8189:8361" placeholder="INSERT INTO ..." />
+            <marker date="1435842374941" expanded="true" signature="8389:8459" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435842374941" expanded="true" signature="8718:8803" placeholder="UPDATE gsu.d..." />
+            <marker date="1435842374941" expanded="true" signature="8879:8964" placeholder="INSERT INTO ..." />
+            <marker date="1435842374941" expanded="true" signature="9045:9221" placeholder="UPDATE gsu.d..." />
+            <marker date="1435842374941" expanded="true" signature="9323:9416" placeholder="UPDATE gsu.d..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3977273" vertical-offset="1283" max-vertical-offset="2736">
+          <caret line="83" column="205" selection-start-line="83" selection-start-column="192" selection-end-line="83" selection-end-column="205" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Controllers/MailServerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3636363" vertical-offset="676" max-vertical-offset="1854">
+          <caret line="54" column="68" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="68" />
+          <folding>
+            <element signature="e#46#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Models/MailServerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.74074" vertical-offset="3040" max-vertical-offset="4464">
+          <caret line="215" column="147" selection-start-line="215" selection-start-column="147" selection-end-line="215" selection-end-column="147" />
+          <folding>
+            <marker date="1435849161157" expanded="true" signature="6836:6904" placeholder="UPDATE gsu.d..." />
+            <marker date="1435849161157" expanded="true" signature="6958:7028" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435849161157" expanded="true" signature="7429:7514" placeholder="UPDATE gsu.d..." />
+            <marker date="1435849161157" expanded="true" signature="8068:8235" placeholder="INSERT INTO ..." />
+            <marker date="1435849161157" expanded="true" signature="8263:8333" placeholder="SELECT * FRO..RICHIESTE_EVASE..." />
+            <marker date="1435849161157" expanded="true" signature="8592:8677" placeholder="UPDATE gsu.d..." />
+            <marker date="1435849161157" expanded="true" signature="8753:8838" placeholder="INSERT INTO ..." />
+            <marker date="1435849161157" expanded="true" signature="8919:9095" placeholder="UPDATE gsu.d..." />
+            <marker date="1435849161157" expanded="true" signature="9197:9290" placeholder="UPDATE gsu.d..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/modules/gsu/Views/admin/mail-server/mail-server-detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48187634" vertical-offset="1330" max-vertical-offset="2484">
+          <caret line="99" column="68" selection-start-line="99" selection-start-column="68" selection-end-line="99" selection-end-column="68" />
           <folding />
         </state>
       </provider>
