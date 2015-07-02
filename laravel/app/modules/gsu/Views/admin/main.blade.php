@@ -101,22 +101,6 @@
             </tr>
         @endforeach
         </tbody>
-
-        <tfoot>
-        <tr>
-            <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>CANONE</th>
-            <th>CLIENTE</th>
-            <th>CLIENTE FINALE</th>
-            <th>UBICAZIONE</th>
-            <th>DESCRIZIONE</th>
-            <th>DESCRIZIONE2</th>
-            <th>QTAAFO70</th>
-            <th>QTAGSU</th>
-        </tr>
-        </tfoot>
     </table>
 
 @endsection
