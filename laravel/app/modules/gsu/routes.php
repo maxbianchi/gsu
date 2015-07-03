@@ -536,4 +536,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/unigate-numeri/edit', 'UnigateNumeriController@edit');
     Route::post('gsu/unigate-numeri/save', 'UnigateNumeriController@save');
     Route::get('gsu/unigate-numeri/delete', 'UnigateNumeriController@delete');
+
+    //TERMINAL SERVER
+    Route::get('gsu/terminal-server', 'TerminalServerController@main');
+    Route::get('gsu/terminal-server/search', 'TerminalServerController@search');
+    Route::get('gsu/terminal-server/show', 'TerminalServerController@show');
+    Route::get('gsu/terminal-server/edit', 'TerminalServerController@edit');
+    Route::post('gsu/terminal-server/save', 'TerminalServerController@save');
+    Route::get('gsu/terminal-server/delete', 'TerminalServerController@delete');
 });
