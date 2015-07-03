@@ -528,4 +528,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/mail-server/edit', 'MailServerController@edit');
     Route::post('gsu/mail-server/save', 'MailServerController@save');
     Route::get('gsu/mail-server/delete', 'MailServerController@delete');
+
+    //UNIGATE NUMERI
+    Route::get('gsu/unigate-numeri', 'UnigateNumeriController@main');
+    Route::get('gsu/unigate-numeri/search', 'UnigateNumeriController@search');
+    Route::get('gsu/unigate-numeri/show', 'UnigateNumeriController@show');
+    Route::get('gsu/unigate-numeri/edit', 'UnigateNumeriController@edit');
+    Route::post('gsu/unigate-numeri/save', 'UnigateNumeriController@save');
+    Route::get('gsu/unigate-numeri/delete', 'UnigateNumeriController@delete');
 });

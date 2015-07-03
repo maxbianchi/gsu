@@ -6,7 +6,13 @@
 @section('content')
 
     <?php
-            $checkBoxStart = "&daattivare=on&attivati=on&disattivati=on&dadisattivare=on";
+
+    $livello = Session::get('livello');
+    $checkBoxStart = "&daattivare=on&attivati=on&disattivati=on&dadisattivare=on";
+    if($livello == 1) {
+        $checkBoxStart = "&daattivare=on";
+    }
+
     ?>
 
     <div class="container-fluid">
