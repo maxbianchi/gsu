@@ -22,6 +22,7 @@
 	<![endif]-->
 </head>
 <body>
+<div id="container">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -52,17 +53,10 @@
 		</div>
 	</nav>
 
-	@yield('content')
-
-    <footer class="footer">
-        <strong>Uniweb Srl</strong>
-        - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
-        <br>
-        Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
-        <a href="mailto:info@uniweb.it">info@uniweb.it</a>
-        <br>
-        Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922
-    </footer>
+    <div id="content">
+        @yield('content')
+    </div>
+    </div>
 
 
 
@@ -75,5 +69,17 @@
     <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
 
     @yield('script')
+
+    <div id="footer" class="container_12">
+        <strong>Uniweb Srl</strong>
+        - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
+        <br>
+        Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
+        <a href="mailto:info@uniweb.it">info@uniweb.it</a>
+        <br>
+        Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922
+    </div>
+
+
 </body>
 </html>

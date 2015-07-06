@@ -43,6 +43,7 @@
 	<![endif]-->
 </head>
 <body class="gsu">
+<div id="container">
 	<nav class="navbar navbar-default" style="margin-bottom:0px !important">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -76,9 +77,10 @@
         @include('gsu::varie.menu')
     @endif
 
-	@yield('content')
-
-
+        <div id="content">
+	        @yield('content')
+        </div>
+</div>
 	<!-- Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/jquery/2.1.3/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('/bootstrap/3.3.4/js/bootstrap.min.js') }}"></script>
@@ -124,5 +126,17 @@
     </script>
 
     @yield('script')
+
+    <div id="footer" class="container_12">
+        <strong>Uniweb Srl</strong>
+        - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
+        <br>
+        Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
+        <a href="mailto:info@uniweb.it">info@uniweb.it</a>
+        <br>
+        Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922
+    </div>
+
+
 </body>
 </html>

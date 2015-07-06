@@ -6337,11 +6337,11 @@ table.tbl_clienti td{
     max-width: 40px;
 }
 
+/*
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    /* Set the fixed height of the footer here */
     height: 60px;
     background-color: #F5F5F5;
     border-color: #E7E7E7;
@@ -6350,7 +6350,22 @@ table.tbl_clienti td{
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     z-index: 99999;
-}
+} */
+
+
+html,body {height:100%; margin: 0;}
+#container {min-height:100%;height:auto !important; /*per gli altri browser*/height:100%; /*per IE 6*/ margin-bottom:-50px;}
+#content { padding-bottom:50px; }
+#footer{height:50px;
+    width: 100%;
+    background-color: #F5F5F5;
+    border-color: #E7E7E7;
+    text-align: center;
+    color: #646464;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;}
+
+
 
 body.gsu input[type="text"] {
     padding: 5px;
