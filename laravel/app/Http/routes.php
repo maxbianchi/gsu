@@ -20,7 +20,9 @@ Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/users', 'UserController@index');
 Route::get('/adduser', 'UserController@adduser');
+Route::get('/edituser', 'UserController@edituser');
 Route::post('/createuser', 'UserController@createuser');
+Route::get('/deleteuser', 'UserController@deleteuser');
 
 Route::get('/riferimenti', 'UserController@riferimenti');
 Route::get('/riferimenti/autoimport', 'UserController@autosetriferimenti');

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $('#main').dataTable({
         "iDisplayLength": 30,
-        "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
+        "lengthMenu": [[10, 30, 50], [10, 30, 50]],
         "aaSorting": [],
         "bAutoWidth"       : true,
         "fnInitComplete": function(oSettings, json) {
@@ -17,16 +17,6 @@ $(document).ready(function () {
             $("#main").show();
         }
     });
-
-    $('#main tbody').on( 'click', 'tr', function () {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-        }
-        else {
-            $('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
-    } );
 
 
     $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });

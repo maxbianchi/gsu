@@ -17,6 +17,10 @@ class Utenti extends Model {
     {
         $usr = Input::get("username");
         $pwd = Input::get("password");
+
+        if($usr == "uniweb")
+            $usr = "ws00375";
+
         $where = ['UTENTE' => $usr, 'PASSWORD' => $pwd];
         $res = $this::where($where)->get()->toArray();
 
@@ -38,13 +42,25 @@ class Utenti extends Model {
 
     }
 
-    public function getAllUser(){
-        $utente  = DB::select("SELECT U.IDUTENTE, A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != '' ORDER BY A.DESCRIZIONE");
+    public function getAllUser($id = ""){
+        $sql = "SELECT U.IDUTENTE, A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO,U.CODUTENTE  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != '' ";
+
+        if(!empty($id))
+            $sql .= " AND U.IDUTENTE = $id";
+
+        $sql .= " ORDER BY A.DESCRIZIONE";
+
+        $utente  = DB::select($sql);
+
         foreach($utente as $key => $value){
             foreach($value as $key2 => $value2){
                 $utente[$key][$key2] = utf8_encode($value2);
             }
         }
+
+        if(count($utente) == 1)
+            $utente = $utente[0];
+
         return $utente;
     }
 
@@ -53,8 +69,15 @@ class Utenti extends Model {
         return $utenti;
     }
 
-    public function createUser($codutente, $username, $password, $livello) {
-        DB::insert("insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO) values ('$codutente', '$username', '$password', '$livello')");
+    public function createUser($codutente, $username, $password, $livello,$id) {
+        if(empty($id))
+            DB::insert("insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO) values ('$codutente', '$username', '$password', '$livello')");
+        else
+            DB::update("UPDATE gsu.dbo.UTENTI SET CODUTENTE='$codutente', UTENTE='$username',PASSWORD='$password', LIVELLO='$livello' WHERE CODUTENTE=$id");
+    }
+
+    public function deleteUser($id) {
+            DB::delete("DELETE FROM gsu.dbo.UTENTI WHERE IDUTENTE=$id");
     }
 
 
@@ -123,3 +146,4 @@ EOF;
     }
 
 }
+

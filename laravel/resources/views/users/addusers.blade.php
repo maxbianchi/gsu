@@ -21,7 +21,7 @@
                                                     <select id="codutente">
                                                         @foreach ($utenti as $key => $utente)
                                                             @if($utente['DESCRIZIONE'] != "")
-                                                                <option value="<?php echo $utente['SOGGETTO'] ?>"><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
+                                                                <option value="<?php echo $utente['SOGGETTO'] ?>" {{isset($request['CODUTENTE']) && $request['CODUTENTE'] == $utente['SOGGETTO'] ? 'selected="selected"' : ""  }}><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -29,23 +29,24 @@
                                             </tr>
                                             <tr>
                                                 <td>Nome Utente</td>
-                                                <td><input type="text" id="username" name="username" required="required"></td>
+                                                <td><input type="text" id="username" name="username" value="{{$request['UTENTE'] or ""}}" required="required"></td>
                                             </tr>
                                             <tr>
                                                 <td>Password</td>
-                                                <td><input type="text" id="password" name="password" required="required"></td>
+                                                <td><input type="text" id="password" name="password" value="{{$request['PASSWORD'] or ""}}" required="required"></td>
                                             </tr>
                                             <tr>
                                                 <td>Livello</td>
                                                 <td>
                                                     <select id="livello">
-                                                        <option value="3">Utente</option>
-                                                        <option value="2">Rivenditore</option>
-                                                        <option value="1">Amministratore</option>
+                                                        <option value="3" {{isset($request['LIVELLO']) && $request['LIVELLO'] == 3 ? 'selected="selected"' : ""  }}>Utente</option>
+                                                        <option value="2" {{isset($request['LIVELLO']) && $request['LIVELLO'] == 2 ? 'selected="selected"' : ""  }}>Rivenditore</option>
+                                                        <option value="1" {{isset($request['LIVELLO']) && $request['LIVELLO'] == 1 ? 'selected="selected"' : ""  }}>Amministratore</option>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <input type="hidden" id="id" name="id" value="{{Input::get("id")}}">
                                                 <td><input type="submit" id="btn" value="SALVA"></td>
                                                 <td><input type="button" id="back" value="Indietro" style="float:right;"></td>
                                             </tr>
@@ -75,6 +76,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 @endsection
 
 @section('script')
@@ -85,8 +90,9 @@
                 var sPassword = $("#password").val();
                 var sLivello = $("#livello").val();
                 var sCodutente = $("#codutente").val();
+                var id = $("#id").val();
                 $_token = "{{ csrf_token() }}";
-                $.post("{{ url('/createuser') }}", {username: sUsername, password: sPassword, livello: sLivello, codutente: sCodutente, _token: $_token})
+                $.post("{{ url('/createuser') }}", {username: sUsername, password: sPassword, livello: sLivello, codutente: sCodutente, id: id,  _token: $_token})
                         .done(function (json) {
                             var parsed = JSON.parse(json);
                             $(".msg").html(parsed.msg);

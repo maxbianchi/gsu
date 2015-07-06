@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 
+use App\Modules\Gsu\Utility;
 use App\Utenti;
 use Session;
 use Input;
@@ -42,12 +43,23 @@ class UserController extends Controller {
         return view('users.addusers', ['utenti' => $utenti]);
     }
 
+    public function edituser()
+    {
+        $id = Input::get("id");
+        $model = new Utenti();
+        $utenti = $model->getAllUserFromMago();
+        $request = $model->getAllUser($id);
+
+        return view('users.addusers', ['utenti' => $utenti, 'request' => $request]);
+    }
+
     public function createuser()
     {
         $codutente = Input::get('codutente');
         $username = Input::get('username');
         $password = Input::get('password');
         $livello = Input::get('livello');
+        $id = Input::get('id');
 
         if (empty($username) || empty($password) || empty($livello) || empty($codutente)) {
             $res = ['msg' => 'Dati inseriti non validi'];
@@ -55,9 +67,15 @@ class UserController extends Controller {
         }
 
         $usr = new Utenti();
-        $usr->createUser($codutente, $username, $password, $livello);
+        $usr->createUser($codutente, $username, $password, $livello,$id);
         $res = ['msg' => 'Nuovo utente creato'];
         return json_encode($res);
+    }
+
+    public function deleteuser(){
+        $model = new Utenti();
+        $id = Input::get('id');
+        $model->deleteUser($id);
     }
 
     public function riferimenti(){
