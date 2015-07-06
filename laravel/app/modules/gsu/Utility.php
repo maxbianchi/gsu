@@ -23,7 +23,8 @@ class Utility{
                 $res["GSU"]['color'] = "red";
                 $res["GSU"]['text'] = "D";
                 $res["GSU"]['action'] = "edit";
-                $res["GSU"]['queryString'] = "eliminato=1";
+                if($STATO != 'A')
+                    $res["GSU"]['queryString'] = "eliminato=1";
             } else if (($QTAAOF70 > $QTAGSU) && ($QTAGSU != 0)) {
                 $res["GSU"]['color'] = "blue";
                 $res["GSU"]['text'] = "A";
