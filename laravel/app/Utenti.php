@@ -145,5 +145,15 @@ EOF;
         }
     }
 
+    public function recuperapassword($email){
+        $sql = "SELECT A.SOGGETTO,A.DESCRIZIONE, A.EMAIL, U.PASSWORD FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE email like '%$email%'";
+        $res['utenti'] = DB::select($sql);
+        if(count($res) > 0){
+            Session::flush();
+            $res['errors'] = 'Indirizzo Email non trovato';
+        }
+        return $res;
+    }
+
 }
 

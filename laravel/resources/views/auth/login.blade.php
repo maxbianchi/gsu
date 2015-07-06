@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Portale Uniweb 4.0</div>
+				<div class="panel-heading"><b>Benvenuto nel Nuovo Portale Uniweb 4.0, la tua area riservata!</b></div>
 				<div class="panel-body">
 
                                 @if (count(Session::get('errors')) > 0)
@@ -35,7 +35,9 @@
 
                             <input type="submit" name="submit" value="Log in">
                         </p>
+                        <p><a href="{{url('/password')}}" title="Recupera la tua password di accesso">Hai dimenticato la tua password?</a></p>
 					</form>
+
 				</div>
 			</div>
 		</div>

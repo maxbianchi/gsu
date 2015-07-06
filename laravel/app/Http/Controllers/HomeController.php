@@ -23,7 +23,7 @@ class HomeController extends Controller {
 	 */
 	public function __construct()
 	{
-
+        $this->beforeFilter('csrf', ['on' => 'post']);
 	}
 
 	/**

@@ -1,8 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\Modules\Gsu\Utility;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Utenti;
 use Session;
 use Redirect;
+use Input;
+use Request;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller {
 
@@ -41,6 +46,31 @@ class LoginController extends Controller {
         }
         return redirect('/');
 	}
+
+    public function password(){
+        return view('auth.password');
+    }
+
+    public function passwordEmail(){
+        $email = Input::get('email');
+        $model = new Utenti();
+        $res = $model->recuperapassword($email);
+        $utente = $res['utenti'];
+        $errors = $res['errors'];
+
+        if(count($utente) == 0){
+            return view('auth.password',['errors' => $errors]);
+        }
+
+        foreach($utente as $row){
+              Mail::send('emails.password', ['pwd' => $row['PASSWORD'], 'user' => $row['DESCRIZIONE']], function($message) use ($row)
+            {
+                $message->to($row['EMAIL'], $row['DESCRIZIONE'])->subject('Recupero password area clienti');
+            });
+        }
+
+        return view('auth.password',['message' => "Email inviata all'indirizzo da Lei indicato"]);
+    }
 
     public function logout(){
         Session::flush();
