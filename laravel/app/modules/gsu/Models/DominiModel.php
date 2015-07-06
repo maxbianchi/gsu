@@ -188,10 +188,10 @@ EOF;
 
     public function saveData(){
         $id = Input::get('id_tbl');
-        $data_registrazione = Input::get('data_registrazione');
+        $data_registrazione = empty(Input::get('data_registrazione')) ? "00-00-0000" : Input::get('data_registrazione');
         $nome_dominio = Input::get('nome_dominio');
-        $scadenza = Input::get('scadenza');
-        $scadenza_effettiva = Input::get('scadenza_effettiva');
+        $scadenza = empty(Input::get('scadenza')) ? "00-00-0000" : Input::get('scadenza');
+        $scadenza_effettiva = empty(Input::get('scadenza_effettiva')) ? "00-00-0000" : Input::get('scadenza_effettiva');
         $tipo_dominio = Input::get('tipo_dominio');
         $novirusnospam = Input::get('novirusnospam');
         $manutenzione = Input::get('manutenzione');
