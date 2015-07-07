@@ -225,7 +225,9 @@
                 <a href="{{url('/gsu/ipmultimedia/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP MULTIMEDIA</a>
             </td>
             <td>
+                <?php if(Session::get('livello') == 1): ?>
                 <a href="{{url('/gsu/apparati-networking-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['ID']."&id=".$request['ID']}}">PASSWORD APPARATI NETWORKING</a>
+                <?php endif; ?>
             </td>
         </tr>
     </table>

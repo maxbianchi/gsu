@@ -89,7 +89,9 @@
         <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
             <tr>
                 <td>
+                    <?php if(Session::get('livello') == 1): ?>
                     <a href="{{url('/gsu/software-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDSOFTWARE']."&id=".$request['IDSOFTWARE']."&manutenzione=".$request['MANUTENZIONE']}}">PASSWORD</a>
+                    <?php endif; ?>
                 </td>
             </tr>
         </table>
