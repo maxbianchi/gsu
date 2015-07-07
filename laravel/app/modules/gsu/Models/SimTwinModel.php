@@ -18,14 +18,15 @@ class SimTwinModel extends Model {
 			richieste.OGGETTO			AS CANONE,
 			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
-			LTRIM(RTRIM(anagrafica1.DESCRIZIONE))		AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
 			anagrafica1.CAP		AS SOGGETTO_CAP,
 			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
 			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
 			anagrafica1.TELEFONO		AS SOGGETTO_TELEFONO,
 			anagrafica1.PARTITAIVA		AS SOGGETTO_PARTITAIVA,
-			LTRIM(RTRIM(anagrafica2.DESCRIZIONE)) 	AS CLIENTE,
 			anagrafica2.INDIRIZZO 		AS CLIENTE_INDIRIZZO,
 			anagrafica2.CAP		AS CLIENTE_CAP,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
@@ -34,7 +35,6 @@ class SimTwinModel extends Model {
 			anagrafica2.PARTITAIVA		AS CLIENTE_PARTITAIVA,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
 			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
-			LTRIM(RTRIM(anagrafica3.DESCRIZIONE))	AS DESTINATARIOABITUALE,
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.CAP		AS DESTINATARIOABITUALE_CAP,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
@@ -78,7 +78,11 @@ class SimTwinModel extends Model {
 EOF;
 
         if(!empty($cliente))
-            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
+        if(!empty($cliente_finale))
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
+        if(!empty($ubicazione))
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
         if(!empty($canone))
             $sql .= " AND richieste.OGGETTO like '%$canone%'";
 
@@ -110,14 +114,15 @@ EOF;
 			richieste.OGGETTO			AS CANONE,
 			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
-			anagrafica1.DESCRIZIONE		AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
 			anagrafica1.CAP		AS SOGGETTO_CAP,
 			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
 			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
 			anagrafica1.TELEFONO		AS SOGGETTO_TELEFONO,
 			anagrafica1.PARTITAIVA		AS SOGGETTO_PARTITAIVA,
-			anagrafica2.DESCRIZIONE 	AS CLIENTE,
 			anagrafica2.INDIRIZZO 		AS CLIENTE_INDIRIZZO,
 			anagrafica2.CAP		AS CLIENTE_CAP,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
@@ -126,7 +131,6 @@ EOF;
 			anagrafica2.PARTITAIVA		AS CLIENTE_PARTITAIVA,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
 			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
-			anagrafica3.DESCRIZIONE	AS DESTINATARIOABITUALE,
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.CAP		AS DESTINATARIOABITUALE_CAP,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
@@ -172,11 +176,11 @@ EOF;
         if(!empty($id))
             $sql .= " AND SIM.IDSIM = '$id'";
         if(!empty($cliente))
-            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
-            $sql .= " AND ANAGRAFICA2.DESCRIZIONE like '%$cliente_finale%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
         if(!empty($ubicazione))
-            $sql .= " AND ANAGRAFICA3.DESCRIZIONE like '%$ubicazione%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
 
         if(!empty($canone))
             $sql .= " AND RICHIESTE.OGGETTO like '%$canone%'";

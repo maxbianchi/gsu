@@ -27,9 +27,9 @@ class GsuModel extends Model {
         RICHIESTE.DESCRIZIONE AS DESCRCANONE,
         RICHIESTE.DESCRIZIONE2 AS DESCRCANONE2,
         RICHIESTE.QUANTITA AS QTAAOF70,
-        LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)) AS SOGGETTO,
-        LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)) AS CLIENTE,
-        LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)) AS DESTINATARIOABITUALE,
+        REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
+        REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
+        REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
         ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU
         FROM
         gsu.dbo.RICHIESTE_EVASE
@@ -41,7 +41,11 @@ class GsuModel extends Model {
 EOF;
 
         if(!empty($cliente))
-            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
+        if(!empty($cliente_finale))
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
+        if(!empty($ubicazione))
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
 
         $stati = [];
         if(!empty($daattivare))
@@ -94,9 +98,9 @@ EOF;
         RICHIESTE.DESCRIZIONE AS DESCRCANONE,
         RICHIESTE.DESCRIZIONE2 AS DESCRCANONE2,
         RICHIESTE.QUANTITA AS QTAAOF70,
-        LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)) AS SOGGETTO,
-        LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)) AS CLIENTE,
-        LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)) AS DESTINATARIOABITUALE,
+        REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
+        REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
+        REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
         ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU
         FROM
         gsu.dbo.RICHIESTE_EVASE
@@ -108,11 +112,11 @@ EOF;
 EOF;
 
         if(!empty($cliente))
-            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
-            $sql .= " AND ANAGRAFICA2.DESCRIZIONE like '%$cliente_finale%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
         if(!empty($ubicazione))
-            $sql .= " AND ANAGRAFICA3.DESCRIZIONE like '%$ubicazione%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
 
         if(!empty($canone))
             $sql .= " AND RICHIESTE.OGGETTO like '%$canone%'";
@@ -180,7 +184,7 @@ EOF;
 
     public function getAnagraficaByName(){
         $q = Input::get('term');
-        $res = DB::select("SELECT DISTINCT LTRIM(RTRIM(DESCRIZIONE)) FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
+        $res = DB::select("SELECT DISTINCT REPLACE(LTRIM(RTRIM(DESCRIZIONE)),'''','') AS DESCRIZIONE FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
         $result = "";
         foreach($res as $keys => $values){
             foreach($values as $key => $value)

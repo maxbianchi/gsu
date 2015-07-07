@@ -17,15 +17,15 @@ class IpstaticiModel extends Model {
 			richieste.OGGETTO			AS CANONE,
 			CONVERT(VARCHAR(10),RICHIESTE.DATADOCUMENTO,105) DATADOCUMENTO,
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
-			LTRIM(RTRIM(anagrafica1.DESCRIZIONE))		AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
 			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
 			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
-			LTRIM(RTRIM(anagrafica2.DESCRIZIONE))	AS CLIENTE,
 			anagrafica2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
 			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
-			LTRIM(RTRIM(anagrafica3.DESCRIZIONE))	AS DESTINATARIOABITUALE,
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
@@ -46,7 +46,11 @@ class IpstaticiModel extends Model {
 EOF;
 
         if(!empty($cliente))
-            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
+        if(!empty($cliente_finale))
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
+        if(!empty($ubicazione))
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -75,7 +79,9 @@ EOF;
 			richieste.MANUTENZIONE 	AS MANUTENZIONE,
 
 			anagrafica1.SOGGETTO AS SOGGETTO_CODICE,
-			LTRIM(RTRIM(anagrafica1.DESCRIZIONE))		AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
+            REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
 			anagrafica1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
 			anagrafica1.LOCALITA		AS SOGGETTO_LOCALITA,
 			anagrafica1.PROVINCIA		AS SOGGETTO_PROVINCIA,
@@ -84,7 +90,6 @@ EOF;
 			ISNULL(anagrafica1.PARTITAIVA,anagrafica1.CODICEFISCALE) AS SOGGETTO_PIVA,
 
             anagrafica2.SOGGETTO        AS CLIENTE_CODICE,
-			LTRIM(RTRIM(anagrafica2.DESCRIZIONE))	    AS CLIENTE,
 			anagrafica2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
 			anagrafica2.LOCALITA		AS CLIENTE_LOCALITA,
 			anagrafica2.PROVINCIA		AS CLIENTE_PROVINCIA,
@@ -93,7 +98,6 @@ EOF;
 			ISNULL(anagrafica2.PARTITAIVA,anagrafica2.CODICEFISCALE) AS CLIENTE_PIVA,
 
             anagrafica3.SOGGETTO        AS DESTINATARIOABITUALE_CODICE,
-			LTRIM(RTRIM(anagrafica3.DESCRIZIONE))	    AS DESTINATARIOABITUALE,
 			anagrafica3.INDIRIZZO		AS DESTINATARIOABITUALE_INDIRIZZO,
 			anagrafica3.LOCALITA		AS DESTINATARIOABITUALE_LOCALITA,
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
@@ -119,11 +123,11 @@ EOF;
         if(!empty($id))
             $sql .= " AND IPSTATICI.IDIPSTATICO = '$id'";
         if(!empty($cliente))
-            $sql .= " AND ANAGRAFICA1.DESCRIZIONE like '%$cliente%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
-            $sql .= " AND ANAGRAFICA2.DESCRIZIONE like '%$cliente_finale%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
         if(!empty($ubicazione))
-            $sql .= " AND ANAGRAFICA3.DESCRIZIONE like '%$ubicazione%'";
+            $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
 
         if(!empty($canone))
             $sql .= " AND RICHIESTE.OGGETTO like '%$canone%'";
