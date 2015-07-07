@@ -9,9 +9,9 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading"><b>Benvenuto nel Nuovo Portale Uniweb 4.0, la tua area riservata!</b></div>
+				<div class="panel-heading">Benvenuto nel Nuovo Portale Uniweb 4.0, la tua area riservata!</div>
 				<div class="panel-body">
-
+                <div><b><a href="{{ url('/registrazione') }}">Se non sei ancora registrato clicca qui</a></b></div>
                                 @if (count(Session::get('errors')) > 0)
                                     <div class="alert alert-danger">
                                         {{ Session::get('errors') }}

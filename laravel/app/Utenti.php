@@ -6,6 +6,7 @@ use Input;
 use League\Flysystem\Exception;
 use Session;
 use DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class Utenti extends Model {
@@ -153,6 +154,105 @@ EOF;
             $res['errors'] = 'Indirizzo Email non trovato';
         }
         return $res;
+    }
+
+
+    public function registrazioneSave(){
+        $codicecliente = Input::get('codicecliente');
+        $societa = Input::get('societa');
+        $piva = Input::get('piva');
+        $cf = Input::get('cf');
+        $indirizzo = Input::get('indirizzo');
+        $citta = Input::get('citta');
+        $provincia = Input::get('provincia');
+        $cap = Input::get('cap');
+        $telefono = Input::get('telefono');
+        $fax = Input::get('fax');
+        $email = Input::get('email');
+        $sitoweb = Input::get('sitoweb');
+        $so_indirizzo = Input::get('so_indirizzo');
+        $so_citta = Input::get('so_citta');
+        $so_provincia = Input::get('so_provincia');
+        $so_cap = Input::get('so_cap');
+        $so_telefono = Input::get('so_telefono');
+        $so_fax = Input::get('so_fax');
+        $so_email = Input::get('so_email');
+        $co_nome = Input::get('co_nome');
+        $co_cognome = Input::get('co_cognome');
+        $co_telefono = Input::get('co_telefono');
+        $co_cellulare = Input::get('co_cellulare');
+        $co_email = Input::get('co_email');
+
+        $registrazione['societa'] = $societa;
+        $registrazione['piva'] = $piva;
+        $registrazione['cf'] = $cf;
+        $registrazione['indirizzo'] = $indirizzo;
+        $registrazione['citta'] = $citta;
+        $registrazione['provincia'] = $provincia;
+        $registrazione['cap'] = $cap;
+        $registrazione['telefono'] = $telefono;
+        $registrazione['fax'] = $fax;
+        $registrazione['email'] = $email;
+        $registrazione['sitoweb'] = $sitoweb;
+        $registrazione['so_indirizzo'] = $so_indirizzo;
+        $registrazione['so_citta'] = $so_citta;
+        $registrazione['so_provincia'] = $so_provincia;
+        $registrazione['so_cap'] = $so_cap;
+        $registrazione['so_telefono'] = $so_telefono;
+        $registrazione['so_fax'] = $so_fax;
+        $registrazione['so_email'] = $so_email;
+        $registrazione['co_nome'] = $co_nome;
+        $registrazione['co_cognome'] = $co_cognome;
+        $registrazione['co_telefono'] = $co_telefono;
+        $registrazione['co_cellulare'] = $co_cellulare;
+        $registrazione['co_email'] = $co_email;
+
+
+
+
+        $res['errors'] = "";
+        $res['messages'] = "";
+
+        try {
+            $sql = "INSERT INTO REGISTRAZIONI (CODICECLIENTE,SOCIETA,PIVA,CF,INDIRIZZO,CITTA,PROVINCIA,CAP,TELEFONO,FAX,EMAIL,SITOWEB,SEDE_INDIRIZZO,SEDE_CITTA,SEDE_PROVINCIA,SEDE_CAP,SEDE_TELEFONO,SEDE_FAX,SEDE_EMAIL,RIFERIMENTO_NOME,RIFERIMENTO_COGNOME,RIFERIMENTO_TELEFONO,RIFERIMENTO_CELLULARE,RIFERIMENTO_EMAIL) VALUES ('$codicecliente','$societa','$piva','$cf','$indirizzo','$citta','$provincia','$cap','$telefono','$fax','$email','$sitoweb','$so_indirizzo','$so_citta','$so_provincia','$so_cap','$so_telefono','$so_fax','$so_email','$co_nome','$co_cognome','$co_telefono','$co_cellulare','$co_email')";
+            DB::insert($sql);
+            $sql = "SELECT MAX(ID) FROM REGISTRAZIONI";
+            $id = DB::select($sql);
+            $id = $id[0];
+            foreach($id as $num)
+                $id = $num;
+            $registrazione['id'] = $id;
+            //Verifico se codice cliente esiste
+            if(!empty($codicecliente)){
+                $sql = "SELECT A.SOGGETTO,A.DESCRIZIONE, A.EMAIL,U.UTENTE, U.PASSWORD FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE CODUTENTE = $codicecliente";
+                $res['utenti'] = DB::select($sql);
+                if(count($res['utenti']) == 0) {
+                    //Nuovo utente
+                    $this->nuovaRegistrazione($registrazione);
+                }else{
+                    foreach($res['utenti'] as $row){
+                        Mail::send('emails.registrazione', ['pwd' => $row['PASSWORD'], 'user' => $row['DESCRIZIONE'], 'username' => $row['UTENTE']], function($message) use ($row)
+                        {
+                            $message->to($row['EMAIL'], $row['DESCRIZIONE'])->subject('Registrazione area clienti Uniweb 4.0');
+                        });
+                    }
+                }
+            }else{
+                //Nuovo utente
+                $this->nuovaRegistrazione($registrazione);
+            }
+            $res['messages'] = "Registrazione effettuata con successo, riceverà una mail con nome utente e password";
+        }catch (Exception $e) {
+            $res['errors'] = "Si sono verificati problemi durante la registrazione: ".$e->getMessage();
+        }
+        return $res;
+    }
+
+    private function nuovaRegistrazione($registrazione){
+            Mail::send('emails.nuova_registrazione', ['registrazione' => $registrazione], function($message) use($registrazione)
+            {
+                $message->to('staff@uniweb.it', 'Portale Uniweb 4.0')->subject('Nuova registrazione sul portale Uniweb 4.0');
+            });
     }
 
 }

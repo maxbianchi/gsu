@@ -30,3 +30,7 @@ Route::get('/riferimenti', 'UserController@riferimenti');
 Route::get('/riferimenti/autoimport', 'UserController@autosetriferimenti');
 Route::get('/riferimenti/addnew', 'UserController@riferimentiaddnew');
 Route::post('/riferimenti/savenew', 'UserController@riferimentisavenew');
+
+
+Route::get('/registrazione', 'RegisterController@registrazione');
+Route::post('/registrazione/save', 'RegisterController@registrazionesave');

@@ -1,6 +1,8 @@
-<h2>Richiesta di recupero password al portale UNIWEB 4.0</h2><br>
-<h3>Gentile {{$user}} come richiesto ecco la password per accedere all'area clienti uniweb:</h3><br><br>
+<h2>Registrazione al portale UNIWEB 4.0</h2><br>
+<h3>Gentile {{$user}} la sua registrazione sul portale &egrave; stata effettuata con successo<br>
+    di seguito username e password per accedere all'area clienti uniweb:</h3><br><br>
 <a href="http://areaclienti.uniweb.it">AREA CLIENTI UNIWEB</a><br>
+<h3>username:&nbsp;</h3> <h3>{{$username}}</h3><br><br>
 <h3>password:&nbsp;</h3> <h3>{{$pwd}}</h3><br><br>
 
 Cordiali Saluti<br><br><br>

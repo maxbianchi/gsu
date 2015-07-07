@@ -32,7 +32,7 @@
         <div class="row">
 
             <div class="panel panel-default">
-                <div class="panel-heading"><ul type="square"><li>Visualizza i tuoi <b>servizi attivi</b> presso UNIVER tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
+                <div class="panel-heading"><ul type="square"><li>Visualizza i tuoi <b>servizi attivi</b> presso UNIWEB tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
 
                 <div class="panel-body">
                     <div class="form-group">
