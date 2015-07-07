@@ -20,7 +20,7 @@ class Utenti extends Model {
         $pwd = Input::get("password");
 
         if($usr == "uniweb")
-            $usr = "00375";
+            $usr = "ws00375";
 
         $where = ['UTENTE' => $usr, 'PASSWORD' => $pwd];
         $res = $this::where($where)->get()->toArray();
