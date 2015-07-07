@@ -33,7 +33,9 @@ class Utenti extends Model {
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
-
+            $last_login = $date = date('Y-m-d H:i:s');
+            $sql = "UPDATE UTENTI SET NUMBER_LOGIN=NUMBER_LOGIN+1, LAST_LOGIN='$last_login' WHERE UTENTE='".$usr."'";
+            DB::update($sql);
             return true;
         } else {
             Session::flush();
