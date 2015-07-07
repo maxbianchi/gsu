@@ -74,7 +74,7 @@ class RegisterController extends Controller {
 
 
     public function registrazione(){
-        return view('auth.register');
+        return view('auth.register',['errors' => "", 'messages' => ""]);
     }
 
     public function registrazioneSave(){
