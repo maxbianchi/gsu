@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <img src="{{ URL::asset('images/areariservata.jpg') }}">
+                <img style="display:block;margin-left:auto;margin-right:auto;" src="{{ URL::asset('images/areariservata.jpg') }}">
             </div>
         </div>
 
