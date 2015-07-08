@@ -279,7 +279,7 @@ EOF;
         }
         Input::merge(array('add' => '0'));
         if(count($res) > 0 && count($codici_manutenzione) == 1) {
-            if ($res[0]['QTAAOF70'] > $res[0]['QTAGSU'])
+            if ($res[0]['QTAAOF70'] > $res[0]['QTAGSU'] ||  $res[0]['TIPO'] == "Relay di Posta")
                 Input::merge(array('add' => '1'));
         }
     }

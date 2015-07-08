@@ -66,7 +66,7 @@
             <div class="col-md-3"><input type="button" value="CMS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E07').$checkBoxStart}}"></div>
         </div>
         <div class="row">
-            <div class="col-md-3"><input type="button" value="RELAY DI POSTA / SMTP AUTH" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E08').$checkBoxStart}}"></div>
+            <div class="col-md-3"><input type="button" value="RELAY DI POSTA / SMTP AUTH" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E08&filtro=Relay').$checkBoxStart}}"></div>
             <div class="col-md-3"><input type="button" value="IP STATICI" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E09').$checkBoxStart}}"></div>
             <div class="col-md-3"><input type="button" value="DOMINIO PEC" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E10').$checkBoxStart}}"></div>
             <div class="col-md-3"><input type="button" value="CASELLE DI POSTA PEC" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-E11').$checkBoxStart}}"></div>

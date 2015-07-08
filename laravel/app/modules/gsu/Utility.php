@@ -1,5 +1,5 @@
 <?php namespace App\Modules\Gsu;
-
+use Input;
 
 class Utility{
 
@@ -77,7 +77,6 @@ class Utility{
                 $res["GSU"]["ELIMINATO"] = "eliminato";
             }
 
-            //Imposto link dettaglio
             $link[$row['MANUTENZIONE']] = $canone->getRouteByCanone($row['CANONE'])."/".$res["GSU"]['action'];
         }
 

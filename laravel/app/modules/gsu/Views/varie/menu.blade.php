@@ -27,7 +27,7 @@
                 <li><a href="#">Caselle</a>
                     <ul>
                         <li><a href="{{url('/gsu/caselle')."?canone=CAN-E06"}}">Normali</a></li>
-                        <li><a href="{{url('/gsu/caselle')."?canone=CAN-E08"}}">Relay / Smtp Auth</a></li>
+                        <li><a href="{{url('/gsu/caselle')."?canone=CAN-E08&filtro=Relay"}}">Relay / Smtp Auth</a></li>
                         <li><a href="{{url('/gsu/caselle')."?canone=CAN-E11"}}">PEC</a></li>
                     </ul>
                 </li>
