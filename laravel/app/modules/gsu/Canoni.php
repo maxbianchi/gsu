@@ -27,7 +27,7 @@ class Canoni{
         $this->canoni['/gsu/assistenza-tecnica-multifunzione'] = ['CAN-G081A', 'CAN-G081B'];
         $this->canoni['/gsu/assistenza-tecnica-consumabile-nero'] = ['CAN-G082-001B'];
         $this->canoni['/gsu/assistenza-tecnica-consumabile-colori'] = ['CAN-G082-002B'];
-        $this->canoni['/gsu/assistenza-tecnica-hw'] = ['CAN-G101A','CAN-G101M', 'CAN-G102A', 'CAN-G105A', 'CAN-G106A', 'CAN-G107A', 'CAN-G102-001A', 'CAN-G105-001A', 'CAN-G106-001A', 'CAN-G107-001A', 'CAN-G101B'];
+        $this->canoni['/gsu/assistenza-tecnica-hw'] = ['CAN-G101A','CAN-G101M', 'CAN-G102A', 'CAN-G105A','CAN-G105B', 'CAN-G106A','CAN-G106B', 'CAN-G107A', 'CAN-G102-001A', 'CAN-G105-001A', 'CAN-G106-001A', 'CAN-G107-001A', 'CAN-G101B'];
         $this->canoni['/gsu/hardware'] = ['CAN-F401A', 'CAN-F401B'];
         $this->canoni['/gsu/mail-server'] = ['CAN-G104A'];
         $this->canoni['/gsu/utente-aggiuntivo-ms'] = ['CAN-G104-001A'];
