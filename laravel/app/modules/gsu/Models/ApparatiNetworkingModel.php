@@ -235,6 +235,9 @@ EOF;
         $stato_precedente = Input::get('stato_precedente');
         $manutenzione = Input::get('manutenzione');
 
+        if(empty($manutenzione))
+            $manutenzione = "AGGIUNTO";
+
         $soggetto = Input::get('cliente');
         $cliente = Input::get('cliente_finale');
         $destinatarioabituale = Input::get('ubicazione_impianto');
@@ -271,7 +274,7 @@ EOF;
 
         try {
             if(empty($id)) {
-                DB::insert("insert into APPARATI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,PRODOTTO,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,RAM,FLASH,SOFTWARE,IOS,ASDM_PDM,DES_AES,SCADENZAGARANZIA,SCARINNGARANZIA,IPAPPARATO,SMAPPARATO,OGGETTO,IP_STATICO_ROUTER,RUTSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$canone_r','$prodotto','$acquisto_noleggio','$marca','$modello','$pn','$sn','$ram','$flash','$software','$ios','$asdm_pdm','$des_aes','$scadenzagaranzia','$scarinngaranzia','$ipapparato','$smapparato','$oggetto','$ip_statico_router','$rutsub','$gateway_interfaccia_lan','$lansub',$eliminato)");
+                DB::insert("insert into APPARATI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,PRODOTTO,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,RAM,FLASH,SOFTWARE,IOS,ASDM_PDM,DES_AES,SCADENZAGARANZIA,SCARINNGARANZIA,IPAPPARATO,SMAPPARATO,OGGETTO,IP_STATICO_ROUTER,RUTSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$manutenzione','$prodotto','$acquisto_noleggio','$marca','$modello','$pn','$sn','$ram','$flash','$software','$ios','$asdm_pdm','$des_aes','$scadenzagaranzia','$scarinngaranzia','$ipapparato','$smapparato','$oggetto','$ip_statico_router','$rutsub','$gateway_interfaccia_lan','$lansub',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -286,7 +289,7 @@ EOF;
                 }
             }
             else
-                DB::update("Update APPARATI Set SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', CANONE_R = '$canone_r', PRODOTTO = '$prodotto', ACQUISTO_NOLEGGIO = '$acquisto_noleggio', MARCA = '$marca', MODELLO = '$modello', PN = '$pn', SN = '$sn', RAM = '$ram', FLASH = '$flash', SOFTWARE = '$software', IOS = '$ios', ASDM_PDM = '$asdm_pdm', DES_AES = '$des_aes', SCADENZAGARANZIA = CONVERT(VARCHAR(10),'$scadenzagaranzia',105), SCARINNGARANZIA = '$scarinngaranzia', IPAPPARATO = '$ipapparato', SMAPPARATO = '$smapparato', OGGETTO = '$oggetto', IP_STATICO_ROUTER = '$ip_statico_router', RUTSUB = '$rutsub', GATEWAY_INTERFACCIA_LAN = '$gateway_interfaccia_lan', LANSUB = '$lansub', ELIMINATO=$eliminato WHERE ID=$id");
+                DB::update("Update APPARATI Set SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', CANONE_R = '$manutenzione', PRODOTTO = '$prodotto', ACQUISTO_NOLEGGIO = '$acquisto_noleggio', MARCA = '$marca', MODELLO = '$modello', PN = '$pn', SN = '$sn', RAM = '$ram', FLASH = '$flash', SOFTWARE = '$software', IOS = '$ios', ASDM_PDM = '$asdm_pdm', DES_AES = '$des_aes', SCADENZAGARANZIA = CONVERT(VARCHAR(10),'$scadenzagaranzia',105), SCARINNGARANZIA = '$scarinngaranzia', IPAPPARATO = '$ipapparato', SMAPPARATO = '$smapparato', OGGETTO = '$oggetto', IP_STATICO_ROUTER = '$ip_statico_router', RUTSUB = '$rutsub', GATEWAY_INTERFACCIA_LAN = '$gateway_interfaccia_lan', LANSUB = '$lansub', ELIMINATO=$eliminato WHERE ID=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }
