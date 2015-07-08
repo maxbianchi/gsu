@@ -61,7 +61,7 @@
     <br>
 
     <div class="row" id="loader">
-        <img style="display:block;margin-left:auto;margin-right:auto;position: relative;top: 55%;" src="{{ URL::asset('images/loader.gif')}}">
+        <img style="display:block;margin-left:auto;margin-right:auto;position: relative;top: 60%;" src="{{ URL::asset('images/loader.gif')}}">
     </div>
 
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
