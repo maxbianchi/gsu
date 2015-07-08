@@ -14,32 +14,26 @@
 @endsection
 
 @section('content')
-    @if(View::exists('gsu::varie.cliente-details'))
-        @include('gsu::varie.cliente-details')
-    @endif
+
 
     <br><br>
     <fieldset class="dettaglio_dati">
         <legend align="right"></legend>
         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
             <form action="#" method="post" id="form">
+
                 <tr>
-                    <td>COD MANUTENZIONE </td>
-                    <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
+                    <td>NOME_TEL</td>
+                    <td><input type="text" name="nome_tel" value="{{$request['NOME_TEL'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>TGU LINEA</td>
-                    <td><input type="text" name="tgu_linea" value="{{$request['TGU_LINEA'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>NUMERO IP</td>
-                    <td><input type="text" name="numero_ip" value="{{$request['NUM_IP'] or ""}}"></td>
+                    <td>NMU</td>
+                    <td><input type="text" name="nmu" value="{{$request['NMU'] or ""}}"></td>
                 </tr>
 
                 <tr>
-                    <td colspan="4" style="padding-top:20px;">
-                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
-                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDIPSTATICO'] or ""}}">
+                    <td colspan="2" style="padding-top:20px;">
+                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['ID_TELEFONO'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
                         @if($btn == 'save' && Input::get("eliminato") != 1)
@@ -71,33 +65,6 @@
         </div>
     </div>
 
-        <?php
-        if(!isset($request['SOGGETTO']))
-            $request['SOGGETTO'] = "";
-        if(!isset($request['CLIENTE']))
-            $request['CLIENTE'] = "";
-        if(!isset($request['DESTINATARIOABITUALE']))
-            $request['DESTINATARIOABITUALE'] = "";
-        $request['SOGGETTO'] = trim($request['SOGGETTO']);
-        $request['CLIENTE'] = trim($request['CLIENTE']);
-        $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
-        ?>
-
-        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
-            <tr>
-                <td>
-                    <a href="{{url('/gsu/adsl/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ADSL</a>
-                </td>
-                <td>
-                    <a href="{{url('/gsu/dial-up/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIAL-UP</a>
-                </td>
-                <td>
-                    <a href="{{url('/gsu/direct-access/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIRECT-ACCESS</a>
-                </td>
-            </tr>
-        </table>
-
-
 @endsection
 
 
@@ -111,7 +78,7 @@
             @endif
 
             $("#btn_salva").click(function(){
-                         $.post( "{{url('/gsu/ipstatici/save')}}", $("form#form").serialize())
+                         $.post( "{{url('/gsu/amministrazionetelefoni/save')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
                                     $("#btn_salva").hide();

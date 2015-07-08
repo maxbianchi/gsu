@@ -6,7 +6,7 @@ use Session;
 use DB;
 
 
-class AmministrazioneModel extends Model {
+class AmministrazioneTelefoniModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');

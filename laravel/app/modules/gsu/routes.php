@@ -544,4 +544,21 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/terminal-server/edit', 'TerminalServerController@edit');
     Route::post('gsu/terminal-server/save', 'TerminalServerController@save');
     Route::get('gsu/terminal-server/delete', 'TerminalServerController@delete');
+
+    //Amministrazione Telefoni
+    Route::get('gsu/amministrazionetelefoni', 'AmministrazioneTelefoniController@main');
+    Route::get('gsu/amministrazionetelefoni/search', 'AmministrazioneTelefoniController@search');
+    Route::get('gsu/amministrazionetelefoni/show', 'AmministrazioneTelefoniController@show');
+    Route::get('gsu/amministrazionetelefoni/edit', 'AmministrazioneTelefoniController@edit');
+    Route::post('gsu/amministrazionetelefoni/save', 'AmministrazioneTelefoniController@save');
+    Route::get('gsu/amministrazionetelefoni/delete', 'AmministrazioneTelefoniController@delete');
+
+    //Amministrazione Software
+    Route::get('gsu/amministrazionesoftware', 'AmministrazioneSoftwareController@main');
+    Route::get('gsu/amministrazionesoftware/search', 'AmministrazioneSoftwareController@search');
+    Route::get('gsu/amministrazionesoftware/show', 'AmministrazioneSoftwareController@show');
+    Route::get('gsu/amministrazionesoftware/edit', 'AmministrazioneSoftwareController@edit');
+    Route::post('gsu/amministrazionesoftware/save', 'AmministrazioneSoftwareController@save');
+    Route::get('gsu/amministrazionesoftware/delete', 'AmministrazioneSoftwareController@delete');
+
 });

@@ -6,23 +6,20 @@ use Session;
 use DB;
 
 
-class AmministrazioneTelefoniModel extends Model {
+class AmministrazioneSoftwareModel extends Model {
 
     public function getAllRequest(){
         $cliente = Input::get('cliente');
 
         $sql = <<<EOF
             SELECT
-            ID_TELEFONO,
-            NOME_TEL,
-            DESCRIZIONE_TEL,
-            NOTE,
-            NMU
-            FROM SIM_TELEFONI
+            ID_OS,
+            NOME
+            FROM SISTEMI_OPERATIVI
             WHERE ELIMINATO = 0
 EOF;
 
-        $sql .= " ORDER BY NOME_TEL";
+        $sql .= " ORDER BY NOME";
 
         $request  = DB::select($sql);
         return $request;
@@ -34,20 +31,17 @@ EOF;
 
         $sql = <<<EOF
             SELECT
-            ID_TELEFONO,
-            NOME_TEL,
-            DESCRIZIONE_TEL,
-            NOTE,
-            NMU
-            FROM SIM_TELEFONI
+            ID_OS,
+            NOME
+            FROM SISTEMI_OPERATIVI
             WHERE 1=1
 EOF;
 
         if(!empty($eliminati))
-            $sql .= " AND SIM_TELEFONI.ELIMINATO = 1";
+            $sql .= " AND SISTEMI_OPERATIVI.ELIMINATO = 1";
         else
-            $sql .= " AND SIM_TELEFONI.ELIMINATO = 0";
-        $sql .= " ORDER BY NOME_TEL";
+            $sql .= " AND SISTEMI_OPERATIVI.ELIMINATO = 0";
+        $sql .= " ORDER BY NOME";
 
         $request  = DB::select($sql);
         return $request;
@@ -59,7 +53,7 @@ EOF;
         $id = Input::get('id');
 
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.SIM_TELEFONI SET ELIMINATO=1 WHERE ID_TELEFONO='$id'";
+            $sql = "UPDATE gsu.dbo.SISTEMI_OPERATIVI SET ELIMINATO=1 WHERE ID_OS='$id'";
             DB::update($sql);
         }
     }
@@ -69,18 +63,17 @@ EOF;
         $id = Input::get('id_tbl');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
-        $nome_tel = Input::get('nome_tel');
-        $nmu = Input::get('nmu');
+        $nome = Input::get('nome');
 
 
 
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.SIM_TELEFONI (NOME_TEL,NMU,ELIMINATO) VALUES ('$nome_tel','$nmu',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SISTEMI_OPERATIVI (NOME,ELIMINATO) VALUES ('$nome',$eliminato)");
             }
             else
-                DB::update("UPDATE gsu.dbo.SIM_TELEFONI SET NOME_TEL='$nome_tel',NMU='$nmu',ELIMINATO=$eliminato  WHERE ID_TELEFONO=$id");
+                DB::update("UPDATE gsu.dbo.SISTEMI_OPERATIVI SET NOME='$nome',ELIMINATO=$eliminato  WHERE ID_OS=$id");
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";

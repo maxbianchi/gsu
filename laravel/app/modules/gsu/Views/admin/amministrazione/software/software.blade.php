@@ -25,8 +25,7 @@
         <tr>
             <th>AZIONI</th>
             <th>ID</th>
-            <th>NMU</th>
-            <th>NOME_TEL</th>
+            <th>NOME</th>
         </tr>
         </thead>
 
@@ -34,19 +33,18 @@
         @foreach($request as $req)
             <tr>
                 <td class="col-md-1">
-                    <a class="stato_left btn-small edit" href="{{url('/gsu/amministrazionetelefoni/edit')."?id=".$req['ID_TELEFONO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE"  delete-id="{{$req['ID_TELEFONO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/amministrazionesoftware/edit')."?id=".$req['ID_OS']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE"  delete-id="{{$req['ID_OS'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td class="col-md-2">{{$req['ID_TELEFONO']}}</td>
-                <td class="col-md-2">{{$req['NMU']}}</td>
-                <td class="col-md-7">{{$req['NOME_TEL']}}</td>
+                <td class="col-md-2">{{$req['ID_OS']}}</td>
+                <td class="col-md-9">{{$req['NOME']}}</td>
             </tr>
         @endforeach
         </tbody>
 
             <tfoot>
             <tr>
-                <th colspan="4"><a class="btn btn-small edit" href="{{url('/gsu/amministrazionetelefoni/edit')."?isnew=1"}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="3"><a class="btn btn-small edit" href="{{url('/gsu/amministrazionesoftware/edit')."?isnew=1"}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
 
@@ -77,7 +75,7 @@
         $(document).ready(function () {
 
             $("#btn_elimina").click(function(){
-                $.get( "{{url('/gsu/amministrazionetelefoni/delete')}}", { id: id_elimina } )
+                $.get( "{{url('/gsu/amministrazionesoftware/delete')}}", { id: id_elimina } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             location.reload();

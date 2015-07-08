@@ -23,17 +23,13 @@
             <form action="#" method="post" id="form">
 
                 <tr>
-                    <td>NOME_TEL</td>
-                    <td><input type="text" name="nome_tel" value="{{$request['NOME_TEL'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>NMU</td>
-                    <td><input type="text" name="nmu" value="{{$request['NMU'] or ""}}"></td>
+                    <td>NOME</td>
+                    <td><input type="text" name="nome" value="{{$request['NOME'] or ""}}"></td>
                 </tr>
 
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
-                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['ID_TELEFONO'] or ""}}">
+                        <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['ID_OS'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
                         @if($btn == 'save' && Input::get("eliminato") != 1)
@@ -78,7 +74,7 @@
             @endif
 
             $("#btn_salva").click(function(){
-                         $.post( "{{url('/gsu/amministrazionetelefoni/save')}}", $("form#form").serialize())
+                         $.post( "{{url('/gsu/amministrazionesoftware/save')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
                                     $("#btn_salva").hide();

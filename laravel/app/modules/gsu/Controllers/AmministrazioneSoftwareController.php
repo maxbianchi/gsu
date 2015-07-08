@@ -2,14 +2,14 @@
 
 use App\Http\Controllers\Controller;
 use App\Modules\Gsu\Models\IpstaticiModel;
-use App\Modules\Gsu\Models\AmministrazioneTelefoniModel;
+use App\Modules\Gsu\Models\AmministrazioneSoftwareModel;
 use App\Modules\Gsu\Utility;
 use DB;
 use Session;
 use Route;
 use Input;
 
-class AmministrazioneTelefoniController extends MainController {
+class AmministrazioneSoftwareController extends MainController {
 
     private $tableName = "IP STATICI";
 
@@ -25,34 +25,34 @@ class AmministrazioneTelefoniController extends MainController {
      */
 
     public function main(){
-        $res = new AmministrazioneTelefoniModel();
+        $res = new AmministrazioneSoftwareModel();
         $res = $res->getAllRequest();
-        return view("gsu::$this->view_folder.amministrazione.telefoni.telefoni", ['request' => $res]);
+        return view("gsu::$this->view_folder.amministrazione.software.software", ['request' => $res]);
     }
 
     public function search(){
-        $model = new AmministrazioneTelefoniModel();
+        $model = new AmministrazioneSoftwareModel();
         $res = $model->getFilteredRequest();
         $addnew = $model->checkAddNew();
-        return view("gsu::$this->view_folder.amministrazione.telefoni.telefoni", ['request' => $res]);
+        return view("gsu::$this->view_folder.amministrazione.software.software", ['request' => $res]);
     }
 
     public function show(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.amministrazione.telefoni.telefoni-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
+        return view("gsu::$this->view_folder.amministrazione.software.software-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     public function edit(){
         $return = $this->manageShow();
         $res = $return['res'];
         $btn = $return['btn'];
-        return view("gsu::$this->view_folder.amministrazione.telefoni.telefoni-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
+        return view("gsu::$this->view_folder.amministrazione.software.software-detail", ['request' => $res, 'btn' => $btn, 'tableName' => $this->tableName]);
     }
 
     private function manageShow(){
-        $res = new AmministrazioneTelefoniModel();
+        $res = new AmministrazioneSoftwareModel();
         $res = $res->getFilteredRequest();
 
         $action = Route::currentRouteAction();
@@ -80,12 +80,12 @@ class AmministrazioneTelefoniController extends MainController {
     }
 
     public function delete(){
-        $res = new AmministrazioneTelefoniModel();
+        $res = new AmministrazioneSoftwareModel();
         $res = $res->deleteByID();
     }
 
     public function save(){
-        $res = new AmministrazioneTelefoniModel();
+        $res = new AmministrazioneSoftwareModel();
         $return = $res->saveData();
         return $return;
     }

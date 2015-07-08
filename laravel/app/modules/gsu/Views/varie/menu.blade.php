@@ -125,5 +125,14 @@
             </ul>
             <!-- INSERIRE QUI EVENTUALI ALTRE VOCI DI MENU' -->
         </li>
+        @if (Session::get('livello')  == 1)
+        <li><a href="#">Amministrazione</a>
+            <ul>
+                <li><a href="{{url('/gsu/amministrazionetelefoni')}}">Telefoni</a></li>
+                <li><a href="{{url('/gsu/amministrazionesoftware')}}">Software</a></li>
+            </ul>
+            <!-- INSERIRE QUI EVENTUALI ALTRE VOCI DI MENU' -->
+        </li>
+        @endif;
     </ul>
 

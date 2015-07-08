@@ -2,14 +2,14 @@
 
 use App\Http\Controllers\Controller;
 use App\Modules\Gsu\Models\IpstaticiModel;
-use App\Modules\Gsu\Models\AmministrazioneModel;
+use App\Modules\Gsu\Models\AmministrazioneTelefoniModel;
 use App\Modules\Gsu\Utility;
 use DB;
 use Session;
 use Route;
 use Input;
 
-class AmministrazioneController extends MainController {
+class AmministrazioneTelefoniController extends MainController {
 
     private $tableName = "IP STATICI";
 
@@ -25,13 +25,13 @@ class AmministrazioneController extends MainController {
      */
 
     public function main(){
-        $res = new AmministrazioneModel();
+        $res = new AmministrazioneTelefoniModel();
         $res = $res->getAllRequest();
         return view("gsu::$this->view_folder.amministrazione.telefoni.telefoni", ['request' => $res]);
     }
 
     public function search(){
-        $model = new AmministrazioneModel();
+        $model = new AmministrazioneTelefoniModel();
         $res = $model->getFilteredRequest();
         $addnew = $model->checkAddNew();
         return view("gsu::$this->view_folder.amministrazione.telefoni.telefoni", ['request' => $res]);
@@ -52,7 +52,7 @@ class AmministrazioneController extends MainController {
     }
 
     private function manageShow(){
-        $res = new AmministrazioneModel();
+        $res = new AmministrazioneTelefoniModel();
         $res = $res->getFilteredRequest();
 
         $action = Route::currentRouteAction();
@@ -80,12 +80,12 @@ class AmministrazioneController extends MainController {
     }
 
     public function delete(){
-        $res = new AmministrazioneModel();
+        $res = new AmministrazioneTelefoniModel();
         $res = $res->deleteByID();
     }
 
     public function save(){
-        $res = new AmministrazioneModel();
+        $res = new AmministrazioneTelefoniModel();
         $return = $res->saveData();
         return $return;
     }
