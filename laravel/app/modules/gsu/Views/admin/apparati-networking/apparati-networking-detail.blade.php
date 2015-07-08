@@ -72,94 +72,134 @@
                 <tr>
                     <td>COD MANUTENZIONE </td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>PRODOTTO</td>
                     <td><input type="text" name="prodotto" value="{{$request['PRODOTTO'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>ACQUISTO / NOLEGGIO</td>
                     <td><input type="text" name="acquisto_noleggio" value="{{$request['ACQUISTO_NOLEGGIO'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>MARCA</td>
                     <td><input type="text" name="marca" value="{{$request['MARCA'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>MODELLO</td>
                     <td><input type="text" name="modello" value="{{$request['MODELLO'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>PART NUMBER</td>
                     <td><input type="text" name="pn" value="{{$request['PN'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>SERIAL NUMBER</td>
                     <td><input type="text" name="sn" value="{{$request['SN'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>SERIAL NUMBER</td>
-                    <td><input type="text" name="sn" value="{{$request['SN'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>RAM</td>
                     <td><input type="text" name="ram" value="{{$request['RAM'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>FLASH</td>
                     <td><input type="text" name="flash" value="{{$request['FLASH'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>SOFTWARE</td>
                     <td><input type="text" name="software" value="{{$request['SOFTWARE'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>IOS</td>
                     <td><input type="text" name="ios" value="{{$request['IOS'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>ASDM_PDM</td>
                     <td><input type="text" name="asdm_pdm" value="{{$request['ASDM_PDM'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>DES_AES</td>
                     <td><input type="text" name="des_aes" value="{{$request['DES_AES'] or ""}}"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>SCADENZA GARANZIA</td>
                     <td><input type="text" name="scadenza_garanzia" value="{{$request['SCADENZAGARANZIA'] or ""}}" class="datepicker"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>SCADENZA RINNOVO GARANZIA</td>
                     <td><input type="text" name="scarinngaranzia" value="{{$request['SCARINNGARANZIA'] or ""}}" class="datepicker"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>URL FILTERING</td>
                     <td><input type="text" name="urlfiltering" value="{{$urlfiltering}}" style="background-color:{{$urlfiltering == "SI" ? "green" : "red" }}" class="servizi"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>SMART NET</td>
                     <td><input type="text" name="smartnet" value="{{$smartnet}}" style="background-color:{{$smartnet == "SI" ? "green" : "red" }}" class="servizi"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>VPN</td>
                     <td><input type="text" name="vpn" value="{{$vpn}}" style="background-color:{{$vpn == "SI" ? "green" : "red" }}" class="servizi"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>IP MULTIMEDIA</td>
                     <td><input type="text" name="ipmultimedia" value="{{$ipmultimedia}}" style="background-color:{{$ipmultimedia == "SI" ? "green" : "red" }}" class="servizi"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>GESTIONE APPARATO</td>
                     <td><input type="text" name="gestioneapparato" value="{{$gestioneapparato}}" style="background-color:{{$gestioneapparato == "SI" ? "green" : "red" }}" class="servizi"></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>IP PUBBLICO</td>
                     <td><input type="text" name="ip_statico_router" value="{{$request['IP_STATICO_ROUTER'] or ""}}"></td>
+                    <td>SUBNET MASK</td>
+                    <td><input type="text" name="rutsub" value="{{$request['RUTSUB'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>IP PRIVATO</td>
                     <td><input type="text" name="gateway_interfaccia_lan" value="{{$request['GATEWAY_INTERFACCIA_LAN'] or ""}}"></td>
+                    <td>SUBNET MASK</td>
+                    <td><input type="text" name="lansub" value="{{$request['LANSUB'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
