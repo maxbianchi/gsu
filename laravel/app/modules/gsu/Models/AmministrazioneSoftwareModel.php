@@ -9,7 +9,6 @@ use DB;
 class AmministrazioneSoftwareModel extends Model {
 
     public function getAllRequest(){
-        $cliente = Input::get('cliente');
 
         $sql = <<<EOF
             SELECT

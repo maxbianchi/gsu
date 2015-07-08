@@ -11,7 +11,9 @@ class DominiModel extends Model {
     public function getAllRequest(){
 
         $tipo_dominio = Input::get('tipo_dominio');
-        $cliente = Input::get('cliente');
+        $cliente = trim(Input::get('cliente'));
+        $cliente_finale = trim(Input::get('cliente_finale'));
+        $ubicazione = trim(Input::get('ubicazione'));
 
         $sql = <<<EOF
         SELECT
@@ -70,9 +72,9 @@ EOF;
     public function getFilteredRequest(){
 
         $id = Input::get('id');
-        $cliente = Input::get('cliente');
-        $cliente_finale = Input::get('cliente_finale');
-        $ubicazione = Input::get('ubicazione');
+        $cliente = trim(Input::get('cliente'));
+        $cliente_finale = trim(Input::get('cliente_finale'));
+        $ubicazione = trim(Input::get('ubicazione'));
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
