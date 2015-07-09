@@ -134,6 +134,6 @@
             </ul>
             <!-- INSERIRE QUI EVENTUALI ALTRE VOCI DI MENU' -->
         </li>
-        @endif;
+        @endif
     </ul>
 
