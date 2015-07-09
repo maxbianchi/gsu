@@ -180,6 +180,20 @@
     text-decoration: none;
 }
 
+
+.form-2 .center{
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+.form-2 input[type=submit]{
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+
 .form-2 input[type=submit]:hover,
 .form-2 .log-twitter:hover {
     box-shadow: 

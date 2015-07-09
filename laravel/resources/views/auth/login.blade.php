@@ -31,11 +31,12 @@
                             <label for="password"><i class="icon-lock"></i>Password</label>
                             <input type="password" name="password" placeholder="Password" class="showpassword">
                         </p>
-                        <p class="clearfix">
+                        <div class="center">
 
                             <input type="submit" name="submit" value="Log in">
-                        </p>
-                        <p><a href="{{url('/password')}}" title="Recupera la tua password di accesso">Hai dimenticato la tua password?</a></p>
+                        </div>
+
+                        <p style="padding-top:10px;"><a href="{{url('/password')}}" title="Recupera la tua password di accesso">Hai dimenticato la tua password?</a></p>
 					</form>
 
 				</div>
