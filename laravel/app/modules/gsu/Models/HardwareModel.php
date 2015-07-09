@@ -49,6 +49,7 @@ class HardwareModel extends Model {
             SERVER.SOSCLIENTE,
             SERVER.SOSCONTRATTO,
             SERVER.PREZZORINNOVO,
+            CONVERT(VARCHAR(10),SERVER.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             CONVERT(VARCHAR(10),SERVER.SCADRINNOVOGARANZIA,105) SCADRINNOVOGARANZIA,
             SERVER.ASSISTENZA,
             SERVER.WARRANTY,
@@ -143,6 +144,7 @@ EOF;
             SERVER.SOSCONTRATTO,
             SERVER.PREZZORINNOVO,
             CONVERT(VARCHAR(10),SERVER.SCADRINNOVOGARANZIA,105) SCADRINNOVOGARANZIA,
+            CONVERT(VARCHAR(10),SERVER.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             SERVER.ASSISTENZA,
             SERVER.WARRANTY,
             SERVER.MARCA,
@@ -248,11 +250,11 @@ EOF;
         $numeroenergycard = Input::get('numeroenergycard');
         $soscliente = Input::get('soscliente');
         $soscontratto = Input::get('soscontratto');
-
+        $data_inserimento = $date = date('Y-m-d H:i:s');
 
         try {
             if(empty($id)) {
-                DB::insert("insert into SERVER (SERVER.SOGGETTO	,SERVER.CLIENTE	,SERVER.DESTINATARIOABITUALE,SERVER.ACQUISTO_NOLEGGIO,SERVER.MODELLO,SERVER.PN,SERVER.SN,SERVER.PIN,SERVER.DATAACQUISTO,SERVER.SCADGARANZIAINIZ,SERVER.RINNOVOGARANZIA,SERVER.ACERADVANTAGE,SERVER.PSWACER,SERVER.NUMEROENERGYCARD,SERVER.SOSCLIENTE,SERVER.SOSCONTRATTO,SERVER.SCADRINNOVOGARANZIA,SERVER.MARCA,SERVER.DATA_R,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$acquisto_noleggio','$modello','$pn','$sn','$pin','$dataacquisto','$scadgaranziainiz','$rinnovogaranzia','$aceradvantage','$pswacer','$numeroenergycard','$soscliente','$soscontratto','$scadrinnovogaranzia','$marca','$data_r',$eliminato)");
+                DB::insert("insert into SERVER (SERVER.SOGGETTO	,SERVER.CLIENTE	,SERVER.DESTINATARIOABITUALE,SERVER.ACQUISTO_NOLEGGIO,SERVER.MODELLO,SERVER.PN,SERVER.SN,SERVER.PIN,SERVER.DATAACQUISTO,SERVER.SCADGARANZIAINIZ,SERVER.RINNOVOGARANZIA,SERVER.ACERADVANTAGE,SERVER.PSWACER,SERVER.NUMEROENERGYCARD,SERVER.SOSCLIENTE,SERVER.SOSCONTRATTO,SERVER.SCADRINNOVOGARANZIA,SERVER.MARCA,SERVER.DATA_R,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$acquisto_noleggio','$modello','$pn','$sn','$pin','$dataacquisto','$scadgaranziainiz','$rinnovogaranzia','$aceradvantage','$pswacer','$numeroenergycard','$soscliente','$soscontratto','$scadrinnovogaranzia','$marca','$data_r','$data_inserimento',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";

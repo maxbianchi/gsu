@@ -38,6 +38,7 @@ class ApparatiMobileModel extends Model {
             APPARATI_MOBILE.CODICE_R,
             APPARATI_MOBILE.ACQUISTO_NOLEGGIO,
             CONVERT(VARCHAR(10),APPARATI_MOBILE.DATAACQUISTO,105) DATAACQUISTO,
+            CONVERT(VARCHAR(10),APPARATI_MOBILE.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             APPARATI_MOBILE.MARCA,
             APPARATI_MOBILE.MODELLO,
             APPARATI_MOBILE.PN,
@@ -124,6 +125,7 @@ EOF;
             APPARATI_MOBILE.CODICE_R,
             APPARATI_MOBILE.ACQUISTO_NOLEGGIO,
             CONVERT(VARCHAR(10),APPARATI_MOBILE.DATAACQUISTO,105) DATAACQUISTO,
+            CONVERT(VARCHAR(10),APPARATI_MOBILE.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             APPARATI_MOBILE.MARCA,
             APPARATI_MOBILE.MODELLO,
             APPARATI_MOBILE.PN,
@@ -231,10 +233,11 @@ EOF;
         $ntelefono = Input::get('ntelefono');
         $scadrinnovogaranzia = empty(Input::get('scadrinnovogaranzia')) ? "00-00-0000" : Input::get('scadrinnovogaranzia');
         $oggetto = Input::get('oggetto');
+        $data_inserimento = $date = date('Y-m-d H:i:s');
 
         try {
             if(empty($id)) {
-                DB::insert("insert into APPARATI_MOBILE (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,ACQUISTO_NOLEGGIO,DATAACQUISTO,MARCA,MODELLO,PN,SN,PIN,SCADGARANZIAINIZ,NTELEFONO,SCADRINNOVOGARANZIA,OGGETTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$acquisto_noleggio','$dataacquisto','$marca','$modello','$pn','$sn','$pin','$scadgaranziainiz','$ntelefono','$scadrinnovogaranzia','$oggetto',$eliminato)");
+                DB::insert("insert into APPARATI_MOBILE (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,ACQUISTO_NOLEGGIO,DATAACQUISTO,MARCA,MODELLO,PN,SN,PIN,SCADGARANZIAINIZ,NTELEFONO,SCADRINNOVOGARANZIA,OGGETTO,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$acquisto_noleggio','$dataacquisto','$marca','$modello','$pn','$sn','$pin','$scadgaranziainiz','$ntelefono','$scadrinnovogaranzia','$oggetto','$data_inserimento',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";

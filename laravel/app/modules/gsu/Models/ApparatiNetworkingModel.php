@@ -50,6 +50,7 @@ class ApparatiNetworkingModel extends Model {
             APPARATI.IOS,
             APPARATI.ASDM_PDM,
             APPARATI.DES_AES,
+            CONVERT(VARCHAR(10),APPARATI.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             CONVERT(VARCHAR(10),APPARATI.SCADENZAGARANZIA,105) SCADENZAGARANZIA,
             CONVERT(VARCHAR(10),APPARATI.SCARINNGARANZIA,105) SCARINNGARANZIA,
             APPARATI.IPAPPARATO,
@@ -147,6 +148,7 @@ EOF;
             APPARATI.IOS,
             APPARATI.ASDM_PDM,
             APPARATI.DES_AES,
+            CONVERT(VARCHAR(10),APPARATI.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             CONVERT(VARCHAR(10),APPARATI.SCADENZAGARANZIA,105) SCADENZAGARANZIA,
             CONVERT(VARCHAR(10),APPARATI.SCARINNGARANZIA,105) SCARINNGARANZIA,
             APPARATI.IPAPPARATO,
@@ -266,7 +268,7 @@ EOF;
         $rutsub = Input::get('rutsub');
         $gateway_interfaccia_lan = Input::get('gateway_interfaccia_lan');
         $lansub = Input::get('lansub');
-
+        $data_inserimento = $date = date('Y-m-d H:i:s');
 
 
 
@@ -276,7 +278,7 @@ EOF;
 
         try {
             if(empty($id)) {
-                DB::insert("insert into APPARATI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,PRODOTTO,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,RAM,FLASH,SOFTWARE,IOS,ASDM_PDM,DES_AES,SCADENZAGARANZIA,SCARINNGARANZIA,IPAPPARATO,SMAPPARATO,OGGETTO,IP_STATICO_ROUTER,RUTSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$manutenzione','$prodotto','$acquisto_noleggio','$marca','$modello','$pn','$sn','$ram','$flash','$software','$ios','$asdm_pdm','$des_aes','$scadenzagaranzia','$scarinngaranzia','$ipapparato','$smapparato','$oggetto','$ip_statico_router','$rutsub','$gateway_interfaccia_lan','$lansub',$eliminato)");
+                DB::insert("insert into APPARATI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,PRODOTTO,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,RAM,FLASH,SOFTWARE,IOS,ASDM_PDM,DES_AES,SCADENZAGARANZIA,SCARINNGARANZIA,IPAPPARATO,SMAPPARATO,OGGETTO,IP_STATICO_ROUTER,RUTSUB,GATEWAY_INTERFACCIA_LAN,LANSUB,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$manutenzione','$prodotto','$acquisto_noleggio','$marca','$modello','$pn','$sn','$ram','$flash','$software','$ios','$asdm_pdm','$des_aes','$scadenzagaranzia','$scarinngaranzia','$ipapparato','$smapparato','$oggetto','$ip_statico_router','$rutsub','$gateway_interfaccia_lan','$lansub','$data_inserimento',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";

@@ -75,7 +75,12 @@
                 </tr>
                 <tr>
                     <td>ACQUISTO / NOLEGGIO</td>
-                    <td><input type="text" name="acquisto_noleggio" value="{{$request['ACQUISTO_NOLEGGIO'] or ""}}"></td>
+                    <td>
+                        <select name="acquisto_noleggio">
+                            <option value="Acquisto" {{isset($request['ACQUISTO_NOLEGGIO']) && strtolower($request['ACQUISTO_NOLEGGIO']) == 'acquisto' ? 'selected="selected"' : ""  }}>Acquisto</option>
+                            <option value="Noleggio" {{isset($request['ACQUISTO_NOLEGGIO']) && strtolower($request['ACQUISTO_NOLEGGIO']) == 'noleggio' ? 'selected="selected"' : ""  }}>Acquisto</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>MARCA</td>
@@ -96,6 +101,12 @@
                 <tr>
                     <td>ASSISTENZA CENTRALINO</td>
                     <td><input type="text" name="assistenza_centralino" value="{{$assistenzacentralino}}" style="background-color:{{$assistenzacentralino == "SI" ? "green" : "red" }}" class="servizi"></td>
+                </tr>
+                <tr>
+                    <td>DATA INSERIMENTO ( solo lettura )</td>
+                    <td><input type="text" name="data_inserimento" value="{{$request['DATA_INSERIMENTO'] or ""}}" readonly disabled></td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">

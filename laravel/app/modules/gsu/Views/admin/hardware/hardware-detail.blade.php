@@ -147,6 +147,12 @@
                     <td><input type="text" name="post_warranty" value="{{$post_warranty}}" style="background-color:{{$post_warranty == "SI" ? "green" : "red" }}" class="servizi"></td>
                 </tr>
                 <tr>
+                    <td>DATA INSERIMENTO ( solo lettura )</td>
+                    <td><input type="text" name="data_inserimento" value="{{$request['DATA_INSERIMENTO'] or ""}}" readonly disabled></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDSERVER'] or ""}}">

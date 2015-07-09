@@ -43,6 +43,7 @@ class MultifunzioneModel extends Model {
             MULTIFUNZIONE.MODELLO,
             MULTIFUNZIONE.PN,
             MULTIFUNZIONE.SN,
+            CONVERT(VARCHAR(10),MULTIFUNZIONE.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             MULTIFUNZIONE.OGGETTO
 			FROM		gsu.dbo.MULTIFUNZIONE
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MULTIFUNZIONE.codice_r				= richieste.MANUTENZIONE
@@ -126,6 +127,7 @@ EOF;
             MULTIFUNZIONE.MARCA,
             MULTIFUNZIONE.MODELLO,
             MULTIFUNZIONE.PN,
+            CONVERT(VARCHAR(10),MULTIFUNZIONE.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             MULTIFUNZIONE.SN,
             MULTIFUNZIONE.OGGETTO
 			FROM		gsu.dbo.MULTIFUNZIONE
@@ -217,10 +219,11 @@ EOF;
         $pn = Input::get('pn');
         $sn = Input::get('sn');
         $oggetto = Input::get('oggetto');
+        $data_inserimento = $date = date('Y-m-d H:i:s');
 
         try {
             if(empty($id)) {
-                DB::insert("insert into MULTIFUNZIONE (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,OGGETTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$canone_r','$acquisto_noleggio','$marca','$modello','$pn','$sn','$oggetto',$eliminato)");
+                DB::insert("insert into MULTIFUNZIONE (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,CANONE_R,ACQUISTO_NOLEGGIO,MARCA,MODELLO,PN,SN,OGGETTO,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$canone_r','$acquisto_noleggio','$marca','$modello','$pn','$sn','$oggetto','$data_inserimento',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";

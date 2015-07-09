@@ -42,6 +42,7 @@ class CentraliniModel extends Model {
             CENTRALINI.VERSIONE,
             CENTRALINI.PRODUTTORE,
             CENTRALINI.SERIALE,
+            CONVERT(VARCHAR(10),CENTRALINI.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             CENTRALINI.OGGETTO
 			FROM		gsu.dbo.CENTRALINI
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CENTRALINI.codice_r				= richieste.MANUTENZIONE
@@ -122,6 +123,7 @@ EOF;
             CENTRALINI.VERSIONE,
             CENTRALINI.PRODUTTORE,
             CENTRALINI.SERIALE,
+            CONVERT(VARCHAR(10),CENTRALINI.DATA_INSERIMENTO,105) DATA_INSERIMENTO,
             CENTRALINI.OGGETTO
 			FROM		gsu.dbo.CENTRALINI
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON CENTRALINI.codice_r				= richieste.MANUTENZIONE
@@ -213,10 +215,11 @@ EOF;
         $produttore = Input::get('produttore');
         $sn = Input::get('sn');
         $oggetto = Input::get('oggetto');
+        $data_inserimento = $date = date('Y-m-d H:i:s');
 
         try {
             if(empty($id)) {
-                DB::insert("insert into CENTRALINI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,ACQUISTO_NOLEGGIO,DESCRIZIONE,VERSIONE,PRODUTTORE,SERIALE,OGGETTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$acquisto_noleggio','$marca','$modello','$produttore','$sn','$oggetto',$eliminato)");
+                DB::insert("insert into CENTRALINI (SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,ACQUISTO_NOLEGGIO,DESCRIZIONE,VERSIONE,PRODUTTORE,SERIALE,OGGETTO,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$data_r','$acquisto_noleggio','$marca','$modello','$produttore','$sn','$oggetto','$data_inserimento',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
