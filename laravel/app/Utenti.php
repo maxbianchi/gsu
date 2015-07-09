@@ -82,7 +82,7 @@ class Utenti extends Model {
         if(empty($id))
             DB::insert("insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO) values ('$codutente', '$username', '$password', '$livello')");
         else
-            DB::update("UPDATE gsu.dbo.UTENTI SET CODUTENTE='$codutente', UTENTE='$username',PASSWORD='$password', LIVELLO='$livello' WHERE CODUTENTE=$id");
+            DB::update("UPDATE gsu.dbo.UTENTI SET CODUTENTE='$codutente', UTENTE='$username',PASSWORD='$password', LIVELLO='$livello' WHERE IDUTENTE=$id");
     }
 
     public function deleteUser($id) {

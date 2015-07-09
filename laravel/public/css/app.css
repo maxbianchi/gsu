@@ -6447,3 +6447,11 @@ table.adduser tr td{
 table.servizi_collegati tr td {
     padding: 5px !important;
 }
+
+.loader_img{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    position: relative;
+    top: 60%;
+}

@@ -18,7 +18,7 @@
                                         <table class="adduser">
                                             <tr>
                                                 <td colspan="2">
-                                                    <select id="codutente">
+                                                    <select id="codutente" name="codutente">
                                                         @foreach ($utenti as $key => $utente)
                                                             @if($utente['DESCRIZIONE'] != "")
                                                                 <option value="<?php echo $utente['SOGGETTO'] ?>" {{isset($request['CODUTENTE']) && $request['CODUTENTE'] == $utente['SOGGETTO'] ? 'selected="selected"' : ""  }}><?php echo utf8_encode($utente['DESCRIZIONE'].' , '.$utente['INDIRIZZO'].' , '.$utente['LOCALITA']).'  ('.$utente['PROVINCIA'].')'?></option>"
@@ -64,9 +64,7 @@
     <div class="modal fade" id="savedModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">User control panel</h4>
-                </div>
+
                 <div class="modal-body">
                     <h3><span class="msg"></span></h3>
                 </div>

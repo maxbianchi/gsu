@@ -64,7 +64,7 @@
     <br>
 
     <div class="row" id="loader">
-        <div class="col-md-2"><img src="{{ URL::asset('images/loader.gif')}}"></div>
+        <img class="loader_img" src="{{ URL::asset('images/loader.gif')}}">
     </div>
 
     <table id="main" class="table table-striped table-bordered display" cellspacing="0"  style="display:none; width:100%">
