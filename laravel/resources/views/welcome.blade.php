@@ -12,25 +12,6 @@
 
         <div class="row">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading"><ul type="square"><li>Visualizza il tuo <b>traffico mobile</b> dal portale uniweb mobile 4.0</li></ul><span class="pull-right"></span></div>
-
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <div class="col-md-3 col-md-offset-2">
-                                <button type="button" class="btn btn-primary mobile">MOBILE</button>
-                            </div>
-
-                            <div class="col-md-3">
-                                <img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-        </div>
-        <div class="row">
-
             <div class="panel panel-default">
                 <div class="panel-heading"><ul type="square"><li>Visualizza i tuoi <b>servizi attivi</b> presso UNIWEB tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
 
@@ -49,6 +30,27 @@
             </div>
 
         </div>
+
+        <div class="row">
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><ul type="square"><li>Visualizza il tuo <b>traffico mobile</b> dal portale uniweb mobile 4.0</li></ul><span class="pull-right"></span></div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-3 col-md-offset-2">
+                            <button type="button" class="btn btn-primary mobile">MOBILE</button>
+                        </div>
+
+                        <div class="col-md-3">
+                            <img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <div class="row">
 
             <div class="panel panel-default">
@@ -70,13 +72,41 @@
             </div>
 
         </div>
+
+    <div class="row">
+
+        <div class="panel panel-default">
+            <div class="panel-heading"><ul type="square"><li>Utilizza il servizio webfax tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-3 col-md-offset-2">
+                        <button type="button" class="btn btn-primary webfax">WEBFAX</button>
+                    </div>
+
+                    <div class="col-md-3">
+                        <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
+    </div>
+
+
 
     <form method="post" action="http://mobile.uniweb.it/index.asp" id="form_mobile">
         <input type="hidden" name="UTENTELOG" value="{{Session::get('user')['username']}}">
         <input type="hidden" name="PASSWORDLOG" value="{{Session::get('user')['password']}}">
     </form>
     <form method="post" action="http://unigate.uniweb.it/index.asp" id="form_unigate">
+        <input type="hidden" name="username" value="{{Session::get('user')['username']}}">
+        <input type="hidden" name="password" value="{{Session::get('user')['password']}}">
+    </form>
+    <form method="post" action="http://webfax.uniweb.it/" id="form_webfax">
         <input type="hidden" name="username" value="{{Session::get('user')['username']}}">
         <input type="hidden" name="password" value="{{Session::get('user')['password']}}">
     </form>
@@ -97,6 +127,9 @@
             });
             $(".unigate").click(function(){
                 $("#form_unigate").submit();
+            });
+            $(".webfax").click(function(){
+                $("#form_webfax").submit();
             });
         });
     </script>

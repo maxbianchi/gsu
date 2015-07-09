@@ -28,7 +28,7 @@
                             <fieldset>
                                 <legend>DATI GENERALI</legend>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Codice Cliente</label>
+                                    <label class="col-md-4 control-label">Codice Cliente <span style="color:red;">**</span></label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="codicecliente" value="{{ old('codicecliente') }}" >
                                     </div>
@@ -114,40 +114,40 @@
                                 </div>
                             </fieldset>
                             <fieldset>
-                                <legend>SEDE OPERATIVA</legend>
+                                <legend>SEDE OPERATIVA ( solo se diversa dalla sede legale )</legend>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Indirizzo</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="so_indirizzo" value="{{ old('so_indirizzo') }}" required>
+                                        <input type="text" class="form-control" name="so_indirizzo" value="{{ old('so_indirizzo') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Citt&agrave; *</label>
+                                    <label class="col-md-4 control-label">Citt&agrave;</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="so_citta" value="{{ old('so_citta') }}" required>
+                                        <input type="text" class="form-control" name="so_citta" value="{{ old('so_citta') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Provincia *</label>
+                                    <label class="col-md-4 control-label">Provincia</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="so_provincia" value="{{ old('so_provincia') }}" required>
+                                        <input type="text" class="form-control" name="so_provincia" value="{{ old('so_provincia') }}">
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">CAP *</label>
+                                    <label class="col-md-4 control-label">CAP</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="so_cap" value="{{ old('so_cap') }}" required>
+                                        <input type="text" class="form-control" name="so_cap" value="{{ old('so_cap') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Telefono *</label>
+                                    <label class="col-md-4 control-label">Telefono</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="so_telefono" value="{{ old('so_telefono') }}" required>
+                                        <input type="text" class="form-control" name="so_telefono" value="{{ old('so_telefono') }}">
                                     </div>
                                 </div>
 
@@ -159,9 +159,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Email *</label>
+                                    <label class="col-md-4 control-label">Email</label>
                                     <div class="col-md-6">
-                                        <input type="email" class="form-control" name="so_email" value="{{ old('so_email') }}" required>
+                                        <input type="email" class="form-control" name="so_email" value="{{ old('so_email') }}">
                                     </div>
                                 </div>
                             </fieldset>
@@ -210,6 +210,7 @@
                                     </button>
                                 </div>
                             </div>
+                            <span class="col-md-12 control-label"><span style="color:red;">**</span> Solo per i clienti Uniweb che ne sono già in possesso ( si trova sulla fattura )</span>
                         </form>
                     </div>
                 </div>
