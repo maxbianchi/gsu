@@ -561,4 +561,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/amministrazionesoftware/save', 'AmministrazioneSoftwareController@save');
     Route::get('gsu/amministrazionesoftware/delete', 'AmministrazioneSoftwareController@delete');
 
+    //Amministrazione Apparati Unigate
+    Route::get('gsu/amministrazioneunigate', 'AmministrazioneUnigateController@main');
+    Route::get('gsu/amministrazioneunigate/search', 'AmministrazioneUnigateController@search');
+    Route::get('gsu/amministrazioneunigate/show', 'AmministrazioneUnigateController@show');
+    Route::get('gsu/amministrazioneunigate/edit', 'AmministrazioneUnigateController@edit');
+    Route::post('gsu/amministrazioneunigate/save', 'AmministrazioneUnigateController@save');
+    Route::get('gsu/amministrazioneunigate/delete', 'AmministrazioneUnigateController@delete');
+
 });
