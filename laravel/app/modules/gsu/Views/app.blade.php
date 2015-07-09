@@ -55,7 +55,7 @@
 				</button>
                 <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/Banner.png') }}" alt="Uniweb 4.0 Dashboard" title="Uniweb 4.0 Dashboard"></a>
                 <div style="margin-left: 40%;position: absolute;top: 16px;">{{utf8_encode(Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}
-                    <span style="padding-left:100px!important;color:blue;font-size:22px;font-style:Comic Sans MS;font-style: italic;"><?php !empty($tableName) ? print_r("TABELLA $tableName") : ""?></span>
+                    <span style="padding-left:100px!important;color:#283891;font-size:22px;"><?php !empty($tableName) ? print_r("SEZIONE $tableName") : ""?></span>
                 </div>
 
 
