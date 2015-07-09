@@ -5,6 +5,12 @@
 
 @section('content')
 
+    <style>
+        input[type="button"]{
+            min-width:220px;
+        }
+    </style>
+
     <?php
 
     $livello = Session::get('livello');
