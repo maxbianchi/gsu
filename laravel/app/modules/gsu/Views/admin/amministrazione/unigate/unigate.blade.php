@@ -17,7 +17,7 @@
     <br>
 
     <div class="row" id="loader">
-        <img class="loader_img" src="{{ URL::asset('images/loader.gif')}}">
+        
     </div>
 
     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%" style="display:none;">
