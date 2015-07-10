@@ -17,7 +17,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza i tuoi <b>servizi attivi</b></div>
-                        <div class="col-md-6">Visualizza il tuo <b>traffico mobile</b></div>
+                        <div class="col-md-4 col-md-offset-2">Visualizza il tuo <b>traffico mobile</b></div>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico Voip</b></div>
-                        <div class="col-md-6">Utilizza il servizio ORION per <b>monitorare i tuoi servizi di connettivit&agrave;</b></div>
+                        <div class="col-md-6 pull-right text-right">Utilizza il servizio ORION per <b>monitorare i tuoi servizi di connettivit&agrave;</b></div>
                     </div>
                 </div>
 
