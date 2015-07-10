@@ -7,6 +7,7 @@ use League\Flysystem\Exception;
 use Session;
 use DB;
 use Illuminate\Support\Facades\Mail;
+use Request;
 
 
 class Utenti extends Model {
@@ -34,7 +35,8 @@ class Utenti extends Model {
             Session::put('livello', $res[0]['LIVELLO']);
             Session::put('logged', 1);
             $last_login = $date = date('Y-m-d H:i:s');
-            $sql = "UPDATE UTENTI SET NUMBER_LOGIN=NUMBER_LOGIN+1, LAST_LOGIN='$last_login' WHERE UTENTE='".$usr."'";
+            $ip = Request::getClientIp(true);
+            $sql = "UPDATE UTENTI SET NUMBER_LOGIN=NUMBER_LOGIN+1, LAST_LOGIN='$last_login', IP='$ip' WHERE UTENTE='".$usr."'";
             DB::update($sql);
             return true;
         } else {
