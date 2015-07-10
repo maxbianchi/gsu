@@ -2,6 +2,7 @@
 
 
 use Session;
+use Redirect;
 
 class HomeController extends Controller {
 
@@ -33,6 +34,10 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
+        $logged = Session::get('logged');
+        if($logged && $logged == 1) {
+            return Redirect::to('dashboard');
+        }
 		return view('auth.login');
 	}
 
