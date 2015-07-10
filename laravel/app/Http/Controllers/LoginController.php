@@ -58,7 +58,7 @@ class LoginController extends Controller {
         $utente = $res['utenti'];
         $errors = $res['errors'];
 
-        if(count($utente) == 0){
+        if(count($utente) == 0 || empty($email)){
             return view('auth.password',['errors' => $errors]);
         }
 

@@ -25,11 +25,11 @@
                         <h1><span class="sign-up">Log in</span> </h1>
                         <p class="float">
                             <label for="login"><i class="icon-user"></i>Username</label>
-                            <input type="text" name="username" placeholder="Username or email">
+                            <input type="text" name="username" placeholder="Username or email" required>
                         </p>
                         <p class="float">
                             <label for="password"><i class="icon-lock"></i>Password</label>
-                            <input type="password" name="password" placeholder="Password" class="showpassword">
+                            <input type="password" name="password" placeholder="Password" class="showpassword" required>
                         </p>
                         <div class="center">
 
