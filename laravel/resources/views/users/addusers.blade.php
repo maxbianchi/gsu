@@ -102,6 +102,12 @@
             $("#back").click(function(){
                location.href='{{ url('/users') }}';
             });
+
+            $("#codutente").change(function(){
+               var value = $(this).val();
+                $("#username").val(value);
+            });
+
         });
     </script>
 @endsection
