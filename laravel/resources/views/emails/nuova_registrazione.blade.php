@@ -6,6 +6,14 @@
     <table>
         <tr>
             <td>
+                CODICE CLIENTE
+            </td>
+            <td>
+                {{$registrazione['codicecliente']}}
+            </td>
+        </tr>
+        <tr>
+            <td>
                SOCIETA
             </td>
             <td>

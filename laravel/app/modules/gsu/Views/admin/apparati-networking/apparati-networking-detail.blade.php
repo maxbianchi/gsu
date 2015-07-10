@@ -86,7 +86,7 @@
                     <td>
                         <select name="acquisto_noleggio">
                             <option value="Acquisto" {{isset($request['ACQUISTO_NOLEGGIO']) && strtolower($request['ACQUISTO_NOLEGGIO']) == 'acquisto' ? 'selected="selected"' : ""  }}>Acquisto</option>
-                            <option value="Noleggio" {{isset($request['ACQUISTO_NOLEGGIO']) && strtolower($request['ACQUISTO_NOLEGGIO']) == 'noleggio' ? 'selected="selected"' : ""  }}>Acquisto</option>
+                            <option value="Noleggio" {{isset($request['ACQUISTO_NOLEGGIO']) && strtolower($request['ACQUISTO_NOLEGGIO']) == 'noleggio' ? 'selected="selected"' : ""  }}>Noleggio</option>
                         </select>
                     </td>
                     <td></td>
@@ -213,7 +213,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;">
+                    <td colspan="4" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['ID'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">

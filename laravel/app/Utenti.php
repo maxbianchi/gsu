@@ -193,6 +193,7 @@ EOF;
         $co_cellulare = Input::get('co_cellulare');
         $co_email = Input::get('co_email');
 
+        $registrazione['codicecliente'] = $codicecliente;
         $registrazione['societa'] = $societa;
         $registrazione['piva'] = $piva;
         $registrazione['cf'] = $cf;
