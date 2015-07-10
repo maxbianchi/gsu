@@ -4,89 +4,77 @@
 @section('content')
     <div class="container">
 
+
         <div class="row">
-            <div class="col-md-12">
-                <img style="display:block;margin-left:auto;margin-right:auto;" src="{{ URL::asset('images/areariservata.jpg') }}">
+            <div class="col-md-12" style="padding:0px;">
+                <img style="display:block;margin-left:auto;margin-right:auto;width:100%;padding:0px !important;" src="{{ URL::asset('images/areariservata.jpg') }}">
             </div>
         </div>
 
         <div class="row">
 
             <div class="panel panel-default">
-                <div class="panel-heading"><ul type="square"><li>Visualizza i tuoi <b>servizi attivi</b> presso UNIWEB tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
-
-                <div class="panel-body">
+                <div class="panel-heading">
                     <div class="form-group">
-                        <div class="col-md-3 col-md-offset-2">
-                            <button type="button" class="btn btn-primary" onclick="location.href='{{url('/gsu/index')}}'">GSU</button>
-                        </div>
-
-                        <div class="col-md-3">
-                            <img style="width:180px;" src="{{ URL::asset('images/logo.png') }}">
-                        </div>
+                        <div class="col-md-5 col-md-offset-1">Visualizza i tuoi <b>servizi attivi</b> presso UNIWEB</div>
+                        <div class="col-md-6">Visualizza il tuo <b>traffico mobile</b></div>
                     </div>
                 </div>
 
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <div class="panel panel-default">
-                <div class="panel-heading"><ul type="square"><li>Visualizza il tuo <b>traffico mobile</b> dal portale uniweb mobile 4.0</li></ul><span class="pull-right"></span></div>
-
                 <div class="panel-body">
                     <div class="form-group">
-                        <div class="col-md-3 col-md-offset-2">
+                        <!--/**/-->
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" onclick="location.href='{{url('/gsu/index')}}'">GSU</button>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1">
+                            <img style="width:180px;" src="{{ URL::asset('images/logo.png') }}">
+                        </div>
+                        <!--/**/-->
+                        <div class="col-md-2">
                             <button type="button" class="btn btn-primary mobile">MOBILE</button>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2 col-md-offset-1">
                             <img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">
                         </div>
+                        <!--/**/-->
+
+
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div class="row">
 
             <div class="panel panel-default">
-                <div class="panel-heading"><ul type="square"><li>Visualizza il tuo <b>traffico Voip</b> tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
+                <div class="panel-heading">
+                    <div class="form-group">
+                        <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico Voip</b></div>
+                        <div class="col-md-6">Utilizza il servizio ORION per <b>monitorare i tuoi servizi adsl</b></div>
+                    </div>
+                </div>
 
                 <div class="panel-body">
                     <div class="form-group">
-                        <div class="col-md-3 col-md-offset-2">
+                        <!--/**/-->
+                        <div class="col-md-2">
                             <button type="button" class="btn btn-primary unigate">UNIGATE</button>
                         </div>
-
-                        <div class="col-md-3">
+                        <div class="col-md-2 col-md-offset-1">
                             <img src="{{ URL::asset('images/logo_unigate.png') }}">
                         </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="row">
-
-            <div class="panel panel-default">
-                <div class="panel-heading"><ul type="square"><li>Utilizza il servizio ORION per monitorare il tuo servizio web</li></ul><span class="pull-right"></span></div>
-
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-md-3 col-md-offset-2">
+                        <!--/**/-->
+                        <div class="col-md-2">
                             <button type="button" class="btn btn-primary orion">ORION</button>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2 col-md-offset-1">
                             <img style="width:290px;" src="{{ URL::asset('images/orion.gif') }}">
                         </div>
+                        <!--/**/-->
+
 
                     </div>
                 </div>
@@ -95,28 +83,40 @@
 
         </div>
 
-    <div class="row">
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><ul type="square"><li>Utilizza il servizio webfax tramite il portale uniweb 4.0</li></ul><span class="pull-right"></span></div>
+        <div class="row">
 
-            <div class="panel-body">
-                <div class="form-group">
-                    <div class="col-md-3 col-md-offset-2">
-                        <button type="button" class="btn btn-primary webfax">WEBFAX</button>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="form-group">
+                        <div class="col-md-5 col-md-offset-1">Utilizza il <b>servizio webfax</b></div>
+                        <div class="col-md-6"></div>
                     </div>
-
-                    <div class="col-md-3">
-                        <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
-                    </div>
-
                 </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <!--/**/-->
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary webfax">WEBFAX</button>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1">
+                            <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
+                        </div>
+                        <!--/**/-->
+
+                        <!--/**/-->
+
+
+                    </div>
+                </div>
+
             </div>
 
         </div>
+    </div>
 
-    </div>
-    </div>
+
 
 
 
