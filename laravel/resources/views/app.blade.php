@@ -45,7 +45,7 @@
                             <li><a href="{{ url('/users') }}">Gestione Utenti</a></li>
                         @endif
                         @if (Session::get('logged')  == 1)
-                            <li><a href="{{ url('/logout') }}" title="Logout">Logout</a></li>
+                            <li><a href="{{ url('/logout') }}" title="Logout"><b>Logout</b></a></li>
                         @endif
                     </ul>
 				</ul>
