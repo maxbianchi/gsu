@@ -21,11 +21,22 @@ $(document).ready(function () {
 
     $( ".datepicker" ).datepicker({ dateFormat: 'dd-mm-yy' });
 
+    $.fn.hasAttr = function(name) {
+        return this.attr(name) !== undefined;
+    };
 
-    $(".delete").click(function(){
-        id_elimina = $(this).attr('delete-id');
-        manutenzione = $(this).attr('manutenzione');
+    $('body').on('click', '.delete', function() {
+        id_elimina = 0;
+        manutenzione = 0;
+        if($(this).hasAttr('data-delete-id')) {
+            id_elimina = $(this).attr('data-delete-id');
+        }
+        if($(this).hasAttr('data-manutenzione')) {
+            manutenzione = $(this).attr('data-manutenzione');
+        }
         $('#delete').modal('show');
     });
+
+
 
 });

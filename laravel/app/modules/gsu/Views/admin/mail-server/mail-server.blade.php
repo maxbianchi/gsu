@@ -81,7 +81,7 @@
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
                     <a class="btn-small edit stato_left" href="{{url('/gsu/mail-server/edit')."?id=".$req['IDMAIL_SERVER']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="btn-small edit delete stato_right" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDMAIL_SERVER'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="btn-small edit delete stato_right" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['IDMAIL_SERVER'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td>
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>

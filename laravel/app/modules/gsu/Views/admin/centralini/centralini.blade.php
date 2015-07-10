@@ -86,7 +86,7 @@
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
                     <a class="stato_left btn-small edit" href="{{url('/gsu/centralini/edit')."?id=".$req['IDCENTRALINO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['IDCENTRALINO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['IDCENTRALINO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td><a href="{{url(isset($class['link'][$req['CANONE']]) ? '/gsu/centralini' : $class['link'][$req['CANONE']] )."/show?manutenzione=".$req['MANUTENZIONE']."&id=".$req['IDCENTRALINO']."&eliminati=".Input::get('eliminati')}}">{{$req['CODICE_R']  or "AGGIUNTO"}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>

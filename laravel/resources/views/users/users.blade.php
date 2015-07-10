@@ -32,7 +32,7 @@
                                             <tr>
                                                 <td>
                                                     <a class="btn btn-small edit" href="{{url('/edituser')."?id=".$utente['IDUTENTE']}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                                    <a class="btn btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE"  delete-id="{{$utente['IDUTENTE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                                                    <a class="btn btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="" data-delete-id="{{$utente['IDUTENTE'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                                                 </td>
                                                 <td>{{$utente['DESCRIZIONE']}}</td>
                                                 <td>{{$utente['UTENTE']}}</td>

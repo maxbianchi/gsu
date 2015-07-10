@@ -63,7 +63,7 @@
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
                     <a class="stato_left btn-small edit" href="{{url('/gsu/assistenza-tecnica-multifunzione-pwd/edit')."?apparato_id=".$req['MULTIFUNZIONE_ID']."&id=".$req['MULTIFUNZIONE_ID']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE" manutenzione="{{$req['MANUTENZIONE'] or ""}}" delete-id="{{$req['MULTIFUNZIONE_ID'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['MULTIFUNZIONE_ID'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>

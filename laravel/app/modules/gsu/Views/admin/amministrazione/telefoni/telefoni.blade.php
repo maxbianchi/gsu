@@ -35,7 +35,7 @@
             <tr>
                 <td class="col-md-1">
                     <a class="stato_left btn-small edit" href="{{url('/gsu/amministrazionetelefoni/edit')."?id=".$req['ID_TELEFONO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
-                    <a class="stato_right btn-small edit delete" href="javascript:void(0);" data-toggle="modal" title="DELETE"  delete-id="{{$req['ID_TELEFONO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
+                    <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['ID_TELEFONO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td class="col-md-2">{{$req['ID_TELEFONO']}}</td>
                 <td class="col-md-2">{{$req['NMU']}}</td>
