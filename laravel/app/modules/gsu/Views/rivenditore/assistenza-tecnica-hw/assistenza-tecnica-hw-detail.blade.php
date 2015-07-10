@@ -86,14 +86,7 @@
         $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
         ?>
          <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
-            <tr>
-                <td>
-                    <?php if(Session::get('livello') == 1): ?>
-                    <a href="{{url('/gsu/hardware-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDTELEASSISTENZA']."&id=".$request['IDTELEASSISTENZA']."&seriale=".$request['SERIALE']}}">PASSWORD</a>
-                    <?php endif; ?>
-                </td>
-            </tr>
-            <tr>
+             <tr>
                 <td>
                     <a href="{{url('/gsu/search')."?canone=CAN-G101A&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&seriale=".$request['SERIALE']}}">SERVER</a>
                 </td>

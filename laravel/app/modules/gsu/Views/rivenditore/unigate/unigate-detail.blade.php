@@ -123,11 +123,6 @@
         ?>
 
         <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
-            <td>
-                <?php if(Session::get('livello') == 1): ?>
-                <a href="{{url('/gsu/unigate-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDUNIGATE']."&id=".$request['IDUNIGATE']."&manutenzione=".$request['MANUTENZIONE']}}">PASSWORD</a>
-                <?php endif; ?>
-            </td>
             <tr>
                 <td>
                     <a href="{{url('/gsu/dial-up/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIAL UP ACCESS</a>
