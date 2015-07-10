@@ -160,6 +160,15 @@
             $(".orion").click(function(){
                 $("#form_orion").submit();
             });
+
+            $("#banner").find("img").hover(function(){
+                $("#banner").find("img").attr("alt","TORNA AL SITO UNIWEB");
+                $("#banner").find("img").attr("title","TORNA AL SITO UNIWEB");
+            });
+            $("#banner").click(function(){
+                $("#banner").attr("href","http://www.uniweb.it");
+            });
+
         });
     </script>
 @endsection
