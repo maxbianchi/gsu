@@ -34,7 +34,7 @@
 				</button>
 				<a href="{{url('/dashboard')}}"><img src="{{ URL::asset('images/Banner.png') }}" alt="Uniweb 4.0 Dashboard" title="Uniweb 4.0 Dashboard"></a>
 
-                <div style="margin-left: 40%;position: absolute;top: 15px;">{{utf8_encode(Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}</div>
+                <div style="margin-left: 40%;position: absolute;top: 15px;"><b>{{utf8_encode(Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}</b></div>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
