@@ -107,22 +107,22 @@
                 </tr>
             </form>
         </table>
-        
-    <hr>
 
-    <div id="msg" class="modal fade" style="z-index:99999;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Record Inserito con successo</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        <hr>
+
+        <div id="msg" class="modal fade" style="z-index:99999;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Record Inserito con successo</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
         <?php
         if(!isset($request['SOGGETTO']))
@@ -141,9 +141,14 @@
         ?>
 
         <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
-            <td>
-                <a href="{{url('/gsu/unigate-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDUNIGATE']."&id=".$request['IDUNIGATE']."&manutenzione=".$request['MANUTENZIONE']}}">PASSWORD</a>
-            </td>
+            <tr>
+                <td>
+                    <a href="{{url('/gsu/unigate-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['IDUNIGATE']."&id=".$request['IDUNIGATE']."&manutenzione=".$request['MANUTENZIONE']}}">PASSWORD</a>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
             <tr>
                 <td>
                     <a href="{{url('/gsu/dial-up/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIAL UP ACCESS</a>
@@ -160,27 +165,27 @@
             </tr>
         </table>
 
-@endsection
+        @endsection
 
 
 
-@section('script')
-    <script>
-        $(document).ready(function () {
-            @if($btn == 'back')
-                $( ":text" ).prop('readonly', true);
-                $( "select" ).prop('disabled', true);
-            @endif
+        @section('script')
+            <script>
+                $(document).ready(function () {
+                    @if($btn == 'back')
+                    $( ":text" ).prop('readonly', true);
+                    $( "select" ).prop('disabled', true);
+                    @endif
 
-            $("#btn_salva").click(function(){
-                         $.post( "{{url('/gsu/unigate/save')}}", $("form#form").serialize())
-                                .done(function( data ) {
-                                    $('#msg').modal('show');
-                                    $("#btn_salva").hide();
-                                });
-                    });
+                    $("#btn_salva").click(function(){
+                                $.post( "{{url('/gsu/unigate/save')}}", $("form#form").serialize())
+                                        .done(function( data ) {
+                                            $('#msg').modal('show');
+                                            $("#btn_salva").hide();
+                                        });
+                            });
 
-        });
-    </script>
+                });
+            </script>
 
 @endsection

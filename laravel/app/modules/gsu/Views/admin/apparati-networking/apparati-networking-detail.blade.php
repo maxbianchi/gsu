@@ -262,6 +262,14 @@
     <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
         <tr>
             <td>
+                <a href="{{url('/gsu/apparati-networking-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['ID']."&id=".$request['ID']}}">PASSWORD APPARATI NETWORKING</a>
+            </td>
+        </tr>
+    </table>
+<br>
+    <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
+        <tr>
+            <td>
                 <a href="{{url('/gsu/dial-up/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">DIAL UP</a>
             </td>
             <td>
@@ -292,9 +300,6 @@
             </td>
             <td>
                 <a href="{{url('/gsu/ipmultimedia/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP MULTIMEDIA</a>
-            </td>
-            <td>
-                <a href="{{url('/gsu/apparati-networking-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['ID']."&id=".$request['ID']}}">PASSWORD APPARATI NETWORKING</a>
             </td>
         </tr>
     </table>

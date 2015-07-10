@@ -169,6 +169,9 @@
                 <a href="{{url('/gsu/assistenza-tecnica-multifunzione-pwd/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&apparato_id=".$request['ID']."&id=".$request['ID']}}">PASSWORD MULTIFUNZIONE</a>
             </td>
         </tr>
+    </table>
+    <br>
+    <table class="servizi_collegati" style="width:100%; border: 1px solid #C0C0C0; " cellspacing="3px">
         <tr>
             <td>
                 <a href="{{url('/gsu/assistenza-tecnica-multifunzione/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">ASSISTENZA MULTIFUNZIONE</a>
