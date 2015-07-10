@@ -16,7 +16,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="form-group">
-                        <div class="col-md-5 col-md-offset-1">Visualizza i tuoi <b>servizi attivi</b> presso UNIWEB</div>
+                        <div class="col-md-5 col-md-offset-1">Visualizza i tuoi <b>servizi attivi</b></div>
                         <div class="col-md-6">Visualizza il tuo <b>traffico mobile</b></div>
                     </div>
                 </div>
@@ -24,14 +24,14 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <!--/**/-->
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <button type="button" class="btn btn-primary" onclick="location.href='{{url('/gsu/index')}}'">GSU</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
                             <img style="width:180px;" src="{{ URL::asset('images/logo.png') }}">
                         </div>
                         <!--/**/-->
-                        <div class="col-md-2">
+                        <div class="col-md-1 col-md-offset-3">
                             <button type="button" class="btn btn-primary mobile">MOBILE</button>
                         </div>
 
@@ -52,26 +52,26 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico Voip</b></div>
-                        <div class="col-md-6">Utilizza il servizio ORION per <b>monitorare i tuoi servizi adsl</b></div>
+                        <div class="col-md-6">Utilizza il servizio ORION per <b>monitorare i tuoi servizi di connettivit&agrave;</b></div>
                     </div>
                 </div>
 
                 <div class="panel-body">
                     <div class="form-group">
                         <!--/**/-->
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <button type="button" class="btn btn-primary unigate">UNIGATE</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
                             <img src="{{ URL::asset('images/logo_unigate.png') }}">
                         </div>
                         <!--/**/-->
-                        <div class="col-md-2">
+                        <div class="col-md-1 col-md-offset-3" >
                             <button type="button" class="btn btn-primary orion">ORION</button>
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <img style="width:290px;" src="{{ URL::asset('images/orion.gif') }}">
+                            <img style="width:260px;" src="{{ URL::asset('images/orion.gif') }}">
                         </div>
                         <!--/**/-->
 
@@ -89,7 +89,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="form-group">
-                        <div class="col-md-5 col-md-offset-1">Utilizza il <b>servizio webfax</b></div>
+                        <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico webfax</b></div>
                         <div class="col-md-6"></div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <!--/**/-->
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <button type="button" class="btn btn-primary webfax">WEBFAX</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
@@ -139,7 +139,7 @@
 
     <style>
         .form-group .btn{
-            min-width:240px !important;
+            min-width:150px !important;
         }
     </style>
 
