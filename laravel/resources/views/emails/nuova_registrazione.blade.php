@@ -210,6 +210,7 @@
 Cordiali Saluti<br><br><br>
 
 <div id="footer" class="container_12">
+    <img src="http://areaclienti.uniweb.it/images/Banner.png"><br>
     <strong>Uniweb Srl</strong>
     - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
     <br>
