@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Benvenuto nel Nuovo Portale Uniweb 4.0, la tua area riservata!</div>
+                    <div class="panel-heading " style="text-align: right;">Benvenuto nel Nuovo <b>Portale Uniweb 4.0</b>, la tua area riservata!</div>
                     <div class="panel-body">
                         <div><b><a href="{{ url('/registrazione') }}" style="text-decoration: underline;">Se non sei ancora registrato clicca qui</a></b></div>
                         @if (count(Session::get('errors')) > 0)
