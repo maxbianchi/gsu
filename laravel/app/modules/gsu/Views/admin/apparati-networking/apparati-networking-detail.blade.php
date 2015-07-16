@@ -298,9 +298,10 @@
             <td>
                 <a href="{{url('/gsu/vpn/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">VPN</a>
             </td>
-            <td>
+            <td colspan="7">
                 <a href="{{url('/gsu/ipmultimedia/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">IP MULTIMEDIA</a>
             </td>
+
         </tr>
     </table>
 
