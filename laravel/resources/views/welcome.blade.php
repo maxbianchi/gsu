@@ -104,7 +104,13 @@
                             <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
                         </div>
                         <!--/**/-->
+                        <div class="col-md-1 col-md-offset-3" >
+                            <button type="button" class="btn btn-primary" onclick="window.open('http://webmail.uniweb.it' ,'_blank')">WEBMAIL</button>
+                        </div>
 
+                        <div class="col-md-2 col-md-offset-1">
+                            <img  src="{{ URL::asset('images/webmail_logo.gif') }}">
+                        </div>
                         <!--/**/-->
 
 
