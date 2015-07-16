@@ -1,6 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
 <h2>Registrazione al portale UNIWEB 4.0</h2><br>
 <h3>Un nuovo utente si è registrato sul portale UNIWEB senza indicare CODICE CLIENTE,<br>
-    l'ID nella tabella registrazioni è il seguente:<br>
+    l'ID nella tabella registrazioni è il seguente:</h3><br>
     id: {{$registrazione['id']}}<br><br>
 
     <table>
@@ -213,13 +220,5 @@ Cordiali Saluti<br><br><br>
 </div>
 
 
-<style>
-    #footer{height:50px;
-        width: 100%;
-        background-color: #F5F5F5;
-        border-color: #E7E7E7;
-        text-align: center;
-        color: #646464;
-        font-family: Arial,Helvetica,sans-serif;
-        font-size: 12px;}
-</style>
+</body>
+</html>

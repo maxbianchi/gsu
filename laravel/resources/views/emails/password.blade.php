@@ -1,7 +1,14 @@
-<h2>Richiesta di recupero password al portale UNIWEB 4.0</h2><br>
-<h3>Gentile {{$user}} come richiesto ecco la password per accedere all'area clienti uniweb:</h3><br><br>
-<a href="http://areaclienti.uniweb.it">AREA CLIENTI UNIWEB</a><br>
-<h3>password:&nbsp;</h3> <h3>{{$pwd}}</h3><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<h2>Richiesta di recupero password dal portale UNIWEB 4.0</h2><br>
+<h3>Gentile {{$user}} come richiesto ecco la password per accedere all'area clienti uniweb:</h3>
+<a href="http://areaclienti.uniweb.it">AREA CLIENTI UNIWEB</a><br><br>
+Il nome utente &egrave; il codice cliente che trova indicato in fattura.<br>
+<h3>Password:&nbsp;{{$pwd}}</h3><br><br>
 
 Cordiali Saluti<br><br><br>
 
@@ -15,14 +22,5 @@ Cordiali Saluti<br><br><br>
     Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922
 </div>
 
-
-<style>
-    #footer{height:50px;
-        width: 100%;
-        background-color: #F5F5F5;
-        border-color: #E7E7E7;
-        text-align: center;
-        color: #646464;
-        font-family: Arial,Helvetica,sans-serif;
-        font-size: 12px;}
-</style>
+</body>
+</html>

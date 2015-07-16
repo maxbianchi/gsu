@@ -15,6 +15,20 @@
                     </div>
 
                     <div class="panel-body">
+                        @if (isset($message))
+                            <div class="alert alert-success">
+                                {{$message}}
+                            </div>
+                        @endif
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                Impossibile inviare la password all'indirizzo indicato.<br><br>
+                                <ul>
+                                    <li>{{ $errors }}</li>
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <div class="col-md4 col-md-offset-1">
                                     <table id="main" class="table table-striped table-bordered display" cellspacing="0" width="100%">
@@ -25,6 +39,7 @@
                                             <th>NOME UTENTE</th>
                                             <th>PASSWORD</th>
                                             <th>LIVELLO</th>
+                                            <th>INVIA MAIL</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -38,6 +53,7 @@
                                                 <td>{{$utente['UTENTE']}}</td>
                                                 <td>{{$utente['PASSWORD']}}</td>
                                                 <td>{{$utente['LIVELLO']}}</td>
+                                                <td><a class="btn btn-small" href="{{url('/password/registrazione')."?id=".$utente['CODUTENTE']}}" title="Invia mail di conferma registrazione"><i class="glyphicon glyphicon-envelope"></i> </a></td>
                                             </tr>
                                             @endforeach
                                     </table>

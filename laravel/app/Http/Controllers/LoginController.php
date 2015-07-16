@@ -52,13 +52,22 @@ class LoginController extends Controller {
     }
 
     public function passwordEmail(){
-        $email = Input::get('email');
+        $piva = Input::get('piva');
         $model = new Utenti();
-        $res = $model->recuperapassword($email);
+        $res = $model->recuperapassword($piva);
         $utente = $res['utenti'];
-        $errors = $res['errors'];
+        $errors = isset($res['errors']) ? $res['errors'] : "";
 
-        if(count($utente) == 0 || empty($email)){
+        $isOK = 0;
+        foreach($utente as $row){
+            if(!empty($row['EMAIL']))
+                $isOK = 1;
+        }
+
+        if($isOK == 0)
+            $errors[] = "Non &egrave; associato alcun indirizzo email al cliente selezionato";
+
+        if(count($utente) == 0 || empty($piva) || $isOK == 0){
             return view('auth.password',['errors' => $errors]);
         }
 
@@ -70,6 +79,37 @@ class LoginController extends Controller {
         }
 
         return view('auth.password',['message' => "Email inviata all'indirizzo da Lei indicato"]);
+    }
+
+    public function nuovaregistrazione(){
+        $id = Input::get('id');
+        $model = new Utenti();
+        $utenti = $model->getAllUser();
+        $res = $model->recuperapasswordByID($id);
+        $utente = $res['utenti'];
+        $errors = isset($res['errors']) ? $res['errors'] : "";
+
+        $isOK = 0;
+        foreach($utente as $row){
+            if(!empty($row['EMAIL']))
+                $isOK = 1;
+        }
+
+        if($isOK == 0)
+            $errors = "Non &egrave; associato alcun indirizzo email al cliente selezionato";
+
+        if(count($utente) == 0 || empty($id) || $isOK == 0){
+            return view('users.users',['utenti' => $utenti, 'errors' => $errors]);
+        }
+
+        foreach($utente as $row){
+            Mail::send('emails.registrazione', ['pwd' => $row['PASSWORD'], 'user' => $row['DESCRIZIONE'], 'username' => $row['UTENTE']], function($message) use ($row)
+            {
+                $message->to($row['EMAIL'], $row['DESCRIZIONE'])->subject('Registrazione area clienti Uniweb');
+            });
+        }
+
+        return view('users.users', ['utenti' => $utenti, 'message' => "Email inviata all'indirizzo da Lei indicato"]);
     }
 
     public function logout(){

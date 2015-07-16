@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
 <h2>Registrazione al portale UNIWEB 4.0</h2><br>
 <h3>Gentile {{$user}} la sua registrazione sul portale &egrave; stata effettuata con successo<br>
     di seguito username e password per accedere all'area clienti uniweb:</h3><br><br>
@@ -17,14 +24,5 @@ Cordiali Saluti<br><br><br>
     Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922
 </div>
 
-
-<style>
-    #footer{height:50px;
-        width: 100%;
-        background-color: #F5F5F5;
-        border-color: #E7E7E7;
-        text-align: center;
-        color: #646464;
-        font-family: Arial,Helvetica,sans-serif;
-        font-size: 12px;}
-</style>
+</body>
+</html>

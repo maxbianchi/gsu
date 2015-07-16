@@ -15,9 +15,11 @@
 
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							Impossibile inviare la password all'indirizzo indicato.<br><br>
 							<ul>
-									<li>{{ $errors }}</li>
+                                    <li>Impossibile inviare la password all'indirizzo indicato.</li>
+                                    @foreach($errors as $error)
+									<li>{{ $error }}</li>
+                                    @endforeach
 							</ul>
 						</div>
 					@endif
@@ -26,9 +28,9 @@
                         <input name="_token" type="hidden" value="{!! csrf_token() !!}" />
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">Partita IVA / C.F.</label>
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+								<input type="text" maxlength="16" class="form-control" name="piva" value="{{ old('piva') }}" required>
 							</div>
 						</div>
 

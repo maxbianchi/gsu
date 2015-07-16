@@ -156,12 +156,22 @@ EOF;
         }
     }
 
-    public function recuperapassword($email){
-        $sql = "SELECT A.SOGGETTO,A.DESCRIZIONE, A.EMAIL, U.PASSWORD FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE email like '%$email%'";
+    public function recuperapassword($piva){
+        $sql = "SELECT A.SOGGETTO,A.DESCRIZIONE, A.EMAIL, U.PASSWORD FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE PARTITAIVA = '$piva' OR CODICEFISCALE='$piva'";
         $res['utenti'] = DB::select($sql);
-        if(count($res) > 0){
+        if(count($res['utenti']) == 0){
             Session::flush();
-            $res['errors'] = 'Indirizzo Email non trovato';
+            $res['errors'][] = 'Partita Iva non trovata';
+        }
+        return $res;
+    }
+
+    public function recuperapasswordByID($id){
+        $sql = "SELECT A.SOGGETTO,A.DESCRIZIONE, A.EMAIL,U.UTENTE, U.PASSWORD FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.SOGGETTO='$id'";
+        $res['utenti'] = DB::select($sql);
+        if(count($res['utenti']) == 0){
+            Session::flush();
+            $res['errors'] = 'Partita Iva non trovata';
         }
         return $res;
     }

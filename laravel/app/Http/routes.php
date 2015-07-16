@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@index');
 Route::post('/login', 'LoginController@index');
 Route::get('/password', 'LoginController@password');
 Route::get('/password/email', 'LoginController@passwordemail');
+Route::get('/password/registrazione', 'LoginController@nuovaregistrazione');
+
 
 
 Route::get('/logout', 'LoginController@logout');
