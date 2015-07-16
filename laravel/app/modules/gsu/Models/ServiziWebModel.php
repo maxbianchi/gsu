@@ -40,7 +40,8 @@ class ServiziWebModel extends Model {
             SERVIZIWEB.DIRECTORY,
             SERVIZIWEB.LOGIN,
             SERVIZIWEB.PASSWORD,
-            SERVIZIWEB.ANALISI_LOG
+            SERVIZIWEB.ANALISI_LOG,
+            SERVIZIWEB.ELIMINATO
 			FROM		gsu.dbo.SERVIZIWEB
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVIZIWEB.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON SERVIZIWEB.CLIENTE				= anagrafica1.SOGGETTO
@@ -120,7 +121,8 @@ EOF;
             SERVIZIWEB.DIRECTORY,
             SERVIZIWEB.LOGIN,
             SERVIZIWEB.PASSWORD,
-            SERVIZIWEB.ANALISI_LOG
+            SERVIZIWEB.ANALISI_LOG,
+            SERVIZIWEB.ELIMINATO
 			FROM		gsu.dbo.SERVIZIWEB
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVIZIWEB.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON SERVIZIWEB.CLIENTE				= anagrafica1.SOGGETTO

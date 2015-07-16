@@ -55,7 +55,8 @@ class HardwareModel extends Model {
             SERVER.WARRANTY,
             SERVER.MARCA,
             CONVERT(VARCHAR(10),SERVER.DATA_R,105) DATA_R,
-            SERVER.OGGETTO
+            SERVER.OGGETTO,
+            SERVER.ELIMINATO
             FROM gsu.dbo.SERVER
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(SERVER.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
@@ -149,7 +150,8 @@ EOF;
             SERVER.WARRANTY,
             SERVER.MARCA,
             CONVERT(VARCHAR(10),SERVER.DATA_R,105) DATA_R,
-            SERVER.OGGETTO
+            SERVER.OGGETTO,
+            SERVER.ELIMINATO
             FROM gsu.dbo.SERVER
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
 		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(SERVER.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO

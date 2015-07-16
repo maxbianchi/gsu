@@ -62,7 +62,8 @@ class ApparatiNetworkingModel extends Model {
             APPARATI.IP_STATICO_ROUTER,
             APPARATI.RUTSUB,
             APPARATI.GATEWAY_INTERFACCIA_LAN,
-            APPARATI.LANSUB
+            APPARATI.LANSUB,
+            APPARATI.ELIMINATO
 			FROM		gsu.dbo.APPARATI
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON APPARATI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(APPARATI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
@@ -163,7 +164,8 @@ EOF;
             APPARATI.IP_STATICO_ROUTER,
             APPARATI.RUTSUB,
             APPARATI.GATEWAY_INTERFACCIA_LAN,
-            APPARATI.LANSUB
+            APPARATI.LANSUB,
+            APPARATI.ELIMINATO
 			FROM		gsu.dbo.APPARATI
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON APPARATI.codice_r				= richieste.MANUTENZIONE
 		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(APPARATI.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO

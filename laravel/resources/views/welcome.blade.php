@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <!--/**/-->
                         <div class="col-md-1">
-                            <button type="button" class="btn btn-primary" onclick="location.href='{{url('/gsu/index')}}'">GSU</button>
+                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/gsu/index')}}' ,'_blank')">GSU</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
                             <img style="width:180px;" src="{{ URL::asset('images/logo.png') }}">
@@ -120,19 +120,19 @@
 
 
 
-    <form method="post" action="http://mobile.uniweb.it/index.asp" id="form_mobile">
+    <form method="post" action="http://mobile.uniweb.it/index.asp" id="form_mobile" target="_blank">
         <input type="hidden" name="UTENTELOG" value="{{Session::get('user')['username']}}">
         <input type="hidden" name="PASSWORDLOG" value="{{Session::get('user')['password']}}">
     </form>
-    <form method="post" action="http://unigate.uniweb.it/index.asp" id="form_unigate">
+    <form method="post" action="http://unigate.uniweb.it/index.asp" id="form_unigate" target="_blank">
         <input type="hidden" name="username" value="{{Session::get('user')['username']}}">
         <input type="hidden" name="password" value="{{Session::get('user')['password']}}">
     </form>
-    <form method="post" action="http://npm.uniweb.it/Orion/Login.aspx/" id="form_orion">
+    <form method="post" action="http://npm.uniweb.it/Orion/Login.aspx/" id="form_orion" target="_blank">
         <input type="hidden" name="ctl00$ContentPlaceHolder1$Username" value="{{Session::get('user')['username']}}">
         <input type="hidden" name="ctl00$ContentPlaceHolder1$Password" value="{{Session::get('user')['password']}}">
     </form>
-    <form method="post" action="http://webfax.uniweb.it/" id="form_webfax">
+    <form method="post" action="http://webfax.uniweb.it/" id="form_webfax" target="_blank">
         <input type="hidden" name="username" value="{{Session::get('user')['username']}}">
         <input type="hidden" name="password" value="{{Session::get('user')['password']}}">
     </form>

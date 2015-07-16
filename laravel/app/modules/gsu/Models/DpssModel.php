@@ -46,7 +46,8 @@ class DpssModel extends Model {
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			DPSS.IDDPSS,
 			DPSS.CODICE_R,
-            DPSS.N_POSTAZIONI
+            DPSS.N_POSTAZIONI,
+            DPSS.ELIMINATO
 			FROM gsu.dbo.DPSS
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DPSS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -114,7 +115,8 @@ EOF;
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
 			DPSS.IDDPSS,
 			DPSS.CODICE_R,
-            DPSS.N_POSTAZIONI
+            DPSS.N_POSTAZIONI,
+            DPSS.ELIMINATO
 			FROM gsu.dbo.DPSS
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DPSS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO

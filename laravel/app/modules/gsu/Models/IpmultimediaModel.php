@@ -48,7 +48,8 @@ class IpmultimediaModel extends Model {
 			IPMULTIMEDIA.CODICE_R,
             IPMULTIMEDIA.APPARATO,
             IPMULTIMEDIA.SN,
-            IPMULTIMEDIA.CANALI
+            IPMULTIMEDIA.CANALI,
+            IPMULTIMEDIA.ELIMINATO
 			FROM gsu.dbo.IPMULTIMEDIA
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON IPMULTIMEDIA.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -120,7 +121,8 @@ EOF;
 			IPMULTIMEDIA.CODICE_R,
             IPMULTIMEDIA.APPARATO,
             IPMULTIMEDIA.SN,
-            IPMULTIMEDIA.CANALI
+            IPMULTIMEDIA.CANALI,
+            IPMULTIMEDIA.ELIMINATO
 			FROM gsu.dbo.IPMULTIMEDIA
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON IPMULTIMEDIA.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO

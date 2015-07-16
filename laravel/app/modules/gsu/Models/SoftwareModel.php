@@ -52,7 +52,8 @@ class SoftwareModel extends Model {
             SOFTWARE.QUANTITA,
             CONVERT(VARCHAR(10),SOFTWARE.SCADENZA,105) SCADENZA,
             SOFTWARE.SERIALE,
-            SOFTWARE.NOTE
+            SOFTWARE.NOTE,
+            SOFTWARE.ELIMINATO
 			FROM gsu.dbo.SOFTWARE
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SOFTWARE.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -127,7 +128,8 @@ EOF;
             SOFTWARE.QUANTITA,
             CONVERT(VARCHAR(10),SOFTWARE.SCADENZA,105) SCADENZA,
             SOFTWARE.SERIALE,
-            SOFTWARE.NOTE
+            SOFTWARE.NOTE,
+            SOFTWARE.ELIMINATO
 			FROM gsu.dbo.SOFTWARE
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SOFTWARE.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO

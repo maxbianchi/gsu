@@ -50,7 +50,8 @@ class VpnModel extends Model {
             VPN.SEDE2,
             VPN.SEDE3,
             VPN.SEDE4,
-            VPN.SEDE5
+            VPN.SEDE5,
+            VPN.ELIMINATO
 			FROM gsu.dbo.VPN
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON VPN.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -126,7 +127,8 @@ EOF;
             VPN.SEDE2,
             VPN.SEDE3,
             VPN.SEDE4,
-            VPN.SEDE5
+            VPN.SEDE5,
+            VPN.ELIMINATO
 			FROM gsu.dbo.VPN
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON VPN.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO

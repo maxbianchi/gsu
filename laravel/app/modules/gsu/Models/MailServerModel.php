@@ -39,7 +39,8 @@ class MailServerModel extends Model {
             MAIL_SERVER.IP,
             MAIL_SERVER.DOMINIO,
             MAIL_SERVER.NOTE,
-            MAIL_SERVER.CODICE_R
+            MAIL_SERVER.CODICE_R,
+            MAIL_SERVER.ELIMINATO
 			FROM		gsu.dbo.MAIL_SERVER
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MAIL_SERVER.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -116,7 +117,8 @@ EOF;
             MAIL_SERVER.IP,
             MAIL_SERVER.DOMINIO,
             MAIL_SERVER.NOTE,
-            MAIL_SERVER.CODICE_R
+            MAIL_SERVER.CODICE_R,
+            MAIL_SERVER.ELIMINATO
 			FROM		gsu.dbo.MAIL_SERVER
 			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON MAIL_SERVER.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO

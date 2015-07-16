@@ -48,7 +48,8 @@ class VoicegateModel extends Model {
 			VOICEGATE.CODICE_R,
             VOICEGATE.APPARATO,
             VOICEGATE.SN,
-            VOICEGATE.NUMERO
+            VOICEGATE.NUMERO,
+            VOICEGATE.ELIMINATO
 			FROM gsu.dbo.VOICEGATE
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON VOICEGATE.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
@@ -120,7 +121,8 @@ EOF;
 			VOICEGATE.CODICE_R,
             VOICEGATE.APPARATO,
             VOICEGATE.SN,
-            VOICEGATE.NUMERO
+            VOICEGATE.NUMERO,
+            VOICEGATE.ELIMINATO
 			FROM gsu.dbo.VOICEGATE
 			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON VOICEGATE.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO

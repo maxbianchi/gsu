@@ -569,4 +569,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/amministrazioneunigate/save', 'AmministrazioneUnigateController@save');
     Route::get('gsu/amministrazioneunigate/delete', 'AmministrazioneUnigateController@delete');
 
+    //Amministrazione Sim Piani Tariffari Dati
+    Route::get('gsu/amministrazionesim-piani-tariffari-dati', 'AmministrazioneSimPianiTariffariDatiController@main');
+    Route::get('gsu/amministrazionesim-piani-tariffari-dati/search', 'AmministrazioneSimPianiTariffariDatiController@search');
+    Route::get('gsu/amministrazionesim-piani-tariffari-dati/show', 'AmministrazioneSimPianiTariffariDatiController@show');
+    Route::get('gsu/amministrazionesim-piani-tariffari-dati/edit', 'AmministrazioneSimPianiTariffariDatiController@edit');
+    Route::post('gsu/amministrazionesim-piani-tariffari-dati/save', 'AmministrazioneSimPianiTariffariDatiController@save');
+    Route::get('gsu/amministrazionesim-piani-tariffari-dati/delete', 'AmministrazioneSimPianiTariffariDatiController@delete');
+
+
+
 });
