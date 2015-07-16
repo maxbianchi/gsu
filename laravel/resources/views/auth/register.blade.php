@@ -170,14 +170,14 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Nome *</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="nome" value="{{ old('co_nome') }}" required>
+                                        <input type="text" class="form-control" name="co_nome" value="{{ old('co_nome') }}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Cognome *</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="cognome" value="{{ old('co_cognome') }}" required>
+                                        <input type="text" class="form-control" name="co_cognome" value="{{ old('co_cognome') }}" required>
                                     </div>
                                 </div>
 
