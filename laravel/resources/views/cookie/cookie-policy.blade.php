@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" style="font-family: 'Roboto, Helvetica, Arial, sans-serif';font-size: 14px;">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -63,24 +63,6 @@
                                     - Linkedin - social media - <a href="http://it.linkedin.com/legal/privacy-policy" target="_blank">privacy policy</a><br />
                                     - Pinterest - social media - <a href="https://about.pinterest.com/it/privacy-policy" target="_blank">privacy policy</a>
                                     <br /><br />
-
-                                    <u>Quali cookie utilizza questo sito</u><br />
-                                    Nome: fmalertcookie<br />
-                                    Dominio: www.comvar.com<br />
-                                    Durata: <br />
-                                    Descrizione: questo cookie viene utilizzato per ricordare al sito se l'utente ha già visionato o meno l'informativa breve e se ha già premuto il pulsante "ok" in essa contenuto.
-                                    <br /><br />
-                                    Nome: cookie di sessione, cambia di volta in volta<br />
-                                    Dominio: www.comvar.com<br />
-                                    Durata: si cancella automaticamente col termine della sessione di navigazione<br />
-                                    Descrizione: questo è un cookie di sessione, e serve per la fruizione del sito.
-                                    <br /><br />
-                                    Nome: NID, PREF, OGPC<br />
-                                    Dominio: Google<br />
-                                    Durata: NID 6 mesi, PREF 2 anni, OGPC 1 mese<br />
-                                    Descrizione: questi cookies sono usati da Google per memorizzare le preferenze e le informazioni dell'utente ogni volta che visita pagine web contenenti mappe geografiche di Google Maps.
-
-                                    <br /><br />
                                     <u>Come prestare o revocare il consenso</u><br />
                                     Il consenso all'utilizzo dei cookie viene prestato inizialmente cliccando sul tasto "ok" posizionato all'interno dell'informativa breve / banner iniziale.
                                     <br /><br />
@@ -97,7 +79,7 @@
                                 <br /><br />
 
                                 <p class="cookietitolo">Data controller</p>
-                                <p class="cookietesto">The Data Controller is TETTAMANZI E ERBA SNC  based in Cantù, Via Lombardia 38.<p>
+                                <p class="cookietesto">The Data Controller is UNIWEB srl  based in Cantù, Via Milano 51.<p>
                                     <br /><br />
                                 <p class="cookietesto">
                                     <u>The rights under all'art. 7 D.lg. n. 196/03</u><br />
@@ -142,23 +124,6 @@
                                     Twitter - social media - <a href="https://twitter.com/privacy" target="_blank">privacy policy</a><br />
                                     Linkedin - social media - <a href="http://it.linkedin.com/legal/privacy-policy" target="_blank">privacy policy</a><br />
                                     Pinterest - social media - <a href="https://about.pinterest.com/it/privacy-policy" target="_blank">privacy policy</a>
-                                    <br /><br />
-
-                                    <u>Which cookie using this site</u><br />
-                                    Name: fmalertcookie<br />
-                                    Domain: www.comvar.com<br />
-                                    Duration: <br />
-                                    Description: this cookie is used to remember the site if the user has already seen whether or not the information short and if you have already pressed the button "ok" contained therein.
-                                    <br /><br />
-                                    Name: session cookie, changes from time to time<br />
-                                    Domain: www.comvar.com<br />
-                                    Duration: it is deleted automatically with the end of browsing session<br />
-                                    Description: this is a session cookie, and serves for the use of the site.
-                                    <br /><br />
-                                    Name: NID, PREF, OGPC<br />
-                                    Domain: Google<br />
-                                    Duration: NID 6 months, PREF 2 years, OGCP 1 month<br />
-                                    Description: This cookie is used by Google to store preferences and user information each time they visit web pages containing geographical maps of Google Maps.
                                     <br /><br />
 
                                     <u>How to pay or withdraw consent</u><br />
