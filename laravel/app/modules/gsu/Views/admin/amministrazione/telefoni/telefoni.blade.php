@@ -37,9 +37,9 @@
                     <a class="stato_left btn-small edit" href="{{url('/gsu/amministrazionetelefoni/edit')."?id=".$req['ID_TELEFONO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
                     <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['ID_TELEFONO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td class="col-md-2">{{$req['ID_TELEFONO']}}</td>
-                <td class="col-md-2">{{$req['NMU']}}</td>
-                <td class="col-md-7">{{$req['NOME_TEL']}}</td>
+                <td class="col-md-2">{{utf8_encode($req['ID_TELEFONO'])}}</td>
+                <td class="col-md-2">{{utf8_encode($req['NMU'])}}</td>
+                <td class="col-md-7">{{utf8_encode($req['NOME_TEL'])}}</td>
             </tr>
         @endforeach
         </tbody>

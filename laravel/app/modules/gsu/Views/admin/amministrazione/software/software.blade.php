@@ -36,8 +36,8 @@
                     <a class="stato_left btn-small edit" href="{{url('/gsu/amministrazionesoftware/edit')."?id=".$req['ID_OS']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
                     <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['ID_OS'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td class="col-md-2">{{$req['ID_OS']}}</td>
-                <td class="col-md-9">{{$req['NOME']}}</td>
+                <td class="col-md-2">{{utf8_encode($req['ID_OS'])}}</td>
+                <td class="col-md-9">{{utf8_encode($req['NOME'])}}</td>
             </tr>
         @endforeach
         </tbody>
