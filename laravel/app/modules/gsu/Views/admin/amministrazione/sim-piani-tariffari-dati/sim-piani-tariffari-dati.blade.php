@@ -37,9 +37,9 @@
                     <a class="stato_left btn-small edit" href="{{url('/gsu/amministrazionesim-piani-tariffari-dati/edit')."?id=".$req['ID_PIANO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
                     <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['ID_PIANO'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
-                <td class="col-md-2">{{$req['ID_PIANO']}}</td>
-                <td class="col-md-2">{{$req['NOME_PIANO']}}</td>
-                <td class="col-md-7">{{$req['DES_PIANO']}}</td>
+                <td class="col-md-2">{{utf8_encode($req['ID_PIANO'])}}</td>
+                <td class="col-md-2">{{utf8_encode($req['NOME_PIANO'])}}</td>
+                <td class="col-md-7">{{utf8_encode($req['DES_PIANO'])}}</td>
             </tr>
         @endforeach
         </tbody>
