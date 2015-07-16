@@ -47,3 +47,14 @@
 @endsection
 
 
+@section('script')
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/jquery.cookiebar.css') }}" />
+    <script type="text/javascript" src="{{ asset('/js/jquery.cookiebar.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $.cookieBar({
+            });
+        });
+    </script>
+
+@endsection

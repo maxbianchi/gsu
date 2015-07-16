@@ -112,6 +112,10 @@ class LoginController extends Controller {
         return view('users.users', ['utenti' => $utenti, 'message' => "Email inviata all'indirizzo da Lei indicato"]);
     }
 
+    public function cookiepolicy(){
+        return view('cookie.cookie-policy');
+    }
+
     public function logout(){
         Session::flush();
         return Redirect::to('/');
