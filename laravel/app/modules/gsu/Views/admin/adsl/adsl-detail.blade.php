@@ -32,10 +32,10 @@
                 <tr>
                     <td>TIPO LINEA</td>
                     <td>
-                        <select name="tipo_linea">
+                        <select name="tipo_linea" id="tipo_linea">
                             <option value="">-----</option>
                             @foreach($tipolinea as $row)
-                                <option value="{{$row['LINEA_UNIWEB']}}" {{isset($request['TIPO_LINEA']) && $request['TIPO_LINEA'] == $row['LINEA_UNIWEB'] ? 'selected="selected"' : ""  }}>{{$row['LINEA_UNIWEB']}}</option>
+                                <option value="{{$row['LINEA_UNIWEB']}}" data-linea-fornitore="{{$row['LINEA_FORNITORE']}}" {{isset($request['TIPO_LINEA']) && $request['TIPO_LINEA'] == $row['LINEA_UNIWEB'] ? 'selected="selected"' : ""  }}>{{$row['LINEA_UNIWEB']}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>LINEA FORNITORE</td>
-                    <td><input type="text" name="linea_fornitore" value="{{$request['LINEA_FORNITORE'] or ""}}"></td>
+                    <td><input type="text" name="linea_fornitore" id="linea_fornitore" value="{{$request['LINEA_FORNITORE'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -300,6 +300,7 @@
 
 @section('script')
     <script>
+
         $(document).ready(function () {
             @if($btn == 'back')
                 $( ":text" ).prop('readonly', true);
@@ -313,6 +314,11 @@
                                     $("#btn_salva").hide();
                                 });
                     });
+
+
+            $('body').on('change', '#tipo_linea', function() {
+                    $("#linea_fornitore").val($(this).find(':selected').attr('data-linea-fornitore'));
+            });
 
         });
     </script>
