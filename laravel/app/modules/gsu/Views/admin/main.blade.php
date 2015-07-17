@@ -95,7 +95,7 @@
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
-                <td>{{$req['NRCONTRATTO']}}</td>
+                <td><a href="#" data-numero-contratto="{{$req['NRCONTRATTO']}}" class="numero_contratto">{{$req['NRCONTRATTO']}}</a></td>
                 <td><a href="{{url($class['link'][$req['MANUTENZIONE']])."?manutenzione=".$req['MANUTENZIONE']."&".$class[$req['MANUTENZIONE']]['GSU']['queryString']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['DATASCADENZA']}}</td>
@@ -114,5 +114,18 @@
 
 @endsection
 
+
+@section('script')
+    <script type="text/javascript">
+        $(function() {
+
+            $('body').on('click', '.numero_contratto', function() {
+                $("#nrcontratto").val($(this).attr("data-numero-contratto"));
+                $("#cerca").trigger("click");
+            });
+
+        });
+    </script>
+@endsection
 
 
