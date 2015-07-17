@@ -18,6 +18,7 @@ class GsuModel extends Model {
         $attivati = Input::get('attivati');
         $dadisattivare = Input::get('dadisattivare');
         $disattivati = Input::get('disattivati');
+        $nrcontratto = Input::get('nrcontratto');
 
         $sql = <<<EOF
         SELECT
@@ -32,13 +33,16 @@ class GsuModel extends Model {
         REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
-        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU
+        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
+        CONTRATTI.NRCONTRATTO,
+        CONVERT(VARCHAR(10),CONTRATTI.DATASCADENZA,105) DATASCADENZA
         FROM
         gsu.dbo.RICHIESTE_EVASE
         RIGHT OUTER JOIN UNIWEB.dbo.AOF70 RICHIESTE ON RICHIESTE_EVASE.CODICE_R = RICHIESTE.MANUTENZIONE
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA1 ON RICHIESTE.SOGGETTO = ANAGRAFICA1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA2 ON RICHIESTE.CLIENTE = ANAGRAFICA2.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA3 ON RICHIESTE.DESTINATARIOABITUALE = ANAGRAFICA3.SOGGETTO
+        LEFT OUTER JOIN UNIWEB.dbo.VW_CONTRATTI CONTRATTI ON CONTRATTI.RIFESTERNORIGA = RICHIESTE.MANUTENZIONE
         WHERE (NOT ( RICHIESTE.OGGETTO LIKE 'TRF%') AND NOT ( RICHIESTE.OGGETTO LIKE 'OR%') AND NOT ( RICHIESTE.OGGETTO LIKE 'NR%') AND NOT ( RICHIESTE.OGGETTO = '' ))
 EOF;
 
@@ -48,6 +52,9 @@ EOF;
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') like '%$cliente_finale%'";
         if(!empty($ubicazione))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
+
+        if(!empty($nrcontratto))
+            $sql .= " AND CONTRATTI.NRCONTRATTO like '%$nrcontratto%'";
 
         $stati = [];
         if(!empty($daattivare))
@@ -89,6 +96,7 @@ EOF;
         $attivati = Input::get('attivati');
         $dadisattivare = Input::get('dadisattivare');
         $disattivati = Input::get('disattivati');
+        $nrcontratto = Input::get('nrcontratto');
 
 
         $sql = <<<EOF
@@ -103,13 +111,16 @@ EOF;
         REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
-        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU
+        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
+        CONTRATTI.NRCONTRATTO,
+        CONVERT(VARCHAR(10),CONTRATTI.DATASCADENZA,105) DATASCADENZA
         FROM
         gsu.dbo.RICHIESTE_EVASE
         RIGHT OUTER JOIN UNIWEB.dbo.AOF70 RICHIESTE ON RICHIESTE_EVASE.CODICE_R = RICHIESTE.MANUTENZIONE
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA1 ON RICHIESTE.SOGGETTO = ANAGRAFICA1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA2 ON RICHIESTE.CLIENTE = ANAGRAFICA2.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 ANAGRAFICA3 ON RICHIESTE.DESTINATARIOABITUALE = ANAGRAFICA3.SOGGETTO
+        LEFT OUTER JOIN UNIWEB.dbo.VW_CONTRATTI CONTRATTI ON CONTRATTI.RIFESTERNORIGA = RICHIESTE.MANUTENZIONE
         WHERE (NOT ( RICHIESTE.OGGETTO LIKE 'TRF%') AND NOT ( RICHIESTE.OGGETTO LIKE 'OR%') AND NOT ( RICHIESTE.OGGETTO LIKE 'NR%') AND NOT ( RICHIESTE.OGGETTO = '' ))
 EOF;
 
@@ -134,6 +145,9 @@ EOF;
             $data_contratto = $data_contratto[2]."-".$data_contratto[1]."-".$data_contratto[0];
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
+
+        if(!empty($nrcontratto))
+            $sql .= " AND CONTRATTI.NRCONTRATTO like '%$nrcontratto%'";
 
         $stati = [];
         if(!empty($daattivare))
