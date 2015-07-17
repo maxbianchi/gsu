@@ -73,8 +73,10 @@
         <thead>
         <tr>
             <th>STATO</th>
+            <th>NR CONTRATTO</th>
             <th>MANTUTENZIONE</th>
             <th>DATA INIZIO CONTRATTO</th>
+            <th>DATA SCADENZA</th>
             <th>CANONE</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
@@ -93,8 +95,10 @@
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
+                <td>{{$req['NRCONTRATTO']}}</td>
                 <td><a href="{{url($class['link'][$req['MANUTENZIONE']])."?manutenzione=".$req['MANUTENZIONE']."&".$class[$req['MANUTENZIONE']]['GSU']['queryString']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
+                <td>{{$req['DATASCADENZA']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
