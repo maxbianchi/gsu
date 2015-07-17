@@ -52,6 +52,11 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1">NR CONTRATTO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('nrcontratto')}}" id="nrcontratto" name="nrcontratto" ></div>
+                     <div class="col-md-3"></div>
+                </div>
+                <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
                 </div>
             </form>
@@ -68,8 +73,10 @@
         <thead>
         <tr>
             <th>STATO</th>
+            <th>NR CONTRATTO</th>
             <th>MANTUTENZIONE</th>
             <th>DATA INIZIO CONTRATTO</th>
+            <th>DATA SCADENZA</th>
             <th>CANONE</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
@@ -88,8 +95,10 @@
                     <div class="stato_left {{$class[$req['MANUTENZIONE']]['GESTIONALE']['color']}}">{{$req['STATO']}}</div>
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
+                <td>{{$req['NRCONTRATTO']}}</td>
                 <td><a href="{{url($class['link'][$req['MANUTENZIONE']])."?manutenzione=".$req['MANUTENZIONE']."&".$class[$req['MANUTENZIONE']]['GSU']['queryString']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
+                <td>{{$req['DATASCADENZA']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>

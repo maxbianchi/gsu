@@ -33,7 +33,9 @@ class GsuModel extends Model {
         REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
-        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU
+        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
+        RICHIESTE.NRCONTRATTO,
+        CONVERT(VARCHAR(10),RICHIESTE.DATASCADENZA,105) DATASCADENZA
         FROM
         gsu.dbo.RICHIESTE_EVASE
         RIGHT OUTER JOIN UNIWEB.dbo.AOF70 RICHIESTE ON RICHIESTE_EVASE.CODICE_R = RICHIESTE.MANUTENZIONE
@@ -50,8 +52,8 @@ EOF;
         if(!empty($ubicazione))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') like '%$ubicazione%'";
 
-        /*if(!empty($nrcontratto))
-            $sql .= " AND CONTRATTI.NRCONTRATTO like '%$nrcontratto%'";*/
+        if(!empty($nrcontratto))
+            $sql .= " AND RICHIESTE.NRCONTRATTO like '%$nrcontratto%'";
 
         $stati = [];
         if(!empty($daattivare))
@@ -108,7 +110,9 @@ EOF;
         REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') AS SOGGETTO,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA2.DESCRIZIONE)),'''','') AS CLIENTE,
         REPLACE(LTRIM(RTRIM(ANAGRAFICA3.DESCRIZIONE)),'''','') AS DESTINATARIOABITUALE,
-        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU
+        ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
+        RICHIESTE.NRCONTRATTO,
+        CONVERT(VARCHAR(10),RICHIESTE.DATASCADENZA,105) DATASCADENZA
         FROM
         gsu.dbo.RICHIESTE_EVASE
         RIGHT OUTER JOIN UNIWEB.dbo.AOF70 RICHIESTE ON RICHIESTE_EVASE.CODICE_R = RICHIESTE.MANUTENZIONE
@@ -140,8 +144,8 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO like '%$data_contratto%'";
         }
 
-        /*if(!empty($nrcontratto))
-            $sql .= " AND CONTRATTI.NRCONTRATTO like '%$nrcontratto%'";*/
+        if(!empty($nrcontratto))
+            $sql .= " AND RICHIESTE.NRCONTRATTO like '%$nrcontratto%'";
 
         $stati = [];
         if(!empty($daattivare))
