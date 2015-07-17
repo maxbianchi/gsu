@@ -62,6 +62,16 @@
         $(document).ready(function(){
             $.cookieBar({
             });
+
+            $("#banner").find("img").hover(function(){
+                $("#banner").find("img").attr("alt","TORNA AL SITO UNIWEB");
+                $("#banner").find("img").attr("title","TORNA AL SITO UNIWEB");
+            });
+            $("#banner").click(function(){
+                $("#banner").attr("href","http://www.uniweb.it");
+            });
+
+
         });
     </script>
 
