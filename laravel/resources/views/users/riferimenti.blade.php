@@ -33,13 +33,13 @@
                                                 @foreach ($riferimenti as $rif)
                                                     <tr>
                                                         <td>
-                                                            {{$rif['SOGGETTO']}}
+                                                            {{utf8_encode($rif['SOGGETTO'])}}
                                                         </td>
                                                         <td>
-                                                            {{$rif['CLIENTE_FINALE']}}
+                                                            {{utf8_encode($rif['CLIENTE_FINALE'])}}
                                                         </td>
                                                         <td>
-                                                            {{$rif['UBICAZIONE_IMPIANTO']}}
+                                                            {{utf8_encode($rif['UBICAZIONE_IMPIANTO'])}}
                                                         </td>
                                                     </tr>
                                                 @endforeach
