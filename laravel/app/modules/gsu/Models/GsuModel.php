@@ -157,7 +157,6 @@ EOF;
 
 
         $sql .= " ORDER BY RICHIESTE.STATO, RICHIESTE_EVASE.QUANTITA";
-
         $request  = DB::select($sql);
         return $request;
 
