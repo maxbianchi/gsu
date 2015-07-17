@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <img  src="{{ URL::asset('images/webmail_logo.gif') }}">
+                            <img  src="{{ URL::asset('images/webmail_logo.jpg') }}">
                         </div>
                         <!--/**/-->
 
