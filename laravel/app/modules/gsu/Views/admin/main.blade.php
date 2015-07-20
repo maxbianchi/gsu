@@ -73,12 +73,12 @@
         <thead>
         <tr>
             <th>STATO</th>
-            <th>CONTRATTO</th>
-            <th>CONTRATTO</th>
-            <th>SERVIZIO</th>
-            <th>ATTIVAZIONE SERVIZIO</th>
+            <th>COD. CONTRATTO</th>
+            <th>DATA CONTRATTO</th>
+            <th>COD. SERVIZIO</th>
+            <th>ATTIV. SERVIZIO</th>
             <th>FINE SERVIZIO</th>
-            <th>DISATTIVAZIONE</th>
+            <th>DISATT. SERVIZIO</th>
             <th>*CANONE</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
