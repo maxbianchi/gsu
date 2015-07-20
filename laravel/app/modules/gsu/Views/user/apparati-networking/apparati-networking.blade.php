@@ -45,6 +45,7 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
+                    <input type="hidden" name="prodotto" value="{{Input::get('prodotto')}}">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
                     <div class="col-md-1 col-md-offset-4"><input type="checkbox" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> id="eliminati" name="eliminati">eliminati</div>
                 </div>
