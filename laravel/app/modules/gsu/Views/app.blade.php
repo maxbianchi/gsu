@@ -127,6 +127,15 @@
 
     @yield('script')
 
+    <div id="legenda" style="padding:8px;">
+        *LEGENDA l'ultimo carattere del campo "CANONE" rappresenta la periodicit&agrave; di fatturazione:<br>
+        A = Annuale<br>
+        B = Bimestrale<br>
+        M = Mensile
+
+    </div>
+
+
     <div id="footer" class="container_12">
         <strong>Uniweb Srl</strong>
         - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134

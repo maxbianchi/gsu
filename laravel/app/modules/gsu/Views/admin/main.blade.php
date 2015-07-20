@@ -73,11 +73,13 @@
         <thead>
         <tr>
             <th>STATO</th>
-            <th>NR CONTRATTO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>DATA SCADENZA</th>
-            <th>CANONE</th>
+            <th>CONTRATTO</th>
+            <th>CONTRATTO</th>
+            <th>SERVIZIO</th>
+            <th>ATTIVAZIONE SERVIZIO</th>
+            <th>FINE SERVIZIO</th>
+            <th>DISATTIVAZIONE</th>
+            <th>*CANONE</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
@@ -85,6 +87,10 @@
             <th>DESCRIZIONE2</th>
             <th>QTAAFO70</th>
             <th>QTAGSU</th>
+            <th>VAL. UNITARIO</th>
+            <th>SCONTO</th>
+            <th>NETTO</th>
+            <th>VAL. ACQUISTO</th>
         </tr>
         </thead>
 
@@ -96,9 +102,11 @@
                     <div class="stato_right {{$class[$req['MANUTENZIONE']]['GSU']['color']}}">{{$class[$req['MANUTENZIONE']]['GSU']['text']}}</div>
                 </td>
                 <td><a href="#" data-numero-contratto="{{$req['NRCONTRATTO']}}" class="numero_contratto">{{$req['NRCONTRATTO']}}</a></td>
+                <td>{{$req['DATAAPERTURA']}}</td>
                 <td><a href="{{url($class['link'][$req['MANUTENZIONE']])."?manutenzione=".$req['MANUTENZIONE']."&".$class[$req['MANUTENZIONE']]['GSU']['queryString']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
                 <td>{{$req['DATASCADENZA']}}</td>
+                <td>{{$req['DATADISATTIVAZIONE']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
@@ -107,6 +115,10 @@
                 <td>{{$req['DESCRCANONE2']}}</td>
                 <td>{{$req['QTAAOF70']}}</td>
                 <td>{{$req['QTAGSU']}}</td>
+                <td>{{$req['VALOREUNITARIO']}}</td>
+                <td>{{$req['FORMULASCONTO']}}</td>
+                <td>{{$req['TOTRIGANETTO']}}</td>
+                <td>{{$req['VALOREACQUISTO']}}</td>
             </tr>
         @endforeach
         </tbody>
