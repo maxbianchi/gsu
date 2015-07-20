@@ -72,6 +72,7 @@
             <th>ACQUISTO / NOLEGGIO</th>
             <th>MARCA</th>
             <th>MODELLO</th>
+            <th>SERIALE</th>
         </tr>
         </thead>
 
@@ -91,6 +92,7 @@
                 <td>{{$req['ACQUISTO_NOLEGGIO']}}</td>
                 <td>{{$req['MARCA']}}</td>
                 <td>{{$req['MODELLO']}}</td>
+                <td>{{$req['SN']}}</td>
             </tr>
         @endforeach
         </tbody>

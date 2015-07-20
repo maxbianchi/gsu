@@ -45,6 +45,7 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
+                    <input type="hidden" name="prodotto" value="{{Input::get('prodotto')}}">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
                     <div class="col-md-1 col-md-offset-4"><input type="checkbox" <?php echo Input::get('eliminati') != 'on' ? '' :  "checked" ?> id="eliminati" name="eliminati">eliminati</div>
                 </div>
@@ -72,6 +73,7 @@
             <th>ACQUISTO / NOLEGGIO</th>
             <th>MARCA</th>
             <th>MODELLO</th>
+            <th>SERIALE</th>
         </tr>
         </thead>
 
@@ -92,13 +94,14 @@
                 <td>{{$req['ACQUISTO_NOLEGGIO']}}</td>
                 <td>{{$req['MARCA']}}</td>
                 <td>{{$req['MODELLO']}}</td>
+                <td>{{$req['SN']}}</td>
             </tr>
         @endforeach
         </tbody>
 
             <tfoot>
             <tr>
-                <th colspan="11"><a class="btn btn-small edit" href="{{url('/gsu/apparati-networking/edit')."?isnew=1&manutenzione=".(isset($req['MANUTENZIONE']) ? $req['MANUTENZIONE'] : "" )}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
+                <th colspan="12"><a class="btn btn-small edit" href="{{url('/gsu/apparati-networking/edit')."?isnew=1&manutenzione=".(isset($req['MANUTENZIONE']) ? $req['MANUTENZIONE'] : "" )}}" title="ADD NEW"><i class="glyphicon glyphicon-plus"></i>&nbsp; ADD NEW </a></th>
             </tr>
             </tfoot>
     </table>
