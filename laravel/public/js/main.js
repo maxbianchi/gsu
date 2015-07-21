@@ -37,18 +37,34 @@ $(document).ready(function () {
         $('#delete').modal('show');
     });
 
+    $('table').each(function() {
+        var $table = $(this);
 
-    $(".exportCSV").click(function() {
+        var $button = $("<button type='button'>");
+        $button.text("Export to spreadsheet");
+        $button.insertAfter($table);
+
+        $button.click(function() {
+            var csv = $table.table2CSV({delivery:'value'});
+            window.location.href = 'data:text/csv;charset=UTF-8,'
+            + encodeURIComponent(csv);
+        });
+    });
+
+    $("body").on("click", ".exportCSV", function(event) {
+        console.log("QUI");
         var currentDate = new Date()
         var day = currentDate.getDate()
         var month = currentDate.getMonth() + 1
         var year = currentDate.getFullYear()
         var name = day + "/" + month + "/" + year;
 
-        $("#main").table2excel({
-            name: "Export from gsu",
-            filename: "exportData-" + name
-        });
+        var outputFile = window.prompt("What do you want to name your output file (Note: This won't have any effect on Safari)") || 'export';
+        outputFile = outputFile.replace('.csv','') + '.csv'
+
+        // CSV
+        exportTableToCSV.apply(this, [$('#dvData>table'), outputFile]);
+
     });
 
 });

@@ -88,7 +88,7 @@
     <script src="{{ URL::asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('js/dataTables.bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.smartmenus.min.js') }}"></script>
-    <script src="{{ URL::asset('js/jquery.table2excel.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/table2CSV.js') }}" > </script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
     <script type="text/javascript">
         $(function() {
