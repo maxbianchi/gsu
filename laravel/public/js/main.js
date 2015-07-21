@@ -21,6 +21,7 @@ $(document).ready(function () {
             $("#main_paginate").detach().prependTo($("#main_wrapper"));
             $(".DTTT_container").detach().prependTo($(".exportBox"));
             $("#main_length").after($("#main_info"));
+            $("#main_info").css("margin-top", "-30px");
             $("#main").show();
             //$("#main_wrapper .row").first().before($("#main_wrapper .row").last())
         }
