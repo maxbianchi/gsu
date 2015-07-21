@@ -68,9 +68,13 @@
         <thead>
         <tr>
             <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>CANONE</th>
+            <th>COD. CONTRATTO</th>
+            <th>DATA CONTRATTO</th>
+            <th>COD. SERVIZIO</th>
+            <th>ATTIV. SERVIZIO</th>
+            <th>FINE SERVIZIO</th>
+            <th>DISATT. SERVIZIO</th>
+            <th>*CANONE</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
@@ -87,8 +91,12 @@
                 <td>
                     <div class="stato_rivenditore {{$class[$req['MANUTENZIONE']]['GSU']['rivenditore']['color']}}" >{{$class[$req['MANUTENZIONE']]['GSU']['rivenditore']['text']}}</div>
                 </td>
+                <td><a href="#" data-numero-contratto="{{$req['NRCONTRATTO']}}" class="numero_contratto">{{$req['NRCONTRATTO']}}</a></td>
+                <td>{{$req['DATAAPERTURA']}}</td>
                 <td><a href="{{url($class['link'][$req['MANUTENZIONE']])."?manutenzione=".$req['MANUTENZIONE']."&".$class[$req['MANUTENZIONE']]['GSU']['queryString']}}">{{$req['MANUTENZIONE']}}</a></td>
                 <td>{{$req['DATADOCUMENTO']}}</td>
+                <td>{{$req['DATASCADENZA']}}</td>
+                <td>{{$req['DATADISATTIVAZIONE']}}</td>
                 <td>{{$req['CANONE']}}</td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>
                 <td class="cliente">{{$req['CLIENTE']}}</td>
@@ -117,7 +125,7 @@
         </tr>
         </tfoot>
     </table>
-
+    <button style="margin:15px;" class="btn btn-success exportCSV">Export</button><span class="exportBox">Per esportare tutte le pagine selezionare "All" nel menu a tendina</span>
 @endsection
 
 

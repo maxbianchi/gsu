@@ -6455,3 +6455,9 @@ table.servizi_collegati tr td {
     position: relative;
     top: 60%;
 }
+
+.exportBox{
+    color: #646464;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+}
