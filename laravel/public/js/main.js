@@ -39,10 +39,16 @@ $(document).ready(function () {
 
 
     $(".exportCSV").click(function() {
+        var currentDate = new Date()
+        var day = currentDate.getDate()
+        var month = currentDate.getMonth() + 1
+        var year = currentDate.getFullYear()
+        var name = day + "/" + month + "/" + year;
+
         $("#main").table2excel({
             exclude: ".noExl",
             name: "Export from gsu",
-            filename: "exportFromGsu"
+            filename: "exportData-" + name
         });
     });
 
