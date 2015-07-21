@@ -109,21 +109,6 @@
         @endforeach
         </tbody>
 
-        <tfoot>
-        <tr>
-            <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
-            <th>CANONE</th>
-            <th>CLIENTE</th>
-            <th>CLIENTE FINALE</th>
-            <th>UBICAZIONE</th>
-            <th>DESCRIZIONE</th>
-            <th>DESCRIZIONE2</th>
-            <th>QTA RICHIESTA</th>
-            <th>QTA ATTIVATA</th>
-        </tr>
-        </tfoot>
     </table>
     <button style="margin:15px;" class="btn btn-success exportCSV">Export</button><span class="exportBox">Per esportare tutte le pagine selezionare "All" nel menu a tendina</span>
 @endsection
