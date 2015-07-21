@@ -14,7 +14,7 @@ $(document).ready(function () {
         "sDom": 'T<"clear">lfrtip',
         "oTableTools": {
             "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
-            "aButtons": ["csv", "xls", "print"]
+            "aButtons": ["csv", "xls"]
         },
         "fnInitComplete": function(oSettings, json) {
             $("#loader").hide();
