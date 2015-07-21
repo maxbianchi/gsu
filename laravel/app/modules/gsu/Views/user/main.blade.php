@@ -120,3 +120,16 @@
 
 
 
+
+@section('script')
+    <script type="text/javascript">
+        $(function() {
+
+            $('body').on('click', '.numero_contratto', function() {
+                $("#nrcontratto").val($(this).attr("data-numero-contratto"));
+                $("#cerca").trigger("click");
+            });
+
+        });
+    </script>
+@endsection
