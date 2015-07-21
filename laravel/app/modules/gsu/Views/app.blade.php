@@ -12,6 +12,7 @@
     <link href="{{ asset('/bootstrap/3.3.4/css/bootstrap-theme.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jquery.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/dataTables.tableTools.css') }}" rel="stylesheet">
 
 
 
@@ -87,8 +88,8 @@
     <script type="text/javascript" src="{{ URL::asset('js/jqueryui/1.11.4/jquery-ui.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('js/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ URL::asset('js/dataTables.tableTools.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.smartmenus.min.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/table2CSV.js') }}" > </script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
     <script type="text/javascript">
         $(function() {

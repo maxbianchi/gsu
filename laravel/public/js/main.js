@@ -6,14 +6,21 @@ var manutenzione;
 
 $(document).ready(function () {
 
+    $.fn.dataTable.TableTools.defaults.aButtons = [ "copy", "csv", "xls" ];
+
     $('#main').dataTable({
         "iDisplayLength": 30,
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
         "aaSorting": [],
         "bAutoWidth"       : true,
+        "sDom": 'T<"clear">lfrtip',
+        "oTableTools": {
+            "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+            "aButtons": ["csv", "xls", "pdf", "print"]
+        },
         "fnInitComplete": function(oSettings, json) {
             $("#loader").hide();
-            $("#main_wrapper .row").first().before($("#main_wrapper .row").last())
+            //$("#main_wrapper .row").first().before($("#main_wrapper .row").last())
             $("#main").show();
         }
     });
@@ -38,20 +45,5 @@ $(document).ready(function () {
     });
 
 
-    $("body").on("click", ".exportCSV", function(event) {
-        console.log("QUI");
-        var currentDate = new Date()
-        var day = currentDate.getDate()
-        var month = currentDate.getMonth() + 1
-        var year = currentDate.getFullYear()
-        var name = day + "/" + month + "/" + year;
-
-        var outputFile = window.prompt("What do you want to name your output file (Note: This won't have any effect on Safari)") || 'export';
-        outputFile = outputFile.replace('.csv','') + '.csv'
-
-        // CSV
-        exportTableToCSV.apply(this, [$('#main'), outputFile]);
-
-    });
 
 });
