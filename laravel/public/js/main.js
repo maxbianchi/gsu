@@ -38,5 +38,12 @@ $(document).ready(function () {
     });
 
 
+    $(".exportCSV").click(function() {
+        $("#main").table2excel({
+            exclude: ".noExl",
+            name: "Export from gsu",
+            filename: "exportFromGsu"
+        });
+    });
 
 });

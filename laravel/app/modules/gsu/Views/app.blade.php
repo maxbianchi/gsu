@@ -88,6 +88,7 @@
     <script src="{{ URL::asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('js/dataTables.bootstrap.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/jquery.smartmenus.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery.table2excel.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/main.js') }}"></script>
     <script type="text/javascript">
         $(function() {
@@ -127,16 +128,17 @@
 
     @yield('script')
 
-    <div id="legenda" style="padding:8px;">
-        *LEGENDA l'ultimo carattere del campo "CANONE" rappresenta la periodicit&agrave; di fatturazione:<br>
-        A = Annuale<br>
-        B = Bimestrale<br>
-        M = Mensile
-
-    </div>
-
 
     <div id="footer" class="container_12">
+
+        <div id="legenda" style="padding:8px;text-align: left;">
+            *LEGENDA l'ultimo carattere del campo "CANONE" rappresenta la periodicit&agrave; di fatturazione:<br>
+            A = Annuale<br>
+            B = Bimestrale<br>
+            M = Mensile
+
+        </div>
+
         <strong>Uniweb Srl</strong>
         - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
         <br>

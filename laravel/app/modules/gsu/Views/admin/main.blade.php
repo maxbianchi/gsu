@@ -123,7 +123,7 @@
         @endforeach
         </tbody>
     </table>
-
+    <button style="margin:15px;" class="btn btn-success exportCSV">Export</button>
 @endsection
 
 
