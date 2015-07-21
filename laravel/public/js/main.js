@@ -5,9 +5,7 @@ var id_elimina;
 var manutenzione;
 
 $(document).ready(function () {
-
-    $.fn.dataTable.TableTools.defaults.aButtons = [ "copy", "csv", "xls" ];
-
+    
     $('#main').dataTable({
         "iDisplayLength": 30,
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
