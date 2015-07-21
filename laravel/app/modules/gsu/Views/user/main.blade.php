@@ -52,6 +52,11 @@
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1">NR CONTRATTO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('nrcontratto')}}" id="nrcontratto" name="nrcontratto" ></div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
                 </div>
             </form>

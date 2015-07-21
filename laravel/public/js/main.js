@@ -46,7 +46,6 @@ $(document).ready(function () {
         var name = day + "/" + month + "/" + year;
 
         $("#main").table2excel({
-            exclude: ".noExl",
             name: "Export from gsu",
             filename: "exportData-" + name
         });
