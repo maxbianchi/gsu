@@ -48,7 +48,7 @@ class Utenti extends Model {
     }
 
     public function getAllUser($id = ""){
-        $sql = "SELECT U.IDUTENTE, A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO,U.CODUTENTE  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != '' ";
+        $sql = "SELECT U.IDUTENTE, A.DESCRIZIONE, U.UTENTE, U.PASSWORD, U.LIVELLO,A.EMAIL,U.CODUTENTE  FROM UNIWEB.dbo.AGE10 A INNER JOIN gsu.dbo.UTENTI U ON A.SOGGETTO = U.CODUTENTE WHERE A.DESCRIZIONE != '' ";
 
         if(!empty($id))
             $sql .= " AND U.IDUTENTE = $id";
@@ -70,7 +70,7 @@ class Utenti extends Model {
     }
 
     public function getAllUserFromMago(){
-        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
         $utente = [];
         foreach($utenti as $key => $value){
             foreach($value as $key2 => $value2){
@@ -257,6 +257,9 @@ EOF;
                     $this->nuovaRegistrazione($registrazione);
                 }else{
                     foreach($res['utenti'] as $row){
+                        $email = explode(";", $row['EMAIL']);
+                        if(is_array($email))
+                            $row['EMAIL'] = $email[0];
                         Mail::send('emails.registrazione', ['pwd' => $row['PASSWORD'], 'user' => $row['DESCRIZIONE'], 'username' => $row['UTENTE']], function($message) use ($row)
                         {
                             $message->to($row['EMAIL'], $row['DESCRIZIONE'])->subject('Registrazione area clienti Uniweb 4.0');

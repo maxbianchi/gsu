@@ -39,6 +39,7 @@
                                             <th>NOME UTENTE</th>
                                             <th>PASSWORD</th>
                                             <th>LIVELLO</th>
+                                            <th>EMAIL</th>
                                             <th>INVIA MAIL</th>
                                         </tr>
                                         </thead>
@@ -53,6 +54,7 @@
                                                 <td>{{$utente['UTENTE']}}</td>
                                                 <td>{{$utente['PASSWORD']}}</td>
                                                 <td>{{$utente['LIVELLO']}}</td>
+                                                <td>{{$utente['EMAIL']}}</td>
                                                 <td><a class="btn btn-small" href="{{url('/password/registrazione')."?id=".$utente['CODUTENTE']}}" title="Invia mail di conferma registrazione"><i class="glyphicon glyphicon-envelope"></i> </a></td>
                                             </tr>
                                             @endforeach

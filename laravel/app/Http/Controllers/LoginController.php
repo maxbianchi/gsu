@@ -72,6 +72,9 @@ class LoginController extends Controller {
         }
 
         foreach($utente as $row){
+            $email = explode(";", $row['EMAIL']);
+            if(is_array($email))
+                $row['EMAIL'] = $email[0];
               Mail::send('emails.password', ['pwd' => $row['PASSWORD'], 'user' => $row['DESCRIZIONE']], function($message) use ($row)
             {
                 $message->to($row['EMAIL'], $row['DESCRIZIONE'])->subject('Recupero password area clienti');
@@ -103,6 +106,9 @@ class LoginController extends Controller {
         }
 
         foreach($utente as $row){
+            $email = explode(";", $row['EMAIL']);
+            if(is_array($email))
+                $row['EMAIL'] = $email[0];
             Mail::send('emails.registrazione', ['pwd' => $row['PASSWORD'], 'user' => $row['DESCRIZIONE'], 'username' => $row['UTENTE']], function($message) use ($row)
             {
                 $message->to($row['EMAIL'], $row['DESCRIZIONE'])->subject('Registrazione area clienti Uniweb');
