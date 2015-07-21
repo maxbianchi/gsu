@@ -16,7 +16,7 @@
     $livello = Session::get('livello');
     $checkBoxStart = "&daattivare=on&attivati=on&disattivati=on&dadisattivare=on";
     if($livello == 1) {
-        $checkBoxStart = "&daattivare=on";
+        $checkBoxStart = "&daattivare=on&attivati=on&dadisattivare=on";
     }
 
     ?>
