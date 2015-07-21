@@ -110,7 +110,7 @@
             </tfoot>
         @endif
     </table>
-    <button style="margin:15px;" class="btn btn-success exportCSV">Export</button><span class="exportBox">Per esportare tutte le pagine selezionare "All" nel menu a tendina</span>
+    <span class="exportBox"></span>
     <div id="delete" class="modal fade" style="z-index:99999;">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -5,7 +5,7 @@ var id_elimina;
 var manutenzione;
 
 $(document).ready(function () {
-    
+
     $('#main').dataTable({
         "iDisplayLength": 30,
         "lengthMenu": [[10, 30, 50, -1], [10, 30, 50, "All"]],
@@ -14,12 +14,15 @@ $(document).ready(function () {
         "sDom": 'T<"clear">lfrtip',
         "oTableTools": {
             "sSwfPath": "//cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
-            "aButtons": ["csv", "xls", "pdf", "print"]
+            "aButtons": ["csv", "xls", "print"]
         },
         "fnInitComplete": function(oSettings, json) {
             $("#loader").hide();
-            //$("#main_wrapper .row").first().before($("#main_wrapper .row").last())
+            $("#main_paginate").detach().prependTo($("#main_wrapper"));
+            $(".DTTT_container").detach().prependTo($(".exportBox"));
+
             $("#main").show();
+            //$("#main_wrapper .row").first().before($("#main_wrapper .row").last())
         }
     });
 
