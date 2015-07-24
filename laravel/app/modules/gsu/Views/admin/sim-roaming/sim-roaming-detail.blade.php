@@ -25,7 +25,7 @@
             <form action="#" method="post" id="form">
                 <tr>
                     <td>COD MANUTENZIONE </td>
-                    <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
+                    <td class="manutenzione">{{$request['MANUTENZIONE'] or Input::get("manutenzione")}}</td>
                 </tr>
                 <tr>
                     <td>N°TELEFONO</td>
