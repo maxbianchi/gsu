@@ -80,7 +80,12 @@ class SimController extends MainController {
              $res = $res[0];
           }
 
-        $piano = $model->getPianoTariffario($res['CANONE']);
+
+
+        $piano['NOME_PIANO'] = "";
+        $piano['NOTE_PIANO'] = "";
+        if(isset($res['CANONE']))
+            $piano = $model->getPianoTariffario($res['CANONE']);
 
         $return['pianotariffario'] = $piano;
         $return['res'] = $res;
