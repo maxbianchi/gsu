@@ -13,7 +13,7 @@ class Canoni{
         $this->canoni['/gsu/sim-extension'] = ['CAN-I031B'];
         $this->canoni['/gsu/sim-fax-dati'] = ['CAN-I041B'];
         $this->canoni['/gsu/sim-roaming'] = ['CAN-I051B', 'CAN-I052B', 'CAN-I053B', 'CAN-I054B', 'CAN-I055B', 'CAN-I056B', 'CAN-I057B', 'CAN-I058B', 'CAN-I051-001B', 'CAN-I051-003B', 'CAN-I051-004B'];
-        $this->canoni['/gsu/sim-opzioni-intercom'] = ['CAN-I061B', 'CAN-I062B', 'CAN-I063B', 'CAN-I064B', 'CAN-I065B', 'CAN-I066B'];
+        $this->canoni['/gsu/sim-intercom'] = ['CAN-I061B', 'CAN-I062B', 'CAN-I063B', 'CAN-I064B', 'CAN-I065B', 'CAN-I066B'];
         $this->canoni['/gsu/sim-tassa-governativa'] = ['CAN-I101B'];
         $this->canoni['/gsu/sim-assistenza-tecnica'] = ['CAN-I201B'];
         $this->canoni['/gsu/sim-opzione-dati'] = ['CAN-I111B', 'CAN-I112B', 'CAN-I113B', 'CAN-I114B', 'CAN-I115B', 'CAN-I116B', 'CAN-I117B', 'CAN-I118B', 'CAN-I119-001B','CAN-I119-002B', 'CAN-I119-003B','CAN-I119-004B','CAN-I119-005B','CAN-I119-006B','CAN-I119-007B', 'CAN-I120-001B', 'CAN-I120-002B', 'CAN-I119-008B' , 'CAN-I119-009B' , 'CAN-I119-010B' , 'CAN-I119-011B' , 'CAN-I119-012B' , 'CAN-I120-003B' , 'CAN-I120-004B', 'CAN-I119-013B', 'CAN-I119-014B', 'CAN-I119-015B', 'CAN-I119-016B', 'CAN-I119-017B', 'CAN-I119-018B', 'CAN-I119-019B', 'CAN-I119-020B', 'CAN-I119-021B','CAN-I119-023B','CAN-I119-024B','CAN-I119-022A','CAN-I119-022B'];
