@@ -244,21 +244,11 @@ EOF;
         $stato_precedente = Input::get('stato_precedente');
 
         $ntelefono = Input::get('ntelefono');
-        $ccid = Input::get('ccid');
-        $tiposim = Input::get('tiposim');
-        $tec_gsm = Input::get('tec_gsm') == "on" ? 1 : 0 ;
-        $tec_umts = Input::get('tec_umts') == "on" ? 1 : 0 ;
-        $tec_edge = Input::get('tec_edge') == "on" ? 1 : 0 ;
-        $tgc = Input::get('tgc');
-        $catchiamate = Input::get('catchiamate');
-        $promovoce = Input::get('promovoce');
-        $nbreve = Input::get('nbreve');
-        $restrisioni = Input::get('restrizioni');
         $opzroaming = Input::get('opzroaming');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI,OPZROAMING, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni','$opzroaming',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,OPZROAMING, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$opzroaming',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -273,7 +263,7 @@ EOF;
                 }
             }
             else
-                $sql = "UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',OPZROAMING='$opzroaming',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',ELIMINATO=$eliminato WHERE IDSIM=$id";
+                $sql = "UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',OPZROAMING='$opzroaming',ELIMINATO=$eliminato WHERE IDSIM=$id";
                 DB::update($sql);
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");

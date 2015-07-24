@@ -25,7 +25,7 @@
             <form action="#" method="post" id="form">
                 <tr>
                     <td>COD MANUTENZIONE </td>
-                    <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
+                    <td class="manutenzione">{{$request['MANUTENZIONE'] or Input::get("manutenzione")}}</td>
                 </tr>
                 <tr>
                     <td>N°TELEFONO</td>
@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
-                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
+                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or Input::get("manutenzione")}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDSIM'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
