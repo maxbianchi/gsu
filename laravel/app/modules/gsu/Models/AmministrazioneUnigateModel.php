@@ -27,7 +27,7 @@ EOF;
     public function getFilteredRequest(){
 
         $eliminati = Input::get('eliminati');
-
+        $id = Input::get('id');
         $sql = <<<EOF
             SELECT
             IDAPPARATO,
@@ -35,6 +35,9 @@ EOF;
             FROM APPARATI_UNIGATE
             WHERE 1=1
 EOF;
+
+        if(!empty($id))
+            $sql .=" AND IDAPPARATO=$id";
 
         if(!empty($eliminati))
             $sql .= " AND APPARATI_UNIGATE.ELIMINATO = 1";

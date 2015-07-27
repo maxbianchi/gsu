@@ -6,22 +6,19 @@ use Session;
 use DB;
 
 
-class AmministrazioneSimPianiTariffariDatiModel extends Model {
+class AmministrazioneTipoLineaModel extends Model {
 
     public function getAllRequest(){
-        $cliente = Input::get('cliente');
 
         $sql = <<<EOF
             SELECT
-            ID_PIANO,
-            NOME_PIANO,
-            DES_PIANO,
-            NOTE_PIANO
-            FROM SIM_PIANI_TARIFFARI_DATI
-            WHERE ELIMINATO = 0
+            IDLINEA,
+            LINEA_UNIWEB,
+            LINEA_FORNITORE
+            FROM ADSL_TIPO_LINEA
 EOF;
 
-        $sql .= " ORDER BY NOME_PIANO";
+        $sql .= " ORDER BY LINEA_UNIWEB";
 
         $request  = DB::select($sql);
         return $request;
@@ -29,27 +26,18 @@ EOF;
 
     public function getFilteredRequest(){
 
-        $eliminati = Input::get('eliminati');
         $id = Input::get('id');
         $sql = <<<EOF
             SELECT
-            ID_PIANO,
-            NOME_PIANO,
-            DES_PIANO,
-            NOTE_PIANO
-            FROM SIM_PIANI_TARIFFARI_DATI
-            WHERE 1=1
+            IDLINEA,
+            LINEA_UNIWEB,
+            LINEA_FORNITORE
+            FROM ADSL_TIPO_LINEA
+            WHERE 1 = 1
 EOF;
-
         if(!empty($id))
-            $sql .=" AND ID_PIANO=$id";
+            $sql .=" AND IDLINEA=$id";
 
-
-        if(!empty($eliminati))
-            $sql .= " AND SIM_PIANI_TARIFFARI_DATI.ELIMINATO = 1";
-        else
-            $sql .= " AND SIM_PIANI_TARIFFARI_DATI.ELIMINATO = 0";
-        $sql .= " ORDER BY NOME_PIANO";
 
         $request  = DB::select($sql);
         return $request;
@@ -61,7 +49,7 @@ EOF;
         $id = Input::get('id');
 
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.SIM_PIANI_TARIFFARI_DATI SET ELIMINATO=1 WHERE ID_PIANO='$id'";
+            $sql = "UPDATE gsu.dbo.ADSL_TIPO_LINEA SET ELIMINATO=1 WHERE IDLINEA='$id'";
             DB::update($sql);
         }
     }
@@ -71,19 +59,18 @@ EOF;
         $id = Input::get('id_tbl');
         $eliminato = !is_null(Input::get('eliminato')) ? 1 : 0 ;
         $stato_precedente = Input::get('stato_precedente');
-        $nome_piano = Input::get('nome_piano');
-        $des_piano = Input::get('des_piano');
-        $note_piano = Input::get('note_piano');
+        $linea_uniweb = Input::get('linea_uniweb');
+        $linea_fornitore = Input::get('linea_fornitore');
 
 
 
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.SIM_PIANI_TARIFFARI_DATI (NOME_PIANO,DES_PIANO,NOTE_PIANO,ELIMINATO) VALUES ('$nome_piano','$des_piano','$note_piano',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.ADSL_TIPO_LINEA (LINEA_UNIWEB,LINEA_FORNITORE) VALUES ('$linea_uniweb','$linea_fornitore')");
             }
             else
-                DB::update("UPDATE gsu.dbo.SIM_PIANI_TARIFFARI_DATI SET NOME_PIANO='$nome_piano',DES_PIANO='$des_piano',NOTE_PIANO='$note_piano',ELIMINATO=$eliminato  WHERE ID_PIANO=$id");
+                DB::update("UPDATE gsu.dbo.ADSL_TIPO_LINEA SET LINEA_UNIWEB='$linea_uniweb',LINEA_FORNITORE='$linea_fornitore'  WHERE IDLINEA=$id");
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -91,7 +78,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new AmministrazioneSimPianiTariffariDatiModel();
+        $model = new IpstaticiModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";

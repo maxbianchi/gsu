@@ -577,6 +577,12 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/amministrazionesim-piani-tariffari-dati/save', 'AmministrazioneSimPianiTariffariDatiController@save');
     Route::get('gsu/amministrazionesim-piani-tariffari-dati/delete', 'AmministrazioneSimPianiTariffariDatiController@delete');
 
-
+    //Amministrazione Tipo Linea
+    Route::get('gsu/amministrazionetipo-linea', 'AmministrazioneTipoLineaController@main');
+    Route::get('gsu/amministrazionetipo-linea/search', 'AmministrazioneTipoLineaController@search');
+    Route::get('gsu/amministrazionetipo-linea/show', 'AmministrazioneTipoLineaController@show');
+    Route::get('gsu/amministrazionetipo-linea/edit', 'AmministrazioneTipoLineaController@edit');
+    Route::post('gsu/amministrazionetipo-linea/save', 'AmministrazioneTipoLineaController@save');
+    Route::get('gsu/amministrazionetipo-linea/delete', 'AmministrazioneTipoLineaController@delete');
 
 });

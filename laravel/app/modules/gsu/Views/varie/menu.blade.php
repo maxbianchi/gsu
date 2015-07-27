@@ -132,6 +132,7 @@
                 <li><a href="{{url('/gsu/amministrazionesoftware')}}">Software</a></li>
                 <li><a href="{{url('/gsu/amministrazioneunigate')}}">Apparati Unigate</a></li>
                 <li><a href="{{url('/gsu/amministrazionesim-piani-tariffari-dati')}}">Sim Piani Tariffari Dati</a></li>
+                <li><a href="{{url('/gsu/amministrazionetipo-linea')}}">Tipo Linea</a></li>
             </ul>
             <!-- INSERIRE QUI EVENTUALI ALTRE VOCI DI MENU' -->
         </li>
