@@ -11,7 +11,7 @@ use Input;
 
 class AdslController extends MainController {
 
-    private $tableName = "ADSL";
+    private $tableName = "ADSL - VDSL";
 
     public function __construct()
     {
