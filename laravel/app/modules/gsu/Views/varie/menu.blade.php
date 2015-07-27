@@ -3,7 +3,7 @@
         <li><a href="#">Access</a>
             <ul>
                 <li><a href="{{url('/gsu/dial-up')}}">Dial-Up</a></li>
-                <li><a href="{{url('/gsu/adsl')}}">Adsl</a></li>
+                <li><a href="{{url('/gsu/adsl')}}">Adsl-Vdsl</a></li>
                 <li><a href="{{url('/gsu/direct-access')}}">Direct</a></li>
                 <li><a href="{{url('/gsu/linea-aggiuntiva')}}">Linea aggiuntiva</a></li>
                 <li><a href="{{url('/gsu/mpls')}}">MPLS Adsl</a></li>

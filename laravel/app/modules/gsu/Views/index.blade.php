@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-md-3"><input type="button" value="DIAL-UP ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-A0').$checkBoxStart}}"></div>
             <div class="col-md-3"><input type="button" value="APPARATI DIAL-UP ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-A1').$checkBoxStart}}"></div>
-            <div class="col-md-3"><input type="button" value="ADSL ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-B0').$checkBoxStart}}"></div>
+            <div class="col-md-3"><input type="button" value="ADSL-VDSL ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-B0').$checkBoxStart}}"></div>
             <div class="col-md-3"><input type="button" value="APPARATI ADSL ACCESS" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-B1').$checkBoxStart}}"></div>
         </div>
         <div class="row">
