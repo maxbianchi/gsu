@@ -67,8 +67,8 @@
         <thead>
         <tr>
             <th>STATO</th>
-            <th>MANTUTENZIONE</th>
-            <th>DATA INIZIO CONTRATTO</th>
+            <th>COD. SERVIZIO</th>
+            <th>DATA CONTRATTO</th>
             <th>CANONE</th>
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
