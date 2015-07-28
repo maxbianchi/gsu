@@ -6247,10 +6247,10 @@ table.dataTable, div.border{
 }
 
 .red{
-    background-color: red;
+    background-color: #ff0000;
 }
 .green{
-    background-color: green;
+    background-color: #00ff00;
 }
 .blue{
     background-color: lightseagreen;
