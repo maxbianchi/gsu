@@ -69,6 +69,7 @@ class SoftwareController extends MainController {
         else
             $btn = 'back';
 
+
         if(Input::get('isnew') == 1){
             $res = [];
         }
