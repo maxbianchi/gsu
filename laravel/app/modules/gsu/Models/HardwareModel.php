@@ -244,7 +244,7 @@ EOF;
         $pn = Input::get('pn');
         $sn = Input::get('sn');
         $pin = Input::get('pin');
-        $scadgaranziainiz =  empty(Input::get('scadgaranziainiz')) ? "00-00-0000" : Input::get('scadgaranziainiz');
+        $scadegaranziainiz =  empty(Input::get('scadegaranziainiz')) ? "00-00-0000" : Input::get('scadegaranziainiz');
         $rinnovogaranzia = Input::get('rinnovogaranzia');
         $scadrinnovogaranzia = empty(Input::get('scadrinnovogaranzia')) ? "00-00-0000" : Input::get('scadrinnovogaranzia');
         $aceradvantage = Input::get('aceradvantage');
@@ -256,7 +256,7 @@ EOF;
 
         try {
             if(empty($id)) {
-                DB::insert("insert into SERVER (SERVER.SOGGETTO	,SERVER.CLIENTE	,SERVER.DESTINATARIOABITUALE,SERVER.ACQUISTO_NOLEGGIO,SERVER.MODELLO,SERVER.PN,SERVER.SN,SERVER.PIN,SERVER.DATAACQUISTO,SERVER.SCADGARANZIAINIZ,SERVER.RINNOVOGARANZIA,SERVER.ACERADVANTAGE,SERVER.PSWACER,SERVER.NUMEROENERGYCARD,SERVER.SOSCLIENTE,SERVER.SOSCONTRATTO,SERVER.SCADRINNOVOGARANZIA,SERVER.MARCA,SERVER.DATA_R,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$acquisto_noleggio','$modello','$pn','$sn','$pin','$dataacquisto','$scadgaranziainiz','$rinnovogaranzia','$aceradvantage','$pswacer','$numeroenergycard','$soscliente','$soscontratto','$scadrinnovogaranzia','$marca','$data_r','$data_inserimento',$eliminato)");
+                DB::insert("insert into SERVER (SERVER.SOGGETTO	,SERVER.CLIENTE	,SERVER.DESTINATARIOABITUALE,SERVER.ACQUISTO_NOLEGGIO,SERVER.MODELLO,SERVER.PN,SERVER.SN,SERVER.PIN,SERVER.DATAACQUISTO,SERVER.SCADGARANZIAINIZ,SERVER.RINNOVOGARANZIA,SERVER.ACERADVANTAGE,SERVER.PSWACER,SERVER.NUMEROENERGYCARD,SERVER.SOSCLIENTE,SERVER.SOSCONTRATTO,SERVER.SCADRINNOVOGARANZIA,SERVER.MARCA,SERVER.DATA_R,DATA_INSERIMENTO,ELIMINATO) values ('$soggetto','$cliente','$destinatarioabituale','$acquisto_noleggio','$modello','$pn','$sn','$pin','$dataacquisto','$scadegaranziainiz','$rinnovogaranzia','$aceradvantage','$pswacer','$numeroenergycard','$soscliente','$soscontratto','$scadrinnovogaranzia','$marca','$data_r','$data_inserimento',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -271,7 +271,7 @@ EOF;
                 }
             }
             else
-                DB::update("Update SERVER  Set SERVER.SOGGETTO	 = '$soggetto', SERVER.CLIENTE = '$cliente', SERVER.DESTINATARIOABITUALE = '$destinatarioabituale', SERVER.ACQUISTO_NOLEGGIO = '$acquisto_noleggio', SERVER.MODELLO = '$modello', SERVER.PN = '$pn', SERVER.SN = '$sn', SERVER.PIN = '$pin', SERVER.DATAACQUISTO = '$dataacquisto', SERVER.SCADGARANZIAINIZ = '$scadgaranziainiz', SERVER.RINNOVOGARANZIA = '$rinnovogaranzia', SERVER.ACERADVANTAGE = '$aceradvantage', SERVER.PSWACER = '$pswacer', SERVER.NUMEROENERGYCARD = '$numeroenergycard', SERVER.SOSCLIENTE = '$soscliente', SERVER.SOSCONTRATTO = '$soscontratto', SERVER.SCADRINNOVOGARANZIA = '$scadrinnovogaranzia', SERVER.MARCA = '$marca', SERVER.DATA_R = '$data_r',ELIMINATO = $eliminato WHERE IDSERVER=$id");
+                DB::update("Update SERVER  Set SERVER.SOGGETTO	 = '$soggetto', SERVER.CLIENTE = '$cliente', SERVER.DESTINATARIOABITUALE = '$destinatarioabituale', SERVER.ACQUISTO_NOLEGGIO = '$acquisto_noleggio', SERVER.MODELLO = '$modello', SERVER.PN = '$pn', SERVER.SN = '$sn', SERVER.PIN = '$pin', SERVER.DATAACQUISTO = '$dataacquisto', SERVER.SCADGARANZIAINIZ = '$scadegaranziainiz', SERVER.RINNOVOGARANZIA = '$rinnovogaranzia', SERVER.ACERADVANTAGE = '$aceradvantage', SERVER.PSWACER = '$pswacer', SERVER.NUMEROENERGYCARD = '$numeroenergycard', SERVER.SOSCLIENTE = '$soscliente', SERVER.SOSCONTRATTO = '$soscontratto', SERVER.SCADRINNOVOGARANZIA = '$scadrinnovogaranzia', SERVER.MARCA = '$marca', SERVER.DATA_R = '$data_r',ELIMINATO = $eliminato WHERE IDSERVER=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }

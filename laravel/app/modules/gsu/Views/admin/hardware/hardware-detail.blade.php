@@ -100,7 +100,7 @@
                 </tr>
                 <tr>
                     <td>SERIALE</td>
-                    <td><input type="text" name="seriale" value="{{$request['SN'] or ""}}"></td>
+                    <td><input type="text" name="sn" value="{{$request['SN'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>PIN</td>
