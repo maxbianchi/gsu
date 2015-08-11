@@ -2,7 +2,8 @@
 
 return [
     'modules'=>array(
-    "gsu"
+        "gsu",
+        "ticket"
     ),
 ];
 

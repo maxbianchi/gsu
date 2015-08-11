@@ -104,13 +104,15 @@
                             <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
                         </div>
                         <!--/**/-->
+                        @if (Session::get('livello')  == 1)
                         <div class="col-md-1 col-md-offset-3" >
-                            <button type="button" class="btn btn-primary" onclick="window.open('http://webmail.uniweb.it' ,'_blank')">WEBMAIL</button>
+                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/index')}}' ,'_blank')">TICKETING</button>
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
                             <img  src="{{ URL::asset('images/webmail_logo.jpg') }}">
                         </div>
+                        @endif
                         <!--/**/-->
 
 
