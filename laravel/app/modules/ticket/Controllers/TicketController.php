@@ -36,6 +36,13 @@ class TicketController extends MainController {
         return json_encode($user);
     }
 
+    public function getAnagrafica(){
+        $descrizione = Input::get("term");
+        $model = new Utenti();
+        $user = $model->getUserFromMagoByName($descrizione);
+        return json_encode($user);
+    }
+
     public function pdf(){
         $html = Input::get("html");
         $snappy = new Pdf('/var/www/gsu/laravel/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');

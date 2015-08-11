@@ -92,6 +92,18 @@ class Utenti extends Model {
         return $utente;
     }
 
+
+    public function getUserFromMagoByName($descrizione){
+        $utenti  = DB::select("SELECT A.DESCRIZIONE term, A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
+        $utente = [];
+        foreach($utenti as $key => $value){
+            foreach($value as $key2 => $value2){
+                $utente[$key][$key2] = utf8_encode($value2);
+            }
+        }
+        return $utente;
+    }
+
     public function createUser($codutente, $username, $password, $livello,$id) {
         if(empty($id))
             DB::insert("insert into gsu.dbo.UTENTI (CODUTENTE, UTENTE,PASSWORD, LIVELLO,NUMBER_LOGIN) values ('$codutente', '$username', '$password', '$livello',0)");
