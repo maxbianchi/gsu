@@ -7,7 +7,7 @@
 	<title>Uniweb srl - portale 4.0</title>
 
     <link href="{{ asset('/css/jqueryui/1.11.4/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
-	<!--<link href="{{ asset('/css/app.css') }}" rel="stylesheet">-->
+	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/bootstrap/3.3.4/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/bootstrap/3.3.4/css/bootstrap-theme.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/dataTables.bootstrap.css') }}" rel="stylesheet">

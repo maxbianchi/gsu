@@ -161,14 +161,14 @@
         <tr>
             <td colspan="2" style="padding-top:20px;">
                 <div style="border:solid 1px; text-align: center;">
-                    Motivo della chiamata <textarea value="" id="motivo" class="edit-textarea" style="width:100%" rows="3"></textarea>
+                    Motivo della chiamata <textarea value="" id="motivo" class="edit-textarea" style="width:100%" rows="4"></textarea>
                 </div>
             </td>
         </tr>
         <tr>
             <td colspan="2" style="padding-top:20px;">
                 <div style="border:solid 1px; text-align: center;">
-                    Descrizione Intervento <textarea value="" id="descrizione" class="edit-textarea" style="width:100%" rows="3"></textarea>
+                    Descrizione Intervento <textarea value="" id="descrizione" class="edit-textarea" style="width:100%" rows="7"></textarea>
                 </div>
             </td>
         </tr>
@@ -300,7 +300,7 @@
         <tr>
             <td colspan="2" style="padding-top:20px;">
                 <div style="border:solid 1px; text-align: center;">
-                    Note sull'intervento <textarea value="" id="note" class="edit-textarea" style="width:100%" rows="3">eefwrrtwtrt</textarea>
+                    Note sull'intervento <textarea value="" id="note" class="edit-textarea" style="width:100%" rows="4">eefwrrtwtrt</textarea>
                 </div>
             </td>
         </tr>
@@ -330,14 +330,27 @@
             <td style="width:100%" colspan="2">
                 <table style="width:100%" border="1">
                     <tr>
-                        <td style="width:50%; height: 50pt;" valign="top">
+                        <td style="width:50%; height: 60pt;" valign="top">
                             Timbro e firma del cliente
                         </td>
-                        <td style="width:50%; height: 50pt;" valign="top">
+                        <td style="width:50%; height: 60pt;" valign="top">
                             Tecnico
                         </td>
                     </tr>
                 </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="container_12" style="text-align: center;">
+                    <strong>Uniweb Srl</strong>
+                    - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
+                    <br>
+                    Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
+                    <a href="mailto:info@uniweb.it">info@uniweb.it</a>
+                    <br>
+                    Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>
+                </div>
             </td>
         </tr>
     </table>
