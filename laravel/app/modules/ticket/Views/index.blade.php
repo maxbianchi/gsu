@@ -54,7 +54,7 @@
                                 Ragione Sociale
                             </td>
                             <td style="width:80%">
-                                <input type="text" value="" id="ragionesociale" class="edit" style="width:100%">
+                                <input type="text" value="" id="ragionesociale" name="ragionesociale" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -62,7 +62,7 @@
                                 Indirizzo
                             </td>
                             <td>
-                                <input type="text" value="" id="indirizzo" class="edit" style="width:100%">
+                                <input type="text" value="" id="indirizzo" name="indirizzo" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -70,7 +70,7 @@
                                 Citt&agrave;
                             </td>
                             <td>
-                                <input type="text" value="" id="citta" class="edit" style="width:100%">
+                                <input type="text" value="" id="citta" name="citta" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -84,7 +84,7 @@
                                 Indirizzo
                             </td>
                             <td>
-                                <input type="text" value="" id="ubicazione_indirizzo" class="edit" style="width:100%">
+                                <input type="text" value="" id="ubicazione_indirizzo" name="ubicazione_indirizzo" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -92,7 +92,7 @@
                                 Citt&agrave;
                             </td>
                             <td>
-                                <input type="text" value="" id="ubicazione_citta" class="edit" style="width:100%">
+                                <input type="text" value="" id="ubicazione_citta" name="ubicazione_citta" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -105,7 +105,7 @@
                                 Riferimento
                             </td>
                             <td>
-                                <input type="text" value="" id="riferimento" class="edit" style="width:100%">
+                                <input type="text" value="" id="riferimento" name="riferimento" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -113,7 +113,7 @@
                                 Tel.
                             </td>
                             <td>
-                                <input type="text" value="" id="telefono" class="edit" style="width:100%">
+                                <input type="text" value="" id="telefono" name="telefono" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -121,7 +121,7 @@
                                 Mail:
                             </td>
                             <td>
-                                <input type="text" value="" id="mail" class="edit" style="width:100%">
+                                <input type="text" value="" id="mail" name="mail" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -139,18 +139,18 @@
                         <table>
                             <tr>
                                 <td style="text-align: center;">
-                                    Matricola <input type="text" value="" id="matricola" class="edit" style="width:100%">
+                                    Matricola <input type="text" value="" id="matricola" name="matricola" class="edit" style="width:100%">
                                 </td>
                                 <td style="text-align: center;">
-                                    Lettura Tot bn <input type="text" value="" id="tot_bn" class="edit" style="width:100%">
+                                    Lettura Tot bn <input type="text" value="" id="tot_bn" name="tot_bn" class="edit" style="width:100%">
                                 </td>
                                 <td style="text-align: center;">
-                                    Lettura Tot colore <input type="text" value="" id="tot_colore" class="edit" style="width:100%">
+                                    Lettura Tot colore <input type="text" value="" id="tot_colore" name="tot_colore" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Modello  <input type="text" value="" id="modello" class="edit" style="width:100%">
+                                    Modello  <input type="text" value="" id="modello" name="modello" class="edit" style="width:100%">
                                 </td>
                                 <td colspan="2"></td>
                             </tr>
@@ -161,14 +161,14 @@
             <tr>
                 <td colspan="2" style="padding-top:20px;">
                     <div style="border:solid 1px; text-align: center;">
-                        Motivo della chiamata <textarea value="" id="motivo" class="edit-textarea" style="width:100%" rows="4"></textarea>
+                        Motivo della chiamata <textarea value="" id="motivo" name="motivo" class="edit-textarea" style="width:100%" rows="4"></textarea>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2" style="padding-top:20px;">
                     <div style="border:solid 1px; text-align: center;">
-                        Descrizione Intervento <textarea value="" id="descrizione" class="edit-textarea" style="width:100%" rows="7"></textarea>
+                        Descrizione Intervento <textarea value="" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="7"></textarea>
                     </div>
                 </td>
             </tr>
@@ -191,44 +191,44 @@
                         </tr>
                         <tr>
                             <td style="width:20%">
-                                <input type="text" value="" id="codice1" class="edit" style="width:100%">
+                                <input type="text" value="" id="codice1" name="codice1" class="edit" style="width:100%">
                             </td>
                             <td style="width:40%">
-                                <input type="text" value="" id="descrizione1" class="edit" style="width:100%">
+                                <input type="text" value="" id="descrizione1" name="descrizione1" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="qta1" class="edit" style="width:100%">
+                                <input type="text" value="" id="qta1" name="qta1" class="edit" style="width:100%">
                             </td>
                             <td  style="width:30%">
-                                <input type="text" value="" id="note1" class="edit" style="width:100%">
+                                <input type="text" value="" id="note1" name="note1" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
                             <td style="width:20%">
-                                <input type="text" value="" id="codice2" class="edit" style="width:100%">
+                                <input type="text" value="" id="codice2" name="codice2" class="edit" style="width:100%">
                             </td>
                             <td style="width:40%">
-                                <input type="text" value="" id="descrizione2" class="edit" style="width:100%">
+                                <input type="text" value="" id="descrizione2" name="descrizione2" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="qta2" class="edit" style="width:100%">
+                                <input type="text" value="" id="qta2" name="qta2" class="edit" style="width:100%">
                             </td>
                             <td  style="width:30%">
-                                <input type="text" value="" id="note2" class="edit" style="width:100%">
+                                <input type="text" value="" id="note2" name="note2" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
                             <td style="width:20%">
-                                <input type="text" value="" id="codice3" class="edit" style="width:100%">
+                                <input type="text" value="" id="codice3" name="codice3" class="edit" style="width:100%">
                             </td>
                             <td style="width:40%">
-                                <input type="text" value="" id="descrizione3" class="edit" style="width:100%">
+                                <input type="text" value="" id="descrizione3" name="descrizione3" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="qta3" class="edit" style="width:100%">
+                                <input type="text" value="" id="qta3" name="qta3" class="edit" style="width:100%">
                             </td>
                             <td  style="width:30%">
-                                <input type="text" value="" id="note3" class="edit" style="width:100%">
+                                <input type="text" value="" id="note3" name="note3" class="edit" style="width:100%">
                             </td>
                         </tr>
 
@@ -243,13 +243,13 @@
                                 Data Intervento
                             </td>
                             <td style="width:10%">
-                                <input type="text" value="" id="data_intervento" class="edit-date datepicker" style="width:100%">
+                                <input type="text" value="" id="data_intervento" name="data_intervento" class="edit-date datepicker" style="width:100%">
                             </td>
                             <td  style="width:10%">
                                 Intervento Remoto
                             </td>
                             <td  style="width:10%">
-                                <input type="checkbox" value="" id="data_intervento" class="edit-checkbox" style="width:100%">
+                                <input type="checkbox" value="" id="intervento_remoto" name="intervento_remoto" class="edit-checkbox" style="width:100%">
                             </td>
                             <td  style="width:10%">
 
@@ -263,19 +263,19 @@
                                 Tempo Viaggio
                             </td>
                             <td style="width:10%">
-                                <input type="text" value="" id="descrizione1" class="edit" style="width:100%">
+                                <input type="text" value="" id="tempo_viaggio" name="tempo_viaggio" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
                                 Ora inizio intervento
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="note1" class="edit" style="width:100%">
+                                <input type="text" value="" id="ora_inizio" name="ora_inizio" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
                                 Ora fine intervento
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="note1" class="edit" style="width:100%">
+                                <input type="text" value="" id="ora_fine" name="ora_fine" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
@@ -283,19 +283,19 @@
                                 Tempo Viaggio
                             </td>
                             <td style="width:10%">
-                                <input type="text" value="" id="descrizione1" class="edit" style="width:100%">
+                                <input type="text" value="" id="tempo_viaggio2" name="tempo_viaggio2" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
                                 Ora inizio intervento
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="note1" class="edit" style="width:100%">
+                                <input type="text" value="" id="ora_inizio2" name="ora_inizio2" class="edit" style="width:100%">
                             </td>
                             <td  style="width:10%">
                                 Ora fine intervento
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="" id="note1" class="edit" style="width:100%">
+                                <input type="text" value="" id="ora_fine2" name="ora_fine2" class="edit" style="width:100%">
                             </td>
                         </tr>
                     </table>
@@ -304,7 +304,7 @@
             <tr>
                 <td colspan="2" style="padding-top:20px;">
                     <div style="border:solid 1px; text-align: center;">
-                        Note sull'intervento <textarea value="" id="note" class="edit-textarea" style="width:100%" rows="4">eefwrrtwtrt</textarea>
+                        Note sull'intervento <textarea value="" id="note" name="note" class="edit-textarea" style="width:100%" rows="4">eefwrrtwtrt</textarea>
                     </div>
                 </td>
             </tr>
@@ -313,18 +313,18 @@
                     <table style="width:100%">
                         <tr>
                             <td style="width:50%">
-                                Intervento risolutivo <input type="checkbox" value="" id="data_intervento" name="data_intervento" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
+                                Intervento risolutivo <input type="checkbox" value="" id="intervento_risolutivo" name="intervento_risolutivo" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
                             </td>
                             <td style="width:50%">
-                                In garanzia <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
+                                In garanzia <input type="checkbox" value="" id="garanzia" name="garanzia" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
                             </td>
                         </tr>
                         <tr>
                             <td style="width:50%">
-                                Macchina in funzione <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
+                                Macchina in funzione <input type="checkbox" value="" id="macchina_funzione" name="macchina_funzione" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
                             </td>
                             <td style="width:50%">
-                                Macchina ferma <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
+                                Macchina ferma <input type="checkbox" value="" id="macchina_ferma" name="macchina_ferma" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
                             </td>
                         </tr>
                     </table>
