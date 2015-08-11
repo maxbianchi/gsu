@@ -304,7 +304,7 @@
             <tr>
                 <td colspan="2" style="padding-top:20px;">
                     <div style="border:solid 1px; text-align: center;">
-                        Note sull'intervento <textarea value="" id="note" name="note" class="edit-textarea" style="width:100%" rows="4">eefwrrtwtrt</textarea>
+                        Note sull'intervento <textarea value="" id="note" name="note" class="edit-textarea" style="width:100%" rows="4"></textarea>
                     </div>
                 </td>
             </tr>
