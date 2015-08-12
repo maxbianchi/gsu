@@ -149,8 +149,6 @@
                 <tr>
                     <td>DATA INSERIMENTO ( solo lettura )</td>
                     <td><input type="text" name="data_inserimento" value="{{$request['DATA_INSERIMENTO'] or ""}}" readonly disabled></td>
-                    <td></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
