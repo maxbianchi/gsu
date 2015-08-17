@@ -12,17 +12,22 @@
 @endsection
 
 @section('content')
+    <br><br>
+    <a class="btn btn-small edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;"><i class="glyphicon glyphicon-plus"></i>&nbsp;AGGIUNGI NUOVA ATTIVITA&grave; </a>
+    <br><br>
     <div class="container-fluid">
-
+        <form action="#" method="post" id="form">
         <div id="accordion">
             <?php $idattivita = 0;
                   $attivita = $result;
             ?>
             @foreach($result as $res)
-                <?php if($idattivita == $res['IDATTIVITA']) continue; ?>
+                <?php if($idattivita == $res['IDATTIVITA'])
+                        continue; ?>
 
                 <h3>{{$res['SOGGETTO_NOME']." - ".$res['TGU']." - ".$res['IDATTIVITA']." - ".$res['TICKETTELECOM']}}</h3>
                 <div>
+
                     <div class="border">
                         <table class="tbl_clienti" style="width:100%">
                             <tbody>
@@ -54,13 +59,11 @@
                     </div>
 
                     <br><br>
-                    <fieldset class="dettaglio_dati">
-                        <legend align="right"></legend>
-                        <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                          <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
 
                             <tr>
                                 <td>NR INTERNO TICKET </td>
-                                <td class="manutenzione">{{$idattivita or ""}}</td>
+                                <td class="manutenzione">{{$res['IDATTIVITA']}}</td>
                                 <td>NR TICKET TELECOM</td>
                                 <td><input type="text" name="tickettelecom" value="{{$res['TICKETTELECOM'] or ""}}"></td>
                             </tr>
@@ -86,7 +89,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>ATTIVIT&Agrave; APERTA IL</td>
-                                <td><input type="text" name="apertail" value="{{$res['APERTAIL'] or ""}}"></td>
+                                <td><input type="text" name="apertail" readonly="readonly" disabled="disabled"  value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
                             </tr>
                             <tr>
                                 <td>TGU / IMEI</td>
@@ -97,8 +100,16 @@
                             <tr>
                                 <td>TITOLO ATTIVIT&Agrave;</td>
                                 <td><input type="text" name="titolo" value="{{$res['TITOLO'] or ""}}"></td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td>TEMPO TOTALE</td>
+                                <td>
+                                    <?php
+                                        $tempo_totale = 0;
+                                        foreach($attivita as $row):
+                                            $tempo_totale += $row['TEMPO'];
+                                        endforeach;
+                                    ?>
+                                    {{$tempo_totale." minuti"}}
+                                </td>
                             </tr>
                             <tr>
                                 <td>MOTIVO DELLA CHIAMATA</td>
@@ -112,13 +123,7 @@
                                 <td colspan="3"></td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea name="elenco_attivita" cols="130">
-
-                                        @foreach($attivita as $row)
-                                            {{trim($row['DESCRIZIONE'])}}
-                                        @endforeach
-
-                                    </textarea></td>
+                                <td colspan="4"><textarea name="elenco_attivita" cols="130">@foreach($attivita as $row){{$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"}}@endforeach</textarea></td>
                             </tr>
                             <tr>
                                 <td>AGGIUNGI ATTIVIT&Agrave;</td>
@@ -133,7 +138,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea name="attivita" id="attivita" cols="130">{{$res['DESCRIZIONE'] or ""}}</textarea></td>
+                                <td colspan="4"><textarea name="attivita" id="attivita" cols="130"></textarea></td>
                             </tr>
                             <tr>
                                 <td>DURATA INTERVENTO MINUTI</td>
@@ -154,11 +159,13 @@
                                 <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs"></td>
                             </tr>
                         </table>
-
                 </div>
                 <?php $idattivita = $res['IDATTIVITA']; ?>
             @endforeach
         </div>
+            <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
+        </form>
     </div>
 
 

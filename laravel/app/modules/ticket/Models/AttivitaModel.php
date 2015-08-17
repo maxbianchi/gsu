@@ -48,7 +48,7 @@ class AttivitaModel extends Model {
     public function salvaattivita(){
         $idattivita = Input::get("idattivita");
         $descrizione = Input::get("attivita");
-        $descrizione = str_replace($descrizione, "'", "");
+        $descrizione = str_replace("'", "",$descrizione);
         $tempo = Input::get("tempo");
         $incaricoa = Input::get("incaricoa_attivita");
         $sql = "INSERT INTO GSU.dbo.SINGOLE_ATTIVITA (idattivita, descrizione, tempo, incaricoa) VALUES ('$idattivita', '$descrizione', '$tempo', '$incaricoa' )";
@@ -62,9 +62,9 @@ class AttivitaModel extends Model {
         $incaricoa = Input::get("incaricoa");
         $tgu = Input::get("tgu");
         $titolo = Input::get("titolo");
-        $titolo = str_replace($titolo, "'", "");
+        $titolo = str_replace("'", "",$titolo);
         $motivo = Input::get("motivo");
-        $motivo = str_replace($motivo, "'", "");
+        $motivo = str_replace("'", "",$motivo);
         $stato = Input::get("stato");
         $soggetto = Input::get("soggetto");
         $ubicazione = Input::get("ubicazione");
@@ -88,6 +88,8 @@ SELECT
         T1.DESCRIZIONE APERTODA,
         T2.DESCRIZIONE INCARICOA,
         TGU,
+        CONVERT(VARCHAR(10),A.APERTAIL,105 ) APERTAIL,
+        CONVERT(VARCHAR(10),A.APERTAIL,108 ) APERTAIL_ORA,
         TITOLO,
         MOTIVO,
         STATI.STATO,
@@ -104,7 +106,7 @@ SELECT
         A.SOGGETTO,
         A.UBICAZIONE,
         S.DESCRIZIONE,
-        T3.DESCRIZIONE INCARICOA,
+        T3.DESCRIZIONE INCARICOA_ATTIVITA,
         S.TEMPO
         FROM GSU.dbo.ATTIVITA A INNER JOIN SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
         LEFT JOIN STATI ON A.STATO = STATI.IDSTATO

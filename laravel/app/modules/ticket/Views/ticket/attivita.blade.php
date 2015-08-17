@@ -78,7 +78,7 @@
                     <td></td>
                     <td></td>
                     <td>ATTIVIT&Agrave; APERTA IL</td>
-                    <td><input type="text" name="apertail" value="{{$request['APERTAIL'] or ""}}"></td>
+                    <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$request['APERTAIL'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>TGU / IMEI</td>
