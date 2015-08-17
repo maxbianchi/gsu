@@ -90,7 +90,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico webfax</b></div>
-                        <div class="col-md-6"></div>
+                        <div class="col-md-4 col-md-offset-2">Aprti un <b>attivit&agrave;' / Ticket</b></div>
                     </div>
                 </div>
 
@@ -106,11 +106,11 @@
                         <!--/**/-->
                         @if (Session::get('livello')  == 1)
                         <div class="col-md-1 col-md-offset-3" >
-                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/index')}}' ,'_blank')">TICKETING</button>
+                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/tickets')}}' ,'_blank')">ATTIVITA</button>
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <img  src="{{ URL::asset('images/webmail_logo.jpg') }}">
+
                         </div>
                         @endif
                         <!--/**/-->
@@ -122,6 +122,38 @@
             </div>
 
         </div>
+
+        <div class="row">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="form-group">
+                        <div class="col-md-5 col-md-offset-1">Crea un nuovo <b>verbalino intervento</b></div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        @if (Session::get('livello')  == 1)
+                            <div class="col-md-1" >
+                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/index')}}' ,'_blank')">VERBALINO INTERVENTO</button>
+                            </div>
+
+                            <div class="col-md-2 col-md-offset-1">
+
+                            </div>
+                            @endif
+                                    <!--/**/-->
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
 

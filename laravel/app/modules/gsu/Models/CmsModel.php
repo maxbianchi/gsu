@@ -279,8 +279,8 @@ EOF;
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
                     $richieste_evase = $richieste_evase[0];
-                    $qta = $richieste_evase['QUANTITA'] + 1;
-                    DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
+                    //$qta = $richieste_evase['QUANTITA'] + 1;
+                    //DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = '$qta' where CODICE_R = '$manutenzione'");
                 }
                 else{
                     DB::insert("INSERT INTO gsu.dbo.RICHIESTE_EVASE (CODICE_R, QUANTITA) VALUES ('$manutenzione','1')");

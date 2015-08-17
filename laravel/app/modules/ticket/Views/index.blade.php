@@ -1,8 +1,5 @@
 @extends('ticket::app')
 
-
-
-
 @section('content')
     <br><br>
     <br><br>
