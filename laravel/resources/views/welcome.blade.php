@@ -106,7 +106,7 @@
                         <!--/**/-->
                         @if (Session::get('livello')  == 1)
                         <div class="col-md-1 col-md-offset-3" >
-                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/tickets')}}' ,'_blank')">ATTIVITA</button>
+                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/tickets?stato=1')}}' ,'_blank')">ATTIVITA</button>
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">

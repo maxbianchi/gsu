@@ -15,19 +15,68 @@
     <br><br>
     <a class="btn btn-small edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;"><i class="glyphicon glyphicon-plus"></i>&nbsp;AGGIUNGI NUOVA ATTIVITA&grave; </a>
     <br><br>
+
     <div class="container-fluid">
-        <form action="#" method="post" id="form">
+        <div class="border">
+            <form method="GET" action="{{url('/ticket/tickets')}}" name="form_search">
+                <div class="row">
+                    <div class="col-md-1 soggetto">CLIENTE</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
+                    <div class="col-md-1 "></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2 "></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">IN CARICO A</div>
+                    <div class="col-md-2"><select name="tecnico">
+                            <option value="">TUTTI</option>
+                            @foreach($tecnici as $tecnico)
+                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Input::get('tecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                            @endforeach
+                        </select></div>
+                    <div class="col-md-1">TICKET TELECOM</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('tickettelecom')}}" id="tickettelecom" name="tickettelecom" ></div>
+                    <div class="col-md-2">STATO</div>
+                    <div class="col-md-2"><select name="stato">
+                            @foreach($stati as $stato)
+                                <option value="{{$stato['IDSTATO'] or ""}}" {{Input::get('stato') == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
+                            @endforeach
+                        </select></div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1">TGU</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="container-fluid">
         <div id="accordion">
             <?php $idattivita = 0;
-                  $attivita = $result;
+
             ?>
             @foreach($result as $res)
-                <?php if($idattivita == $res['IDATTIVITA'])
-                        continue; ?>
-
-                <h3>{{$res['SOGGETTO_NOME']." - ".$res['TGU']." - ".$res['IDATTIVITA']." - ".$res['TICKETTELECOM']}}</h3>
+                <?php if($idattivita == $res['IDATTIVITA']){
+                        continue; }
+                    $attivita = $result;
+                    $idattivita = $res['IDATTIVITA'];
+                    ?>
+                <h3 style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET TELECOM ".$res['TICKETTELECOM']}}</h3>
                 <div>
-
+                    <form action="#" method="post" name="form_{{$res['IDATTIVITA']}}">
                     <div class="border">
                         <table class="tbl_clienti" style="width:100%">
                             <tbody>
@@ -72,7 +121,7 @@
                                 <td>
                                     <select name="apertoda">
                                         @foreach($tecnici as $tecnico)
-                                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['APERTODA']) && $res['APERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDAPERTODA']) && $res['IDAPERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -80,14 +129,14 @@
                                 <td>
                                     <select name="incaricoa">
                                         @foreach($tecnici as $tecnico)
-                                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['INCARICOA']) && $res['INCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDINCARICOA']) && $res['IDINCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td>EMAIL CLIENTE</td>
+                                <td><input type="text" name="email" value="{{$res['EMAIL'] or ""}}"></td>
                                 <td>ATTIVIT&Agrave; APERTA IL</td>
                                 <td><input type="text" name="apertail" readonly="readonly" disabled="disabled"  value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
                             </tr>
@@ -105,7 +154,8 @@
                                     <?php
                                         $tempo_totale = 0;
                                         foreach($attivita as $row):
-                                            $tempo_totale += $row['TEMPO'];
+                                            if($row['IDATTIVITA'] == $res['IDATTIVITA'])
+                                                $tempo_totale += $row['TEMPO'];
                                         endforeach;
                                     ?>
                                     {{$tempo_totale." minuti"}}
@@ -119,11 +169,11 @@
                                 <td colspan="4"><textarea name="motivo" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
                             </tr>
                             <tr>
-                                <td>ATTIVIT&Agrave;</td>
+                                <td>ELENCO ATTIVIT&Agrave;</td>
                                 <td colspan="3"></td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea name="elenco_attivita" cols="130">@foreach($attivita as $row){{$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"}}@endforeach</textarea></td>
+                                <td colspan="4"><textarea name="elenco_attivita" cols="130"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"; endforeach; ?></textarea></td>
                             </tr>
                             <tr>
                                 <td>AGGIUNGI ATTIVIT&Agrave;</td>
@@ -151,7 +201,7 @@
                                 <td>
                                     <select name="stato">
                                         @foreach($stati as $stato)
-                                            <option value="{{$stato['IDSTATO'] or ""}}" {{isset($res['STATO']) && $res['STATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
+                                            <option value="{{$stato['IDSTATO'] or ""}}" {{isset($res['IDSTATO']) && $res['IDSTATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -159,13 +209,12 @@
                                 <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs"></td>
                             </tr>
                         </table>
+                    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
+                </form>
                 </div>
-                <?php $idattivita = $res['IDATTIVITA']; ?>
             @endforeach
         </div>
-            <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
-        </form>
     </div>
 
 
@@ -205,22 +254,24 @@
 
 
             $(".salva-attivita").click(function(){
-                $.post( "{{url('/ticket/salvaattivita')}}", $("form#form").serialize())
+                $.post( "{{url('/ticket/salvaattivita')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
-                            $('#msg').modal('show');
-                            $("#btn_salva").hide();
+                            location.reload();
                         });
             });
 
             $(".salva-ticket").click(function(){
-                $.post( "{{url('/ticket/salvaticket')}}", $("form#form").serialize())
+                $.post( "{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
                             $('#msg').modal('show');
                             $("#btn_salva").hide();
                         });
             });
 
-            $( "#accordion" ).accordion();
+            $( "#accordion" ).accordion({
+                active: false,
+                collapsible: true
+            });
         });
     </script>
 

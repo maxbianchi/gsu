@@ -153,7 +153,7 @@
                         <h4 class="modal-title">Record inserito con successo</h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-default btn-modal" data-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
@@ -181,8 +181,7 @@
                     $(".salva-attivita").click(function(){
                         $.post( "{{url('/ticket/salvaattivita')}}", $("form#form").serialize())
                                 .done(function( data ) {
-                                    $('#msg').modal('show');
-                                    $("#btn_salva").hide();
+                                    location.reload();
                                 });
                     });
 
@@ -193,7 +192,6 @@
                                     $("#btn_salva").hide();
                                 });
                     });
-
 
                 });
             </script>
