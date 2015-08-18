@@ -12,7 +12,7 @@ class Canoni{
         $this->canoni['/gsu/sim-twin'] = ['CAN-I021B', 'CAN-I022B'];
         $this->canoni['/gsu/sim-extension'] = ['CAN-I031B'];
         $this->canoni['/gsu/sim-fax-dati'] = ['CAN-I041B'];
-        $this->canoni['/gsu/sim-roaming'] = ['CAN-I051B', 'CAN-I052B', 'CAN-I053B', 'CAN-I054B', 'CAN-I055B', 'CAN-I056B', 'CAN-I057B', 'CAN-I058B', 'CAN-I051-001B', 'CAN-I051-003B', 'CAN-I051-004B'];
+        $this->canoni['/gsu/sim-roaming'] = ['CAN-I051B', 'CAN-I052B', 'CAN-I053B', 'CAN-I054B', 'CAN-I055B', 'CAN-I056B', 'CAN-I057B', 'CAN-I058B', 'CAN-I051-001B', 'CAN-I051-003B', 'CAN-I051-004B', 'CAN-I051-005B'];
         $this->canoni['/gsu/sim-intercom'] = ['CAN-I061B', 'CAN-I062B', 'CAN-I063B', 'CAN-I064B', 'CAN-I065B', 'CAN-I066B'];
         $this->canoni['/gsu/sim-tassa-governativa'] = ['CAN-I101B'];
         $this->canoni['/gsu/sim-assistenza-tecnica'] = ['CAN-I201B'];
