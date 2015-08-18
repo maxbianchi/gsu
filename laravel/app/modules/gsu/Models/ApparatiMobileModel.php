@@ -231,7 +231,7 @@ EOF;
         $pn = Input::get('pn');
         $sn = Input::get('sn');
         $pin = Input::get('pin');
-        $scadgaranziainiz =  empty(Input::get('scadgaranziainiz')) ? "00-00-0000" : Input::get('scadgaranziainiz');
+        $scadgaranziainiz =  empty(Input::get('scadegaranziainiz')) ? "00-00-0000" : Input::get('scadegaranziainiz');
         $ntelefono = Input::get('ntelefono');
         $scadrinnovogaranzia = empty(Input::get('scadrinnovogaranzia')) ? "00-00-0000" : Input::get('scadrinnovogaranzia');
         $oggetto = Input::get('oggetto');
