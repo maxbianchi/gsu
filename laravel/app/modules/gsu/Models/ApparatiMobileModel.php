@@ -226,14 +226,17 @@ EOF;
         $data_r = empty(Input::get('data_r')) ? "00-00-0000" : Input::get('data_r');
         $acquisto_noleggio = Input::get('acquisto_noleggio');
         $dataacquisto =  empty(Input::get('dataacquisto')) ? "00-00-0000" : Input::get('dataacquisto');
+        $dataacquisto = date("Y-m-d", strtotime($dataacquisto));
         $marca = Input::get('marca');
         $modello = Input::get('modello');
         $pn = Input::get('pn');
         $sn = Input::get('sn');
         $pin = Input::get('pin');
         $scadgaranziainiz =  empty(Input::get('scadegaranziainiz')) ? "00-00-0000" : Input::get('scadegaranziainiz');
+        $scadgaranziainiz = date("Y-m-d", strtotime($scadgaranziainiz));
         $ntelefono = Input::get('ntelefono');
         $scadrinnovogaranzia = empty(Input::get('scadrinnovogaranzia')) ? "00-00-0000" : Input::get('scadrinnovogaranzia');
+        $scadrinnovogaranzia = date("Y-m-d", strtotime($scadrinnovogaranzia));
         $oggetto = Input::get('oggetto');
         $data_inserimento = $date = date('Y-m-d H:i:s');
 
