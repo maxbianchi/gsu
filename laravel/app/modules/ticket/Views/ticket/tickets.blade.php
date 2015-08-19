@@ -171,7 +171,7 @@
                                                 $tempo_totale += $row['TEMPO'];
                                         endforeach;
                                     ?>
-                                    {{$tempo_totale." minuti"}}
+                                        <input type="text" name="tempo" value="{{$tempo_totale." minuti"}}">
                                 </td>
                             </tr>
                             <tr>
