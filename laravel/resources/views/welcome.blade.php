@@ -110,7 +110,7 @@
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-
+                            <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
                         </div>
                         @endif
                         <!--/**/-->
