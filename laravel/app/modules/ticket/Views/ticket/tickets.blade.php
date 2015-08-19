@@ -40,6 +40,7 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('tickettelecom')}}" id="tickettelecom" name="tickettelecom" ></div>
                     <div class="col-md-2">STATO</div>
                     <div class="col-md-2"><select name="stato">
+                            <option value="">TUTTI</option>
                             @foreach($stati as $stato)
                                 <option value="{{$stato['IDSTATO'] or ""}}" {{Input::get('stato') == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                             @endforeach
@@ -49,8 +50,8 @@
                 <div class="row">
                     <div class="col-md-1">TGU</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1">TICKET INTERNO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('idattivita')}}" id="idattivita" name="idattivita" ></div>
                     <div class="col-md-2"></div>
                     <div class="col-md-2"></div>
                     <div class="col-md-3"></div>
@@ -76,7 +77,7 @@
                     ?>
                 <h3 style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET TELECOM ".$res['TICKETTELECOM']}}</h3>
                 <div>
-                    <form action="#" method="post" name="form_{{$res['IDATTIVITA']}}">
+                    <form action="{{url('/ticket/chiuditicket')}}" method="post" name="form_{{$res['IDATTIVITA']}}">
                     <div class="border">
                         <table class="tbl_clienti" style="width:100%">
                             <tbody>
@@ -110,6 +111,18 @@
                     <br><br>
                           <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
 
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><?php if(file_exists("/var/www/gsu/laravel/public/output/".$res['IDATTIVITA'].".pdf")): ?>
+                                            <a href="/output/{{$res['IDATTIVITA']}}.pdf" download title="Verbalino" alt="Verbalino"><img src="{{ URL::asset('images/pdf_icon.png') }}"></a>
+                                    <?php
+                                    endif;
+                                    ?>
+
+                                </td>
+                            </tr>
                             <tr>
                                 <td>NR INTERNO TICKET </td>
                                 <td class="manutenzione">{{$res['IDATTIVITA']}}</td>
@@ -173,7 +186,10 @@
                                 <td colspan="3"></td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea name="elenco_attivita" cols="130"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"; endforeach; ?></textarea></td>
+                                <td colspan="4"><textarea name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"; endforeach; ?></textarea></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
                             </tr>
                             <tr>
                                 <td>AGGIUNGI ATTIVIT&Agrave;</td>
@@ -188,18 +204,27 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
+                                <td></td>
+                                <td>DURATA INTERVENTO MINUTI</td>
+                                <td><input type="text" name="tempo" value="{{$res['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                            </tr>
+                            <tr>
                                 <td colspan="4"><textarea name="attivita" id="attivita" cols="130"></textarea></td>
                             </tr>
                             <tr>
-                                <td>DURATA INTERVENTO MINUTI</td>
-                                <td><input type="text" name="tempo" value="{{$res['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td><input type="button" value="AGGIUNGI ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
                             </tr>
                             <tr>
+                                <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
+                            </tr>
+                            <tr>
                                 <td>CAMBIA STATO</td>
                                 <td>
-                                    <select name="stato">
+                                    <select name="stato" class="stato">
                                         @foreach($stati as $stato)
                                             <option value="{{$stato['IDSTATO'] or ""}}" {{isset($res['IDSTATO']) && $res['IDSTATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                                         @endforeach
@@ -261,10 +286,23 @@
             });
 
             $(".salva-ticket").click(function(){
-                $.post( "{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
+                //Se chiuso faccio post del form non ajax
+                var stato = $(this).closest('form').find(".stato").val();
+                if(stato != 4) {
+                    $.post("{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
+                            .done(function (data) {
+                                $('#msg').modal('show');
+                                $("#btn_salva").hide();
+                            });
+                }else{
+                    $(this).closest('form').submit();
+                }
+
+            });
+
+            $(".stato").change(function(){
+                $.post( "{{url('/ticket/cambiastato')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
-                            $('#msg').modal('show');
-                            $("#btn_salva").hide();
                         });
             });
 

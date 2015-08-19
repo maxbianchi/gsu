@@ -149,8 +149,12 @@ class Utility{
         echo "</pre>";
     }
 
+    //**
+    //*@Per salvare date su sql server da dd-mm-yyyy a yyyy-mm-dd
+    //**
     public function convertDate($dateIT){
-
+        $dateIT = implode("-", array_reverse(explode("-", $dateIT)));
+        return $dateIT;
     }
 
 }

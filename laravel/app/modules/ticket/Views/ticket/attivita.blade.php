@@ -20,7 +20,7 @@
                 <tr class="soggetto">
                     <td>CLIENTE</td>
                     <td>
-                        <select name="cliente">
+                        <select name="cliente" id="cliente">
                             <option value="">-----</option>
                             @foreach($users as $user)
                                 <option value="{{$user['SOGGETTO']}}" {{isset($request['SOGGETTO_CODICE']) && $request['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
@@ -75,8 +75,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>EMAIL CLIENTE</td>
+                    <td><input type="text" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
                     <td>ATTIVIT&Agrave; APERTA IL</td>
                     <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$request['APERTAIL'] or ""}}"></td>
                 </tr>
@@ -104,7 +104,10 @@
                     <td colspan="3"></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><textarea name="elenco_attivita" cols="130">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
+                    <td colspan="4"><textarea name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
                 </tr>
                 <tr>
                     <td>AGGIUNGI ATTIVIT&Agrave;</td>
@@ -119,13 +122,22 @@
                     </td>
                 </tr>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td>DURATA INTERVENTO MINUTI</td>
+                    <td><input type="text" name="tempo" value="{{$request['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                </tr>
+                <tr>
                     <td colspan="4"><textarea name="attivita" id="attivita" cols="130">{{$request['DESCRIZIONE'] or ""}}</textarea></td>
                 </tr>
                 <tr>
-                    <td>DURATA INTERVENTO MINUTI</td>
-                    <td><input type="text" name="tempo" value="{{$request['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td><input type="button" value="AGGIUNGI ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
                 </tr>
                 <tr>
                     <td>CAMBIA STATO</td>
@@ -191,7 +203,22 @@
                                     $('#msg').modal('show');
                                     $("#btn_salva").hide();
                                 });
+                        $.post( "{{url('/ticket/mailaperturaticket')}}", $("form#form").serialize())
+                                .done(function( data ) {
+                                    $('#msg').modal('show');
+                                    $("#btn_salva").hide();
+                                });
                     });
+
+
+                    $("#cliente").change(function(){
+                        $.post( "{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
+                                .done(function( data ) {
+                                    data = JSON.parse(data);
+                                    $("#email").val(data[0]['EMAIL']);
+                                });
+                    });
+
 
                 });
             </script>

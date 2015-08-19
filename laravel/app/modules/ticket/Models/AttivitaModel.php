@@ -16,6 +16,13 @@ class AttivitaModel extends Model {
        return $request;
    }
 
+    public function getTecnico(){
+        $idtecnico = Input::get('incaricoa');
+        $sql = "SELECT * FROM GSU.dbo.TECNICI WHERE IDTECNICO=$idtecnico";
+        $request  = DB::select($sql);
+        return $request[0]['DESCRIZIONE'];
+    }
+
     public function getAllStati(){
         $sql = "SELECT * FROM GSU.dbo.STATI ORDER BY IDSTATO";
         $request  = DB::select($sql);
@@ -92,6 +99,7 @@ class AttivitaModel extends Model {
         $tecnico = Input::get("tecnico");
         $tgu = Input::get("tgu");
         $tickettelecom = Input::get("tickettelecom");
+        $idattivita = Input::get('idattivita');
 
         $sql =<<<EOF
 SELECT
@@ -115,7 +123,7 @@ SELECT
         A1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
         A1.LOCALITA		AS SOGGETTO_LOCALITA,
         A1.PROVINCIA		AS SOGGETTO_PROVINCIA,
-        A1.EMAIL,
+        A.EMAIL,
         A2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
         A2.LOCALITA		AS CLIENTE_LOCALITA,
         A2.PROVINCIA		AS CLIENTE_PROVINCIA,
@@ -144,10 +152,32 @@ EOF;
           $sql .= " AND A.TGU = $tgu";
       if(!empty($tickettelecom))
           $sql .= " AND A.TICKETTELECOM = $tickettelecom";
+      if(!empty($idattivita))
+          $sql .= " AND A.IDATTIVITA = $idattivita";
 
       $request = DB::select($sql);
       return $request;
 
+    }
+
+    public function getEmailCliente(){
+        $cliente = Input::get('cliente');
+        $sql = "SELECT EMAIL FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
+        $res = DB::select($sql);
+        return json_encode($res);
+    }
+
+    public function getStato($stato_int){
+        $sql = "SELECT STATO FROM STATI WHERE IDSTATO=$stato_int";
+        $res = DB::select($sql);
+        $stato_text = $res[0]['STATO'];
+        return $stato_text;
+    }
+
+    public function chiudiTicket(){
+        $idattivita = Input::get('idattivita');
+        $sql = "UPDATE ATTIVITA SET STATO = 4 WHERE IDATTIVITA=$idattivita";
+        DB::update($sql);
     }
 
 }

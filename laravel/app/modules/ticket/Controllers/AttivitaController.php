@@ -8,6 +8,7 @@ use Redirect;
 use Input;
 use Knp\Snappy\Pdf;
 use App\Utenti;
+use Illuminate\Support\Facades\Mail;
 
 class AttivitaController extends MainController {
 
@@ -39,6 +40,9 @@ class AttivitaController extends MainController {
        $model->salvaattivita();
    }
 
+    /**
+     *
+     */
     public function salvaticket(){
         $model = new AttivitaModel();
         $model->salvaticket();
@@ -52,6 +56,25 @@ class AttivitaController extends MainController {
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati]);
+    }
+
+    public function getEmailCliente(){
+        $model = new AttivitaModel();
+        return $model->getEmailCliente();
+    }
+
+    public function mailAperturaTicket(){
+        $row['idattivita'] = Input::get("idattivita");
+        $row['descrizione'] = "Apertura ticket Uniweb ".$row['idattivita'];
+        $row['motivo'] = Input::get("motivo");
+        $email = Input::get("email");
+        $row['email'] = explode(";", $email);
+        if(is_array($row['email']))
+            $row['email'] = $row['email'][0];
+        Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function($message) use ($row)
+        {
+            $message->to($row['email'])->bcc('staff@uniweb.it', 'Staff Uniweb')->subject('Apertura ticket '.$row['idattivita']);
+        });
     }
 
 }
