@@ -3,7 +3,7 @@
 @section('content')
     <br><br>
     <br><br>
-<?php print_r($_POST) ?>
+
     <table>
         <tr>
             <td>CLIENTE</td>
