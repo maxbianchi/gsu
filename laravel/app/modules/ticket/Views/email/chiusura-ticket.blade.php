@@ -13,7 +13,8 @@ Con la seguente motivazione:<br>
 
 <br>
 <h3>
-    E' stato chiuso in data odierna.
+    E' stato chiuso in data odierna.<br>
+    Alleghiamo rapportino da restituire firmato.
 </h3>
 
 <br><br>
