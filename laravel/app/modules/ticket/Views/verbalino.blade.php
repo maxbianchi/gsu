@@ -3,7 +3,7 @@
 @section('content')
     <br><br>
     <br><br>
-
+<?php print_r($_POST) ?>
     <table>
         <tr>
             <td>CLIENTE</td>
@@ -321,7 +321,6 @@
                                 Macchina in funzione <input type="checkbox" value="" id="macchina_funzione" name="macchina_funzione" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
                             </td>
                             <td style="width:50%">
-                                Macchina ferma <input type="checkbox" value="" id="macchina_ferma" name="macchina_ferma" class="edit-checkbox">SI <input type="checkbox" value="" id="data_intervento" class="edit-checkbox">NO
                             </td>
                         </tr>
                     </table>
