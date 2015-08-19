@@ -162,7 +162,7 @@
                             <tr>
                                 <td>TITOLO ATTIVIT&Agrave;</td>
                                 <td><input type="text" name="titolo" value="{{$res['TITOLO'] or ""}}"></td>
-                                <td>TEMPO TOTALE</td>
+                                <td>TEMPO TOTALE min.</td>
                                 <td>
                                     <?php
                                         $tempo_totale = 0;
@@ -171,7 +171,7 @@
                                                 $tempo_totale += $row['TEMPO'];
                                         endforeach;
                                     ?>
-                                        <input type="text" name="tempo" value="{{$tempo_totale." minuti"}}">
+                                        <input type="text" name="tempo_totale" value="{{$tempo_totale}}">
                                 </td>
                             </tr>
                             <tr>

@@ -252,7 +252,7 @@
                                 Tempo totale min.
                             </td>
                             <td  style="width:10%">
-                                <input type="text" value="{{Input::get('tempo')}}" id="tempo" name="tempo" class="edit" style="width:100%">
+                                <input type="text" value="{{Input::get('tempo_totale')}}" id="tempo" name="tempo" class="edit" style="width:100%">
                             </td>
                         </tr>
                         <tr>
