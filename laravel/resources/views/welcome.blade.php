@@ -90,7 +90,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico webfax</b></div>
-                        <div class="col-md-4 col-md-offset-2">Aprti un <b>attivit&agrave;' / Ticket</b></div>
+                        <div class="col-md-4 col-md-offset-2">Aprti un <b>attivit&agrave; / Ticket</b></div>
                     </div>
                 </div>
 
