@@ -99,4 +99,9 @@ class TicketController extends MainController {
         }
     }
 
+    public function salvaVerbalino(){
+        $model = new AttivitaModel();
+        $model->salvaVerbalino();
+    }
+
 }

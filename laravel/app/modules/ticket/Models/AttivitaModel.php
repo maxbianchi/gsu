@@ -196,5 +196,66 @@ EOF;
         return $res;
     }
 
+    public function salvaVerbalino(){
+        $idattivita = Input::get('idattivita');
+        $cliente = Input::get('cliente');
+        $ubicazione = Input::get('ubicazione');
+        $riferimento = Input::get('riferimento');
+        $telefono = Input::get('telefono');
+        $email = Input::get('email');
+        $matricola = Input::get('matricola');
+        $modello = Input::get('modello');
+        $tot_bn = Input::get('tot_bn');
+        $tot_colore = Input::get('tot_colore');
+        $motivo = Input::get('motivo');
+        $motivo = str_replace("'", "",$motivo);
+        $descrizione = Input::get('descrizione');
+        $descrizione = str_replace("'", "",$descrizione);
+        $codice1 = Input::get('codice1');
+        $descrizione1 = Input::get('descrizione1');
+        $descrizione1 = str_replace("'", "",$descrizione1);
+        $qta1 = Input::get('qta1');
+        $note1 = Input::get('note1');
+        $note1 = str_replace("'", "",$note1);
+        $codice2 = Input::get('codice2');
+        $descrizione2 = Input::get('descrizione2');
+        $descrizione2 = str_replace("'", "",$descrizione2);
+        $qta2 = Input::get('qta2');
+        $note2 = Input::get('note2');
+        $note2 = str_replace("'", "",$note2);
+        $codice3 = Input::get('codice3');
+        $descrizione3 = Input::get('descrizione3');
+        $descrizione3 = str_replace("'", "",$descrizione3);
+        $qta3 = Input::get('qta3');
+        $note3 = Input::get('note3');
+        $note3 = str_replace("'", "",$note3);
+        $data_intervento = Input::get('data_intervento');
+        $intervento_remoto = isset($_POST['intervento_remoto']) ? 1 : 0;
+        $tempo = Input::get('tempo');
+        $tempo_viaggio = Input::get('tempo_viaggio');
+        $ora_inizio = Input::get('ora_inizio');
+        $ora_fine = Input::get('ora_fine');
+        $tempo_viaggio2 = Input::get('tempo_viaggio2');
+        $ora_inizio2 = Input::get('ora_inizio2');
+        $ora_fine2 = Input::get('ora_fine2');
+        $note = Input::get('note');
+        $note = str_replace("'", "",$note);
+        $intervento_risolutivo = isset($_POST['intervento_risolutivo_si']) ? 1 : 0;
+        $garanzia = isset($_POST['garanzia_si'])  ? 1 : 0;
+        $macchina_funzione = isset($_POST['macchina_funzione_si']) ? 1 : 0;
+        $incaricoa = Input::get('incaricoa');
+
+        $sql = "SELECT * FROM VERBALINI WHERE IDATTIVITA='$idattivita'";
+        $res = DB::select($sql);
+        if(count($res) == 0) {
+            $sql = "INSERT INTO VERBALINI (IDATTIVITA,CLIENTE,UBICAZIONE,RIFERIMENTO,TELEFONO,EMAIL,MATRICOLA,MODELLO,LETTURA_BN,LETTURA_COLORE,MOTIVO,DESCRIZIONE,CODICE_1,DESCRIZIONE_1,QTA_1,NOTE_1,CODICE_2,DESCRIZIONE_2,QTA_2,NOTE_2,CODICE_3,DESCRIZIONE_3,QTA_3,NOTE_3,DATA_INTERVENTO,INTERVENTO_REMOTO,TEMPO_TOTALE,TEMPO_VIAGGIO_1,ORA_INIZIO_1,ORA_FINE_1,TEMPO_VIAGGIO_2,ORA_INIZIO_2,ORA_FINE_2,NOTE,INTERVENTO_RISOLUTIVO,IN_GARANZIA,MACCHINA_FUNZIONE,TECNICO) VALUES ('$idattivita','$cliente','$ubicazione','$riferimento','$telefono','$email','$matricola','$modello','$tot_bn','$tot_colore','$motivo','$descrizione','$codice1','$descrizione1','$qta1','$note1','$codice2','$descrizione2','$qta2','$note2','$codice3','$descrizione3','$qta3','$note3','$data_intervento','$intervento_remoto','$tempo','$tempo_viaggio','$ora_inizio','$ora_fine','$tempo_viaggio2','$ora_inizio2','$ora_fine2','$note','$intervento_risolutivo','$garanzia','$macchina_funzione','$incaricoa')";
+            DB::insert($sql);
+        } else {
+            $sql = "UPDATE VERBALINI SET CLIENTE='$cliente',UBICAZIONE='$ubicazione',RIFERIMENTO='$riferimento',TELEFONO='$telefono',EMAIL='$email',MATRICOLA='$matricola',MODELLO='$modello',LETTURA_BN='$tot_bn',LETTURA_COLORE='$tot_colore',MOTIVO='$motivo',DESCRIZIONE='$descrizione',CODICE_1='$codice1',DESCRIZIONE_1='$descrizione1',QTA_1='$qta1',NOTE_1='$note1',CODICE_2='$codice2',DESCRIZIONE_2='$descrizione2',QTA_2='$qta2',NOTE_2='$note2',CODICE_3='$codice3',DESCRIZIONE_3='$descrizione3',QTA_3='$qta3',NOTE_3='$note3',DATA_INTERVENTO='$data_intervento',INTERVENTO_REMOTO='$intervento_remoto',TEMPO_TOTALE='$tempo',TEMPO_VIAGGIO_1='$tempo_viaggio',ORA_INIZIO_1='$ora_inizio',ORA_FINE_1='$ora_fine',TEMPO_VIAGGIO_2='$tempo_viaggio2',ORA_INIZIO_2='$ora_inizio2',ORA_FINE_2='$ora_fine2',NOTE='$note',INTERVENTO_RISOLUTIVO='$intervento_risolutivo',IN_GARANZIA='$garanzia',MACCHINA_FUNZIONE='$macchina_funzione',TECNICO='$incaricoa' WHERE IDATTIVITA = '$idattivita'";
+            DB::update($sql);
+        }
+
+    }
+
 }
 

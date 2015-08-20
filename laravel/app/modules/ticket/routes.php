@@ -9,6 +9,7 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::get('/ticket/getanagrafica', 'TicketController@getanagrafica');
     Route::post('/ticket/cambiastato', 'TicketController@cambiastato');
     Route::post('/ticket/chiuditicket', 'TicketController@chiuditicket');
+    Route::post('/ticket/salvaverbalino', 'TicketController@salvaverbalino');
 
     //Attivita
     Route::get('/ticket/creaattivita', 'AttivitaController@creaattivita');
