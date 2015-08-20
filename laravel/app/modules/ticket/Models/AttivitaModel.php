@@ -90,11 +90,11 @@ class AttivitaModel extends Model {
         $sql = "SELECT * FROM GSU.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request  = DB::select($sql);
         if(count($request) == 0) {
-            $sql = "INSERT INTO GSU.dbo.ATTIVITA (idattivita, tickettelecom, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email' )";
+            $sql = "INSERT INTO GSU.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email' )";
             DB::insert($sql);
         }
         else {
-            $sql = "UPDATE GSU.dbo.ATTIVITA SET tickettelecom='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', apertail='$apertail', email='$email' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE GSU.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', apertail='$apertail', email='$email' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
 
@@ -140,7 +140,8 @@ SELECT
         S.DESCRIZIONE,
         T3.DESCRIZIONE INCARICOA_ATTIVITA,
         S.TEMPO,
-        CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL
+        CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
+        CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
         FROM GSU.dbo.ATTIVITA A LEFT JOIN SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
         LEFT JOIN STATI ON A.STATO = STATI.IDSTATO
         LEFT JOIN TECNICI T1 ON A.apertoda = T1.IDTECNICO
