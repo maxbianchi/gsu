@@ -77,4 +77,12 @@ class AttivitaController extends MainController {
         });
     }
 
+    public function modificaAttivita(){
+        $model = new AttivitaModel();
+        $result = $model->getAttivita();
+        $tecnici = $model->getAllTecnici();
+        $stati = $model->getAllStati();
+        return view("ticket::ticket.modifica-attivita", ['result' => $result,'tecnici' => $tecnici,'stati' => $stati]);
+    }
+
 }

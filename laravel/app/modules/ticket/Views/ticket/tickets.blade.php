@@ -182,7 +182,7 @@
                                 <td colspan="4"><textarea name="motivo" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
                             </tr>
                             <tr>
-                                <td>ELENCO ATTIVIT&Agrave;</td>
+                                <td>ELENCO ATTIVIT&Agrave;<a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a></td>
                                 <td colspan="3"></td>
                             </tr>
                             <tr>

@@ -59,8 +59,16 @@ class AttivitaModel extends Model {
         $tempo = Input::get("tempo");
         $incaricoa = Input::get("incaricoa_attivita");
         $inseritoil = date('Y-m-d H:i:s');
-        $sql = "INSERT INTO GSU.dbo.SINGOLE_ATTIVITA (idattivita, descrizione, tempo, incaricoa, inseritoil) VALUES ('$idattivita', '$descrizione', '$tempo', '$incaricoa', '$inseritoil' )";
-        DB::insert($sql);
+        $id = Input::get("id");
+        if(empty($id)) {
+            $sql = "INSERT INTO GSU.dbo.SINGOLE_ATTIVITA (idattivita, descrizione, tempo, incaricoa, inseritoil) VALUES ('$idattivita', '$descrizione', '$tempo', '$incaricoa', '$inseritoil' )";
+            DB::insert($sql);
+        }
+        else{
+            $sql = "UPDATE GSU.dbo.SINGOLE_ATTIVITA SET descrizione='$descrizione', tempo='$tempo', incaricoa='$incaricoa' WHERE IDATTIVITA=$idattivita AND ID=$id";
+            DB::update($sql);
+        }
+
     }
 
     public function salvaticket(){
@@ -178,6 +186,13 @@ EOF;
         $idattivita = Input::get('idattivita');
         $sql = "UPDATE ATTIVITA SET STATO = 4 WHERE IDATTIVITA=$idattivita";
         DB::update($sql);
+    }
+
+    public function getAttivita(){
+        $idattivita =  Input::get('idattivita');
+        $sql = "SELECT * FROM SINGOLE_ATTIVITA WHERE IDATTIVITA='$idattivita' ORDER BY ID";
+        $res = DB::select($sql);
+        return $res;
     }
 
 }
