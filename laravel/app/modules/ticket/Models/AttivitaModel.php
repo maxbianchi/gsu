@@ -118,6 +118,8 @@ SELECT
         TGU,
         CONVERT(VARCHAR(10),A.APERTAIL,105 ) APERTAIL,
         CONVERT(VARCHAR(10),A.APERTAIL,108 ) APERTAIL_ORA,
+        CONVERT(VARCHAR(10),A.CHIUSAIL,105 ) CHIUSAIL,
+        CONVERT(VARCHAR(10),A.CHIUSAIL,108 ) CHIUSAIL_ORA,
         A.APERTODA IDAPERTODA,
         A.INCARICOA IDINCARICOA,
         TITOLO,
@@ -185,7 +187,8 @@ EOF;
 
     public function chiudiTicket(){
         $idattivita = Input::get('idattivita');
-        $sql = "UPDATE ATTIVITA SET STATO = 4 WHERE IDATTIVITA=$idattivita";
+        $chiusail = date('Y-m-d H:i:s');
+        $sql = "UPDATE ATTIVITA SET STATO = 4, CHIUSAIL='$chiusail' WHERE IDATTIVITA=$idattivita";
         DB::update($sql);
     }
 

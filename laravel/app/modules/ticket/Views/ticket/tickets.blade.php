@@ -156,8 +156,8 @@
                             <tr>
                                 <td>TGU / IMEI</td>
                                 <td><input type="text" name="tgu" value="{{$res['TGU'] or ""}}"></td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td>ATTIVIT&Agrave; CHIUSA IL</td>
+                                <td><input type="text" name="chiusail" readonly="readonly" disabled="disabled"  value="{{$res['CHIUSAIL']." - ".$res['CHIUSAIL_ORA']}}"></td>
                             </tr>
                             <tr>
                                 <td>TITOLO ATTIVIT&Agrave;</td>

@@ -31,7 +31,7 @@
                 <tr class="destinatarioabituale">
                     <td>UBICAZIONE IMPIANTO</td>
                     <td>
-                        <select name="ubicazione_impianto">
+                        <select name="ubicazione_impianto" id="ubicazione_impianto">
                             <option value="">-----</option>
                             @foreach($users as $user)
                                 <option value="{{$user['SOGGETTO']}}" {{isset($request['DESTINATARIOABITUALE_CODICE']) && $request['DESTINATARIOABITUALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td>TGU / IMEI</td>
-                    <td><input type="text" name="tgu" value="{{$request['TGU'] or ""}}"></td>
+                    <td><input type="text" name="tgu" id="tgu" value="{{$request['TGU'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
@@ -219,6 +219,9 @@
                                 });
                     });
 
+                    $("#cliente").val('{{Input::get('cliente')}}').trigger("change");
+                    $("#ubicazione_impianto").val('{{Input::get('ubicazione')}}').trigger("change");
+                    $("#tgu").val('{{Input::get('tgu')}}').trigger("change");
 
                 });
             </script>

@@ -19,8 +19,6 @@
     @endif
 
     <br><br>
-    <fieldset class="dettaglio_dati">
-        <legend align="right"></legend>
         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
             <form action="#" method="post" id="form">
                 <tr>
@@ -220,7 +218,7 @@
                     <td><input type="text" name="pass_radius" value="{{$request['PASS_RADIUS'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td colspan="4" style="padding-top:20px;">
+                    <td colspan="3" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDADSL'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
@@ -232,11 +230,22 @@
                         @else
                             <input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
                         @endif
+
+                    </td>
+                    <td style="padding-top:20px;">
+                        <input tytpe="button" value="APRI ATTIVITA'" class="btn btn-primary btn-xs btn-attivita">
                     </td>
                 </tr>
             </form>
         </table>
-        
+
+    <form method="get" action="{{url('/ticket/creaattivita')}}" id="form_attivita">
+        <input type="hidden" name="cliente" value="{{$request['SOGGETTO_CODICE'] or ""}}">
+        <input type="hidden" name="ubicazione" value="{{$request['DESTINATARIOABITUALE_CODICE'] or ""}}">
+        <input type="hidden" name="tgu" value="{{$request['TGU'] or ""}}">
+        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+    </form>
+
     <hr>
 
     <div id="msg" class="modal fade" style="z-index:99999;">
@@ -314,6 +323,11 @@
                                     $("#btn_salva").hide();
                                 });
                     });
+
+
+            $(".btn-attivita").click(function(){
+                $("form#form_attivita").submit();
+            });
 
 
             $('body').on('change', '#tipo_linea', function() {
