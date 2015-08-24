@@ -10,7 +10,7 @@ use DB;
 class UnigatePwdModel extends Model {
 
     public function getAllRequest(){
-        $id = Input::get('apparato_id');
+        $apparato_id = Input::get('apparato_id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
@@ -55,7 +55,7 @@ class UnigatePwdModel extends Model {
             WHERE UNIGATEPWD.ELIMINATO = 0
 EOF;
 
-        $sql .= " AND UNIGATEPWD.UNIGATE_ID = '$id'";
+        $sql .= " AND UNIGATEPWD.UNIGATE_ID = '$apparato_id'";
 
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
@@ -72,14 +72,14 @@ EOF;
 
     public function getFilteredRequest(){
 
-        $id = Input::get('apparato_id');
+        $apparato_id = Input::get('apparato_id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-
+        $id = Input::get('id');
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
@@ -131,8 +131,10 @@ EOF;
             WHERE 1=1
 EOF;
 
-        $sql .= " AND UNIGATEPWD.UNIGATE_ID = '$id'";
+        $sql .= " AND UNIGATEPWD.UNIGATE_ID = '$apparato_id'";
 
+        if(!empty($id))
+            $sql .= " AND UNIGATEPWD.IDUNIGATEPWD = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -204,7 +206,7 @@ EOF;
                 DB::insert($sql);
             }
             else
-                DB::update("Update UNIGATEPWD  Set UNIGATE_ID='$apparato_id', ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDUNIGATEPWD=$id");
+                DB::update("Update UNIGATEPWD  Set ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDUNIGATEPWD=$id");
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
