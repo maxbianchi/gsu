@@ -51,10 +51,10 @@
             <th class="soggetto">CLIENTE</th>
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
-            <th>TIPO PASSWORD</th>
             <th>ACCESSO</th>
             <th>USERNAME</th>
             <th>PWD</th>
+            <th>TIPO PASSWORD</th>
         </tr>
         </thead>
 
@@ -62,7 +62,7 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="stato_left btn-small edit" href="{{url('/gsu/hardware-pwd/edit')."?apparato_id=".$req['SERVER_ID']."&id=".$req['SERVER_ID']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/hardware-pwd/edit')."?apparato_id=".$req['SERVER_ID']."&id=".$req['IDSERVERPWD']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
                     <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['IDSERVERPWD'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>

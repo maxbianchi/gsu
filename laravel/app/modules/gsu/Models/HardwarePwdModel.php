@@ -9,7 +9,7 @@ use DB;
 class HardwarePwdModel extends Model {
 
     public function getAllRequest(){
-        $id = Input::get('apparato_id');
+        $apparato_id = Input::get('apparato_id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
@@ -57,7 +57,7 @@ class HardwarePwdModel extends Model {
             WHERE SERVERPWD.ELIMINATO = 0
 EOF;
 
-        $sql .= " AND SERVERPWD.SERVER_ID = '$id'";
+        $sql .= " AND SERVERPWD.SERVER_ID = '$apparato_id'";
 
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
@@ -74,14 +74,14 @@ EOF;
 
     public function getFilteredRequest(){
 
-        $id = Input::get('apparato_id');
+        $apparato_id = Input::get('apparato_id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-
+        $id = Input::get('id');
         $marca = Input::get('marca');
         $modello = Input::get('modello');
         $pn = Input::get('pn');
@@ -152,8 +152,10 @@ EOF;
             WHERE 1=1
 EOF;
 
-        $sql .= " AND SERVERPWD.SERVER_ID = '$id'";
+        $sql .= " AND SERVERPWD.SERVER_ID = '$apparato_id'";
 
+        if(!empty($id))
+            $sql .= " AND SERVERPWD.IDSERVERPWD = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -219,7 +221,7 @@ EOF;
                 DB::insert($sql);
             }
             else
-                DB::update("Update SERVERPWD  Set SN='$sn', SERVER_ID='$apparato_id',ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDSERVERPWD=$id");
+                DB::update("Update SERVERPWD  Set SN='$sn', ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDSERVERPWD=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }
