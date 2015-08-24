@@ -13,7 +13,8 @@ class ApparatiNetworkingPwdModel extends Model {
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
         $prodotto = Input::get('prodotto');
-        $id = Input::get('apparato_id');
+        $id = Input::get('id');
+        $apparato_id = Input::get('apparato_id');
 
         $sql = <<<EOF
         SELECT
@@ -55,7 +56,7 @@ class ApparatiNetworkingPwdModel extends Model {
             WHERE APPARATIPWD.ELIMINATO = 0
 EOF;
 
-        $sql .= " AND APPARATIPWD.APPARATO_ID = $id";
+        $sql .= " AND APPARATIPWD.APPARATO_ID = $apparato_id";
 
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
@@ -84,7 +85,8 @@ EOF;
         $modello = Input::get('modello');
         $seriale = Input::get('seriale');
         $eliminati = Input::get('eliminati');
-        $id = Input::get('apparato_id');
+        $id = Input::get('id');
+        $apparato_id = Input::get('apparato_id');
 
         $sql = <<<EOF
             SELECT
@@ -136,10 +138,10 @@ EOF;
             WHERE 1=1
 EOF;
 
-        $sql .= " AND APPARATIPWD.APPARATO_ID = $id";
+        $sql .= " AND APPARATIPWD.APPARATO_ID = $apparato_id";
 
         if(!empty($id))
-            $sql .= " AND APPARATI.ID = '$id'";
+            $sql .= " AND APPARATIPWD.IDAPPARATIPWD = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -209,7 +211,7 @@ EOF;
                 DB::insert("insert into APPARATIPWD (APPARATO_ID,ACCESSO,USERNAME,PWD,PWDPRIVILEGIATA,ELIMINATO) values ('$apparato_id','$accesso','$username','$pwd','$pwdprivilegiata',$eliminato)");
             }
             else
-                DB::update("Update APPARATIPWD Set APPARATO_ID='$apparato_id',ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata', ELIMINATO=$eliminato WHERE IDAPPARATIPWD=$id");
+                DB::update("Update APPARATIPWD Set ACCESSO='$accesso',USERNAME='$username',PWD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata', ELIMINATO=$eliminato WHERE IDAPPARATIPWD=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }

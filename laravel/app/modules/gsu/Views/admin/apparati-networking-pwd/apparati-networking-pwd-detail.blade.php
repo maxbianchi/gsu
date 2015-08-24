@@ -48,7 +48,7 @@
                     <td colspan="2" style="padding-top:20px;">
                         <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDAPPARATIPWD'] or ""}}">
-                        <input type="hidden" id="apparato_id" name="apparato_id" value="{{Input::get('id')}}">
+                        <input type="hidden" id="apparato_id" name="apparato_id" value="{{Input::get('apparato_id')}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">
                         @if($btn == 'save' && Input::get("eliminato") != 1)
