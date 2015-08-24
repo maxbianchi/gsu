@@ -62,7 +62,7 @@
         @foreach($request as $req)
             <tr class="{{$class[$req['MANUTENZIONE']]['GSU']["ELIMINATO"]}}">
                 <td>
-                    <a class="stato_left btn-small edit" href="{{url('/gsu/centralini-pwd/edit')."?apparato_id=".$req['GRUPPOCENTRALINO']."&id=".$req['GRUPPOCENTRALINO']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
+                    <a class="stato_left btn-small edit" href="{{url('/gsu/centralini-pwd/edit')."?apparato_id=".$req['GRUPPOCENTRALINO']."&id=".$req['IDPASSWORD']."&eliminati=".Input::get('eliminati')}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
                     <a class="stato_right btn-small edit delete" href="#" data-toggle="modal" title="DELETE" data-manutenzione="{{$req['MANUTENZIONE'] or ""}}" data-delete-id="{{$req['IDPASSWORD'] or ""}}"><i class="glyphicon glyphicon-trash"></i> </a>
                 </td>
                 <td class="soggetto">{{$req['SOGGETTO']}}</td>

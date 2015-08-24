@@ -73,7 +73,8 @@ EOF;
 
     public function getFilteredRequest(){
 
-        $id = Input::get('apparato_id');
+        $apparati_id = Input::get('apparato_id');
+        $id = Input::get('id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
@@ -146,8 +147,10 @@ EOF;
             WHERE 1=1
 EOF;
 
-        $sql .= " AND CENTRALINI_PASSWORD.GRUPPOCENTRALINO = $id";
+        $sql .= " AND CENTRALINI_PASSWORD.GRUPPOCENTRALINO = $apparati_id";
 
+        if(!empty($id))
+            $sql .= " AND CENTRALINI_PASSWORD.IDPASSWORD = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -202,7 +205,7 @@ EOF;
                 DB::insert("insert into CENTRALINI_PASSWORD (GRUPPOCENTRALINO,SOGGETTO,CLIENTE,DESTINATARIOABITUALE,DATA_R,TIPOPASSWORD,PRODUTTORE,ACCESSO,USERNAME,PWD,PWD_PRIVILEGIATA,NOTE,ELIMINATO) values ('$apparato_id','$soggetto','$cliente','$destinatarioabituale','$data_r','$tipopassword','$produttore','$accesso','$username','$pwd','$pwdprivilegiata','$note',$eliminato)");
             }
             else
-                DB::update("Update CENTRALINI_PASSWORD Set GRUPPOCENTRALINO='$apparato_id', SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', TIPOPASSWORD = '$tipopassword', PRODUTTORE = '$produttore', ACCESSO = '$accesso', USERNAME = '$username', PWD = '$pwd', PWD_PRIVILEGIATA = '$pwdprivilegiata',NOTE='$note', ELIMINATO = $eliminato WHERE IDPASSWORD=$id");
+                DB::update("Update CENTRALINI_PASSWORD Set SOGGETTO='$soggetto',CLIENTE='$cliente',DESTINATARIOABITUALE='$destinatarioabituale', DATA_R = '$data_r', TIPOPASSWORD = '$tipopassword', PRODUTTORE = '$produttore', ACCESSO = '$accesso', USERNAME = '$username', PWD = '$pwd', PWD_PRIVILEGIATA = '$pwdprivilegiata',NOTE='$note', ELIMINATO = $eliminato WHERE IDPASSWORD=$id");
             if($stato_precedente == 1 && $eliminato == 0 && !empty($manutenzione)){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
             }
