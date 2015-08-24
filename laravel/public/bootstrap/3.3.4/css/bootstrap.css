@@ -203,9 +203,14 @@ th {
   a:visited {
     text-decoration: underline;
   }
-  a[href]:after {
+  /*a[href]:after {
     content: " (" attr(href) ")";
-  }
+  }*/
+    a[href]:after {
+
+        content: none;
+
+    }
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
