@@ -300,12 +300,6 @@
 
             });
 
-            $(".stato").change(function(){
-                $.post( "{{url('/ticket/cambiastato')}}", $(this).closest('form').serialize())
-                        .done(function( data ) {
-                        });
-            });
-
             $( "#accordion" ).accordion({
                 active: false,
                 collapsible: true

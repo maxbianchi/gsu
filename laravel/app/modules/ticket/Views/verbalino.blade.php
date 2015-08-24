@@ -4,7 +4,6 @@
     <br><br>
     <br><br>
 
-    <?php print_r($_POST) ?>
     <form action="#" method="POST" name="form" id="form">
         <table>
             <tr>

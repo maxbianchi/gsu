@@ -65,28 +65,7 @@ class TicketController extends MainController {
         });
     }
 
-    public function cambiaStato(){
-        $stato = Input::get("stato");
-        $model = new AttivitaModel();
-        $row['stato'] = $model->getStato($stato);
-        $row['idattivita'] = Input::get("idattivita");
-        $row['descrizione'] = "Apertura ticket Uniweb " . $row['idattivita'];
-        $row['motivo'] = Input::get("motivo");
-        $email = Input::get("email");
-        $row['email'] = explode(";", $email);
 
-        if($stato != 4) {
-
-            if (is_array($row['email']))
-                $row['email'] = $row['email'][0];
-            Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
-                $message->to($row['email'])->bcc('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']);
-            });
-        }
-        else{
-            //Ticket Chiuso nessuna email, devo passare in generazione verbalino
-        }
-    }
 
     public function chiudiTicket(){
         $stato = Input::get("stato");

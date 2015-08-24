@@ -185,6 +185,14 @@ EOF;
         return $stato_text;
     }
 
+    public function getCurrentStato(){
+        $idattivita = Input::get("idattivita");
+        $sql = "SELECT STATO FROM ATTIVITA WHERE IDATTIVITA=$idattivita";
+        $res = DB::select($sql);
+        $stato_text = $res[0]['STATO'];
+        return $stato_text;
+    }
+
     public function chiudiTicket(){
         $idattivita = Input::get('idattivita');
         $chiusail = date('Y-m-d H:i:s');

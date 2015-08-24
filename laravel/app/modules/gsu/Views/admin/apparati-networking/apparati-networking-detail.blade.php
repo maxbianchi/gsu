@@ -77,7 +77,13 @@
                 </tr>
                 <tr>
                     <td>PRODOTTO</td>
-                    <td><input type="text" name="prodotto" value="{{$request['PRODOTTO'] or ""}}"></td>
+                    <td>
+                        <select name="prodotto">
+                            <option value="Router" {{isset($request['PRODOTTO']) && strtolower($request['PRODOTTO']) == 'router' ? 'selected="selected"' : ""  }}>Router</option>
+                            <option value="Firewall" {{isset($request['PRODOTTO']) && strtolower($request['PRODOTTO']) == 'firewall' ? 'selected="selected"' : ""  }}>Firewall</option>
+                            <option value="Networking" {{isset($request['PRODOTTO']) && strtolower($request['PRODOTTO']) == 'networking' ? 'selected="selected"' : ""  }}>Networking</option>
+                        </select>
+                    </td>
                     <td></td>
                     <td></td>
                 </tr>
