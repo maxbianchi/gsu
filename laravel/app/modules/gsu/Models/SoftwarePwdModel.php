@@ -9,7 +9,7 @@ use DB;
 class SoftwarePwdModel extends Model {
 
     public function getAllRequest(){
-        $id = Input::get('apparato_id');
+        $apparato_id = Input::get('apparato_id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
@@ -54,7 +54,7 @@ class SoftwarePwdModel extends Model {
             WHERE SERVERPWD.ELIMINATO = 0
 EOF;
 
-        $sql .= " AND SOFTWARE_PASSWORD.IDSOFTWARE = '$id'";
+        $sql .= " AND SOFTWARE_PASSWORD.IDSOFTWARE = '$apparato_id'";
 
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
@@ -71,14 +71,14 @@ EOF;
 
     public function getFilteredRequest(){
 
-        $id = Input::get('apparato_id');
+        $apparato_id = Input::get('apparato_id');
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
         $canone = Input::get('canone');
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
-
+        $id = Input::get('id');
         $marca = Input::get('marca');
         $modello = Input::get('modello');
         $pn = Input::get('pn');
@@ -138,8 +138,10 @@ EOF;
             WHERE 1=1
 EOF;
 
-        $sql .= " AND SOFTWARE_PASSWORD.IDSOFTWARE = '$id'";
+        $sql .= " AND SOFTWARE_PASSWORD.IDSOFTWARE = '$apparato_id'";
 
+        if(!empty($id))
+            $sql .= " AND SOFTWARE_PASSWORD.IDPASSWORD = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -210,7 +212,7 @@ EOF;
                 DB::insert($sql);
             }
             else
-                DB::update("Update SOFTWARE_PASSWORD  Set IDSOFTWARE='$apparato_id', CODICE_R='$manutenzione',USERNAME='$username',PASSWORD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDPASSWORD=$id");
+                DB::update("Update SOFTWARE_PASSWORD  Set CODICE_R='$manutenzione',USERNAME='$username',PASSWORD='$pwd',PWDPRIVILEGIATA='$pwdprivilegiata',ELIMINATO = $eliminato WHERE IDPASSWORD=$id");
         }
         catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
