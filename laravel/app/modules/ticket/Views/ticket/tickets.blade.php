@@ -196,7 +196,8 @@
                                 <td></td>
                                 <td>TECNICO</td>
                                 <td>
-                                    <select name="incaricoa_attivita">
+                                    <select name="incaricoa_attivita" class="incaricoa_attivita">
+                                        <option value="">-----</option>
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDTECNICO']) && $res['IDTECNICO'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
@@ -207,7 +208,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>DURATA INTERVENTO MINUTI</td>
-                                <td><input type="text" name="tempo" value="{{$res['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                                <td><input type="text" name="tempo" class="tempo" value="{{$res['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="4"><textarea name="attivita" id="attivita" cols="130"></textarea></td>
@@ -279,6 +280,16 @@
 
 
             $(".salva-attivita").click(function(){
+                //Verifico che siano settati tempo e tecnico
+                var msg = "";
+                if($(".incaricoa_attivita").val() == "")
+                    msg = msg + " 'Tecnico'";
+                if($(".tempo").val() == "")
+                    msg = msg + " 'Tempo'";
+                if(msg != ""){
+                    alert("Compilare i campi" + msg);
+                    return false;
+                }
                 $.post( "{{url('/ticket/salvaattivita')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
                             location.reload();

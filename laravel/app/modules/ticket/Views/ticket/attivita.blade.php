@@ -18,7 +18,7 @@
             <table class="tbl_clienti" style="width:100%">
                 <tbody>
                 <tr class="soggetto">
-                    <td>CLIENTE</td>
+                    <td>CLIENTE *</td>
                     <td>
                         <select name="cliente" id="cliente">
                             <option value="">-----</option>
@@ -57,17 +57,19 @@
                     <td><input type="text" name="tickettelecom" value="{{$request['TICKETTELECOM'] or ""}}"></td>
                 </tr>
                 <tr>
-                    <td>ATTIVIT&Agrave; APERTA DA</td>
+                    <td>ATTIVIT&Agrave; APERTA DA *</td>
                     <td>
-                        <select name="apertoda">
+                        <select name="apertoda" id="apertoda" required>
+                            <option value="">-----</option>
                             @foreach($tecnici as $tecnico)
                                 <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['APERTODA']) && $request['APERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select>
                     </td>
-                    <td>ATTIVIT&Agrave; IN CARICO A</td>
+                    <td>ATTIVIT&Agrave; IN CARICO A *</td>
                     <td>
-                        <select name="incaricoa">
+                        <select name="incaricoa" id="incaricoa" required>
+                            <option value="">-----</option>
                             @foreach($tecnici as $tecnico)
                                 <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['INCARICOA']) && $request['INCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                             @endforeach
@@ -114,7 +116,8 @@
                     <td></td>
                     <td>TECNICO</td>
                     <td>
-                        <select name="incaricoa_attivita">
+                        <select name="incaricoa_attivita" class="incaricoa_attivita">
+                            <option value="">-----</option>
                             @foreach($tecnici as $tecnico)
                                 <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['IDTECNICO']) && $request['IDTECNICO'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                             @endforeach
@@ -125,7 +128,7 @@
                     <td></td>
                     <td></td>
                     <td>DURATA INTERVENTO MINUTI</td>
-                    <td><input type="text" name="tempo" value="{{$request['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                    <td><input type="text" name="tempo" class="tempo" value="{{$request['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
                 </tr>
                 <tr>
                     <td colspan="4"><textarea name="attivita" id="attivita" cols="130">{{$request['DESCRIZIONE'] or ""}}</textarea></td>
@@ -191,6 +194,17 @@
 
 
                     $(".salva-attivita").click(function(){
+                        //Verifico che siano settati tempo e tecnico
+                        var msg = "";
+                        if($(".incaricoa_attivita").val() == "")
+                            msg = msg + " 'Tecnico'";
+                        if($(".tempo").val() == "")
+                            msg = msg + " 'Tempo'";
+                        if(msg != ""){
+                            alert("Compilare i campi" + msg);
+                            return false;
+                        }
+
                         $.post( "{{url('/ticket/salvaattivita')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     location.reload();
@@ -198,6 +212,19 @@
                     });
 
                     $(".salva-ticket").click(function(){
+                        //Verifico che siano settati in caricoa e apertada e cliente
+                        var msg = "";
+                        if($("#cliente").val() == "")
+                            msg = msg + " 'Cliente'";
+                        if($("#apertada").val() == "")
+                            msg = msg + " 'Attività Aperta da'";
+                        if($("#incaricoa").val() == "")
+                            msg = msg + " 'Attività In Carico a'";
+                        if(msg != ""){
+                            alert("Compilare i campi" + msg);
+                            return false;
+                        }
+
                         $.post( "{{url('/ticket/salvaticket')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
