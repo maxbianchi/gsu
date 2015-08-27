@@ -114,7 +114,7 @@ class AttivitaController extends MainController {
         {
             $message->to($row['email'])->subject('Apertura ticket '.$row['idattivita']);
         });
-        
+
         $model = new AttivitaModel();
         $result = $model->getAllAttivitaByID($row['idattivita']);
 
