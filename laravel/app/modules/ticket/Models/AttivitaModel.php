@@ -181,7 +181,8 @@ EOF;
     public function getStato($stato_int){
         $sql = "SELECT STATO FROM STATI WHERE IDSTATO=$stato_int";
         $res = DB::select($sql);
-        $stato_text = $res[0]['STATO'];
+        if(is_array($res) && count($res) > 0)
+            $stato_text = $res[0]['STATO'];
         return $stato_text;
     }
 
@@ -203,6 +204,12 @@ EOF;
     public function getAttivita(){
         $idattivita =  Input::get('idattivita');
         $sql = "SELECT * FROM SINGOLE_ATTIVITA WHERE IDATTIVITA='$idattivita' ORDER BY ID";
+        $res = DB::select($sql);
+        return $res;
+    }
+
+    public function getAllAttivitaByID($idattivita){
+        $sql = "SELECT IDATTIVITA, S.DESCRIZIONE, TEMPO, T.DESCRIZIONE AS INCARICOA_ATTIVITA, CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL, CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA  FROM SINGOLE_ATTIVITA S LEFT JOIN TECNICI T ON S.INCARICOA=T.IDTECNICO WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         return $res;
     }

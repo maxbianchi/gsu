@@ -51,7 +51,8 @@ class AttivitaController extends MainController {
 
     public function cambiaStato(){
         $stato = Input::get("stato");
-        //Leggo lo stato corrente, se diverso invio mail di cambio stato tranne che per ticket chiuso
+        //Leggo lo stato corrente, se diverso invio mail di cambio stato tranne che per ticket chiuso o aperto
+        if($stato != 4 && $stato != 1) {
         $model = new AttivitaModel();
         $stato_corrente = $model->getCurrentStato();
         if($stato_corrente == $stato)
@@ -63,12 +64,21 @@ class AttivitaController extends MainController {
         $email = Input::get("email");
         $row['email'] = explode(";", $email);
 
-        if($stato != 4) {
+
 
             if (is_array($row['email']))
                 $row['email'] = $row['email'][0];
             Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
-                $message->to($row['email'])->bcc('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']);
+                $message->to($row['email'])->subject('Cambio stato ticket ' . $row['idattivita']);
+            });
+
+            $result = $model->getAllAttivitaByID($row['idattivita']);
+            $tecnici = $model->getAllTecnici();
+            $stati = $model->getAllStati();
+
+
+            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'tecnici' => $tecnici,'stati' => $stati], function ($message) use ($row) {
+                $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']);
             });
         }
         else{
@@ -102,8 +112,17 @@ class AttivitaController extends MainController {
             $row['email'] = $row['email'][0];
         Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function($message) use ($row)
         {
-            $message->to($row['email'])->bcc('staff@uniweb.it', 'Staff Uniweb')->subject('Apertura ticket '.$row['idattivita']);
+            $message->to($row['email'])->subject('Apertura ticket '.$row['idattivita']);
         });
+        
+        $model = new AttivitaModel();
+        $result = $model->getAllAttivitaByID($row['idattivita']);
+
+
+        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'APERTO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
+            $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']);
+        });
+
     }
 
     public function modificaAttivita(){
