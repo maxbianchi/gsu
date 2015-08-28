@@ -102,7 +102,7 @@
                     <td colspan="4"><textarea name="motivo" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
                 </tr>
                 <tr>
-                    <td>ATTIVIT&Agrave;</td>
+                    <td>ELENCO ATTIVIT&Agrave;</td>
                     <td colspan="3"></td>
                 </tr>
                 <tr>
