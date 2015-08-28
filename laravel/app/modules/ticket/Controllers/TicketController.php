@@ -69,7 +69,7 @@ class TicketController extends MainController {
         Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
             $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
         });
-        
+
     }
 
 

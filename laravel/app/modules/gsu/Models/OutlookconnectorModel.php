@@ -36,12 +36,12 @@ class OutlookconnectorModel extends Model {
 			anagrafica3.PROVINCIA		AS DESTINATARIOABITUALE_PROVINCIA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            ACTIVESYNC.ID,
-            ACTIVESYNC.CODICE_R,
-            ACTIVESYNC.EMAIL,
-            ACTIVESYNC.ELIMINATO
-			FROM		gsu.dbo.ACTIVESYNC
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON ACTIVESYNC.codice_r				= richieste.MANUTENZIONE
+            OUTLOOKCONNECTOR.ID,
+            OUTLOOKCONNECTOR.CODICE_R,
+            OUTLOOKCONNECTOR.EMAIL,
+            OUTLOOKCONNECTOR.ELIMINATO
+			FROM		gsu.dbo.OUTLOOKCONNECTOR
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON OUTLOOKCONNECTOR.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -109,12 +109,12 @@ EOF;
 			ISNULL(anagrafica3.PARTITAIVA,anagrafica3.CODICEFISCALE) AS DESTINATARIOABITUALE_PIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-            ACTIVESYNC.ID,
-            ACTIVESYNC.CODICE_R,
-            ACTIVESYNC.EMAIL,
-            ACTIVESYNC.ELIMINATO
-			FROM		gsu.dbo.ACTIVESYNC
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON ACTIVESYNC.codice_r				= richieste.MANUTENZIONE
+            OUTLOOKCONNECTOR.ID,
+            OUTLOOKCONNECTOR.CODICE_R,
+            OUTLOOKCONNECTOR.EMAIL,
+            OUTLOOKCONNECTOR.ELIMINATO
+			FROM		gsu.dbo.OUTLOOKCONNECTOR
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON OUTLOOKCONNECTOR.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -123,7 +123,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND ACTIVESYNC.ID = '$id'";
+            $sql .= " AND OUTLOOKCONNECTOR.ID = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -143,12 +143,12 @@ EOF;
         }
 
         if(!empty($email))
-            $sql .= " AND ACTIVESYNC.EMAIL like '%$email%'";
+            $sql .= " AND OUTLOOKCONNECTOR.EMAIL like '%$email%'";
 
         if(!empty($eliminati))
-            $sql .= " AND ACTIVESYNC.ELIMINATO = 1";
+            $sql .= " AND OUTLOOKCONNECTOR.ELIMINATO = 1";
         else
-            $sql .= " AND ACTIVESYNC.ELIMINATO = 0";
+            $sql .= " AND OUTLOOKCONNECTOR.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -163,7 +163,7 @@ EOF;
         $manutenzione = Input::get('manutenzione');
 
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.ACTIVESYNC SET ELIMINATO=1 WHERE ID='$id'";
+            $sql = "UPDATE gsu.dbo.OUTLOOKCONNECTOR SET ELIMINATO=1 WHERE ID='$id'";
             DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -194,7 +194,7 @@ EOF;
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.ACTIVESYNC (Codice_R, EMAIL,ELIMINATO) VALUES ('$manutenzione','$email',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.OUTLOOKCONNECTOR (Codice_R, EMAIL,ELIMINATO) VALUES ('$manutenzione','$email',$eliminato)");
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
                 $richieste_evase = DB::select($sql);
                 if(count($richieste_evase) > 0) {
@@ -207,7 +207,7 @@ EOF;
                 }
             }
             else
-                DB::update("UPDATE gsu.dbo.ACTIVESYNC SET Codice_R='$manutenzione',EMAIL='$email',ELIMINATO=$eliminato  WHERE ID=$id");
+                DB::update("UPDATE gsu.dbo.OUTLOOKCONNECTOR SET Codice_R='$manutenzione',EMAIL='$email',ELIMINATO=$eliminato  WHERE ID=$id");
                 if($stato_precedente == 1 && $eliminato == 0){
                     DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
                 }
