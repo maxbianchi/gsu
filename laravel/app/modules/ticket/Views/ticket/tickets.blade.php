@@ -84,7 +84,7 @@
                             <tr class="soggetto">
                                 <td>CLIENTE</td>
                                 <td>
-                                    <select name="cliente">
+                                    <select name="cliente" class="cliente_val">
                                         <option value="">-----</option>
                                         @foreach($users as $user)
                                             <option value="{{$user['SOGGETTO']}}" {{isset($res['SOGGETTO_CODICE']) && $res['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
@@ -132,7 +132,7 @@
                             <tr>
                                 <td>ATTIVIT&Agrave; APERTA DA</td>
                                 <td>
-                                    <select name="apertoda">
+                                    <select name="apertoda" class="apertoda">
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDAPERTODA']) && $res['IDAPERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
@@ -140,7 +140,7 @@
                                 </td>
                                 <td>ATTIVIT&Agrave; IN CARICO A</td>
                                 <td>
-                                    <select name="incaricoa">
+                                    <select name="incaricoa" class="incaricoa">
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDINCARICOA']) && $res['IDINCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
@@ -149,7 +149,7 @@
                             </tr>
                             <tr>
                                 <td>EMAIL CLIENTE</td>
-                                <td><input type="text" name="email" value="{{$res['EMAIL'] or ""}}"></td>
+                                <td><input type="text" name="email" class="email" value="{{$res['EMAIL'] or ""}}"></td>
                                 <td>ATTIVIT&Agrave; APERTA IL</td>
                                 <td><input type="text" name="apertail" readonly="readonly" disabled="disabled"  value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
                             </tr>
@@ -297,6 +297,21 @@
             });
 
             $(".salva-ticket").click(function(){
+                //Verifico che siano settati in caricoa,apertada,cliente e email
+                var msg = "";
+                if($(this).closest('form').find(".cliente_val").val() == "")
+                    msg = msg + " 'Cliente'";
+                if($(this).closest('form').find(".apertada").val() == "")
+                    msg = msg + " 'Attività Aperta da'";
+                if($(this).closest('form').find(".incaricoa").val() == "")
+                    msg = msg + " 'Attività In Carico a'";
+                if($(this).closest('form').find(".email").val() == "")
+                    msg = msg + " 'Email'";
+                if(msg != ""){
+                    alert("Compilare i campi" + msg);
+                    return false;
+                }
+
                 //Se chiuso faccio post del form non ajax
                 var stato = $(this).closest('form').find(".stato").val();
                 if(stato != 4) {

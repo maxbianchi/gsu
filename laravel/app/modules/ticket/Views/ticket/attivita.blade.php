@@ -212,7 +212,7 @@
                     });
 
                     $(".salva-ticket").click(function(){
-                        //Verifico che siano settati in caricoa e apertada e cliente
+                        //Verifico che siano settati in caricoa,apertada,cliente e email
                         var msg = "";
                         if($("#cliente").val() == "")
                             msg = msg + " 'Cliente'";
@@ -220,6 +220,8 @@
                             msg = msg + " 'Attività Aperta da'";
                         if($("#incaricoa").val() == "")
                             msg = msg + " 'Attività In Carico a'";
+                        if($("#email").val() == "")
+                            msg = msg + " 'Email'";
                         if(msg != ""){
                             alert("Compilare i campi" + msg);
                             return false;
