@@ -36,11 +36,12 @@
                                 <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Input::get('tecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select></div>
-                    <div class="col-md-1">TICKET TELECOM</div>
+                    <div class="col-md-1">TICKET FORNITORE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('tickettelecom')}}" id="tickettelecom" name="tickettelecom" ></div>
                     <div class="col-md-2">STATO</div>
                     <div class="col-md-2"><select name="stato">
                             <option value="">TUTTI</option>
+                            <option value="-1" {{Input::get('stato') == '-1' ? 'selected="selected"' : ""  }}>NON ASSEGNATO</option>
                             @foreach($stati as $stato)
                                 <option value="{{$stato['IDSTATO'] or ""}}" {{Input::get('stato') == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                             @endforeach
@@ -52,8 +53,15 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
                     <div class="col-md-1">TICKET INTERNO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('idattivita')}}" id="idattivita" name="idattivita" ></div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2">CATEGORIA</div>
+                    <div class="col-md-2">
+                        <select name="categoria">
+                            <option value="">TUTTE</option>
+                            @foreach($categorie as $categoria)
+                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col-md-3"></div>
                 </div>
                 <div class="row">
@@ -71,52 +79,63 @@
             ?>
             @foreach($result as $res)
                 <?php if($idattivita == $res['IDATTIVITA']){
-                        continue; }
-                    $attivita = $result;
-                    $idattivita = $res['IDATTIVITA'];
-                    ?>
-                <h3 style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET TELECOM ".$res['TICKETTELECOM']}}</h3>
+                    continue; }
+                $attivita = $result;
+                $idattivita = $res['IDATTIVITA'];
+                ?>
+                <h3 style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</h3>
                 <div>
                     <form action="{{url('/ticket/chiuditicket')}}" method="post" name="form_{{$res['IDATTIVITA']}}">
-                    <div class="border">
-                        <table class="tbl_clienti" style="width:100%">
-                            <tbody>
-                            <tr class="soggetto">
-                                <td>CLIENTE</td>
-                                <td>
-                                    <select name="cliente" class="cliente_val">
-                                        <option value="">-----</option>
-                                        @foreach($users as $user)
-                                            <option value="{{$user['SOGGETTO']}}" {{isset($res['SOGGETTO_CODICE']) && $res['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr class="destinatarioabituale">
-                                <td>UBICAZIONE IMPIANTO</td>
-                                <td>
-                                    <select name="ubicazione_impianto">
-                                        <option value="">-----</option>
-                                        @foreach($users as $user)
-                                            <option value="{{$user['SOGGETTO']}}" {{isset($res['DESTINATARIOABITUALE_CODICE']) && $res['DESTINATARIOABITUALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="border">
+                            <table class="tbl_clienti" style="width:100%">
+                                <tbody>
+                                <tr class="soggetto">
+                                    <td>CLIENTE</td>
+                                    <td>
+                                        <select name="cliente" class="cliente_val">
+                                            <option value="">-----</option>
+                                            @foreach($users as $user)
+                                                <option value="{{$user['SOGGETTO']}}" {{isset($res['SOGGETTO_CODICE']) && $res['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="cliente">
+                                    <td>CLIENTE FINALE</td>
+                                    <td>
+                                        <select name="cliente_finale" id="cliente_finale">
+                                            <option value="">-----</option>
+                                            @foreach($users as $user)
+                                                <option value="{{$user['SOGGETTO']}}" {{isset($res['CLIENTE_FINALE_CODICE']) && $res['CLIENTE_FINALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="destinatarioabituale">
+                                    <td>UBICAZIONE IMPIANTO</td>
+                                    <td>
+                                        <select name="ubicazione_impianto">
+                                            <option value="">-----</option>
+                                            @foreach($users as $user)
+                                                <option value="{{$user['SOGGETTO']}}" {{isset($res['DESTINATARIOABITUALE_CODICE']) && $res['DESTINATARIOABITUALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                    </div>
+                        </div>
 
-                    <br><br>
-                          <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                        <br><br>
+                        <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
 
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td><?php if(file_exists("/var/www/gsu/laravel/public/output/".$res['IDATTIVITA'].".pdf")): ?>
-                                            <a href="/output/{{$res['IDATTIVITA']}}.pdf" download title="Verbalino" alt="Verbalino"><img src="{{ URL::asset('images/pdf_icon.png') }}"></a>
+                                    <a href="/output/{{$res['IDATTIVITA']}}.pdf" download title="Verbalino" alt="Verbalino"><img src="{{ URL::asset('images/pdf_icon.png') }}"></a>
                                     <?php
                                     endif;
                                     ?>
@@ -126,7 +145,7 @@
                             <tr>
                                 <td>NR INTERNO TICKET </td>
                                 <td class="manutenzione">{{$res['IDATTIVITA']}}</td>
-                                <td>NR TICKET TELECOM</td>
+                                <td>NR TICKET FORNITORE</td>
                                 <td><input type="text" name="tickettelecom" value="{{$res['TICKETTELECOM'] or ""}}"></td>
                             </tr>
                             <tr>
@@ -141,6 +160,7 @@
                                 <td>ATTIVIT&Agrave; IN CARICO A</td>
                                 <td>
                                     <select name="incaricoa" class="incaricoa">
+                                        <option value="">-----</option>
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDINCARICOA']) && $res['IDINCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
@@ -148,10 +168,28 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>EMAIL CLIENTE</td>
-                                <td><input type="text" name="email" class="email" value="{{$res['EMAIL'] or ""}}"></td>
+                                <td>EMAIL FORNITORE *</td>
+                                <td><input type="text" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
+                                <td>CATEGORIA *</td>
+                                <td>
+                                    <select name="categoria" class="categoria">
+                                        @foreach($categorie as $categoria)
+                                            <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NOME REFERENTE</td>
+                                <td><input type="text" name="nome_referente" value="{{$res['NOME_REFERENTE'] or ""}}"></td>
+                                <td>TELEFONO REFERENTE</td>
+                                <td><input type="text" name="telefono_referente" id="email" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
+                            </tr>
+                            <tr>
+                                <td>EMAIL REFERENTE</td>
+                                <td><input type="text" name="email" id="email" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
                                 <td>ATTIVIT&Agrave; APERTA IL</td>
-                                <td><input type="text" name="apertail" readonly="readonly" disabled="disabled"  value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
+                                <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
                             </tr>
                             <tr>
                                 <td>TGU / IMEI</td>
@@ -165,13 +203,13 @@
                                 <td>TEMPO TOTALE min.</td>
                                 <td>
                                     <?php
-                                        $tempo_totale = 0;
-                                        foreach($attivita as $row):
-                                            if($row['IDATTIVITA'] == $res['IDATTIVITA'])
-                                                $tempo_totale += $row['TEMPO'];
-                                        endforeach;
+                                    $tempo_totale = 0;
+                                    foreach($attivita as $row):
+                                        if($row['IDATTIVITA'] == $res['IDATTIVITA'])
+                                            $tempo_totale += $row['TEMPO'];
+                                    endforeach;
                                     ?>
-                                        <input type="text" name="tempo_totale" value="{{$tempo_totale}}">
+                                    <input type="text" name="tempo_totale" value="{{$tempo_totale}}">
                                 </td>
                             </tr>
                             <tr>
@@ -182,7 +220,7 @@
                                 <td colspan="4"><textarea name="motivo" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
                             </tr>
                             <tr>
-                                <td>ELENCO ATTIVIT&Agrave;<a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                                <td>DETTAGLIO ATTIVIT&Agrave;<a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a></td>
                                 <td colspan="3"></td>
                             </tr>
                             <tr>
@@ -235,9 +273,9 @@
                                 <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs"></td>
                             </tr>
                         </table>
-                    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
-                </form>
+                        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
+                    </form>
                 </div>
             @endforeach
         </div>
@@ -282,9 +320,9 @@
             $(".salva-attivita").click(function(){
                 //Verifico che siano settati tempo e tecnico
                 var msg = "";
-                if($(".incaricoa_attivita").val() == "")
+                if($(this).closest('form').find(".incaricoa_attivita").val() == "")
                     msg = msg + " 'Tecnico'";
-                if($(".tempo").val() == "")
+                if($(this).closest('form').find(".tempo").val() == "")
                     msg = msg + " 'Tempo'";
                 if(msg != ""){
                     alert("Compilare i campi" + msg);
@@ -292,7 +330,8 @@
                 }
                 $.post( "{{url('/ticket/salvaattivita')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
-                            location.reload();
+                            $('#msg').modal('show');
+                            //location.reload();
                         });
             });
 
@@ -314,16 +353,17 @@
 
                 //Se chiuso faccio post del form non ajax
                 var stato = $(this).closest('form').find(".stato").val();
-                if(stato != 4) {
+                var form = $(this).closest('form');
                     $.post("{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
                             .done(function (data) {
                                 $('#msg').modal('show');
                                 $("#btn_salva").hide();
+                                if(stato != 4) {
+                                    location.reload()
+                                } else {
+                                    form.submit();
+                                }
                             });
-                }else{
-                    $(this).closest('form').submit();
-                }
-
             });
 
             $( "#accordion" ).accordion({

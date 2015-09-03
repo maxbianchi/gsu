@@ -31,8 +31,9 @@ class AttivitaController extends MainController {
         $model = new AttivitaModel();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
+        $categorie = $model->getAllCategorie();
         $idattivita = $model->generateIDAttivita();
-		return view("ticket::ticket.attivita", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita]);
+		return view("ticket::ticket.attivita", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'categorie' => $categorie]);
 	}
 
    public function salvaattivita(){
@@ -94,7 +95,8 @@ class AttivitaController extends MainController {
         $result = $model->getTickets();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
-        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati]);
+        $categorie = $model->getAllCategorie();
+        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
     }
 
     public function getEmailCliente(){

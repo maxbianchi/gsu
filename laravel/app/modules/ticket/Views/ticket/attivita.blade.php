@@ -28,6 +28,17 @@
                         </select>
                     </td>
                 </tr>
+                <tr class="cliente">
+                    <td>CLIENTE FINALE</td>
+                    <td>
+                        <select name="cliente_finale" id="cliente_finale">
+                            <option value="">-----</option>
+                            @foreach($users as $user)
+                                <option value="{{$user['SOGGETTO']}}" {{isset($request['CLIENTE_FINALE_CODICE']) && $request['CLIENTE_FINALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
                 <tr class="destinatarioabituale">
                     <td>UBICAZIONE IMPIANTO</td>
                     <td>
@@ -53,7 +64,7 @@
                 <tr>
                     <td>NR INTERNO TICKET </td>
                     <td class="manutenzione">{{$idattivita or ""}}</td>
-                    <td>NR TICKET TELECOM</td>
+                    <td>NR TICKET FORNITORE</td>
                     <td><input type="text" name="tickettelecom" value="{{$request['TICKETTELECOM'] or ""}}"></td>
                 </tr>
                 <tr>
@@ -66,7 +77,7 @@
                             @endforeach
                         </select>
                     </td>
-                    <td>ATTIVIT&Agrave; IN CARICO A *</td>
+                    <td>ATTIVIT&Agrave; IN CARICO A</td>
                     <td>
                         <select name="incaricoa" id="incaricoa" required>
                             <option value="">-----</option>
@@ -77,8 +88,27 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>EMAIL CLIENTE</td>
+                    <td>EMAIL FORNITORE *</td>
                     <td><input type="text" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
+                    <td>CATEGORIA *</td>
+                    <td>
+                        <select name="categoria" id="categoria" class="categoria">
+                            <option value="">-----</option>
+                            @foreach($categorie as $categoria)
+                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>NOME REFERENTE</td>
+                    <td><input type="text" name="nome_referente" value="{{$request['NOME_REFERENTE'] or ""}}"></td>
+                    <td>TELEFONO REFERENTE</td>
+                    <td><input type="text" name="telefono_referente" id="email" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
+                </tr>
+                <tr>
+                    <td>EMAIL REFERENTE</td>
+                    <td><input type="text" name="email_referente" id="email_referente" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
                     <td>ATTIVIT&Agrave; APERTA IL</td>
                     <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$request['APERTAIL'] or ""}}"></td>
                 </tr>
@@ -102,7 +132,7 @@
                     <td colspan="4"><textarea name="motivo" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
                 </tr>
                 <tr>
-                    <td>ELENCO ATTIVIT&Agrave;</td>
+                    <td>DETTAGLIO ATTIVIT&Agrave;</td>
                     <td colspan="3"></td>
                 </tr>
                 <tr>
@@ -218,8 +248,8 @@
                             msg = msg + " 'Cliente'";
                         if($("#apertada").val() == "")
                             msg = msg + " 'Attività Aperta da'";
-                        if($("#incaricoa").val() == "")
-                            msg = msg + " 'Attività In Carico a'";
+                        if($("#categoria").val() == "")
+                            msg = msg + " 'Categoria'";
                         if($("#email").val() == "")
                             msg = msg + " 'Email'";
                         if(msg != ""){
@@ -249,6 +279,7 @@
                     });
 
                     $("#cliente").val('{{Input::get('cliente')}}').trigger("change");
+                    $("#cliente_finale").val('{{Input::get('cliente_finale')}}').trigger("change");
                     $("#ubicazione_impianto").val('{{Input::get('ubicazione')}}').trigger("change");
                     $("#tgu").val('{{Input::get('tgu')}}').trigger("change");
 

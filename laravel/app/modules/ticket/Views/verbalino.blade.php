@@ -6,7 +6,7 @@
 
     <form action="#" method="POST" name="form" id="form">
         <table>
-            <tr>
+            <tr class="soggetto">
                 <td>CLIENTE</td>
                 <td colspan="3">
                     <select name="cliente" id="cliente">
@@ -17,7 +17,19 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr class="cliente">
+                <td>CLIENTE FINALE</td>
+                <td>
+                    <select name="cliente_finale" id="cliente_finale">
+                        <option value="">-----</option>
+                        @foreach($users as $user)
+                            <option value="{{$user['SOGGETTO']}}" {{isset($request['CLIENTE_FINALE_CODICE']) && $request['CLIENTE_FINALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="destinatarioabituale">
                 <td>UBICAZIONE</td>
                 <td colspan="3">
                     <select name="ubicazione" id="ubicazione">
@@ -43,24 +55,11 @@
                     <td style="width:70%;" colspan="2">
                         <table style="width:100%">
                             <tr>
-                                <td colspan="2">
-                                    CLIENTE
-                                </td>
-                            </tr>
-                            <tr>
                                 <td style="width:20%">
-                                    Ragione Sociale
+                                    CLIENTE
                                 </td>
                                 <td style="width:80%">
                                     <input type="text" value="" id="ragionesociale" name="ragionesociale" class="edit" style="width:100%">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Indirizzo
-                                </td>
-                                <td>
-                                    <input type="text" value="" id="indirizzo" name="indirizzo" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
@@ -73,6 +72,14 @@
                             </tr>
                             <tr>
                                 <td>
+                                    Indirizzo
+                                </td>
+                                <td>
+                                    <input type="text" value="" id="indirizzo" name="indirizzo" class="edit" style="width:100%">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     Email
                                 </td>
                                 <td>
@@ -80,17 +87,35 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
-                                    UBICAZIONE
+                                <td>
+                                    CLIENTE FINALE
                                 </td>
-
+                                <td>
+                                    <input type="text" value="" id="cliente_finale_ragionesociale" name="cliente_finale_ragionesociale" class="edit" style="width:100%">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Citt&agrave;
+                                </td>
+                                <td>
+                                    <input type="text" value="" id="cliente_finale_citta" name="cliente_finale_citta" class="edit" style="width:100%">
+                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     Indirizzo
                                 </td>
                                 <td>
-                                    <input type="text" value="" id="ubicazione_indirizzo" name="ubicazione_indirizzo" class="edit" style="width:100%">
+                                    <input type="text" value="" id="cliente_finale_indirizzo" name="cliente_finale_indirizzo" class="edit" style="width:100%">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    UBICAZIONE
+                                </td>
+                                <td>
+                                    <input type="text" value="" id="ubicazione_ragionesociale" name="ubicazione_ragionesociale" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
@@ -102,6 +127,15 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    Indirizzo
+                                </td>
+                                <td>
+                                    <input type="text" value="" id="ubicazione_indirizzo" name="ubicazione_indirizzo" class="edit" style="width:100%">
+                                </td>
+                            </tr>
+
+                            <tr>
                                 <td colspan="2">
                                     <hr>
                                 </td>
@@ -111,7 +145,7 @@
                                     Riferimento
                                 </td>
                                 <td>
-                                    <input type="text" value="" id="riferimento" name="riferimento" class="edit" style="width:100%">
+                                    <input type="text" value="{{Input::get('nome_referente')}}" id="riferimento" name="riferimento" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
@@ -119,7 +153,7 @@
                                     Tel.
                                 </td>
                                 <td>
-                                    <input type="text" value="" id="telefono" name="telefono" class="edit" style="width:100%">
+                                    <input type="text" value="{{Input::get('telefono_referente')}}" id="telefono" name="telefono" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
@@ -128,7 +162,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
-                        <div style="border:solid 1px; text-align: center;">RDI - Rapporto di intervento tecnico nr. 20150707 del 07/07/2015</div>
+                        <div style="border:solid 1px; text-align: center;">RDI - Rapporto di intervento tecnico nr. {{Input::get('idattivita')}} del <?php echo date("d-m-Y"); ?></div>
                     </td>
                 </tr>
                 <tr>
@@ -140,17 +174,14 @@
                                         Matricola <input type="text" value="" id="matricola" name="matricola" class="edit" style="width:100%">
                                     </td>
                                     <td style="text-align: center;">
+                                        Modello  <input type="text" value="" id="modello" name="modello" class="edit" style="width:100%">
+                                    </td>
+                                    <td style="text-align: center;">
                                         Lettura Tot bn <input type="text" value="" id="tot_bn" name="tot_bn" class="edit" style="width:100%">
                                     </td>
                                     <td style="text-align: center;">
                                         Lettura Tot colore <input type="text" value="" id="tot_colore" name="tot_colore" class="edit" style="width:100%">
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Modello  <input type="text" value="" id="modello" name="modello" class="edit" style="width:100%">
-                                    </td>
-                                    <td colspan="2"></td>
                                 </tr>
                             </table>
                         </div>
@@ -166,7 +197,7 @@
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <div style="border:solid 1px; text-align: center;">
-                            Descrizione Intervento <textarea value="" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="7"></textarea>
+                            Descrizione Intervento <textarea value="" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="6"></textarea>
                         </div>
                     </td>
                 </tr>
@@ -302,7 +333,7 @@
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <div style="border:solid 1px; text-align: center;">
-                            Note sull'intervento <textarea value="" id="note" name="note" class="edit-textarea" style="width:100%" rows="4">Ticket id: {{Input::get('idattivita')}}</textarea>
+                            Note sull'intervento <textarea value="" id="note" name="note" class="edit-textarea" style="width:100%" rows="4"></textarea>
                         </div>
                     </td>
                 </tr>
@@ -402,13 +433,25 @@
                 $.get("/ticket/getuserfrommago", {id: id})
                         .done(function (data) {
                             data = JSON.parse(data);
-                            console.log(data);
                             $("#ragionesociale").val(data[0]['DESCRIZIONE']);
                             $("#ragionesociale").attr("value", (data[0]['DESCRIZIONE']));
-                            $("#indirizzo").val(data[0]['INDIRIZZO']);
-                            $("#indirizzo").attr("value", (data[0]['INDIRIZZO']));
-                            $("#citta").val(data[0]['LOCALITA']);
-                            $("#citta").attr("value", (data[0]['LOCALITA']));
+                            $("#indirizzo").val(data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']);
+                            $("#indirizzo").attr("value", (data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']));
+                            $("#citta").val(data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']);
+                            $("#citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
+                        });
+            });
+            $("#cliente_finale").change(function () {
+                var id = $("#cliente_finale").val();
+                $.get("/ticket/getuserfrommago", {id: id})
+                        .done(function (data) {
+                            data = JSON.parse(data);
+                            $("#cliente_finale_ragionesociale").val(data[0]['DESCRIZIONE']);
+                            $("#cliente_finale_ragionesociale").attr("value", (data[0]['DESCRIZIONE']));
+                            $("#cliente_finale_indirizzo").val(data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']);
+                            $("#cliente_finale_indirizzo").attr("value", (data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']));
+                            $("#cliente_finale_citta").val(data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']);
+                            $("#cliente_finale_citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
                         });
             });
             $("#ubicazione").change(function () {
@@ -416,11 +459,12 @@
                 $.get("/ticket/getuserfrommago", {id: id})
                         .done(function (data) {
                             data = JSON.parse(data);
-                            console.log(data);
-                            $("#ubicazione_indirizzo").val(data[0]['DESCRIZIONE']);
-                            $("#ubicazione_indirizzo").attr("value", (data[0]['DESCRIZIONE']));
-                            $("#ubicazione_citta").val(data[0]['INDIRIZZO']);
-                            $("#ubicazione_citta").attr("value", (data[0]['INDIRIZZO']));
+                            $("#ubicazione_ragionesociale").val(data[0]['DESCRIZIONE']);
+                            $("#ubicazione_ragionesociale").attr("value", (data[0]['DESCRIZIONE']));
+                            $("#ubicazione_indirizzo").val(data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']);
+                            $("#ubicazione_indirizzo").attr("value", (data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']));
+                            $("#ubicazione_citta").val(data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']);
+                            $("#ubicazione_citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
                         });
             });
 
@@ -444,6 +488,7 @@
             });
 
             $("#cliente").val('{{Input::get('cliente')}}').trigger("change");
+            $("#cliente_finale").val('{{Input::get('cliente_finale')}}').trigger("change");
             $("#ubicazione").val('{{Input::get('ubicazione_impianto')}}').trigger("change");
 
             $('textarea').each(function () {

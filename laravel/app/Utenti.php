@@ -82,7 +82,7 @@ class Utenti extends Model {
 
     public function getUserFromMago(){
         $id = Input::get("id");
-        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.SOGGETTO=$id ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.SOGGETTO=$id ORDER BY DESCRIZIONE");
         $utente = [];
         foreach($utenti as $key => $value){
             foreach($value as $key2 => $value2){
