@@ -237,7 +237,8 @@
 
                         $.post( "{{url('/ticket/salvaattivita')}}", $("form#form").serialize())
                                 .done(function( data ) {
-                                    location.reload();
+                                    $('#msg').modal('show');
+                                    //location.reload();
                                 });
                     });
 
@@ -260,7 +261,7 @@
                         $.post( "{{url('/ticket/salvaticket')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
-                                    $("#btn_salva").hide();
+                                    location.href = '/ticket/tickets?stato=1';
                                 });
                         $.post( "{{url('/ticket/mailaperturaticket')}}", $("form#form").serialize())
                                 .done(function( data ) {
