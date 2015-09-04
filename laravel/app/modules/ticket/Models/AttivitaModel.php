@@ -11,32 +11,32 @@ use DB;
 class AttivitaModel extends Model {
 
    public function getAllTecnici(){
-       $sql = "SELECT * FROM GSU.dbo.TECNICI ORDER BY DESCRIZIONE";
+       $sql = "SELECT * FROM TICKET.dbo.TECNICI ORDER BY DESCRIZIONE";
        $request  = DB::select($sql);
        return $request;
    }
 
     public function getAllCategorie(){
-        $sql = "SELECT * FROM GSU.dbo.CATEGORIE ORDER BY DESCRIZIONE";
+        $sql = "SELECT * FROM TICKET.dbo.CATEGORIE ORDER BY DESCRIZIONE";
         $request  = DB::select($sql);
         return $request;
     }
 
     public function getTecnico(){
         $idtecnico = Input::get('incaricoa');
-        $sql = "SELECT * FROM GSU.dbo.TECNICI WHERE IDTECNICO=$idtecnico";
+        $sql = "SELECT * FROM TICKET.dbo.TECNICI WHERE IDTECNICO=$idtecnico";
         $request  = DB::select($sql);
         return $request[0]['DESCRIZIONE'];
     }
 
     public function getAllStati(){
-        $sql = "SELECT * FROM GSU.dbo.STATI ORDER BY IDSTATO";
+        $sql = "SELECT * FROM TICKET.dbo.STATI ORDER BY IDSTATO";
         $request  = DB::select($sql);
         return $request;
     }
 
     public function generateIDAttivita(){
-        $sql = "SELECT MAX(IDATTIVITA) IDATTIVITA FROM gsu.dbo.ATTIVITA";
+        $sql = "SELECT MAX(IDATTIVITA) IDATTIVITA FROM TICKET.dbo.ATTIVITA";
         $request  = DB::select($sql);
         $date = date("Ymd");
         if(isset($request[0]['IDATTIVITA'])) {
@@ -67,11 +67,11 @@ class AttivitaModel extends Model {
         $inseritoil = date('Y-m-d H:i:s');
         $id = Input::get("id");
         if(empty($id)) {
-            $sql = "INSERT INTO GSU.dbo.SINGOLE_ATTIVITA (idattivita, descrizione, tempo, incaricoa, inseritoil) VALUES ('$idattivita', '$descrizione', '$tempo', '$incaricoa', '$inseritoil' )";
+            $sql = "INSERT INTO TICKET.dbo.SINGOLE_ATTIVITA (idattivita, descrizione, tempo, incaricoa, inseritoil) VALUES ('$idattivita', '$descrizione', '$tempo', '$incaricoa', '$inseritoil' )";
             DB::insert($sql);
         }
         else{
-            $sql = "UPDATE GSU.dbo.SINGOLE_ATTIVITA SET descrizione='$descrizione', tempo='$tempo', incaricoa='$incaricoa' WHERE IDATTIVITA=$idattivita AND ID=$id";
+            $sql = "UPDATE TICKET.dbo.SINGOLE_ATTIVITA SET descrizione='$descrizione', tempo='$tempo', incaricoa='$incaricoa' WHERE IDATTIVITA=$idattivita AND ID=$id";
             DB::update($sql);
         }
 
@@ -98,14 +98,14 @@ class AttivitaModel extends Model {
         $nome_referente = Input::get("nome_referente");
         $telefono_referente = Input::get("telefono_referente");
 
-        $sql = "SELECT * FROM GSU.dbo.ATTIVITA where IDATTIVITA=$idattivita";
+        $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request  = DB::select($sql);
         if(count($request) == 0) {
-            $sql = "INSERT INTO GSU.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale' )";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale' )";
             DB::insert($sql);
         }
         else {
-            $sql = "UPDATE GSU.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', apertail='$apertail', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', apertail='$apertail', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
 
@@ -162,12 +162,12 @@ SELECT
         A.TELEFONO_REFERENTE,
         CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
         CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
-        FROM GSU.dbo.ATTIVITA A LEFT JOIN gsu.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
-        LEFT JOIN gsu.dbo.STATI ON A.STATO = STATI.IDSTATO
-        LEFT JOIN gsu.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
-        LEFT JOIN gsu.dbo.TECNICI T1 ON A.apertoda = T1.IDTECNICO
-        LEFT JOIN gsu.dbo.TECNICI T2 ON A.incaricoa = T2.IDTECNICO
-		LEFT JOIN gsu.dbo.TECNICI T3 ON S.incaricoa = T3.IDTECNICO
+        FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
+        LEFT JOIN TICKET.dbo.STATI ON A.STATO = STATI.IDSTATO
+        LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
+        LEFT JOIN TICKET.dbo.TECNICI T1 ON A.apertoda = T1.IDTECNICO
+        LEFT JOIN TICKET.dbo.TECNICI T2 ON A.incaricoa = T2.IDTECNICO
+		LEFT JOIN TICKET.dbo.TECNICI T3 ON S.incaricoa = T3.IDTECNICO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON A.SOGGETTO = A1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON A.CLIENTE_FINALE = A3.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON A.UBICAZIONE = A2.SOGGETTO
@@ -205,7 +205,7 @@ EOF;
     }
 
     public function getStato($stato_int){
-        $sql = "SELECT STATO FROM STATI WHERE IDSTATO=$stato_int";
+        $sql = "SELECT STATO FROM TICKET.dbo.STATI WHERE IDSTATO=$stato_int";
         $res = DB::select($sql);
         if(is_array($res) && count($res) > 0)
             $stato_text = $res[0]['STATO'];
@@ -214,7 +214,7 @@ EOF;
 
     public function getCurrentStato(){
         $idattivita = Input::get("idattivita");
-        $sql = "SELECT STATO FROM ATTIVITA WHERE IDATTIVITA=$idattivita";
+        $sql = "SELECT STATO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA=$idattivita";
         $res = DB::select($sql);
         $stato_text = $res[0]['STATO'];
         return $stato_text;
@@ -223,19 +223,19 @@ EOF;
     public function chiudiTicket(){
         $idattivita = Input::get('idattivita');
         $chiusail = date('Y-m-d H:i:s');
-        $sql = "UPDATE ATTIVITA SET STATO = 4, CHIUSAIL='$chiusail' WHERE IDATTIVITA=$idattivita";
+        $sql = "UPDATE TICKET.dbo.ATTIVITA SET STATO = 4, CHIUSAIL='$chiusail' WHERE IDATTIVITA=$idattivita";
         DB::update($sql);
     }
 
     public function getAttivita(){
         $idattivita =  Input::get('idattivita');
-        $sql = "SELECT * FROM SINGOLE_ATTIVITA WHERE IDATTIVITA='$idattivita' ORDER BY ID";
+        $sql = "SELECT * FROM TICKET.dbo.SINGOLE_ATTIVITA WHERE IDATTIVITA='$idattivita' ORDER BY ID";
         $res = DB::select($sql);
         return $res;
     }
 
     public function getAllAttivitaByID($idattivita){
-        $sql = "SELECT IDATTIVITA, S.DESCRIZIONE, TEMPO, T.DESCRIZIONE AS INCARICOA_ATTIVITA, CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL, CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA  FROM SINGOLE_ATTIVITA S LEFT JOIN TECNICI T ON S.INCARICOA=T.IDTECNICO WHERE IDATTIVITA='$idattivita'";
+        $sql = "SELECT IDATTIVITA, S.DESCRIZIONE, TEMPO, T.DESCRIZIONE AS INCARICOA_ATTIVITA, CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL, CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA  FROM TICKET.dbo.SINGOLE_ATTIVITA S LEFT JOIN TICKET.dbo.TECNICI T ON S.INCARICOA=T.IDTECNICO WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         return $res;
     }
@@ -290,13 +290,13 @@ EOF;
         $macchina_funzione = isset($_POST['macchina_funzione_si']) ? 1 : 0;
         $incaricoa = Input::get('incaricoa');
 
-        $sql = "SELECT * FROM VERBALINI WHERE IDATTIVITA='$idattivita'";
+        $sql = "SELECT * FROM TICKET.dbo.VERBALINI WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         if(count($res) == 0) {
-            $sql = "INSERT INTO VERBALINI (IDATTIVITA,CLIENTE,UBICAZIONE,RIFERIMENTO,TELEFONO,EMAIL,MATRICOLA,MODELLO,LETTURA_BN,LETTURA_COLORE,MOTIVO,DESCRIZIONE,CODICE_1,DESCRIZIONE_1,QTA_1,NOTE_1,CODICE_2,DESCRIZIONE_2,QTA_2,NOTE_2,CODICE_3,DESCRIZIONE_3,QTA_3,NOTE_3,DATA_INTERVENTO,INTERVENTO_REMOTO,TEMPO_TOTALE,TEMPO_VIAGGIO_1,ORA_INIZIO_1,ORA_FINE_1,TEMPO_VIAGGIO_2,ORA_INIZIO_2,ORA_FINE_2,NOTE,INTERVENTO_RISOLUTIVO,IN_GARANZIA,MACCHINA_FUNZIONE,TECNICO, CLIENTE_FINALE) VALUES ('$idattivita','$cliente','$ubicazione','$riferimento','$telefono','$email','$matricola','$modello','$tot_bn','$tot_colore','$motivo','$descrizione','$codice1','$descrizione1','$qta1','$note1','$codice2','$descrizione2','$qta2','$note2','$codice3','$descrizione3','$qta3','$note3','$data_intervento','$intervento_remoto','$tempo','$tempo_viaggio','$ora_inizio','$ora_fine','$tempo_viaggio2','$ora_inizio2','$ora_fine2','$note','$intervento_risolutivo','$garanzia','$macchina_funzione','$incaricoa', '$cliente_finale')";
+            $sql = "INSERT INTO TICKET.dbo.VERBALINI (IDATTIVITA,CLIENTE,UBICAZIONE,RIFERIMENTO,TELEFONO,EMAIL,MATRICOLA,MODELLO,LETTURA_BN,LETTURA_COLORE,MOTIVO,DESCRIZIONE,CODICE_1,DESCRIZIONE_1,QTA_1,NOTE_1,CODICE_2,DESCRIZIONE_2,QTA_2,NOTE_2,CODICE_3,DESCRIZIONE_3,QTA_3,NOTE_3,DATA_INTERVENTO,INTERVENTO_REMOTO,TEMPO_TOTALE,TEMPO_VIAGGIO_1,ORA_INIZIO_1,ORA_FINE_1,TEMPO_VIAGGIO_2,ORA_INIZIO_2,ORA_FINE_2,NOTE,INTERVENTO_RISOLUTIVO,IN_GARANZIA,MACCHINA_FUNZIONE,TECNICO, CLIENTE_FINALE) VALUES ('$idattivita','$cliente','$ubicazione','$riferimento','$telefono','$email','$matricola','$modello','$tot_bn','$tot_colore','$motivo','$descrizione','$codice1','$descrizione1','$qta1','$note1','$codice2','$descrizione2','$qta2','$note2','$codice3','$descrizione3','$qta3','$note3','$data_intervento','$intervento_remoto','$tempo','$tempo_viaggio','$ora_inizio','$ora_fine','$tempo_viaggio2','$ora_inizio2','$ora_fine2','$note','$intervento_risolutivo','$garanzia','$macchina_funzione','$incaricoa', '$cliente_finale')";
             DB::insert($sql);
         } else {
-            $sql = "UPDATE VERBALINI SET CLIENTE='$cliente',UBICAZIONE='$ubicazione',RIFERIMENTO='$riferimento',TELEFONO='$telefono',EMAIL='$email',MATRICOLA='$matricola',MODELLO='$modello',LETTURA_BN='$tot_bn',LETTURA_COLORE='$tot_colore',MOTIVO='$motivo',DESCRIZIONE='$descrizione',CODICE_1='$codice1',DESCRIZIONE_1='$descrizione1',QTA_1='$qta1',NOTE_1='$note1',CODICE_2='$codice2',DESCRIZIONE_2='$descrizione2',QTA_2='$qta2',NOTE_2='$note2',CODICE_3='$codice3',DESCRIZIONE_3='$descrizione3',QTA_3='$qta3',NOTE_3='$note3',DATA_INTERVENTO='$data_intervento',INTERVENTO_REMOTO='$intervento_remoto',TEMPO_TOTALE='$tempo',TEMPO_VIAGGIO_1='$tempo_viaggio',ORA_INIZIO_1='$ora_inizio',ORA_FINE_1='$ora_fine',TEMPO_VIAGGIO_2='$tempo_viaggio2',ORA_INIZIO_2='$ora_inizio2',ORA_FINE_2='$ora_fine2',NOTE='$note',INTERVENTO_RISOLUTIVO='$intervento_risolutivo',IN_GARANZIA='$garanzia',MACCHINA_FUNZIONE='$macchina_funzione',TECNICO='$incaricoa', CLIENTE_FINALE='$cliente_finale' WHERE IDATTIVITA = '$idattivita'";
+            $sql = "UPDATE TICKET.dbo.VERBALINI SET CLIENTE='$cliente',UBICAZIONE='$ubicazione',RIFERIMENTO='$riferimento',TELEFONO='$telefono',EMAIL='$email',MATRICOLA='$matricola',MODELLO='$modello',LETTURA_BN='$tot_bn',LETTURA_COLORE='$tot_colore',MOTIVO='$motivo',DESCRIZIONE='$descrizione',CODICE_1='$codice1',DESCRIZIONE_1='$descrizione1',QTA_1='$qta1',NOTE_1='$note1',CODICE_2='$codice2',DESCRIZIONE_2='$descrizione2',QTA_2='$qta2',NOTE_2='$note2',CODICE_3='$codice3',DESCRIZIONE_3='$descrizione3',QTA_3='$qta3',NOTE_3='$note3',DATA_INTERVENTO='$data_intervento',INTERVENTO_REMOTO='$intervento_remoto',TEMPO_TOTALE='$tempo',TEMPO_VIAGGIO_1='$tempo_viaggio',ORA_INIZIO_1='$ora_inizio',ORA_FINE_1='$ora_fine',TEMPO_VIAGGIO_2='$tempo_viaggio2',ORA_INIZIO_2='$ora_inizio2',ORA_FINE_2='$ora_fine2',NOTE='$note',INTERVENTO_RISOLUTIVO='$intervento_risolutivo',IN_GARANZIA='$garanzia',MACCHINA_FUNZIONE='$macchina_funzione',TECNICO='$incaricoa', CLIENTE_FINALE='$cliente_finale' WHERE IDATTIVITA = '$idattivita'";
             DB::update($sql);
         }
 
