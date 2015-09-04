@@ -73,7 +73,7 @@
                         <select name="apertoda" id="apertoda" required>
                             <option value="">-----</option>
                             @foreach($tecnici as $tecnico)
-                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['APERTODA']) && $request['APERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -149,7 +149,7 @@
                         <select name="incaricoa_attivita" class="incaricoa_attivita">
                             <option value="">-----</option>
                             @foreach($tecnici as $tecnico)
-                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['IDTECNICO']) && $request['IDTECNICO'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select>
                     </td>

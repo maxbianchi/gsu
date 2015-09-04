@@ -33,6 +33,7 @@ class Utenti extends Model {
 
             Session::put('user', $utente[0]);
             Session::put('livello', $res[0]['LIVELLO']);
+            Session::put('idtecnico', $res[0]['IDTECNICO']);
             Session::put('logged', 1);
             $last_login = $date = date('Y-m-d H:i:s');
             $ip = Request::getClientIp(true);

@@ -237,7 +237,7 @@
                                     <select name="incaricoa_attivita" class="incaricoa_attivita">
                                         <option value="">-----</option>
                                         @foreach($tecnici as $tecnico)
-                                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDTECNICO']) && $res['IDTECNICO'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
                                     </select>
                                 </td>
