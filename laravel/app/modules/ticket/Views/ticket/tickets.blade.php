@@ -342,8 +342,8 @@
                     msg = msg + " 'Cliente'";
                 if($(this).closest('form').find(".apertada").val() == "")
                     msg = msg + " 'Attività Aperta da'";
-                if($(this).closest('form').find(".incaricoa").val() == "")
-                    msg = msg + " 'Attività In Carico a'";
+                if($(this).closest('form').find(".categoria").val() == "")
+                    msg = msg + " 'Categoria'";
                 if($(this).closest('form').find(".email").val() == "")
                     msg = msg + " 'Email'";
                 if(msg != ""){
@@ -353,6 +353,17 @@
 
                 //Se chiuso faccio post del form non ajax
                 var stato = $(this).closest('form').find(".stato").val();
+
+                if(stato == 4){
+                    msg = "";
+                    if($(this).closest('form').find(".incaricoa").val() == "")
+                        msg = msg + " 'Attività in carico a'";
+                    if(msg != ""){
+                        alert("Compilare i campi" + msg);
+                        return false;
+                    }
+                }
+
                 var form = $(this).closest('form');
                     $.post("{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
                             .done(function (data) {

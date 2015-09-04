@@ -302,5 +302,12 @@ EOF;
 
     }
 
+
+    public function salvaStorico($idattivita,$idstato){
+        $data = date('Y-m-d H:i:s');
+        $sql = "INSERT INTO TICKET.dbo.STORICO (IDATTIVITA, IDSTATO, DATA) VALUES ('$idattivita','$idstato','$data')";
+        DB::insert($sql);
+    }
+
 }
 
