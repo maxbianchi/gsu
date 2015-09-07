@@ -42,7 +42,7 @@ class UnigateNumeriModel extends Model {
             UNIGATE_NUMERI.NUMERO_AGGIUNTIVO,
             UNIGATE_NUMERI.ELIMINATO
 			FROM		gsu.dbo.UNIGATE_NUMERI
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE_NUMERI.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE_NUMERI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -115,7 +115,7 @@ EOF;
             UNIGATE_NUMERI.NUMERO_AGGIUNTIVO,
             UNIGATE_NUMERI.ELIMINATO
 			FROM		gsu.dbo.UNIGATE_NUMERI
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE_NUMERI.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE_NUMERI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

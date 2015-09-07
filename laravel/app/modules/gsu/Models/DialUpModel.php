@@ -46,7 +46,7 @@ class DialUpModel extends Model {
 			DIAL_UP.CODICE_R,
 			DIAL_UP.ELIMINATO
 			FROM		gsu.dbo.DIAL_UP
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DIAL_UP.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DIAL_UP.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -126,7 +126,7 @@ EOF;
 			DIAL_UP.CODICE_R,
 			DIAL_UP.ELIMINATO
 			FROM		gsu.dbo.DIAL_UP
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DIAL_UP.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DIAL_UP.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

@@ -41,7 +41,7 @@ class OutlookconnectorModel extends Model {
             OUTLOOKCONNECTOR.EMAIL,
             OUTLOOKCONNECTOR.ELIMINATO
 			FROM		gsu.dbo.OUTLOOKCONNECTOR
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON OUTLOOKCONNECTOR.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON OUTLOOKCONNECTOR.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -114,7 +114,7 @@ EOF;
             OUTLOOKCONNECTOR.EMAIL,
             OUTLOOKCONNECTOR.ELIMINATO
 			FROM		gsu.dbo.OUTLOOKCONNECTOR
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON OUTLOOKCONNECTOR.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON OUTLOOKCONNECTOR.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

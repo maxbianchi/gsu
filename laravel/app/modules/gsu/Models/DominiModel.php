@@ -48,7 +48,7 @@ class DominiModel extends Model {
 			DOMINI.CODICE_R,
 			DOMINI.ELIMINATO
 			FROM		gsu.dbo.DOMINI
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DOMINI.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DOMINI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -123,7 +123,7 @@ EOF;
 			DOMINI.CODICE_R,
 			DOMINI.ELIMINATO
 			FROM		gsu.dbo.DOMINI
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DOMINI.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON DOMINI.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

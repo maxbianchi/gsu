@@ -61,7 +61,7 @@ class HardwareModel extends Model {
             SERVER.OGGETTO,
             SERVER.ELIMINATO
             FROM gsu.dbo.SERVER
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(SERVER.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(SERVER.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(SERVER.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
@@ -156,7 +156,7 @@ EOF;
             SERVER.OGGETTO,
             SERVER.ELIMINATO
             FROM gsu.dbo.SERVER
-			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
+			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON SERVER.codice_r				= richieste.MANUTENZIONE
 		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(SERVER.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(SERVER.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(SERVER.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO

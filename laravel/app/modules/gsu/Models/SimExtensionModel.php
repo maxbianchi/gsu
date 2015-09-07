@@ -74,7 +74,7 @@ class SimExtensionModel extends Model {
 			SIM.FILTROACCESSI,
 			SIM.ELIMINATO
 			FROM gsu.dbo.SIM
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
+			RIGHT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -173,7 +173,7 @@ EOF;
 			SIM.FILTROACCESSI,
 			SIM.ELIMINATO
 			FROM gsu.dbo.SIM
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
+			RIGHT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
