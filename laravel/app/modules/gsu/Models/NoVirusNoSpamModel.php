@@ -40,7 +40,7 @@ class NoVirusNoSpamModel extends Model {
   			NOVIRUSNOSPAM.DOMINIO,
   			NOVIRUSNOSPAM.ELIMINATO
 			FROM		gsu.dbo.NOVIRUSNOSPAM
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON NOVIRUSNOSPAM.codice_r		= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON NOVIRUSNOSPAM.codice_r		= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -113,7 +113,7 @@ EOF;
   			NOVIRUSNOSPAM.DOMINIO,
   			NOVIRUSNOSPAM.ELIMINATO
 			FROM		gsu.dbo.NOVIRUSNOSPAM
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON NOVIRUSNOSPAM.codice_r		= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON NOVIRUSNOSPAM.codice_r		= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

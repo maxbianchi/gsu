@@ -43,7 +43,7 @@ class TerminalServerModel extends Model {
             TERMINAL_SERVER.IP,
             TERMINAL_SERVER.ELIMINATO
 			FROM		gsu.dbo.TERMINAL_SERVER
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON TERMINAL_SERVER.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON TERMINAL_SERVER.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -119,7 +119,7 @@ EOF;
             TERMINAL_SERVER.IP,
             TERMINAL_SERVER.ELIMINATO
 			FROM		gsu.dbo.TERMINAL_SERVER
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON TERMINAL_SERVER.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON TERMINAL_SERVER.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

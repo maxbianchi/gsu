@@ -52,7 +52,7 @@ class DpssModel extends Model {
             DPSS.N_POSTAZIONI,
             DPSS.ELIMINATO
 			FROM gsu.dbo.DPSS
-			RIGHT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DPSS.codice_r = richieste.MANUTENZIONE
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DPSS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -124,7 +124,7 @@ EOF;
             DPSS.N_POSTAZIONI,
             DPSS.ELIMINATO
 			FROM gsu.dbo.DPSS
-			RIGHT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DPSS.codice_r = richieste.MANUTENZIONE
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON DPSS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

@@ -46,7 +46,7 @@ class HousingModel extends Model {
 			HOUSING.CODICE_R,
 			HOUSING.ELIMINATO
 			FROM gsu.dbo.HOUSING
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -126,7 +126,7 @@ EOF;
 			HOUSING.CODICE_R,
 			HOUSING.ELIMINATO
 			FROM gsu.dbo.HOUSING
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON HOUSING.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO

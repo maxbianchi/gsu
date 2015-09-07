@@ -46,7 +46,7 @@ class UnigatePwdModel extends Model {
             UNIGATEPWD.PWDPRIVILEGIATA,
             UNIGATEPWD.ELIMINATO
             FROM gsu.dbo.UNIGATE
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE.codice_r				= richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(richieste.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(richieste.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(richieste.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO
@@ -122,7 +122,7 @@ EOF;
             UNIGATEPWD.PWDPRIVILEGIATA,
             UNIGATEPWD.ELIMINATO
             FROM gsu.dbo.UNIGATE
-			RIGHT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE.codice_r				= richieste.MANUTENZIONE
+			LEFT OUTER JOIN			UNIWEB.dbo.AOF70	richieste	ON UNIGATE.codice_r				= richieste.MANUTENZIONE
 		    LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON ISNULL(richieste.SOGGETTO, richieste.SOGGETTO)				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON ISNULL(richieste.CLIENTE, richieste.CLIENTE)				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON ISNULL(richieste.DESTINATARIOABITUALE, richieste.DESTINATARIOABITUALE)	= anagrafica3.SOGGETTO

@@ -57,7 +57,7 @@ class ServiziPlusModel extends Model {
             SERVIZI_PLUS.TGU_5,
             SERVIZI_PLUS.ELIMINATO
 			FROM gsu.dbo.SERVIZI_PLUS
-			RIGHT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SERVIZI_PLUS.codice_r = richieste.MANUTENZIONE
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SERVIZI_PLUS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -133,7 +133,7 @@ EOF;
             SERVIZI_PLUS.TGU_5,
             SERVIZI_PLUS.ELIMINATO
 			FROM gsu.dbo.SERVIZI_PLUS
-			RIGHT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SERVIZI_PLUS.codice_r = richieste.MANUTENZIONE
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SERVIZI_PLUS.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
