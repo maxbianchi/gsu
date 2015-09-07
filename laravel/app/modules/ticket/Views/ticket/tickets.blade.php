@@ -187,7 +187,7 @@
                             </tr>
                             <tr>
                                 <td>EMAIL REFERENTE</td>
-                                <td><input type="text" name="email" id="email" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
+                                <td><input type="text" name="email_referente" id="email_referente" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
                                 <td>ATTIVIT&Agrave; APERTA IL</td>
                                 <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
                             </tr>

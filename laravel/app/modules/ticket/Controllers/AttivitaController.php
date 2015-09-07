@@ -68,6 +68,8 @@ class AttivitaController extends MainController {
         $row['descrizione'] = "Apertura ticket Uniweb " . $row['idattivita'];
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
+        $email_referente  = Input::get("email_referente");
+        $row['email_referente'] = $email_referente;
         $row['email'] = explode(";", $email);
 
 
@@ -77,6 +79,11 @@ class AttivitaController extends MainController {
             if(!empty($row['email'])) {
                 Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                     $message->to($row['email'])->subject('Cambio stato ticket ' . $row['idattivita']);
+                });
+            }
+            if(!empty($row['email_referente'])) {
+                Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                    $message->to($row['email_referente'])->subject('Cambio stato ticket ' . $row['idattivita']);
                 });
             }
 
@@ -116,6 +123,8 @@ class AttivitaController extends MainController {
         $row['descrizione'] = "Apertura ticket Uniweb ".$row['idattivita'];
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
+        $email_referente  = Input::get("email_referente");
+        $row['email_referente'] =$email_referente;
         $row['email'] = explode(";", $email);
         if(is_array($row['email']))
             $row['email'] = $row['email'][0];
@@ -124,6 +133,12 @@ class AttivitaController extends MainController {
                 $message->to($row['email'])->subject('Apertura ticket ' . $row['idattivita']);
             });
         }
+        if(!empty($row['email_referente'])) {
+            Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                $message->to($row['email_referente'])->subject('Apertura ticket ' . $row['idattivita']);
+            });
+        }
+
         $model = new AttivitaModel();
         $result = $model->getAllAttivitaByID($row['idattivita']);
 
