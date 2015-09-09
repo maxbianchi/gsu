@@ -171,16 +171,16 @@
                             <table>
                                 <tr>
                                     <td style="text-align: center;">
-                                        Matricola <input type="text" value="" id="matricola" name="matricola" class="edit" style="width:100%">
+                                        Matricola <input type="text" value="{{$verbalino['MATRICOLA'] or ""}}" id="matricola" name="matricola" class="edit" style="width:100%">
                                     </td>
                                     <td style="text-align: center;">
-                                        Modello  <input type="text" value="" id="modello" name="modello" class="edit" style="width:100%">
+                                        Modello  <input type="text" value="{{$verbalino['MODELLO'] or ""}}" id="modello" name="modello" class="edit" style="width:100%">
                                     </td>
                                     <td style="text-align: center;">
-                                        Lettura Tot bn <input type="text" value="" id="tot_bn" name="tot_bn" class="edit" style="width:100%">
+                                        Lettura Tot bn <input type="text" value="{{$verbalino['LETTURA_BN'] or ""}}" id="tot_bn" name="tot_bn" class="edit" style="width:100%">
                                     </td>
                                     <td style="text-align: center;">
-                                        Lettura Tot colore <input type="text" value="" id="tot_colore" name="tot_colore" class="edit" style="width:100%">
+                                        Lettura Tot colore <input type="text" value="{{$verbalino['LETTURA_COLORE'] or ""}}" id="tot_colore" name="tot_colore" class="edit" style="width:100%">
                                     </td>
                                 </tr>
                             </table>
@@ -190,14 +190,14 @@
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <div style="border:solid 1px; text-align: center;">
-                            Motivo della chiamata <textarea value="{{Input::get('motivo')}}" id="motivo" name="motivo" class="edit-textarea" style="width:100%" rows="4">{{Input::get('motivo')}}</textarea>
+                            Motivo della chiamata <textarea value="<?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?>" id="motivo" name="motivo" class="edit-textarea" style="width:100%" rows="4"><?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?></textarea>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <div style="border:solid 1px; text-align: center;">
-                            Descrizione Intervento <textarea value="" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="6"></textarea>
+                            Descrizione Intervento <textarea value="{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="6">{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}</textarea>
                         </div>
                     </td>
                 </tr>
@@ -220,44 +220,44 @@
                             </tr>
                             <tr>
                                 <td style="width:20%">
-                                    <input type="text" value="" id="codice1" name="codice1" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['CODICE_1'] or ""}}" id="codice1" name="codice1" class="edit" style="width:100%">
                                 </td>
                                 <td style="width:40%">
-                                    <input type="text" value="" id="descrizione1" name="descrizione1" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['DESCRIZIONE_1'] or ""}}" id="descrizione1" name="descrizione1" class="edit" style="width:100%">
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="qta1" name="qta1" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['QTA_1'] or ""}}" id="qta1" name="qta1" class="edit" style="width:100%">
                                 </td>
                                 <td  style="width:30%">
-                                    <input type="text" value="" id="note1" name="note1" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['NOTE_1'] or ""}}" id="note1" name="note1" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width:20%">
-                                    <input type="text" value="" id="codice2" name="codice2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['CODICE_2'] or ""}}" id="codice2" name="codice2" class="edit" style="width:100%">
                                 </td>
                                 <td style="width:40%">
-                                    <input type="text" value="" id="descrizione2" name="descrizione2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['DESCRIZIONE_2'] or ""}}" id="descrizione2" name="descrizione2" class="edit" style="width:100%">
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="qta2" name="qta2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['QTA_2'] or ""}}" id="qta2" name="qta2" class="edit" style="width:100%">
                                 </td>
                                 <td  style="width:30%">
-                                    <input type="text" value="" id="note2" name="note2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['NOTE_2'] or ""}}" id="note2" name="note2" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width:20%">
-                                    <input type="text" value="" id="codice3" name="codice3" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['CODICE_3'] or ""}}" id="codice3" name="codice3" class="edit" style="width:100%">
                                 </td>
                                 <td style="width:40%">
-                                    <input type="text" value="" id="descrizione3" name="descrizione3" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['DESCRIZIONE_3'] or ""}}" id="descrizione3" name="descrizione3" class="edit" style="width:100%">
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="qta3" name="qta3" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['QTA_3'] or ""}}" id="qta3" name="qta3" class="edit" style="width:100%">
                                 </td>
                                 <td  style="width:30%">
-                                    <input type="text" value="" id="note3" name="note3" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['NOTE_3'] or ""}}" id="note3" name="note3" class="edit" style="width:100%">
                                 </td>
                             </tr>
 
@@ -272,59 +272,65 @@
                                     Data Intervento
                                 </td>
                                 <td style="width:10%">
-                                    <input type="text" value="" id="data_intervento" name="data_intervento" class="edit-date datepicker" style="width:100%">
+                                    <input type="text" value="{{$verbalino['DATA_INTERVENTO_CONV'] or ""}}" id="data_intervento" name="data_intervento" class="edit-date datepicker" style="width:100%">
                                 </td>
                                 <td  style="width:10%">
                                     Intervento Remoto
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="checkbox" value="" name="intervento_remoto" class="edit-checkbox" style="width:100%">
+                                    <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_REMOTO']) && $verbalino['INTERVENTO_REMOTO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_remoto" class="edit-checkbox" style="width:100%">
                                 </td>
                                 <td  style="width:10%">
-                                    Tempo totale min.
+                                    Tempo totale minuti
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="{{Input::get('tempo_totale')}}" id="tempo" name="tempo" class="edit" style="width:100%">
+                                    <input type="text" value="<?php echo isset($verbalino['TEMPO_TOTALE']) ? $verbalino['TEMPO_TOTALE'] : Input::get('tempo_totale'); ?>" id="tempo" name="tempo" class="edit" style="width:100%">
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width:10%">
-                                    Tempo Viaggio
+                                    Tempo Viaggio(h:mm)
                                 </td>
                                 <td style="width:10%">
-                                    <input type="text" value="" id="tempo_viaggio" name="tempo_viaggio" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1'] or ""}}" id="tempo_viaggio" name="tempo_viaggio" class="edit" style="width:40%">&nbsp;:&nbsp;
+                                    <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1_MINUTI'] or ""}}" id="tempo_viaggio_minuti" name="tempo_viaggio_minuti" class="edit" style="width:40%">
                                 </td>
                                 <td  style="width:10%">
-                                    Ora inizio intervento
+                                    Ora inizio intervento(h:mm)
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="ora_inizio" name="ora_inizio" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['ORA_INIZIO_1'] or ""}}" id="ora_inizio" name="ora_inizio" class="edit" style="width:40%">&nbsp;:&nbsp;
+                                    <input type="text" value="{{$verbalino['ORA_INIZIO_1_MINUTI'] or ""}}" id="ora_inizio_minuti" name="ora_inizio_minuti" class="edit" style="width:40%">
                                 </td>
                                 <td  style="width:10%">
-                                    Ora fine intervento
+                                    Ora fine intervento(h:mm)
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="ora_fine" name="ora_fine" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['ORA_FINE_1'] or ""}}" id="ora_fine" name="ora_fine" class="edit" style="width:40%">&nbsp;:&nbsp;
+                                    <input type="text" value="{{$verbalino['ORA_FINE_1_MINUTI'] or ""}}" id="ora_fine_minuti" name="ora_fine_minuti" class="edit" style="width:40%">
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width:10%">
-                                    Tempo Viaggio
+                                    Tempo Viaggio(h:mm)
                                 </td>
                                 <td style="width:10%">
-                                    <input type="text" value="" id="tempo_viaggio2" name="tempo_viaggio2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2'] or ""}}" id="tempo_viaggio2" name="tempo_viaggio2" class="edit" style="width:40%">&nbsp;:&nbsp;
+                                    <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2_MINUTI'] or ""}}" id="tempo_viaggio2_minuti" name="tempo_viaggio2_minuti" class="edit" style="width:40%">
                                 </td>
                                 <td  style="width:10%">
-                                    Ora inizio intervento
+                                    Ora inizio intervento(h:mm)
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="ora_inizio2" name="ora_inizio2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['ORA_INIZIO_2'] or ""}}" id="ora_inizio2" name="ora_inizio2" class="edit" style="width:40%">&nbsp;:&nbsp;
+                                    <input type="text" value="{{$verbalino['ORA_INIZIO_2_MINUTI'] or ""}}" id="ora_inizio2_minuti" name="ora_inizio2_minuti" class="edit" style="width:40%">
                                 </td>
                                 <td  style="width:10%">
-                                    Ora fine intervento
+                                    Ora fine intervento(h:mm)
                                 </td>
                                 <td  style="width:10%">
-                                    <input type="text" value="" id="ora_fine2" name="ora_fine2" class="edit" style="width:100%">
+                                    <input type="text" value="{{$verbalino['ORA_FINE_2'] or ""}}" id="ora_fine2" name="ora_fine2" class="edit" style="width:40%">&nbsp;:&nbsp;
+                                    <input type="text" value="{{$verbalino['ORA_FINE_2_MINUTI'] or ""}}" id="ora_fine2_minuti" name="ora_fine2_minuti" class="edit" style="width:40%">
                                 </td>
                             </tr>
                         </table>
@@ -333,7 +339,7 @@
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
                         <div style="border:solid 1px; text-align: center;">
-                            Note sull'intervento <textarea value="" id="note" name="note" class="edit-textarea" style="width:100%" rows="4"></textarea>
+                            Note sull'intervento <textarea value="{{$verbalino['NOTE'] or ""}}" id="note" name="note" class="edit-textarea" style="width:100%" rows="4">{{$verbalino['NOTE'] or ""}}</textarea>
                         </div>
                     </td>
                 </tr>
@@ -342,15 +348,15 @@
                         <table style="width:100%">
                             <tr>
                                 <td style="width:50%">
-                                    Intervento risolutivo <input type="checkbox" value="" name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
+                                    Intervento risolutivo <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_RISOLUTIVO']) && $verbalino['INTERVENTO_RISOLUTIVO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
                                 </td>
                                 <td style="width:50%">
-                                    In garanzia <input type="checkbox" value="" name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO
+                                    In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width:50%">
-                                    Macchina in funzione <input type="checkbox" value="" name="macchina_funzione_si" class="edit-checkbox">SI <input type="checkbox" value="" name="macchina_funzione_no" class="edit-checkbox">NO
+                                    Macchina in funzione <input type="checkbox" value="" <?php echo isset($verbalino['MACCHINA_FUNZIONE']) && $verbalino['MACCHINA_FUNZIONE'] == 1 ? "checked='checked'" : ""; ?> name="macchina_funzione_si" class="edit-checkbox">SI <input type="checkbox" value="" name="macchina_funzione_no" class="edit-checkbox">NO
                                 </td>
                                 <td style="width:50%">
                                 </td>
@@ -366,7 +372,7 @@
                                     Timbro e firma del cliente
                                 </td>
                                 <td style="width:50%; height: 60pt;text-align: center" valign="top">
-                                    Tecnico<br><h2>{{$tecnico}}</h2>
+                                    Tecnico<br><h2><?php echo isset($verbalino['TECNICO_FIRMA']) ? $verbalino['TECNICO_FIRMA'] : $tecnico; ?></h2>
                                 </td>
                             </tr>
                         </table>

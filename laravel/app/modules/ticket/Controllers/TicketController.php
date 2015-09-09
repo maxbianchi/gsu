@@ -82,7 +82,8 @@ class TicketController extends MainController {
             $users = $model->getAllUserFromMago();
             $model = new AttivitaModel();
             $tecnico = $model->getTecnico();
-            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico]);
+            $verbalino = $model->getVerbalino();
+            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino]);
         }
     }
 
