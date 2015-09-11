@@ -321,7 +321,7 @@ EOF;
         $idattivita =  Input::get('idattivita');
         $sql = "SELECT V.*, V.DESCRIZIONE DESCRIZIONE_INTERVENTO, CONVERT(VARCHAR(10),DATA_INTERVENTO,105) DATA_INTERVENTO_CONV, T.DESCRIZIONE TECNICO_FIRMA FROM TICKET.dbo.VERBALINI V INNER JOIN TICKET.dbo.TECNICI  T ON T.IDTECNICO = TECNICO WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
-        if(is_array($res)){
+        if(is_array($res) && isset($res[0])){
             $res = $res[0];
         }
         return $res;
