@@ -419,7 +419,7 @@
 
             //SALVO SU DB
             msg = "";
-            if($(this).closest('form').find("#data_intervento").val() == "")
+            if($("#data_intervento").val() == "")
                 msg = msg + " 'Data attivita'";
             if(msg != ""){
                 alert("Compilare i campi" + msg);
