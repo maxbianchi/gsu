@@ -277,6 +277,8 @@ EOF;
         $note3 = Input::get('note3');
         $note3 = str_replace("'", "",$note3);
         $data_intervento = Input::get('data_intervento');
+        $data_intervento = explode("-", $data_intervento);
+        $data_intervento = $data_intervento[2]."-".$data_intervento[1]."-".$data_intervento[0];
         $intervento_remoto = isset($_POST['intervento_remoto']) ? 1 : 0;
         $tempo = Input::get('tempo');
         $tempo_viaggio = Input::get('tempo_viaggio');
