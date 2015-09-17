@@ -3,7 +3,7 @@
 @section('content')
     <br><br>
     <br><br>
-
+    <div style="margin-left: 30px;">
     <form action="#" method="POST" name="form" id="form">
         <table>
             <tr class="soggetto">
@@ -404,7 +404,7 @@
         <input type="button" value="SALVA" onclick="toPDF();">
     </form>
 
-
+    </div>
 
     <br>
     <br>
