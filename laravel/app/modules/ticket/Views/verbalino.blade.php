@@ -418,7 +418,13 @@
         function toPDF() {
 
             //SALVO SU DB
-
+            msg = "";
+            if($(this).closest('form').find("#data_intervento").val() == "")
+                msg = msg + " 'Data attivita'";
+            if(msg != ""){
+                alert("Compilare i campi" + msg);
+                return false;
+            }
             $.post( "{{url('/ticket/salvaverbalino')}}", $("#form").serialize())
                     .done(function( data ) {
                         //CREO PDF E LO SALVO
