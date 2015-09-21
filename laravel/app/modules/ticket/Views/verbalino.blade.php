@@ -134,15 +134,9 @@
                                     <input type="text" value="" id="ubicazione_indirizzo" name="ubicazione_indirizzo" class="edit" style="width:100%">
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td colspan="2">
-                                    <hr>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
-                                    Riferimento
+                                    Referente
                                 </td>
                                 <td>
                                     <input type="text" value="{{Input::get('nome_referente')}}" id="riferimento" name="riferimento" class="edit" style="width:100%">
@@ -157,16 +151,24 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>
+                                    Email
+                                </td>
+                                <td>
+                                    <input type="text" value="{{Input::get('email_referente')}}" id="email_referente" name="email_referente" class="edit" style="width:100%">
+                                </td>
+                            </tr>
+                            <tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:10px;">
                         <div style="border:solid 1px; text-align: center;">RDI - Rapporto di intervento tecnico nr. {{Input::get('idattivita')}} del <?php echo date("d-m-Y"); ?></div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:10px;">
                         <div style="border:solid 1px; text-align: center;">
                             <table>
                                 <tr>
@@ -188,21 +190,21 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:10px;">
                         <div style="border:solid 1px; text-align: center;">
                             Motivo della chiamata <textarea value="<?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?>" id="motivo" name="motivo" class="edit-textarea" style="width:100%" rows="4"><?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?></textarea>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:10px;">
                         <div style="border:solid 1px; text-align: center;">
                             Descrizione Intervento <textarea value="{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="6">{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}</textarea>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top:20px;">
+                    <td colspan="2" style="padding-top:10px;">
                         <table border="1" style="width:100%">
                             <tr>
                                 <td style="width:20%">

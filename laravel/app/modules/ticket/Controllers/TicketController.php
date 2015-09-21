@@ -14,22 +14,22 @@ class TicketController extends MainController {
 
     private $tableName = "PRINCIPALE";
 
-	public function __construct()
-	{
+    public function __construct()
+    {
         parent::__construct();
-	}
+    }
 
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+    /**
+     * Show the application dashboard to the user.
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
-		return view("ticket::index", ['users' => $users]);
-	}
+        return view("ticket::index", ['users' => $users]);
+    }
 
     public function getUserFromMago(){
         $id = Input::get("id");
@@ -60,16 +60,21 @@ class TicketController extends MainController {
         $row['motivo'] = Input::get("motivo");
         $row['email'] = Input::get("email");
         $row['idattivita'] = $idattivita;
-        if(!empty($row['email'])) {
-            Mail::send('ticket::email.chiusura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
-                $message->to($row['email'])->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
+        $email_referente  = Input::get("email_referente");
+        $row['email_referente'] = $email_referente;
+        try{
+            if(!empty($row['email'])) {
+                Mail::send('ticket::email.chiusura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                    $message->to($row['email'])->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
+                });
+            }
+            $model = new AttivitaModel();
+            $result = $model->getAllAttivitaByID($row['idattivita']);
+            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
+                $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
             });
         }
-        $model = new AttivitaModel();
-        $result = $model->getAllAttivitaByID($row['idattivita']);
-        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
-            $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
-        });
+        catch (Exception $e) {}
 
     }
 
