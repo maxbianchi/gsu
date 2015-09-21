@@ -46,7 +46,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input type="button" value="AGGIUNGI ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
+                        <td><input type="button" value="MODIFICA ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
                     </tr>
                     <tr>
                         <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
