@@ -100,7 +100,7 @@
 
 
             $(".salva-attivita").click(function(){
-                $.post( "{{url('/ticket/salvaattivita')}}", $("form#form").serialize())
+                $.post( "{{url('/ticket/salvaattivita')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
                             location.reload();
                         });
