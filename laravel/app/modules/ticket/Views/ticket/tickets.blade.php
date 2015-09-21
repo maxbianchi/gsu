@@ -13,7 +13,7 @@
 
 @section('content')
     <br><br>
-    <a class="btn btn-small edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;"><i class="glyphicon glyphicon-plus"></i>&nbsp;AGGIUNGI NUOVA ATTIVITA&grave; </a>
+    <a class="edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;"><i class="glyphicon glyphicon-plus"></i>&nbsp;AGGIUNGI NUOVA ATTIVITA&grave; </a>
     <br><br>
 
     <div class="container-fluid">
