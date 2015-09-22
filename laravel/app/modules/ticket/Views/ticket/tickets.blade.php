@@ -298,6 +298,12 @@
         </div>
     </div>
 
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+
 @endsection
 
 
@@ -377,7 +383,7 @@
                             });
             });
 
-            $("#accordion").show();
+            $("body").show();
             $("#accordion" ).accordion({
                 active: false,
                 collapsible: true
