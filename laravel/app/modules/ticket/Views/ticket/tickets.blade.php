@@ -307,6 +307,11 @@
 
         $(document).ready(function () {
 
+            $( "#accordion" ).accordion({
+                active: false,
+                collapsible: true
+            });
+
             function h(e) {
                 $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
             }
@@ -377,10 +382,7 @@
                             });
             });
 
-            $( "#accordion" ).accordion({
-                active: false,
-                collapsible: true
-            });
+
         });
     </script>
 
