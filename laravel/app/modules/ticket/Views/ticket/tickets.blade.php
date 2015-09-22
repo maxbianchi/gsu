@@ -73,7 +73,7 @@
 
     <br><br>
     <div class="container-fluid">
-        <div id="accordion" style="display: none;">
+        <div id="accordion">
             <?php $idattivita = 0;
 
             ?>
@@ -307,12 +307,6 @@
 
         $(document).ready(function () {
 
-            $("#accordion").show();
-            $("#accordion" ).accordion({
-                active: false,
-                collapsible: true
-            });
-
             function h(e) {
                 $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
             }
@@ -383,6 +377,11 @@
                             });
             });
 
+            $("#accordion").show();
+            $("#accordion" ).accordion({
+                active: false,
+                collapsible: true
+            });
 
         });
     </script>
