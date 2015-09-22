@@ -204,7 +204,7 @@
 
                 <tr>
                     <td colspan="3" style="padding-top:20px;">
-                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
+                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or Input::get("manutenzione")}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDMPLSDIRECTACCESS'] or ""}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="stato_precedente" name="stato_precedente" value="{{ Input::get('eliminati') == 'on' ? 1 : 0 }}">

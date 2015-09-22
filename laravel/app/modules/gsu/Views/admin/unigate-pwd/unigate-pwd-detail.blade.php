@@ -46,7 +46,7 @@
 
                 <tr>
                     <td colspan="2" style="padding-top:20px;">
-                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or ""}}">
+                        <input type="hidden" id="manutenzione" name="manutenzione" value="{{$request['MANUTENZIONE'] or Input::get("manutenzione")}}">
                         <input type="hidden" id="id_tbl" name="id_tbl" value="{{$request['IDUNIGATEPWD'] or ""}}">
                         <input type="hidden" id="apparato_id" name="apparato_id" value="{{Input::get('id')}}">
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
