@@ -8,9 +8,6 @@
         .btn{
             min-width: 80px;
         }
-        body {
-             display: none;
-         }
     </style>
 @endsection
 
@@ -382,7 +379,6 @@
                             });
             });
 
-            $("body").show();
             $("#accordion" ).accordion({
                 active: false,
                 collapsible: true
