@@ -73,7 +73,7 @@
 
     <br><br>
     <div class="container-fluid">
-        <div id="accordion">
+        <div id="accordion" style="display: none;">
             <?php $idattivita = 0;
 
             ?>
@@ -307,7 +307,8 @@
 
         $(document).ready(function () {
 
-            $( "#accordion" ).accordion({
+            $("#accordion").show();
+            $("#accordion" ).accordion({
                 active: false,
                 collapsible: true
             });
