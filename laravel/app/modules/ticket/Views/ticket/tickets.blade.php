@@ -8,6 +8,9 @@
         .btn{
             min-width: 80px;
         }
+        body {
+             display: none;
+         }
     </style>
 @endsection
 
@@ -298,11 +301,7 @@
         </div>
     </div>
 
-    <style>
-        body {
-            display: none;
-        }
-    </style>
+
 
 @endsection
 
