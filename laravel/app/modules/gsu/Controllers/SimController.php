@@ -84,8 +84,14 @@ class SimController extends MainController {
 
         $piano['NOME_PIANO'] = "";
         $piano['NOTE_PIANO'] = "";
-        if(isset($res['CANONE']))
+        if(isset($res['CANONE'])) {
             $piano = $model->getPianoTariffario($res['CANONE']);
+        }
+        else{
+            $manutenzione = Input::get('manutenzione');
+            $canone = $model->getCanoneFromManutenzione($manutenzione);
+            $piano = $model->getPianoTariffario($canone);
+        }
 
         $return['pianotariffario'] = $piano;
         $return['res'] = $res;

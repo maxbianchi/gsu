@@ -303,6 +303,7 @@ EOF;
 
         $sql = "SELECT * FROM dbo.SIM_PIANI_TARIFFARI_VOCE WHERE NOME_PIANO ='" . strtoupper($pianotariffario) . "' ORDER BY NOME_PIANO";
         $notes  = DB::select($sql);
+        $note = "";
         foreach($notes as $row)
             $note = $row["NOTE_PIANO"];
         $piano['NOME_PIANO'] = $pianotariffario;
@@ -311,6 +312,13 @@ EOF;
     }
 
 
+    public function getCanoneFromManutenzione($manutenzione){
+        $sql = "SELECT OGGETTO FROM UNIWEB.dbo.AOF70 WHERE MANUTENZIONE ='" . $manutenzione . "'";
+        $oggetto  = DB::select($sql);
+        foreach($oggetto as $row)
+            $oggetto = $row["OGGETTO"];
+        return $oggetto;
+    }
 
     public function checkAddNew(){
         $model = new SimModel();
