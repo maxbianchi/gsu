@@ -64,7 +64,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Citt&agrave;
+                                    Citta'
                                 </td>
                                 <td>
                                     <input type="text" value="" id="citta" name="citta" class="edit" style="width:100%">
