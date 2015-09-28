@@ -96,7 +96,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Città
+                                    Citta'
                                 </td>
                                 <td>
                                     <input type="text" value="" id="cliente_finale_citta" name="cliente_finale_citta" class="edit" style="width:100%">
@@ -120,7 +120,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Città
+                                    Citta'
                                 </td>
                                 <td>
                                     <input type="text" value="" id="ubicazione_citta" name="ubicazione_citta" class="edit" style="width:100%">
