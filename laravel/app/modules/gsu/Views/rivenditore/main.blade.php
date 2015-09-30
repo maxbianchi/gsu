@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-md-1">DESCRIZIONE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('descrizione')}}" id="descrizione" name="descrizione" ></div>
-                    <div class="col-md-1">DESCRIZIONE 2</div>
+                    <div class="col-md-1">NUMERO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('descrizione2')}}" id="descrizione2" name="descrizione2" ></div>
 
                     <div class="col-md-1"><input type="checkbox" <?php echo Input::get('daattivare') != 'on' ? '' :  "checked" ?> id="daattivare" name="daattivare">da attivare</div>
@@ -84,7 +84,7 @@
             <th class="cliente">CLIENTE FINALE</th>
             <th class="destinatarioabituale">UBICAZIONE</th>
             <th>DESCRIZIONE</th>
-            <th>DESCRIZIONE2</th>
+            <th>NUMERO</th>
             <th>QTA RICHIESTA</th>
             <th>QTA ATTIVATA</th>
         </tr>
