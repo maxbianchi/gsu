@@ -69,7 +69,7 @@ class AttivitaController extends MainController {
             $row['motivo'] = Input::get("motivo");
             $email = Input::get("email");
             $email_referente  = Input::get("email_referente");
-            $row['email_referente'] = $email_referente;
+            $row['email_referente'] = trim($email_referente);
             $row['email'] = explode(";", $email);
 
 
@@ -127,7 +127,7 @@ class AttivitaController extends MainController {
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
         $email_referente  = Input::get("email_referente");
-        $row['email_referente'] =$email_referente;
+        $row['email_referente'] = trim($email_referente);
         $row['email'] = explode(";", $email);
         try{
             if(is_array($row['email']))
