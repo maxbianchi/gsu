@@ -81,11 +81,11 @@ class AttivitaController extends MainController {
                         $message->to($row['email'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
                 }
-              /*  if (!empty($row['email_referente']) && $row['email_referente'] != "") {
+                if (!empty($row['email_referente']) && $row['email_referente'] != "") {
                     Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                         $message->to($row['email_referente'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
-                }*/
+                }
             }
             catch (Exception $e) {}
 
