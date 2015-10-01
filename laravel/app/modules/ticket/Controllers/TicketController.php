@@ -61,7 +61,7 @@ class TicketController extends MainController {
         $row['email'] = Input::get("email");
         $row['idattivita'] = $idattivita;
         $email_referente  = Input::get("email_referente");
-        $row['email_referente'] = $email_referente;
+        $row['email_referente'] = trim($email_referente);
         try{
             if(!empty($row['email'])) {
                 Mail::send('ticket::email.chiusura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
