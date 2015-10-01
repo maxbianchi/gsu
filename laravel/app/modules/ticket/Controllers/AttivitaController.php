@@ -81,7 +81,7 @@ class AttivitaController extends MainController {
                         $message->to($row['email'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
                 }
-                if (!empty($row['email_referente'])) {
+                if (!empty($row['email_referente']) && isset($row['email_referente'])) {
                     Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                         $message->to($row['email_referente'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
