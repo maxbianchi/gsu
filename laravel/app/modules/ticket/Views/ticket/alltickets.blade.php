@@ -80,7 +80,7 @@
                     <li><label class="tree-toggler nav-header">Tecnico</label>
                         <ul class="nav nav-list tree">
                             @foreach($tecnici as $tecnico)
-                                <li><a href="#">{{$tecnico['DESCRIZIONE']}}</a></li>
+                                <li><a href="{{url('/ticket/alltickets').'?tecnico='.$tecnico['IDTECNICO']}}">{{$tecnico['DESCRIZIONE']}}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -88,8 +88,9 @@
                     <li><label class="tree-toggler nav-header">Categoria</label>
                         <ul class="nav nav-list tree">
                             @foreach($categorie as $categoria)
-                                <li><a href="#">{{$categoria['DESCRIZIONE']}}</a></li>
+                                <li><a href="{{url('/ticket/alltickets').'?categoria='.$categoria['IDCATEGORIA']}}">{{$categoria['DESCRIZIONE']}}</a></li>
                         @endforeach
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -119,7 +120,7 @@
                         $idattivita = $res['IDATTIVITA'];
                         ?>
 
-                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">
+                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
                             <td>{{$res['SOGGETTO_NOME']}}</td>
                             <td>{{$res['TITOLO']}}</td>
                             <td>{{$res['IDATTIVITA']}}</td>
@@ -129,6 +130,7 @@
                         </tr>
                     @endforeach
                 </table>
+                    <span class="exportBox"></span>
             </div>
         </div>
     </div>

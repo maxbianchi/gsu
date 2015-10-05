@@ -97,4 +97,15 @@ class TicketController extends MainController {
         $model->salvaVerbalino();
     }
 
+    public function alltickets(){
+        $model = new Utenti();
+        $users = $model->getAllUserFromMago();
+        $model = new AttivitaModel();
+        $result = $model->getTickets();
+        $tecnici = $model->getAllTecnici();
+        $stati = $model->getAllStati();
+        $categorie = $model->getAllCategorie();
+        return view("ticket::ticket.alltickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
+    }
+
 }

@@ -72,19 +72,40 @@
     </div>
 
     <br><br>
+    <div class="col-xs-4 col-md-2" style="border:1px solid #E7E7E7; background-color: #F5F5F5;">
+        <div class="well" style="width:100%; padding: 8px 0;">
+            <div style="overflow-y: scroll; overflow-x: hidden; height: 500px;">
+                <ul class="nav nav-list">
+                    <li><label class="tree-toggler nav-header">Tecnico</label>
+                        <ul class="nav nav-list tree">
+                            @foreach($tecnici as $tecnico)
+                                <li><a href="{{url('/ticket/alltickets').'?tecnico='.$tecnico['IDTECNICO']}}">{{$tecnico['DESCRIZIONE']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggler nav-header">Categoria</label>
+                        <ul class="nav nav-list tree">
+                            @foreach($categorie as $categoria)
+                                <li><a href="{{url('/ticket/alltickets').'?categoria='.$categoria['IDCATEGORIA']}}">{{$categoria['DESCRIZIONE']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <div class="container-fluid">
-        <div id="accordion">
-            <?php $idattivita = 0;
-
-            ?>
+    <div class="col-xs-14 col-sm-6 col-md-10 col-lg-8">
+        <div class="container-fluid">
+            <?php $idattivita = 0;?>
             @foreach($result as $res)
                 <?php if($idattivita == $res['IDATTIVITA']){
                     continue; }
                 $attivita = $result;
                 $idattivita = $res['IDATTIVITA'];
                 ?>
-                <h3 style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</h3>
+                <div style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</div>
                 <div>
                     <form action="{{url('/ticket/chiuditicket')}}" method="post" name="form_{{$res['IDATTIVITA']}}">
                         <div class="border">
@@ -381,10 +402,9 @@
                         });
             });
 
-            $("#accordion" ).accordion({
-                active: false,
-                collapsible: true
-            });
+            /*$("#accordion" ).accordion({
+
+             });*/
 
         });
     </script>

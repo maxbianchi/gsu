@@ -113,7 +113,7 @@ class AttivitaController extends MainController {
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         $categorie = $model->getAllCategorie();
-        return view("ticket::ticket.alltickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
+        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
     }
 
     public function getEmailCliente(){
