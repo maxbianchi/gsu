@@ -13,7 +13,7 @@
     <link href="{{ asset('/css/dataTables.bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jquery.dataTables.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/dataTables.tableTools.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" class="cssdeck">
 
 
 	<!-- Fonts -->

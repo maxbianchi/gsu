@@ -283,7 +283,7 @@
                                     <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_REMOTO']) && $verbalino['INTERVENTO_REMOTO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_remoto" class="edit-checkbox" style="width:100%">
                                 </td>
                                 <td  style="width:10%">
-                                    Tempo totale minuti
+                                    Tempo gestione interno
                                 </td>
                                 <td  style="width:10%">
                                     <input type="text" value="<?php echo isset($verbalino['TEMPO_TOTALE']) ? $verbalino['TEMPO_TOTALE'] : Input::get('tempo_totale'); ?>" id="tempo" name="tempo" class="edit" style="width:100%">

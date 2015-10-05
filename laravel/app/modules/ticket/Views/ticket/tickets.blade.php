@@ -72,6 +72,7 @@
     </div>
 
     <br><br>
+
     <div class="container-fluid">
         <div id="accordion">
             <?php $idattivita = 0;
@@ -282,6 +283,7 @@
     </div>
 
 
+
     <hr>
 
     <div id="msg" class="modal fade" style="z-index:99999;">
@@ -367,16 +369,16 @@
                 }
 
                 var form = $(this).closest('form');
-                    $.post("{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
-                            .done(function (data) {
-                                $('#msg').modal('show');
-                                $("#btn_salva").hide();
-                                if(stato != 4) {
-                                    location.reload()
-                                } else {
-                                    form.submit();
-                                }
-                            });
+                $.post("{{url('/ticket/salvaticket')}}", $(this).closest('form').serialize())
+                        .done(function (data) {
+                            $('#msg').modal('show');
+                            $("#btn_salva").hide();
+                            if(stato != 4) {
+                                location.reload()
+                            } else {
+                                form.submit();
+                            }
+                        });
             });
 
             $("#accordion" ).accordion({
