@@ -23,9 +23,10 @@
     <div class="container-fluid">
 
     <br>
+    <br>
     <input type="button" value="Visualizza Tutti" id="anagrafica_view" class="btn btn-default" onclick="window.location.href='{{url('/gsu/anagrafica')}}'">
     <br>
-
+    <br>
         <div class="row" id="loader">
             <img class="loader_img" src="{{ URL::asset('images/loader.gif')}}">
         </div>

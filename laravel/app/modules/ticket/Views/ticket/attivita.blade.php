@@ -14,46 +14,49 @@
 @section('content')
     <div class="container-fluid">
         <form action="#" method="post" id="form">
-        <div class="border">
-            <table class="tbl_clienti" style="width:100%">
-                <tbody>
-                <tr class="soggetto">
-                    <td>CLIENTE *</td>
-                    <td>
-                        <select name="cliente" id="cliente">
-                            <option value="">-----</option>
-                            @foreach($users as $user)
-                                <option value="{{$user['SOGGETTO']}}" {{isset($request['SOGGETTO_CODICE']) && $request['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                <tr class="cliente">
-                    <td>CLIENTE FINALE</td>
-                    <td>
-                        <select name="cliente_finale" id="cliente_finale">
-                            <option value="">-----</option>
-                            @foreach($users as $user)
-                                <option value="{{$user['SOGGETTO']}}" {{isset($request['CLIENTE_FINALE_CODICE']) && $request['CLIENTE_FINALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                <tr class="destinatarioabituale">
-                    <td>UBICAZIONE IMPIANTO</td>
-                    <td>
-                        <select name="ubicazione_impianto" id="ubicazione_impianto">
-                            <option value="">-----</option>
-                            @foreach($users as $user)
-                                <option value="{{$user['SOGGETTO']}}" {{isset($request['DESTINATARIOABITUALE_CODICE']) && $request['DESTINATARIOABITUALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="border">
+                <table class="tbl_clienti" style="width:100%">
+                    <tbody>
+                    <tr class="soggetto">
+                        <td>CLIENTE *</td>
+                        <td>
+                            <input type="text" value="{{Input::get('cliente')}}" name="search_cliente" id="search_cliente" >
+                            <select name="cliente" id="cliente">
+                                <option value="">-----</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user['SOGGETTO']}}" {{isset($request['SOGGETTO_CODICE']) && $request['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="cliente">
+                        <td>CLIENTE FINALE</td>
+                        <td>
+                            <input type="text" value="{{Input::get('cliente')}}" name="search_cliente_finale" id="search_cliente_finale" >
+                            <select name="cliente_finale" id="cliente_finale">
+                                <option value="">-----</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user['SOGGETTO']}}" {{isset($request['CLIENTE_FINALE_CODICE']) && $request['CLIENTE_FINALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="destinatarioabituale">
+                        <td>UBICAZIONE IMPIANTO</td>
+                        <td>
+                            <input type="text" value="{{Input::get('cliente')}}" name="search_ubicazione" id="search_ubicazione" >
+                            <select name="ubicazione_impianto" id="ubicazione_impianto">
+                                <option value="">-----</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user['SOGGETTO']}}" {{isset($request['DESTINATARIOABITUALE_CODICE']) && $request['DESTINATARIOABITUALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
-        </div>
+            </div>
     </div>
 
     <br><br>
@@ -61,129 +64,129 @@
         <legend align="right"></legend>
         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
 
-                <tr>
-                    <td>NR INTERNO TICKET </td>
-                    <td class="manutenzione">{{$idattivita or ""}}</td>
-                    <td>NR TICKET FORNITORE</td>
-                    <td><input type="text" name="tickettelecom" value="{{$request['TICKETTELECOM'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>ATTIVIT&Agrave; APERTA DA *</td>
-                    <td>
-                        <select name="apertoda" id="apertoda" required>
-                            <option value="">-----</option>
-                            @foreach($tecnici as $tecnico)
-                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>ATTIVIT&Agrave; IN CARICO A</td>
-                    <td>
-                        <select name="incaricoa" id="incaricoa" required>
-                            <option value="">-----</option>
-                            @foreach($tecnici as $tecnico)
-                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['INCARICOA']) && $request['INCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>EMAIL FORNITORE *</td>
-                    <td><input type="text" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
-                    <td>CATEGORIA *</td>
-                    <td>
-                        <select name="categoria" id="categoria" class="categoria">
-                            <option value="">-----</option>
-                            @foreach($categorie as $categoria)
-                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>NOME REFERENTE</td>
-                    <td><input type="text" name="nome_referente" value="{{$request['NOME_REFERENTE'] or ""}}"></td>
-                    <td>TELEFONO REFERENTE</td>
-                    <td><input type="text" name="telefono_referente" id="email" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>EMAIL REFERENTE</td>
-                    <td><input type="text" name="email_referente" id="email_referente" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
-                    <td>ATTIVIT&Agrave; APERTA IL</td>
-                    <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$request['APERTAIL'] or ""}}"></td>
-                </tr>
-                <tr>
-                    <td>TGU / IMEI</td>
-                    <td><input type="text" name="tgu" id="tgu" value="{{$request['TGU'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>TITOLO ATTIVIT&Agrave;</td>
-                    <td><input type="text" name="titolo" value="{{$request['TITOLO'] or ""}}"></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>MOTIVO DELLA CHIAMATA</td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="4"><textarea name="motivo" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
-                </tr>
-                <tr>
-                    <td>DETTAGLIO ATTIVIT&Agrave;</td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="4"><textarea name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
-                </tr>
-                <tr>
-                    <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
-                </tr>
-                <tr>
-                    <td>AGGIUNGI ATTIVIT&Agrave;</td>
-                    <td></td>
-                    <td>TECNICO</td>
-                    <td>
-                        <select name="incaricoa_attivita" class="incaricoa_attivita">
-                            <option value="">-----</option>
-                            @foreach($tecnici as $tecnico)
-                                <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>DURATA INTERVENTO MINUTI</td>
-                    <td><input type="text" name="tempo" class="tempo" value="{{$request['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
-                </tr>
-                <tr>
-                    <td colspan="4"><textarea name="attivita" id="attivita" cols="130">{{$request['DESCRIZIONE'] or ""}}</textarea></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><input type="button" value="AGGIUNGI ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
-                </tr>
-                <tr>
-                    <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
-                </tr>
-                <tr>
-                    <td>CAMBIA STATO</td>
-                    <td>
-                        <select name="stato">
-                            @foreach($stati as $stato)
-                                <option value="{{$stato['IDSTATO'] or ""}}" {{isset($request['STATO']) && $request['STATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"></td>
-                    <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs"></td>
-                </tr>
+            <tr>
+                <td>NR INTERNO TICKET </td>
+                <td class="manutenzione">{{$idattivita or ""}}</td>
+                <td>NR TICKET FORNITORE</td>
+                <td><input type="text" name="tickettelecom" value="{{$request['TICKETTELECOM'] or ""}}"></td>
+            </tr>
+            <tr>
+                <td>ATTIVIT&Agrave; APERTA DA *</td>
+                <td>
+                    <select name="apertoda" id="apertoda" required>
+                        <option value="">-----</option>
+                        @foreach($tecnici as $tecnico)
+                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                        @endforeach
+                    </select>
+                </td>
+                <td>ATTIVIT&Agrave; IN CARICO A</td>
+                <td>
+                    <select name="incaricoa" id="incaricoa" required>
+                        <option value="0">-----</option>
+                        @foreach($tecnici as $tecnico)
+                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($request['INCARICOA']) && $request['INCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>EMAIL FORNITORE *</td>
+                <td><input type="text" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
+                <td>CATEGORIA *</td>
+                <td>
+                    <select name="categoria" id="categoria" class="categoria">
+                        <option value="">-----</option>
+                        @foreach($categorie as $categoria)
+                            <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>NOME REFERENTE</td>
+                <td><input type="text" name="nome_referente" value="{{$request['NOME_REFERENTE'] or ""}}"></td>
+                <td>TELEFONO REFERENTE</td>
+                <td><input type="text" name="telefono_referente" id="email" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
+            </tr>
+            <tr>
+                <td>EMAIL REFERENTE</td>
+                <td><input type="text" name="email_referente" id="email_referente" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
+                <td>ATTIVIT&Agrave; APERTA IL</td>
+                <td><input type="text" name="apertail" readonly="readonly" disabled="disabled" value="{{$request['APERTAIL'] or ""}}"></td>
+            </tr>
+            <tr>
+                <td>TGU / IMEI</td>
+                <td><input type="text" name="tgu" id="tgu" value="{{$request['TGU'] or ""}}"></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>TITOLO ATTIVIT&Agrave;</td>
+                <td><input type="text" name="titolo" value="{{$request['TITOLO'] or ""}}"></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>MOTIVO DELLA CHIAMATA</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><textarea name="motivo" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
+            </tr>
+            <tr>
+                <td>DETTAGLIO ATTIVIT&Agrave;</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><textarea name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
+            </tr>
+            <tr>
+                <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
+            </tr>
+            <tr>
+                <td>AGGIUNGI ATTIVIT&Agrave;</td>
+                <td></td>
+                <td>TECNICO</td>
+                <td>
+                    <select name="incaricoa_attivita" class="incaricoa_attivita">
+                        <option value="">-----</option>
+                        @foreach($tecnici as $tecnico)
+                            <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>DURATA INTERVENTO MINUTI</td>
+                <td><input type="text" name="tempo" class="tempo" value="{{$request['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><textarea name="attivita" id="attivita" cols="130">{{$request['DESCRIZIONE'] or ""}}</textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="button" value="AGGIUNGI ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
+            </tr>
+            <tr>
+                <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
+            </tr>
+            <tr>
+                <td>CAMBIA STATO</td>
+                <td>
+                    <select name="stato">
+                        @foreach($stati as $stato)
+                            <option value="{{$stato['IDSTATO'] or ""}}" {{isset($request['STATO']) && $request['STATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
+                        @endforeach
+                    </select>
+                </td>
+                <td><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"></td>
+                <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs"></td>
+            </tr>
         </table>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">

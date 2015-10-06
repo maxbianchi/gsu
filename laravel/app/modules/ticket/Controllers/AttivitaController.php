@@ -116,6 +116,13 @@ class AttivitaController extends MainController {
         return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
     }
 
+    public function getSingleUser(){
+        $model = new Utenti();
+        $users = $model->getSingleUserFromMago();
+        return json_encode($users);
+
+    }
+
     public function getEmailCliente(){
         $model = new AttivitaModel();
         return $model->getEmailCliente();
@@ -161,6 +168,12 @@ class AttivitaController extends MainController {
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         return view("ticket::ticket.modifica-attivita", ['result' => $result,'tecnici' => $tecnici,'stati' => $stati]);
+    }
+
+    public function getclienti(){
+        $model = new AttivitaModel();
+        $clienti = $model->getClientiByRivenditore();
+        return json_encode($clienti);
     }
 
 }

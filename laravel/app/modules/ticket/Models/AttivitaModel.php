@@ -113,7 +113,7 @@ class AttivitaModel extends Model {
 
 
     public function getTickets(){
-        $soggetto = Input::get("soggetto");
+        $soggetto = Input::get("cliente");
         $stato = Input::get("stato");
         $tecnico = Input::get("tecnico");
         $tgu = Input::get("tgu");
@@ -160,6 +160,7 @@ SELECT
         A.NOME_REFERENTE,
         A.EMAIL_REFERENTE,
         A.TELEFONO_REFERENTE,
+        A.IDCATEGORIA,
         CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
         CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
         FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
@@ -174,10 +175,10 @@ SELECT
         WHERE 1 = 1
 EOF;
       if(!empty($soggetto))
-          $sql .= " AND A.SOGGETTO = '$soggetto'";
+          $sql .= " AND A1.DESCRIZIONE like '%$soggetto%'";
       if(!empty($stato) && $stato != "") {
           if($stato == -1)
-              $sql .= " AND A.INCARICOA IS NULL";
+              $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0";
           else
               $sql .= " AND A.STATO = '$stato'";
       }
@@ -327,6 +328,17 @@ EOF;
             $res = $res[0];
         }
         return $res;
+    }
+
+    public function getClientiByRivenditore(){
+        $q = Input::get('term');
+        $res = DB::select("SELECT DISTINCT REPLACE(LTRIM(RTRIM(DESCRIZIONE)),'''','') AS DESCRIZIONE FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
+        $result = "";
+        foreach($res as $keys => $values){
+            foreach($values as $key => $value)
+                $result[] = trim($value);
+        }
+        return $result;
     }
 
 }

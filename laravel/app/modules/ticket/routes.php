@@ -2,6 +2,8 @@
 
 Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Controllers'), function() {
 
+    //AJAX
+    Route::get('/ticket/getclienti', 'AttivitaController@getclienti');
 
     Route::get('/ticket/index', 'TicketController@index');
     Route::post('/ticket/pdf', 'TicketController@pdf');
@@ -20,5 +22,6 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::post('/ticket/cambiastato', 'AttivitaController@cambiastato');
     Route::post('/ticket/mailaperturaticket', 'AttivitaController@mailaperturaticket');
     Route::get('/ticket/modificaattivita', 'AttivitaController@modificaattivita');
+    Route::get('/ticket/getsingleuser', 'AttivitaController@getsingleuser');
 
 });

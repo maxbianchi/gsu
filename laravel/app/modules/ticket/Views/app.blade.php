@@ -30,9 +30,9 @@
             width:12em; /* fixed width only please - you can use the "subMenusMinWidth"/"subMenusMaxWidth" script options to override this if you like */
         }
 
-        .dataTables_filter{
+        /*.dataTables_filter{
             display:none;
-        }
+        }*/
     </style>
     @yield('css')
 
@@ -97,12 +97,62 @@
 
             @if (Session::get('livello')  == 1)
                 $('.search_anagrafica').autocomplete({
-                    source: '/gsu/getanagrafica',
+                    source: '/ticket/getclienti',
                     minLength: 2,
                     select: function(event, ui) {
-
                     }
                 });
+
+                $('#search_cliente').autocomplete({
+                    source: '/ticket/getclienti',
+                    minLength: 2,
+                    select: function(event, ui) {
+                        $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_cliente').val()})
+                                .done(function (json) {
+                                    $("#cliente").html("");
+                                    json = JSON.parse(json);
+                                    $("#cliente").append('<option value="">-----</option>')
+                                    $(json).each(function(index,data){
+                                        $("#cliente").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                    })
+
+                                });
+                    }
+                });
+
+                $('#search_cliente_finale').autocomplete({
+                    source: '/ticket/getclienti',
+                    minLength: 2,
+                    select: function(event, ui) {
+                        $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_cliente_finale').val()})
+                                .done(function (json) {
+                                    $("#cliente_finale").html("");
+                                    $("#cliente_finale").append('<option value="">-----</option>')
+                                    json = JSON.parse(json);
+                                    $(json).each(function(index,data){
+                                        $("#cliente_finale").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                    })
+
+                                });
+                    }
+                });
+
+            $('#search_ubicazione').autocomplete({
+                source: '/ticket/getclienti',
+                minLength: 2,
+                select: function(event, ui) {
+                    $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_ubicazione').val()})
+                            .done(function (json) {
+                                $("#ubicazione_impianto").html("");
+                                json = JSON.parse(json);
+                                $("#ubicazione_impianto").append('<option value="">-----</option>')
+                                $(json).each(function(index,data){
+                                    $("#ubicazione_impianto").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                })
+
+                            });
+                }
+            });
             @endif;
 
             @if (Session::get('livello')  == 2)
@@ -110,9 +160,18 @@
                     source: '/gsu/getclienti',
                     minLength: 2,
                     select: function(event, ui) {
+                        $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_cliente_finale').val()})
+                                .done(function (json) {
+                                    $("#cliente_finale").html("");
+                                    json = JSON.parse(json);
+                                    $(json).each(function(index,data){
+                                        $("#cliente_finale").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                    })
 
+                                });
                     }
                 });
+
                 $("#cliente").attr("disabled", "disabled");
             @endif;
 
@@ -127,7 +186,7 @@
     @yield('script')
 
 
-    <div id="footer" class="container_12">
+    <!--<div id="footer" class="container_12">
         <strong>Uniweb Srl</strong>
         - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
         <br>
@@ -135,7 +194,7 @@
         <a href="mailto:info@uniweb.it">info@uniweb.it</a>
         <br>
         Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>
-    </div>
+    </div>-->
 
 
 </body>

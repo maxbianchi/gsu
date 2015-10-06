@@ -13,7 +13,7 @@
 
 @section('content')
     <br><br>
-    <a class="edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;"><i class="glyphicon glyphicon-plus"></i></a><a class="edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;">&nbsp;AGGIUNGI NUOVA ATTIVITA&grave; </a>
+    <a class="edit" style="padding-left:20px;" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;"><i class="glyphicon glyphicon-plus"></i></a><a class="edit" href="{{url('/ticket/creaattivita')}}" title="AGGIUNGI NUOVA ATTIVITA&grave;">&nbsp;AGGIUNGI NUOVA ATTIVITA&grave; </a>
     <br><br>
 
     <div class="container-fluid">
@@ -26,7 +26,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-2 "></div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-3"></div>
+                    <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">IN CARICO A</div>
@@ -46,7 +46,7 @@
                                 <option value="{{$stato['IDSTATO'] or ""}}" {{Input::get('stato') == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                             @endforeach
                         </select></div>
-                    <div class="col-md-3"></div>
+                    <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-1">TGU</div>
@@ -62,7 +62,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3"></div>
+                    <div class="col-md-2"></div>
                 </div>
                 <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
@@ -71,14 +71,13 @@
         </div>
     </div>
 
-    <br><br>
-
-    <div class="col-xs-4 col-md-2" style="border:1px solid #E7E7E7; background-color: #F5F5F5;">
+     <div class="col-xs-4 col-md-2" style="border:1px solid #E7E7E7; background-color: #F5F5F5;">
         <div class="well" style="width:100%; padding: 8px 0;">
-            <div style="overflow-y: scroll; overflow-x: hidden; height: 500px;">
+            <div style="overflow-y: scroll; overflow-x: hidden; height: 100%;">
                 <ul class="nav nav-list">
                     <li><label class="tree-toggler nav-header">Tecnico</label>
                         <ul class="nav nav-list tree">
+                            <li><a href="{{url('/ticket/alltickets').'?stato=-1'}}">NON ASSEGNATI</a></li>
                             @foreach($tecnici as $tecnico)
                                 <li><a href="{{url('/ticket/alltickets').'?tecnico='.$tecnico['IDTECNICO']}}">{{$tecnico['DESCRIZIONE']}}</a></li>
                             @endforeach
@@ -101,7 +100,7 @@
         <div class="container-fluid">
             <div id="accordion">
                 <?php $idattivita = 0;?>
-                <table border="0" style="width:100%" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                <table border="0" class="table table-striped table-bordered display" id="main" cellspacing="0" width="100%">
                     <thead>
                     <tr style="width:100%">
                         <td>CLIENTE</td>
@@ -109,6 +108,7 @@
                         <td>NR.TICKET INTERNO</td>
                         <td>TGU/IMEI</td>
                         <td>TICKET FORNITORE</td>
+                        <td>IN CARICO A</td>
                         <td>STATO</td>
                     </tr>
                     </thead>
@@ -120,15 +120,17 @@
                         $idattivita = $res['IDATTIVITA'];
                         ?>
 
-                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;" ?>" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
+                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "APERTO") echo "color:green"; ?>" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
                             <td>{{$res['SOGGETTO_NOME']}}</td>
                             <td>{{$res['TITOLO']}}</td>
                             <td>{{$res['IDATTIVITA']}}</td>
                             <td>{{$res['TGU']}}</td>
                             <td>{{$res['TICKETTELECOM']}}</td>
+                            <td>{{$res['INCARICOA']}}</td>
                             <td>{{$res['STATO']}}</td>
                         </tr>
                     @endforeach
+                    </tbody>
                 </table>
                     <span class="exportBox"></span>
             </div>
@@ -238,6 +240,8 @@
             });
 
         });
+
+
     </script>
 
 @endsection

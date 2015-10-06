@@ -93,6 +93,18 @@ class Utenti extends Model {
         return $utente;
     }
 
+    public function getSingleUserFromMago(){
+        $descrizione = Input::get("descrizione");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
+        $utente = [];
+        foreach($utenti as $key => $value){
+            foreach($value as $key2 => $value2){
+                $utente[$key][$key2] = utf8_encode($value2);
+            }
+        }
+        return $utente;
+    }
+
 
     public function getUserFromMagoByName($descrizione){
         $utenti  = DB::select("SELECT A.DESCRIZIONE term, A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
