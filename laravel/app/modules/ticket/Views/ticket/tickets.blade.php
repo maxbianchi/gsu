@@ -269,7 +269,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>DURATA INTERVENTO MINUTI</td>
-                                <td><input type="text" name="tempo" class="tempo" value="{{$res['TEMPO'] or ""}}" style="min-width:50px !important; width:50px;"></td>
+                                <td><input type="text" name="tempo" class="tempo" value="{{$res['TEMPO'] or "0"}}" style="min-width:50px !important; width:50px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="4"><textarea name="attivita" id="attivita" cols="130"></textarea></td>
