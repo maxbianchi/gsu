@@ -440,7 +440,7 @@
 
                         $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '{{Input::get('motivo')}}' })
                                 .done(function( data ) {
-                                    location.href = '{{url('/ticket/tickets?stato=1')}}';
+                                    location.href = '{{url('/ticket/alltickets')}}';
                                 });
                     });
         }
