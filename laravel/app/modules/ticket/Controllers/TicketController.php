@@ -64,7 +64,7 @@ class TicketController extends MainController {
         $row['email_referente'] = trim($email_referente);
         try{
 
-            if (is_array($row['email']))
+            /*if (is_array($row['email']))
                 $row['email'] = $row['email'][0];
             if(!empty($row['email'])) {
                 Mail::send('ticket::email.chiusura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
@@ -75,7 +75,7 @@ class TicketController extends MainController {
                 Mail::send('ticket::email.chiusura-ticket', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                     $message->to($row['email_referente'])->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
                 });
-            }
+            }*/
             $model = new AttivitaModel();
             $result = $model->getAllAttivitaByID($row['idattivita']);
             Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
