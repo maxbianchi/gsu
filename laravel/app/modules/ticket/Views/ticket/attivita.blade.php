@@ -264,7 +264,7 @@
                         $.post( "{{url('/ticket/salvaticket')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
-                                    location.href = '/ticket/tickets?stato=1';
+                                    location.href = '{{ URL::previous() }}';
                                 });
                         $.post( "{{url('/ticket/mailaperturaticket')}}", $("form#form").serialize())
                                 .done(function( data ) {
