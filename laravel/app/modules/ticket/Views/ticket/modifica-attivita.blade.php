@@ -60,7 +60,7 @@
         <hr>
         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
             <tr>
-                <td colspan="4"><input type="button" value="INDIETRO" onClick="location.href='{{ url('/ticket/tickets?stato=1') }}'" class="btn btn-primary btn-xs"></td>
+                <td colspan="4"><input type="button" value="INDIETRO" onClick="location.href='{{ url('/ticket/alltickets?stato=1') }}'" class="btn btn-primary btn-xs"></td>
             </tr>
         </table>
 
