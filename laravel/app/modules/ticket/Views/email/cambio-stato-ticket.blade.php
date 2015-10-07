@@ -7,14 +7,15 @@
 
 <h3>Buongiorno,<br>
     con la presente vi informiamo che il ticket id: {{$idattivita}}</h3><br>
+<h3>
+    E' passato in stato {{$stato}}
+</h3><br>
 
-Con la seguente motivazione:<br>
+Descrizione ticket:<br>
 {{$motivo}}
 
 <br>
-<h3>
-    E' passato in stato {{$stato}}
-</h3>
+
 
 <br><br>
 

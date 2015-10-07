@@ -7,19 +7,19 @@
 
 <h3>Buongiorno,<br>
     con la presente vi informiamo che il ticket id: {{$idattivita}}</h3><br>
+<h3>
+    E' passato in stato {{$stato}}
+</h3>
+<br>
+<br>
 
-Con la seguente motivazione:<br>
+Descrizione ticket:<br>
 {{$motivo}}
 
 <br>
 <br>
 Elenco Attivit&agrave;:<br>
 <?php foreach($result as $row): echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."<br>"; endforeach; ?>
-
-<br>
-<h3>
-    E' passato in stato {{$stato}}
-</h3>
 
 <br><br>
 
