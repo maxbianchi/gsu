@@ -223,7 +223,7 @@ EOF;
             if (count($res) > 0)
                 $stato_text = $res[0]['STATO'];
             else
-                $stato_text = 'APERTO';
+                $stato_text = 1;
             return $stato_text;
         } catch (Exception $e) {}
     }
