@@ -248,7 +248,7 @@
                                 <td colspan="3"></td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"; endforeach; ?></textarea></td>
+                                <td colspan="4"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;"; endforeach; ?></textarea></td>
                             </tr>
                             <tr>
                                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>

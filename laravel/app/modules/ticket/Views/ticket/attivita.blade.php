@@ -139,7 +139,7 @@
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td colspan="4"><textarea name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
+                <td colspan="4"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
             </tr>
             <tr>
                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
