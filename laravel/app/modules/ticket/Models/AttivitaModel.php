@@ -219,7 +219,10 @@ EOF;
         $idattivita = Input::get("idattivita");
         $sql = "SELECT STATO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA=$idattivita";
         $res = DB::select($sql);
-        $stato_text = $res[0]['STATO'];
+        if(is_array($res))
+            $stato_text = $res[0]['STATO'];
+        else
+            $stato_text = $res['STATO'];
         return $stato_text;
     }
 
