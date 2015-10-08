@@ -20,7 +20,7 @@
                     <tr class="soggetto">
                         <td>CLIENTE *</td>
                         <td>
-                            <input type="text" value="{{Input::get('cliente')}}" name="search_cliente" id="search_cliente" >
+                            <input type="text" value="" name="search_cliente" id="search_cliente" >
                             <select name="cliente" id="cliente">
                                 <option value="">-----</option>
                                 @foreach($users as $user)
@@ -32,7 +32,7 @@
                     <tr class="cliente">
                         <td>CLIENTE FINALE</td>
                         <td>
-                            <input type="text" value="{{Input::get('cliente')}}" name="search_cliente_finale" id="search_cliente_finale" >
+                            <input type="text" value="" name="search_cliente_finale" id="search_cliente_finale" >
                             <select name="cliente_finale" id="cliente_finale">
                                 <option value="">-----</option>
                                 @foreach($users as $user)
@@ -44,7 +44,7 @@
                     <tr class="destinatarioabituale">
                         <td>UBICAZIONE IMPIANTO</td>
                         <td>
-                            <input type="text" value="{{Input::get('cliente')}}" name="search_ubicazione" id="search_ubicazione" >
+                            <input type="text" value="" name="search_ubicazione" id="search_ubicazione" >
                             <select name="ubicazione_impianto" id="ubicazione_impianto">
                                 <option value="">-----</option>
                                 @foreach($users as $user)
