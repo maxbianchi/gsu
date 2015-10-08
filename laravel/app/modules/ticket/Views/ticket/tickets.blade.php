@@ -77,6 +77,7 @@
                 <ul class="nav nav-list">
                     <li><label class="tree-toggler nav-header">Tecnico</label>
                         <ul class="nav nav-list tree">
+                            <li><a href="{{url('/ticket/alltickets').'?stato=-1'}}">NON ASSEGNATI</a></li>
                             @foreach($tecnici as $tecnico)
                                 <li><a href="{{url('/ticket/alltickets').'?tecnico='.$tecnico['IDTECNICO']}}">{{$tecnico['DESCRIZIONE']}}</a></li>
                             @endforeach
