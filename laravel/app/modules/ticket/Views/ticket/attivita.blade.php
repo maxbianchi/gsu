@@ -178,7 +178,7 @@
             <tr>
                 <td>CAMBIA STATO</td>
                 <td>
-                    <select name="stato"  disabled="disabled" readonly="readonly" style="background-color: #eee;">
+                    <select name="stato"  readonly="readonly" style="background-color: #eee;">
                         @foreach($stati as $stato)
                             <option  value="{{$stato['IDSTATO'] or ""}}" {{isset($request['STATO']) && $request['STATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                         @endforeach
