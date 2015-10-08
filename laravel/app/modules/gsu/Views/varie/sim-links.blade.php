@@ -48,7 +48,7 @@ $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
             <a href="{{url('/gsu/search')."?canone=CAN-I21&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">FILTRO ACCESSI</a>
         </td>
         <td>
-            <a href="{{url('/gsu/apparati-mobile/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".$request['NTELEFONO']}}">FILTRO ACCESSI</a>
+            <a href="{{url('/gsu/apparati-mobile/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".$request['NTELEFONO']}}">APPARATI MOBILE</a>
         </td>
     </tr>
 </table>
