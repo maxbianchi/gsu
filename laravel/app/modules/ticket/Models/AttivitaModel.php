@@ -220,7 +220,7 @@ EOF;
         $sql = "SELECT STATO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         try {
-            if (count($res) > 0)
+            if (isset($res) > 0)
                 $stato_text = $res[0]['STATO'];
             else
                 $stato_text = 1;
