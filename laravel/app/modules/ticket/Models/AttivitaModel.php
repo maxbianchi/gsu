@@ -217,13 +217,13 @@ EOF;
 
     public function getCurrentStato(){
         $idattivita = Input::get("idattivita");
-        $sql = "SELECT STATO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA=$idattivita";
+        $sql = "SELECT STATO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         try {
-            if (is_array($res))
+            if (count($res) > 0)
                 $stato_text = $res[0]['STATO'];
             else
-                $stato_text = $res['STATO'];
+                $stato_text = 'APERTO';
             return $stato_text;
         } catch (Exception $e) {}
     }
