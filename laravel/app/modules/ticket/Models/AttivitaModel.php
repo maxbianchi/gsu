@@ -208,7 +208,7 @@ EOF;
     }
 
     public function getStato($stato_int){
-        if(empty($stato_int))
+        if(!isset($stato_int))
             return 0;
         $sql = "SELECT STATO FROM TICKET.dbo.STATI WHERE IDSTATO=$stato_int";
         $res = DB::select($sql);
