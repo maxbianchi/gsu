@@ -241,6 +241,7 @@
                         $.post( "{{url('/ticket/salvaattivita')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $('#msg').modal('show');
+                                    $("#attivita").val("");
                                     //location.reload();
                                 });
                     });
