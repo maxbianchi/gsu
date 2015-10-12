@@ -120,7 +120,7 @@
                         $idattivita = $res['IDATTIVITA'];
                         ?>
 
-                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA") echo "color:orange"; ?>" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
+                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA") echo "color:orange"; ?>;cursor: pointer; cursor: hand;" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
                             <td>{{$res['SOGGETTO_NOME']}}</td>
                             <td>{{$res['TITOLO']}}</td>
                             <td>{{$res['IDATTIVITA']}}</td>
