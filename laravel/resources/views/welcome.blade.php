@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-md-12" style="padding:0px;">
-                <img style="display:block;margin-left:auto;margin-right:auto;width:100%;padding:0px !important;" src="{{ URL::asset('images/areariservata.jpg') }}">
+                <img style="display:block;margin-left:auto;margin-right:auto;width:100%;padding:0px !important;" src="{{ URL::asset('images/areariservata3.jpg') }}">
             </div>
         </div>
 
