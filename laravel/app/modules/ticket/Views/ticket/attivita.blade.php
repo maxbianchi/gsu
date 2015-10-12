@@ -91,7 +91,7 @@
                 </td>
             </tr>
             <tr>
-                <td>EMAIL FORNITORE *</td>
+                <td>EMAIL FATTURAZIONE *</td>
                 <td><input type="text" style="background-color: #FFC;" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
                 <td>CATEGORIA *</td>
                 <td>
