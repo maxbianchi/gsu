@@ -193,7 +193,7 @@ EOF;
       if(!empty($categoria))
           $sql .= " AND A.IDCATEGORIA = $categoria";
 
-      $sql .= " ORDER BY A.APERTAIL DESC";
+      $sql .= " ORDER BY A.STATO, A.APERTAIL DESC";
 
       $request = DB::select($sql);
       return $request;
