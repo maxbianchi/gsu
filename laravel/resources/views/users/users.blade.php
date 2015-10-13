@@ -47,6 +47,7 @@
                                                 <pre>
                                                     <?php print_r($utenti);?>
                                                 </pre>
+                                                <?php exit; ?>
                                             @foreach($utenti as $utente)
                                             <tr>
                                                 <td>
