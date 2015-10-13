@@ -179,9 +179,10 @@
                 <td>CAMBIA STATO</td>
                 <td>
                     <select name="stato"  readonly="readonly" style="background-color: #eee;">
-                        @foreach($stati as $stato)
+                        <option value="1">APERTO</option>
+                        <!--@foreach($stati as $stato)
                             <option  value="{{$stato['IDSTATO'] or ""}}" {{isset($request['STATO']) && $request['STATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
-                        @endforeach
+                        @endforeach-->
                     </select>
                 </td>
                 <td><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"></td>
