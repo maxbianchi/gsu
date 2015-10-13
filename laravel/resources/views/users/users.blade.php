@@ -45,6 +45,9 @@
                                         </thead>
                                         <tbody>
                                             @foreach($utenti as $utente)
+                                                <pre>
+                                                    <?php print_r($utente);?>
+                                                </pre>
                                             <tr>
                                                 <td>
                                                     <a class="btn btn-small edit" href="{{url('/edituser')."?id=".$utente['IDUTENTE']}}" title="EDIT"><i class="glyphicon glyphicon-pencil"></i> </a>
