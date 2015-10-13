@@ -19,7 +19,7 @@ Descrizione ticket:<br>
 <br>
 <br>
 Elenco Attivit&agrave;:<br>
-<?php foreach($result as $row): echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."<br>"; endforeach; ?>
+<?php foreach($result as $row): echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."<br><br>"; endforeach; ?>
 
 <br><br>
 
