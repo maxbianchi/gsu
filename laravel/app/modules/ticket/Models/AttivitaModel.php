@@ -39,23 +39,49 @@ class AttivitaModel extends Model {
         $sql = "SELECT MAX(IDATTIVITA) IDATTIVITA FROM TICKET.dbo.ATTIVITA";
         $request  = DB::select($sql);
         $date = date("Ymd");
+        $tmp = "";
         if(isset($request[0]['IDATTIVITA'])) {
             $request = $request[0]['IDATTIVITA'];
             $idattivita = substr_replace($request, "", strlen($request) - 2);
             if($date == $idattivita){
-                $idattivita = substr($request, strlen($request) - 2, strlen($request));
-                $idattivita++;
-                if($idattivita < 10)
-                    $idattivita = "0".$idattivita;
+                $idattivita = $this->increaseID($request);
+                $tmp = $date;
                 $date .= $idattivita;
             }else{
+                $tmp = $date;
                 $date .= "01";
             }
 
         }else{
+            $tmp = $date;
             $date .= "01";
         }
+
+        $idOK = false;
+        while(!$idOK){
+            $idOK = $this->checkConcurrency($date);
+            if($idOK == false)
+                $date = $tmp.$this->increaseID($date);
+        }
+
+        DB::insert("INSERT INTO TICKET.dbo.IDATTIVITA (IDATTIVITA) VALUES ('$date')");
         return $date;
+    }
+
+    public function increaseID($request){
+        $idattivita = substr($request, strlen($request) - 2, strlen($request));
+        $idattivita++;
+        if($idattivita < 10)
+            $idattivita = "0".$idattivita;
+        return $idattivita;
+    }
+
+    public function checkConcurrency($idattivita){
+        $sql = "SELECT IDATTIVITA FROM TICKET.dbo.IDATTIVITA WHERE IDATTIVITA='$idattivita'";
+        $request  = DB::select($sql);
+        if(count($request) > 0)
+            return false;
+        return true;
     }
 
     public function salvaattivita(){
