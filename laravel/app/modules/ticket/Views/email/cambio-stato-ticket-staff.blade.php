@@ -7,7 +7,7 @@
 
 <h3>Buongiorno,<br>
     con la presente vi informiamo che il ticket id: {{$idattivita}} <br>
-    titolo: {{$titolo}}
+    titolo: {{$titolo or ""}}
 </h3>
 <h3>
     E' passato in stato {{$stato}}

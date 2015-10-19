@@ -69,7 +69,7 @@ class AttivitaController extends MainController {
             if($stato_corrente == $stato)
                 return false;
             $row['stato'] = $model->getStato($stato);
-            $row['titolo'] = Input::get("titolo");
+            $row['titolo'] = Input::has("titolo") ? Input::get("titolo") : "";
             $row['idattivita'] = Input::get("idattivita");
             $row['descrizione'] = "Apertura ticket Uniweb " . $row['idattivita'];
             $row['motivo'] = Input::get("motivo");
