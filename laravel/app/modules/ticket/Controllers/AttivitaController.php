@@ -64,6 +64,7 @@ class AttivitaController extends MainController {
             if($stato_corrente == $stato)
                 return false;
             $row['stato'] = $model->getStato($stato);
+            $row['titolo'] = Input::get("titolo");
             $row['idattivita'] = Input::get("idattivita");
             $row['descrizione'] = "Apertura ticket Uniweb " . $row['idattivita'];
             $row['motivo'] = Input::get("motivo");
@@ -94,8 +95,8 @@ class AttivitaController extends MainController {
             $stati = $model->getAllStati();
 
 
-            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'], 'result' => $result, 'tecnici' => $tecnici, 'stati' => $stati], function ($message) use ($row) {
-                $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']);
+            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => $row['stato'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'], 'result' => $result, 'tecnici' => $tecnici, 'stati' => $stati], function ($message) use ($row) {
+                $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']. ' '.$row['titolo']);
             });
 
         }
