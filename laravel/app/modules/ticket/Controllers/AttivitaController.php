@@ -41,6 +41,11 @@ class AttivitaController extends MainController {
         $model->salvaattivita();
     }
 
+    public function eliminaattivita(){
+        $model = new AttivitaModel();
+        $model->eliminaattivita();
+    }
+
     /**
      *
      */

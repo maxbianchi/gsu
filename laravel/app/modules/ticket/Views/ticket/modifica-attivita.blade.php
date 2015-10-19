@@ -43,7 +43,7 @@
                         <td colspan="4"><textarea name="attivita" id="attivita" cols="130">{{$request['DESCRIZIONE'] or ""}}</textarea></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><input type="button" value="ELIMINA ATTIVIT&Agrave;" class="btn btn-primary btn-xs elimina-attivita"></td>
                         <td></td>
                         <td></td>
                         <td><input type="button" value="MODIFICA ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
@@ -54,7 +54,7 @@
                 </table>
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="id" value="{{$request['ID'] or ""}}">
-                <input type="hidden" name="idattivita" value="{{$request['IDATTIVITA'] or ""}}">
+                <input type="hidden" name="idattivita" class="idattivita" value="{{$request['IDATTIVITA'] or ""}}">
             </form>
         @endforeach
         <hr>
@@ -79,6 +79,20 @@
             </div>
         </div>
     </div>
+    <div id="delete" class="modal fade" style="z-index:99999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminare il record selezionato ?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-primary" id="btn_elimina">ELIMINA</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -89,6 +103,7 @@
 
         $(document).ready(function () {
 
+            var idattivita = "";
             function h(e) {
                 $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
             }
@@ -98,10 +113,24 @@
                 h(this);
             });
 
+            $(".elimina-attivita").click(function(){
+                idattivita = $(this).closest('form').find(".idattivita").val();
+                $('#delete').modal('show');
+            });
+
+            $("#btn_elimina").click(function(){
+                console.log(idattivita);
+                $.get( "{{url('/ticket/eliminaattivita')}}", { idattivita: idattivita } )
+                        .done(function( data ) {
+                            $("#delete").modal('toggle');
+                            location.reload();
+                        });
+            });
 
             $(".salva-attivita").click(function(){
                 $.post( "{{url('/ticket/salvaattivita')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
+                            $('#msg').modal('show');
                             location.reload();
                         });
             });
