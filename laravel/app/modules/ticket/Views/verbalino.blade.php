@@ -438,7 +438,7 @@
                         html+= document.getElementById('toPrint').innerHTML;
                         html+="</body></html>";
 
-                        $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '{{Input::get('motivo')}}' })
+                        $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '<?php str_replace(array("\n","\r"),"",Input::get('motivo'))?>' })
                                 .done(function( data ) {
                                     location.href = '{{url('/ticket/alltickets')}}';
                                 });
