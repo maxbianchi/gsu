@@ -241,7 +241,7 @@
                                 <td colspan="3"></td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea style="background-color: #FFC;" name="motivo" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
+                                <td colspan="4"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
                             </tr>
                             <tr>
                                 <td>DETTAGLIO ATTIVIT&Agrave;<a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a></td>
@@ -412,6 +412,14 @@
                             $("#email").val(data[0]['EMAIL']);
                         });
             });
+
+            $(".noEnter").keypress(function(evt) {
+                var charCode=(evt.which)?evt.which:event.keyCode;
+                if (charCode == 10 || charCode == 13)
+                return false;
+                return true;
+            });
+
 
         });
     </script>

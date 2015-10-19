@@ -132,7 +132,7 @@
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td colspan="4"><textarea style="background-color: #FFC;" name="motivo" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
+                <td colspan="4"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
             </tr>
             <tr>
                 <td>DETTAGLIO ATTIVIT&Agrave;</td>
@@ -285,6 +285,13 @@
                     $("#cliente_finale").val('{{Input::get('cliente_finale')}}').trigger("change");
                     $("#ubicazione_impianto").val('{{Input::get('ubicazione')}}').trigger("change");
                     $("#tgu").val('{{Input::get('tgu')}}').trigger("change");
+
+                    $(".noEnter").keypress(function(evt) {
+                        var charCode=(evt.which)?evt.which:event.keyCode;
+                        if (charCode == 10 || charCode == 13)
+                            return false;
+                        return true;
+                    });
 
                 });
             </script>
