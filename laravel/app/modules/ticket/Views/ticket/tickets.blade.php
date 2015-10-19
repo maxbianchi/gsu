@@ -192,7 +192,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>EMAIL FATTURAZIONE *</td>
+                                <td>EMAIL FATTURAZIONE</td>
                                 <td><input type="text" style="background-color: #FFC;" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
                                 <td>CATEGORIA *</td>
                                 <td>
@@ -372,8 +372,6 @@
                     msg = msg + " 'Attività Aperta da'";
                 if($(this).closest('form').find(".categoria").val() == "")
                     msg = msg + " 'Categoria'";
-                if($(this).closest('form').find(".email").val() == "")
-                    msg = msg + " 'Email'";
                 if(msg != ""){
                     alert("Compilare i campi" + msg);
                     return false;
