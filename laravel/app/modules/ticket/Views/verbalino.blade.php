@@ -388,12 +388,12 @@
                     <td colspan="2">
                         <div class="container_12" style="text-align: center;">
                             <strong>Uniweb Srl</strong>
-                            - Via Milano, 51 - 22063 Cantú (CO) - CF / P.IVA 02478160134
+                            - Via Milano, 51 - 22063 Cantu' (CO) - CF / P.IVA 02478160134
                             <br>
                             Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
                             <a href="mailto:info@uniweb.it">info@uniweb.it</a>
                             <br>
-                            Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>
+                            Reg. Imp. di Como n. 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n. 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>
                         </div>
                     </td>
                 </tr>
