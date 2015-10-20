@@ -109,7 +109,7 @@ class TicketController extends MainController {
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
         $model = new AttivitaModel();
-        $result = $model->getTickets();
+        $result = $model->getTestataTickets();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         $categorie = $model->getAllCategorie();

@@ -142,6 +142,87 @@ class AttivitaModel extends Model {
 
     }
 
+    public function getTestataTickets(){
+        $soggetto = Input::get("cliente");
+        $stato = Input::get("stato");
+        $tecnico = Input::get("tecnico");
+        $tgu = Input::get("tgu");
+        $tickettelecom = Input::get("tickettelecom");
+        $idattivita = Input::get('idattivita');
+        $categoria = Input::get('categoria');
+
+        $sql =<<<EOF
+SELECT
+        A.IDATTIVITA,
+        TICKETTELECOM,
+        T1.DESCRIZIONE APERTODA,
+        T2.DESCRIZIONE INCARICOA,
+        TGU,
+        CONVERT(VARCHAR(10),A.APERTAIL,105 ) APERTAIL,
+        CONVERT(VARCHAR(10),A.APERTAIL,108 ) APERTAIL_ORA,
+        CONVERT(VARCHAR(10),A.CHIUSAIL,105 ) CHIUSAIL,
+        CONVERT(VARCHAR(10),A.CHIUSAIL,108 ) CHIUSAIL_ORA,
+        A.APERTODA IDAPERTODA,
+        A.INCARICOA IDINCARICOA,
+        C.DESCRIZIONE,
+        TITOLO,
+        MOTIVO,
+        ST.IDSTATO,
+        ST.STATO,
+        A.SOGGETTO SOGGETTO_CODICE,
+        A.CLIENTE_FINALE CLIENTE_FINALE_CODICE,
+        A.UBICAZIONE DESTINATARIOABITUALE_CODICE,
+        REPLACE(LTRIM(RTRIM(A1.DESCRIZIONE)),'''','') AS SOGGETTO_NOME,
+        REPLACE(LTRIM(RTRIM(A3.DESCRIZIONE)),'''','') AS CLIENTE_FINALE_NOME,
+        REPLACE(LTRIM(RTRIM(A2.DESCRIZIONE)),'''','') AS UBICAZIONE,
+        A1.INDIRIZZO		AS SOGGETTO_INDIRIZZO,
+        A1.LOCALITA		AS SOGGETTO_LOCALITA,
+        A1.PROVINCIA		AS SOGGETTO_PROVINCIA,
+        A.EMAIL,
+        A2.INDIRIZZO		AS CLIENTE_INDIRIZZO,
+        A2.LOCALITA		AS CLIENTE_LOCALITA,
+        A2.PROVINCIA		AS CLIENTE_PROVINCIA,
+        A.SOGGETTO,
+        A.UBICAZIONE,
+        A.NOME_REFERENTE,
+        A.EMAIL_REFERENTE,
+        A.TELEFONO_REFERENTE,
+        A.IDCATEGORIA
+        FROM TICKET.dbo.ATTIVITA A
+        LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
+        LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
+        LEFT JOIN TICKET.dbo.TECNICI T1 ON A.apertoda = T1.IDTECNICO
+        LEFT JOIN TICKET.dbo.TECNICI T2 ON A.incaricoa = T2.IDTECNICO
+        LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON A.SOGGETTO = A1.SOGGETTO
+        LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON A.CLIENTE_FINALE = A3.SOGGETTO
+        LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON A.UBICAZIONE = A2.SOGGETTO
+        WHERE 1 = 1
+EOF;
+        if(!empty($soggetto))
+            $sql .= " AND A1.DESCRIZIONE like '%$soggetto%'";
+        if(!empty($stato) && $stato != "") {
+            if($stato == -1)
+                $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0";
+            else
+                $sql .= " AND A.STATO = '$stato'";
+        }
+        if(!empty($tecnico))
+            $sql .= " AND A.INCARICOA = '$tecnico'";
+        if(!empty($tgu))
+            $sql .= " AND A.TGU = '$tgu'";
+        if(!empty($tickettelecom))
+            $sql .= " AND A.TICKETTELECOM = $tickettelecom";
+        if(!empty($idattivita))
+            $sql .= " AND A.IDATTIVITA = $idattivita";
+        if(!empty($categoria))
+            $sql .= " AND A.IDCATEGORIA = $categoria";
+
+        $sql .= " ORDER BY A.STATO, A.APERTAIL DESC";
+
+        $request = DB::select($sql);
+        return $request;
+
+    }
 
     public function getTickets(){
         $soggetto = Input::get("cliente");
