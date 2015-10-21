@@ -142,6 +142,14 @@ class AttivitaModel extends Model {
 
     }
 
+    public function getDataFromAttivita($idattivita){
+        $sql = "SELECT * FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
+        $res = DB::select($sql);
+        if(is_array($res) && count($res) > 0)
+            $res = $res[0];
+        return $res;
+    }
+
     public function getTestataTickets(){
         $soggetto = Input::get("cliente");
         $stato = Input::get("stato");

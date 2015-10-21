@@ -249,6 +249,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/assistenza-tecnica-hw/save', 'AssistenzaTecnicaHWController@save');
     Route::get('gsu/assistenza-tecnica-hw/delete', 'AssistenzaTecnicaHWController@delete');
 
+    //ASSISTENZA TECNICA PWD
+    Route::get('gsu/assistenza-tecnica-pwd', 'AssistenzaTecnicaPwdController@main');
+    Route::get('gsu/assistenza-tecnica-pwd/search', 'AssistenzaTecnicaPwdController@search');
+    Route::get('gsu/assistenza-tecnica-pwd/show', 'AssistenzaTecnicaPwdController@show');
+    Route::get('gsu/assistenza-tecnica-pwd/edit', 'AssistenzaTecnicaPwdController@edit');
+    Route::post('gsu/assistenza-tecnica-pwd/save', 'AssistenzaTecnicaPwdController@save');
+    Route::get('gsu/assistenza-tecnica-pwd/delete', 'AssistenzaTecnicaPwdController@delete');
+
     //POST WARRANTY
     Route::get('gsu/post-warranty', 'PostWarrantyController@main');
     Route::get('gsu/post-warranty/search', 'PostWarrantyController@search');

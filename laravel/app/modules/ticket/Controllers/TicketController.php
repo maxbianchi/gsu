@@ -57,7 +57,11 @@ class TicketController extends MainController {
         $model->chiudiTicket();
         chmod('/var/www/gsu/laravel/public/output/'.$idattivita.'.pdf', 0777);
         $row['pathToFile'] = "/var/www/gsu/laravel/public/output/".$idattivita.".pdf";
-        $row['motivo'] = Input::get("motivo");
+
+        //Recupero dati ticket
+        $res = $model->getDataFromAttivita($idattivita);
+        $row['motivo'] = $res['MOTIVO'];
+        $row['titolo'] = $res['TITOLO'];
         $row['email'] = Input::get("email");
         $row['idattivita'] = $idattivita;
         $email_referente  = Input::get("email_referente");
@@ -78,7 +82,7 @@ class TicketController extends MainController {
             }*/
             $model = new AttivitaModel();
             $result = $model->getAllAttivitaByID($row['idattivita']);
-            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
+            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO', 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
                 $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
             });
         }
