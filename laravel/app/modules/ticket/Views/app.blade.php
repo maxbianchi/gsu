@@ -113,7 +113,7 @@
                                     json = JSON.parse(json);
                                     $("#cliente").append('<option value="">-----</option>')
                                     $(json).each(function(index,data){
-                                        $("#cliente").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                        $("#cliente").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + ' - PIVA: ' + data.PARTITAIVA + '</option>')
                                     })
 
                                 });
@@ -130,7 +130,7 @@
                                     $("#cliente_finale").append('<option value="">-----</option>')
                                     json = JSON.parse(json);
                                     $(json).each(function(index,data){
-                                        $("#cliente_finale").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                        $("#cliente_finale").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + ' - PIVA: ' + data.PARTITAIVA + '</option>')
                                     })
 
                                 });
@@ -147,7 +147,7 @@
                                 json = JSON.parse(json);
                                 $("#ubicazione_impianto").append('<option value="">-----</option>')
                                 $(json).each(function(index,data){
-                                    $("#ubicazione_impianto").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + '</option>')
+                                    $("#ubicazione_impianto").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + ' - PIVA: ' + data.PARTITAIVA + '</option>')
                                 })
 
                             });

@@ -71,7 +71,7 @@ class Utenti extends Model {
     }
 
     public function getAllUserFromMago(){
-        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL,A.PARTITAIVA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
         $utente = [];
         foreach($utenti as $key => $value){
             foreach($value as $key2 => $value2){
@@ -83,7 +83,7 @@ class Utenti extends Model {
 
     public function getUserFromMago(){
         $id = Input::get("id");
-        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.SOGGETTO=$id ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO,A.PARTITAIVA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.SOGGETTO=$id ORDER BY DESCRIZIONE");
         $utente = [];
         foreach($utenti as $key => $value){
             foreach($value as $key2 => $value2){
@@ -95,7 +95,7 @@ class Utenti extends Model {
 
     public function getSingleUserFromMago(){
         $descrizione = Input::get("descrizione");
-        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO,A.PARTITAIVA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
         $utente = [];
         foreach($utenti as $key => $value){
             foreach($value as $key2 => $value2){
@@ -107,7 +107,7 @@ class Utenti extends Model {
 
 
     public function getUserFromMagoByName($descrizione){
-        $utenti  = DB::select("SELECT A.DESCRIZIONE term, A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
+        $utenti  = DB::select("SELECT A.DESCRIZIONE term, A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL,A.PARTITAIVA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' AND A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");
         $utente = [];
         foreach($utenti as $key => $value){
             foreach($value as $key2 => $value2){
