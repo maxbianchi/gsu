@@ -104,7 +104,7 @@
                 $attivita = $result;
                 $idattivita = $res['IDATTIVITA'];
                 ?>
-                <div style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA") echo "color:orange"; ?>">{{$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</div>
+                <div style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA") echo "color:orange"; ?>">{{$res['CONFERMA_ORDINE']." - ".$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</div>
                 <div>
                     <form action="{{url('/ticket/chiuditicket')}}" method="post" name="form_{{$res['IDATTIVITA']}}">
                         <div class="border">
@@ -220,6 +220,12 @@
                                 <td><input type="text" style="background-color: #FFC;" name="tgu" value="{{$res['TGU'] or ""}}"></td>
                                 <td>ATTIVIT&Agrave; CHIUSA IL</td>
                                 <td><input type="text" style="background-color: #FFC;" name="chiusail" readonly="readonly" disabled="disabled"  value="{{$res['CHIUSAIL']." - ".$res['CHIUSAIL_ORA']}}"></td>
+                            </tr>
+                            <tr>
+                                <td>CONFERMA ORDINE</td>
+                                <td><input type="text" style="background-color: #FFC;" name="conferma_ordine" id="conferma_ordine" value="{{$res['CONFERMA_ORDINE'] or ""}}"></td>
+                                <td>COD. SERVIZIO</td>
+                                <td><input type="text" style="background-color: #FFC;" name="cod_servizio" id="cod_servizio" value="{{$res['COD_SERVIZIO'] or ""}}"></td>
                             </tr>
                             <tr>
                                 <td>TITOLO ATTIVIT&Agrave;</td>

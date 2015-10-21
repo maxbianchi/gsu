@@ -6,7 +6,9 @@
 <body>
 
 <h3>Buongiorno,<br>
-    con la presente vi informiamo che il ticket id: {{$idattivita}}</h3><br>
+    con la presente vi informiamo che il ticket id: {{$idattivita}}<br>
+    Conferma ordine: {{$conferma_ordine}}
+</h3><br>
 <h3>
     E' passato in stato {{$stato}}
 </h3><br>

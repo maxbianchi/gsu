@@ -128,15 +128,17 @@ class AttivitaModel extends Model {
         $email_referente = Input::get("email_referente");
         $nome_referente = Input::get("nome_referente");
         $telefono_referente = Input::get("telefono_referente");
+        $conferma_ordine = Input::get("conferma_ordine");
+        $cod_servizio = Input::get("cod_servizio");
 
         $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request  = DB::select($sql);
         if(count($request) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale' )";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio' )";
             DB::insert($sql);
         }
         else {
-            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', apertail='$apertail', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', apertail='$apertail', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
 
@@ -195,7 +197,9 @@ SELECT
         A.NOME_REFERENTE,
         A.EMAIL_REFERENTE,
         A.TELEFONO_REFERENTE,
-        A.IDCATEGORIA
+        A.IDCATEGORIA,
+        A.CONFERMA_ORDINE,
+        A.COD_SERVIZIO
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
         LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
@@ -281,6 +285,8 @@ SELECT
         A.EMAIL_REFERENTE,
         A.TELEFONO_REFERENTE,
         A.IDCATEGORIA,
+        A.CONFERMA_ORDINE,
+        A.COD_SERVIZIO,
         CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
         CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
         FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA

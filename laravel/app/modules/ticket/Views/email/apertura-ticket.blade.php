@@ -6,8 +6,9 @@
 <body>
 
 <h3>Buongiorno,<br>
-    con la presente vi informiamo di aver aperto il ticket id: {{$idattivita}}</h3><br>
-
+    con la presente vi informiamo di aver aperto il ticket id: {{$idattivita}}<br>
+    Conferma ordine: {{$conferma_ordine}}
+</h3><br>
 Con la seguente motivazione:<br>
 {{$motivo}}
 

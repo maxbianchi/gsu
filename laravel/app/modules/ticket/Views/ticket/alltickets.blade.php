@@ -103,6 +103,7 @@
                 <table border="0" class="table table-striped table-bordered display" id="main" cellspacing="0" width="100%">
                     <thead>
                     <tr style="width:100%">
+                        <td>CONFERMA ORDINE</td>
                         <td>CLIENTE</td>
                         <td>TITOLO</td>
                         <td>NR.TICKET INTERNO</td>
@@ -121,6 +122,7 @@
                         ?>
 
                         <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA") echo "color:orange"; ?>;cursor: pointer; cursor: hand;" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
+                            <td>{{$res['CONFERMA_ORDINE']}}</td>
                             <td>{{$res['SOGGETTO_NOME']}}</td>
                             <td>{{$res['TITOLO']}}</td>
                             <td>{{$res['IDATTIVITA']}}</td>

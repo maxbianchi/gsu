@@ -122,6 +122,12 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
+                <td>CONFERMA ORDINE</td>
+                <td><input type="text" style="background-color: #FFC;" name="conferma_ordine" id="conferma_ordine" value="{{$request['CONFERMA_ORDINE'] or ""}}"></td>
+                <td>COD. SERVIZIO</td>
+                <td><input type="text" style="background-color: #FFC;" name="cod_servizio" id="cod_servizio" value="{{$request['COD_SERVIZIO'] or ""}}"></td>
+            </tr>
+            <tr>
                 <td>TITOLO ATTIVIT&Agrave;</td>
                 <td><input type="text" style="background-color: #FFC;" name="titolo" value="{{$request['TITOLO'] or ""}}"></td>
                 <td>&nbsp;</td>
