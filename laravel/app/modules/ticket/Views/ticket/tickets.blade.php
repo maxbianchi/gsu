@@ -18,7 +18,7 @@
 
     <div class="container-fluid">
         <div class="border">
-            <form method="GET" action="{{url('/ticket/tickets')}}" name="form_search">
+            <form method="GET" action="{{url('/ticket/alltickets')}}" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" class="search_anagrafica" name="cliente" ></div>
