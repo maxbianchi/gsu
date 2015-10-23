@@ -146,7 +146,7 @@ class AttivitaController extends MainController {
         $row['titolo'] = Input::get("titolo");
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
-        $row['conferma_ordine'] = $res['conferma_ordine'];
+        $row['conferma_ordine'] = Input::get("conferma_ordine");
         $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
         $row['cliente_finale'] = Input::has("cliente_finale") ? $model->getClientiById(Input::get("cliente_finale")) : "";
         $row['ubicazione_impianto'] = Input::has("ubicazione_impianto") ? $model->getClientiById(Input::get("ubicazione_impianto")) : "";
