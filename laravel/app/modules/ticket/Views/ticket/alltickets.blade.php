@@ -22,10 +22,10 @@
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" id="cliente" class="search_anagrafica" name="cliente" ></div>
-                    <div class="col-md-1 "></div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-2 "></div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-1 ">TITOLO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('titolo')}}" id="titolo" name="titolo" ></div>
+                    <div class="col-md-2 ">CONFERMA ORDINE</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('conferma_ordine')}}" id="conferma_ordine" name="conferma_ordine" ></div>
                     <div class="col-md-2"></div>
                 </div>
                 <div class="row">

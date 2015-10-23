@@ -160,6 +160,8 @@ class AttivitaModel extends Model {
         $tickettelecom = Input::get("tickettelecom");
         $idattivita = Input::get('idattivita');
         $categoria = Input::get('categoria');
+        $titolo = Input::get('titolo');
+        $conferma_ordine = Input::get('conferma_ordine');
 
         $sql =<<<EOF
 SELECT
@@ -228,6 +230,10 @@ EOF;
             $sql .= " AND A.IDATTIVITA = $idattivita";
         if(!empty($categoria))
             $sql .= " AND A.IDCATEGORIA = $categoria";
+        if(!empty($titolo))
+            $sql .= " AND A.TITOLO LIKE '%$titolo%'";
+        if(!empty($conferma_ordine))
+            $sql .= " AND A.CONFERMA_ORDINE LIKE '%$conferma_ordine%'";
 
         $sql .= " ORDER BY A.STATO, A.APERTAIL DESC";
 
