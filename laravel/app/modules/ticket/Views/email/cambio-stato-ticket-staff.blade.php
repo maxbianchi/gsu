@@ -10,6 +10,9 @@
     Titolo: {{$titolo or ""}}<br>
     Conferma ordine: {{$conferma_ordine}}
 </h3><br>
+Cliente: {{$cliente}}<br>
+Cliente finale: {{$cliente_finale}}<br>
+Ubicazione Impianto: {{$ubicazione_impiantocd /}}<br>
 <h3>
     E' passato in stato {{$stato}}
 </h3>

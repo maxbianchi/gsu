@@ -64,6 +64,10 @@ class TicketController extends MainController {
         $row['titolo'] = $res['TITOLO'];
         $row['conferma_ordine'] = $res['CONFERMA_ORDINE'];
         $row['email'] = Input::get("email");
+        $row['cliente'] = Input::get("cliente");
+        $row['cliente_finale'] = Input::get("cliente_finale");
+        $row['ubicazione_impianto'] = Input::get("ubicazione_impianto");
+
         $row['idattivita'] = $idattivita;
         $email_referente  = Input::get("email_referente");
         $row['email_referente'] = trim($email_referente);
@@ -83,7 +87,7 @@ class TicketController extends MainController {
             }*/
             $model = new AttivitaModel();
             $result = $model->getAllAttivitaByID($row['idattivita']);
-            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO','conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
+            Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO','conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
                 $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
             });
         }
