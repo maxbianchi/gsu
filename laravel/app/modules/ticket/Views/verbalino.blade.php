@@ -434,11 +434,14 @@
             $.post( "{{url('/ticket/salvaverbalino')}}", $("#form").serialize())
                     .done(function( data ) {
                         //CREO PDF E LO SALVO
+                        var cliente = $("#cliente").val();
+                        var cliente_finale = $("#cliente_finale").val();
+                        var ubicazione_impianto = $("#ubicazione_impianto").val();
                         var html="<!DOCTYPE html><body>";
                         html+= document.getElementById('toPrint').innerHTML;
                         html+="</body></html>";
 
-                        $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '<?php str_replace(array("\n","\r"),"",Input::get('motivo'))?>' })
+                        $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '<?php str_replace(array("\n","\r"),"",Input::get('motivo'))?>', cliente: cliente, cliente_finale: cliente_finale, ubicazione_impianto: ubicazione_impianto })
                                 .done(function( data ) {
                                     location.href = '{{url('/ticket/alltickets')}}';
                                 });
