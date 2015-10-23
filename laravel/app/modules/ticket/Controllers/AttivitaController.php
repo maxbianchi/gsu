@@ -144,6 +144,9 @@ class AttivitaController extends MainController {
         $row['descrizione'] = "Apertura ticket Uniweb ".$row['idattivita'];
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
+        $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
+        $row['cliente_finale'] = Input::has("cliente_finale") ? $model->getClientiById(Input::get("cliente_finale")) : "";
+        $row['ubicazione_impianto'] = Input::has("ubicazione_impianto") ? $model->getClientiById(Input::get("ubicazione_impianto")) : "";
         $email_referente  = Input::get("email_referente");
         $row['email_referente'] = trim($email_referente);
         $row['email'] = explode(";", $email);
@@ -167,7 +170,7 @@ class AttivitaController extends MainController {
         $result = $model->getAllAttivitaByID($row['idattivita']);
 
 
-        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'APERTO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result], function ($message) use ($row) {
+        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'APERTO', 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
             $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']);
         });
 
