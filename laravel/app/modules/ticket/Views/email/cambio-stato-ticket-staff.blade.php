@@ -12,7 +12,7 @@
 </h3><br>
 Cliente: {{$cliente}}<br>
 Cliente finale: {{$cliente_finale}}<br>
-Ubicazione Impianto: {{$ubicazione_impiantocd /}}<br>
+Ubicazione Impianto: {{$ubicazione_impianto}}<br>
 <h3>
     E' passato in stato {{$stato}}
 </h3>
