@@ -474,5 +474,15 @@ EOF;
         return $result;
     }
 
+    public function getClientiById($id){
+        $res = DB::select("SELECT DISTINCT REPLACE(LTRIM(RTRIM(DESCRIZIONE)),'''','') AS DESCRIZIONE FROM UNIWEB.dbo.AGE10 WHERE SOGGETTO = '$id'");
+        $result = "";
+        foreach($res as $keys => $values){
+            foreach($values as $key => $value)
+                $result[] = trim($value);
+        }
+        return $result[0];
+    }
+
 }
 
