@@ -13,6 +13,9 @@
 Cliente: {{$cliente}}<br>
 Cliente finale: {{$cliente_finale}}<br>
 Ubicazione Impianto: {{$ubicazione_impianto}}<br>
+<br>
+In carico a: {{$incaricoa}}
+<br>
 <h3>
     E' passato in stato {{$stato}}
 </h3>
