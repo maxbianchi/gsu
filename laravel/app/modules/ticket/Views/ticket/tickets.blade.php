@@ -419,12 +419,12 @@
                         });
             });
 
-            $(".noEnter").keypress(function(evt) {
+            /*$(".noEnter").keypress(function(evt) {
                 var charCode=(evt.which)?evt.which:event.keyCode;
                 if (charCode == 10 || charCode == 13)
                 return false;
                 return true;
-            });
+            });*/
 
 
         });
