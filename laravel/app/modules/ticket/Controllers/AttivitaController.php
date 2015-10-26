@@ -175,7 +175,7 @@ class AttivitaController extends MainController {
         $result = $model->getAllAttivitaByID($row['idattivita']);
 
 
-        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'APERTO','incaricoa' => $row['incaricoa'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
+        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'APERTO','incaricoa' => $row['incaricoa'],'conferma_ordine' => $row['conferma_ordine'], 'titolo' => $row['titolo'],'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
             $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Apertura ticket ' . $row['idattivita']);
         });
 
