@@ -377,9 +377,11 @@ EOF;
     }
 
     public function getTecnicoByID($idtecnico){
-        $sql = "SELECT * FROM TICKET.dbo.TECNICI WHERE IDTECNICO='$idtecnico'";
+        $sql = "SELECT DESCRIZIONE FROM TICKET.dbo.TECNICI WHERE IDTECNICO='$idtecnico'";
         $res = DB::select($sql);
-        return $res[0]['DESCRIZIONE'];
+        if(count($res) > 0)
+            return $res[0]['DESCRIZIONE'];
+        return "";
     }
 
     public function getAllAttivitaByID($idattivita){
