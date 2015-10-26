@@ -62,7 +62,7 @@ class TicketController extends MainController {
         $res = $model->getDataFromAttivita($idattivita);
         $row['motivo'] = $res['MOTIVO'];
         $row['titolo'] = $res['TITOLO'];
-        $row['incaricoa'] = $res['INCARICOA'];
+        $row['incaricoa'] = !empty($res['INCARICOA']) ? $model->getTecnicoByID($res['INCARICOA']) : "";
         $row['conferma_ordine'] = $res['CONFERMA_ORDINE'];
         $row['email'] = Input::get("email");
         $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";

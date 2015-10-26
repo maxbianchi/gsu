@@ -376,6 +376,12 @@ EOF;
         return $res;
     }
 
+    public function getTecnicoByID($idtecnico){
+        $sql = "SELECT * FROM TICKET.dbo.TECNICI WHERE IDTECNICO='$idtecnico'";
+        $res = DB::select($sql);
+        return $res[0]['DESCRIZIONE'];
+    }
+
     public function getAllAttivitaByID($idattivita){
         $sql = "SELECT IDATTIVITA, S.DESCRIZIONE, TEMPO, T.DESCRIZIONE AS INCARICOA_ATTIVITA, CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL, CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA  FROM TICKET.dbo.SINGOLE_ATTIVITA S LEFT JOIN TICKET.dbo.TECNICI T ON S.INCARICOA=T.IDTECNICO WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
