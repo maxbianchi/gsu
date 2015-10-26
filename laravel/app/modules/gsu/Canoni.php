@@ -42,14 +42,14 @@ class Canoni{
         $this->canoni['/gsu/outlookconnector'] = ['CAN-E131A', 'CAN-E131B'];
         $this->canoni['/gsu/activesync'] = ['CAN-E132A', 'CAN-E132B'];
         $this->canoni['/gsu/dial-up'] = ['CAN-A002A', 'CAN-A004A', 'CAN-A001A'];
-        $this->canoni['/gsu/direct-access'] = ['CAN-D011B', 'CAN-D012B', 'CAN-D013B', 'CAN-D014B', 'CAN-D015B', 'CAN-D016B', 'CAN-D017B', 'CAN-D018B', 'CAN-D019B', 'CAN-D021B', 'CAN-D022B', 'CAN-D023B', 'CAN-D024B', 'CAN-D025B', 'CAN-D026B', 'CAN-D027B', 'CAN-D028B', 'CAN-D028M', 'CAN-D042B', 'CAN-D051B', 'CAN-D052B', 'CAN-D053B', 'CAN-D033B', 'CAN-D054B', 'CAN-D055B'];
+        $this->canoni['/gsu/direct-access'] = ['CAN-D011B', 'CAN-D012B', 'CAN-D013B', 'CAN-D014B', 'CAN-D015B', 'CAN-D016B', 'CAN-D017B', 'CAN-D018B', 'CAN-D019B', 'CAN-D021B', 'CAN-D022B', 'CAN-D023B', 'CAN-D024B', 'CAN-D025B', 'CAN-D026B', 'CAN-D027B', 'CAN-D028B', 'CAN-D028M', 'CAN-D042B', 'CAN-D051B', 'CAN-D052B', 'CAN-D053B', 'CAN-D033B', 'CAN-D054B', 'CAN-D055B','CAN-D061B'];
         $this->canoni['/gsu/domini'] = ['CAN-E001A', 'CAN-E001B', 'CAN-E10A', 'CAN-E10B', 'CAN-E101A', 'CAN-E101B'];
         $this->canoni['/gsu/dpss'] = ['CAN-G053A', 'CAN-G054A'];
         $this->canoni['/gsu/hosting'] = ['CAN-E011A', 'CAN-E011B', 'CAN-E012A', 'CAN-E012B', 'CAN-E013A', 'CAN-E013B', 'CAN-E014A', 'CAN-E014B', 'CAN-E014M', 'CAN-E015A', 'CAN-E015B', 'CAN-E016A', 'CAN-E016B', 'CAN-E017A', 'CAN-E017B', 'CAN-E018A', 'CAN-E018B', 'CAN-E019A', 'CAN-E019B'];
         $this->canoni['/gsu/mailarchive'] = ['CAN-E121-001A', 'CAN-E121-002A', 'CAN-E121-003A', 'CAN-E121-004A', 'CAN-E121-005A', 'CAN-E121-006A', 'CAN-E121-007A', 'CAN-E121-008A', 'CAN-E121-009A'];
         $this->canoni['/gsu/fax-virtuale'] = ['CAN-F017B'];
         $this->canoni['/gsu/videoconference'] = ['CAN-F041A'];
-        $this->canoni['/gsu/ipstatici'] = ['CAN-E091A', 'CAN-E091B' , 'CAN-E092A', 'CAN-E092B', 'CAN-E093B'];
+        $this->canoni['/gsu/ipstatici'] = ['CAN-E091A', 'CAN-E091B' , 'CAN-E092A', 'CAN-E092B', 'CAN-E093B','CAN-E094B'];
         $this->canoni['/gsu/webmarketing'] = ['CAN-E041A', 'CAN-E041B'];
         $this->canoni['/gsu/novirusnospam'] = ['CAN-E051A', 'CAN-E051B', 'CAN-E052-001A', 'CAN-E052-002A', 'CAN-E052-003A', 'CAN-E052-004A', 'CAN-E052-005A', 'CAN-E052-006A', 'CAN-E052-007A', 'CAN-E052-008A', 'CAN-E052-009A', 'CAN-E052-010A'];
         $this->canoni['/gsu/post-warranty'] = ['CAN-G041A', 'CAN-G041B'];
