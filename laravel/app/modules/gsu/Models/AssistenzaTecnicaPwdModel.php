@@ -13,6 +13,7 @@ class AssistenzaTecnicaPwdModel extends Model {
         $cliente = trim(Input::get('cliente'));
         $cliente_finale = trim(Input::get('cliente_finale'));
         $ubicazione = trim(Input::get('ubicazione'));
+        $seriale = Input::get('seriale');
 
         $sql = <<<EOF
         SELECT
@@ -57,7 +58,7 @@ class AssistenzaTecnicaPwdModel extends Model {
             WHERE SERVERPWD.ELIMINATO = 0
 EOF;
 
-        $sql .= " AND SERVERPWD.SERVER_ID = '$apparato_id'";
+        $sql .= " AND SERVER.SN = '$seriale'";
 
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
@@ -155,8 +156,6 @@ EOF;
 
         $sql .= " AND SERVER.SN = '$seriale'";
 
-        if(!empty($id))
-            $sql .= " AND SERVERPWD.IDSERVERPWD = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
