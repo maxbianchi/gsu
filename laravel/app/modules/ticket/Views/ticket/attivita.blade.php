@@ -105,9 +105,9 @@
             </tr>
             <tr>
                 <td>NOME REFERENTE</td>
-                <td><input type="text" style="background-color: #FFC;" name="nome_referente" value="{{$request['NOME_REFERENTE'] or ""}}"></td>
+                <td><input type="text" style="background-color: #FFC;" name="nome_referente" id="nome_referente" value="{{$request['NOME_REFERENTE'] or ""}}"></td>
                 <td>TELEFONO REFERENTE</td>
-                <td><input type="text" style="background-color: #FFC;" name="telefono_referente" id="email" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
+                <td><input type="text" style="background-color: #FFC;" name="telefono_referente" id="telefono_referente" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
             </tr>
             <tr>
                 <td>EMAIL REFERENTE</td>
@@ -282,6 +282,8 @@
                                 .done(function( data ) {
                                     data = JSON.parse(data);
                                     $("#email").val(data[0]['EMAIL']);
+                                    $("#nome_referente").val(data[0]['CONTATTO']);
+                                    $("#telefono_referente").val(data[0]['TELEFONO']);
                                 });
                     });
 

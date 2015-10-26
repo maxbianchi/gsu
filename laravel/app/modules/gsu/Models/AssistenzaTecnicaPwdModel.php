@@ -82,6 +82,7 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
         $id = Input::get('id');
+        $seriale = Input::get('seriale');
         $marca = Input::get('marca');
         $modello = Input::get('modello');
         $pn = Input::get('pn');
@@ -152,7 +153,7 @@ EOF;
             WHERE 1=1
 EOF;
 
-        $sql .= " AND SERVERPWD.SERVER_ID = '$apparato_id'";
+        $sql .= " AND SERVER.SN = '$seriale'";
 
         if(!empty($id))
             $sql .= " AND SERVERPWD.IDSERVERPWD = '$id'";

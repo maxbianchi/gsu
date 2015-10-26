@@ -414,6 +414,8 @@
                         .done(function( data ) {
                             data = JSON.parse(data);
                             $("#email").val(data[0]['EMAIL']);
+                            $("#nome_referente").val(data[0]['CONTATTO']);
+                            $("#telefono_referente").val(data[0]['TELEFONO']);
                         });
             });
 
