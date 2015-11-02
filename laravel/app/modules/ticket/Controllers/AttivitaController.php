@@ -86,7 +86,7 @@ class AttivitaController extends MainController {
 
 
             try {
-                /*if (is_array($row['email']))
+                if (is_array($row['email']))
                     $row['email'] = $row['email'][0];
                 if (!empty($row['email'])  && $row['email'] != "") {
                     Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
@@ -97,7 +97,7 @@ class AttivitaController extends MainController {
                     Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                         $message->to($row['email_referente'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
-                }*/
+                }
             }
             catch (Exception $e) {}
 
@@ -156,7 +156,7 @@ class AttivitaController extends MainController {
         $row['email_referente'] = trim($email_referente);
         $row['email'] = explode(";", $email);
         try{
-            /*if(is_array($row['email']))
+            if(is_array($row['email']))
                 $row['email'] = $row['email'][0];
             if(!empty($row['email'])  && $row['email'] != "") {
                 Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
@@ -167,7 +167,7 @@ class AttivitaController extends MainController {
                 Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                     $message->to($row['email_referente'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
-            }*/
+            }
         }
         catch (Exception $e) {}
 
