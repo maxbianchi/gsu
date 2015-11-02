@@ -7,17 +7,21 @@
 
 <h3>Buongiorno,<br>
     con la presente vi informiamo che il ticket id: {{$idattivita}}<br>
+    Titolo: {{$titolo or ""}}<br>
     Conferma ordine: {{$conferma_ordine}}
 </h3><br>
+
+<br>
+Motivo della chiamata:<br>
+{{$motivo}}
+<br>
 
 <h3>
     E' stato chiuso in data odierna.<br>
     Alleghiamo rapportino da restituire firmato.
 </h3>
 <br>
-<br>
-Descrizione ticket:<br>
-{{$motivo}}
+
 
 <br><br>
 

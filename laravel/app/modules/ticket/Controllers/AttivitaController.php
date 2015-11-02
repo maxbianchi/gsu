@@ -89,12 +89,12 @@ class AttivitaController extends MainController {
                 if (is_array($row['email']))
                     $row['email'] = $row['email'][0];
                 if (!empty($row['email'])  && $row['email'] != "") {
-                    Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                    Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                         $message->to($row['email'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
                 }
                 if (!empty($row['email_referente']) && $row['email_referente'] != "") {
-                    Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
+                    Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                         $message->to($row['email_referente'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
                 }
@@ -107,7 +107,7 @@ class AttivitaController extends MainController {
 
 
             Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => $row['stato'],'incaricoa' => $row['incaricoa'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'], 'result' => $result, 'tecnici' => $tecnici, 'stati' => $stati,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
-                $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Cambio stato ticket ' . $row['idattivita']. ' '.$row['titolo']);
+                $message->to('staff@uniweb.it', 'Staff Uniweb')->subject($row['cliente'].' - Cambio stato ticket ' . $row['idattivita']. ' '.$row['titolo']);
             });
 
         }
@@ -159,12 +159,12 @@ class AttivitaController extends MainController {
             if(is_array($row['email']))
                 $row['email'] = $row['email'][0];
             if(!empty($row['email'])  && $row['email'] != "") {
-                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                     $message->to($row['email'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
             }
             if(!empty($row['email_referente'])  && $row['email_referente'] != "") {
-                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
+                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                     $message->to($row['email_referente'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
             }
@@ -176,7 +176,7 @@ class AttivitaController extends MainController {
 
 
         Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'APERTO','incaricoa' => $row['incaricoa'],'conferma_ordine' => $row['conferma_ordine'], 'titolo' => $row['titolo'],'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
-            $message->to('staff@uniweb.it', 'Staff Uniweb')->subject('Apertura ticket ' . $row['idattivita']);
+            $message->to('staff@uniweb.it', 'Staff Uniweb')->subject($row['cliente'].' - Apertura ticket ' . $row['idattivita']);
         });
 
     }

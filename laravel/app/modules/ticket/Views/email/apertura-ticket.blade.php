@@ -7,11 +7,12 @@
 
 <h3>Buongiorno,<br>
     con la presente vi informiamo di aver aperto il ticket id: {{$idattivita}}<br>
+    Titolo: {{$titolo or ""}}<br>
     Conferma ordine: {{$conferma_ordine}}
 </h3><br>
-Con la seguente motivazione:<br>
+<br>
+Motivo della chiamata:<br>
 {{$motivo}}
-
 <br><br>
 
 
