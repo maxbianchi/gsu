@@ -22,7 +22,7 @@ In carico a: {{$incaricoa}}
 <br>
 <br>
 
-Descrizione ticket:<br>
+Motivo della chiamata:<br>
 {{$motivo}}
 
 <br>
