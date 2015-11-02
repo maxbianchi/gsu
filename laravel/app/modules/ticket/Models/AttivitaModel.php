@@ -336,7 +336,7 @@ EOF;
         $cliente = Input::get('cliente');
         $sql = "SELECT EMAIL, TELEFONO, CONTATTO FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
         $res = DB::select($sql);
-        return json_encode($res);
+        return json_encode($res[0]);
     }
 
     public function getStato($stato_int){
