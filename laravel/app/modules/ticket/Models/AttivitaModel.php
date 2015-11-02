@@ -334,7 +334,7 @@ EOF;
 
     public function getEmailCliente(){
         $cliente = Input::get('cliente');
-        $sql = "SELECT EMAIL, TELEFONO, CONTATTO COLLATE Latin1_General_CS_AS FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
+        $sql = "SELECT EMAIL, TELEFONO FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
         $res = DB::select($sql);
         return json_encode($res);
     }
