@@ -159,12 +159,12 @@ class AttivitaController extends MainController {
             if(is_array($row['email']))
                 $row['email'] = $row['email'][0];
             if(!empty($row['email'])  && $row['email'] != "") {
-                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                     $message->to($row['email'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
             }
             if(!empty($row['email_referente'])  && $row['email_referente'] != "") {
-                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
+                Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                     $message->to($row['email_referente'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
             }
