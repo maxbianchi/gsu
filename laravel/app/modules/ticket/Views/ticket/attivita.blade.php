@@ -281,9 +281,9 @@
                         $.post( "{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     data = JSON.parse(data);
-                                    $("#email").val(data['EMAIL']);
-                                    $("#nome_referente").val(data['CONTATTO']);
-                                    $("#telefono_referente").val(data['TELEFONO']);
+                                    $("#email").val(data[0]['EMAIL']);
+                                    //$("#nome_referente").val(data[0]['CONTATTO']);
+                                    $("#telefono_referente").val(data[0]['TELEFONO']);
                                 });
                     });
 
