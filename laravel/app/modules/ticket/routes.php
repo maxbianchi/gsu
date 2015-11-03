@@ -22,6 +22,7 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::post('/ticket/salvaticket', 'AttivitaController@salvaticket');
     Route::post('/ticket/cambiastato', 'AttivitaController@cambiastato');
     Route::post('/ticket/mailaperturaticket', 'AttivitaController@mailaperturaticket');
+    Route::get('/ticket/sollecitoticket', 'AttivitaController@sollecitoticket');
     Route::get('/ticket/modificaattivita', 'AttivitaController@modificaattivita');
     Route::get('/ticket/getsingleuser', 'AttivitaController@getsingleuser');
 

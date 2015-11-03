@@ -181,6 +181,34 @@ class AttivitaController extends MainController {
 
     }
 
+    public function sollecitoTicket(){
+        $model = new AttivitaModel();
+        $stato = Input::get("stato");
+        $row['idattivita'] = Input::get("idattivita");
+        $row['stato'] = $model->getStato($stato);
+        $row['descrizione'] = "Apertura ticket Uniweb ".$row['idattivita'];
+        $row['titolo'] = Input::get("titolo");
+        $row['motivo'] = Input::get("motivo");
+        $email = Input::get("email");
+        $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
+        $row['conferma_ordine'] = Input::get("conferma_ordine");
+        $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
+        $row['cliente_finale'] = Input::has("cliente_finale") ? $model->getClientiById(Input::get("cliente_finale")) : "";
+        $row['ubicazione_impianto'] = Input::has("ubicazione_impianto") ? $model->getClientiById(Input::get("ubicazione_impianto")) : "";
+        $email_referente  = Input::get("email_referente");
+        $row['email_referente'] = trim($email_referente);
+        $row['email'] = explode(";", $email);
+
+        $model = new AttivitaModel();
+        $result = $model->getAllAttivitaByID($row['idattivita']);
+
+
+        Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => $row['stato'],'incaricoa' => $row['incaricoa'],'conferma_ordine' => $row['conferma_ordine'], 'titolo' => $row['titolo'],'idattivita' => $row['idattivita'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
+            $message->to('staff@uniweb.it', 'Staff Uniweb')->subject($row['cliente'].' - Sollecito ticket ' . $row['idattivita']);
+        });
+
+    }
+
     public function modificaAttivita(){
         $model = new AttivitaModel();
         $result = $model->getAttivita();

@@ -300,7 +300,9 @@
                                     </select>
                                 </td>
                                 <td><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"></td>
-                                <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs"></td>
+                                <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
+                                    <input type="button" value="INVIA SOLLECITO" style="float:right;" class="btn btn-primary btn-xs sollecito">
+                                </td>
                             </tr>
                         </table>
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
@@ -321,6 +323,20 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Record inserito con successo</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="msg_sollecito" class="modal fade" style="z-index:99999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Sollecito inviato con successo</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
@@ -416,6 +432,13 @@
                             $("#email").val(data[0]['EMAIL']);
                             //$("#nome_referente").val(data[0]['CONTATTO']);
                             $("#telefono_referente").val(data[0]['TELEFONO']);
+                        });
+            });
+
+            $(".sollecito").click(function(){
+                $.get( "{{url('/ticket/sollecitoticket')}}", $(this).closest('form').serialize())
+                        .done(function( data ) {
+                            $('#msg_sollecito').modal('show');
                         });
             });
 
