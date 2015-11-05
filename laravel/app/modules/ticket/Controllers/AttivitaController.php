@@ -89,12 +89,12 @@ class AttivitaController extends MainController {
             try {
                 if (is_array($row['email']))
                     $row['email'] = $row['email'][0];
-                if (!empty($row['email'])  && $row['email'] != "") {
+                if (!empty(trim($row['email']))  && trim($row['email']) != "") {
                     Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                         $message->to($row['email'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
                 }
-                if (!empty($row['email_referente']) && $row['email_referente'] != "") {
+                if (!empty(trim($row['email_referente'])) && trim($row['email_referente']) != "") {
                     Mail::send('ticket::email.cambio-stato-ticket', ['stato' => $row['stato'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                         $message->to($row['email_referente'])->subject('Cambio stato ticket ' . $row['idattivita']);
                     });
@@ -160,12 +160,12 @@ class AttivitaController extends MainController {
         try{
             if(is_array($row['email']))
                 $row['email'] = $row['email'][0];
-            if(!empty($row['email'])  && $row['email'] != "") {
+            if(!empty(trim($row['email']))  && trim($row['email']) != "") {
                 Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
                     $message->to($row['email'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
             }
-            if(!empty($row['email_referente'])  && $row['email_referente'] != "") {
+            if(!empty(trim($row['email_referente']))  && trim($row['email_referente']) != "") {
                 Mail::send('ticket::email.apertura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
                     $message->to($row['email_referente'])->subject('Apertura ticket ' . $row['idattivita']);
                 });
