@@ -364,7 +364,7 @@ EOF;
 
     public function getDataApertura(){
         $idattivita = Input::get("idattivita");
-        $sql = "SELECT CONVERT(VARCHAR(15),ATTIVITA.APERTAIL,105) APERTAIL FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
+        $sql = "SELECT CONVERT(VARCHAR(15),TICKET.dbo.ATTIVITA.APERTAIL,105) APERTAIL FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         return $res[0]['APERTAIL'];
     }
