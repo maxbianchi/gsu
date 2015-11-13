@@ -64,6 +64,8 @@ class TicketController extends MainController {
         $row['titolo'] = $res['TITOLO'];
         $row['incaricoa'] = !empty($res['INCARICOA']) ? $model->getTecnicoByID($res['INCARICOA']) : "";
         $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+        if(empty($row['email_tecnico']))
+            $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = $res['CONFERMA_ORDINE'];
         $row['email'] = Input::get("email");
         $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
@@ -105,9 +107,10 @@ class TicketController extends MainController {
             $model = new Utenti();
             $users = $model->getAllUserFromMago();
             $model = new AttivitaModel();
+            $apertail = $model->getDataApertura();
             $tecnico = $model->getTecnico();
             $verbalino = $model->getVerbalino();
-            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino]);
+            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino,'apertail' => $apertail]);
         }
     }
 

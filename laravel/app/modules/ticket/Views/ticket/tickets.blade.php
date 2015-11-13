@@ -176,6 +176,7 @@
                                 <td>ATTIVIT&Agrave; APERTA DA</td>
                                 <td>
                                     <select name="apertoda" class="apertoda" style="background-color: #FFC;">
+                                        <option value="">-----</option>
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDAPERTODA']) && $res['IDAPERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
@@ -244,17 +245,11 @@
                             </tr>
                             <tr>
                                 <td>MOTIVO DELLA CHIAMATA</td>
-                                <td colspan="3"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="4"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
+                                <td colspan="3"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
                             </tr>
                             <tr>
                                 <td>DETTAGLIO ATTIVIT&Agrave;<a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a></td>
-                                <td colspan="3"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="4"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;------------------------&#10;"; endforeach; ?></textarea></td>
+                                <td colspan="3"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;------------------------&#10;"; endforeach; ?></textarea></td>
                             </tr>
                             <tr>
                                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>

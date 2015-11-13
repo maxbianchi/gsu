@@ -75,6 +75,8 @@ class AttivitaController extends MainController {
             $row['motivo'] = Input::get("motivo");
             $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
             $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+            if(empty($row['email_tecnico']))
+                $row['email_tecnico'] = "staff@uniweb.it";
             $row['conferma_ordine'] = Input::get("conferma_ordine");
             $email = Input::get("email");
             $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
@@ -150,6 +152,8 @@ class AttivitaController extends MainController {
         $email = Input::get("email");
         $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
         $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+        if(empty($row['email_tecnico']))
+            $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = Input::get("conferma_ordine");
         $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
         $row['cliente_finale'] = Input::has("cliente_finale") ? $model->getClientiById(Input::get("cliente_finale")) : "";
@@ -194,6 +198,8 @@ class AttivitaController extends MainController {
         $email = Input::get("email");
         $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
         $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+        if(empty($row['email_tecnico']))
+            $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = Input::get("conferma_ordine");
         $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
         $row['cliente_finale'] = Input::has("cliente_finale") ? $model->getClientiById(Input::get("cliente_finale")) : "";

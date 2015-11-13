@@ -213,7 +213,7 @@ SELECT
         WHERE 1 = 1
 EOF;
         if(!empty($soggetto))
-            $sql .= " AND A1.DESCRIZIONE like '%$soggetto%'";
+            $sql .= " AND REPLACE(A1.DESCRIZIONE,'''', '') like '%$soggetto%'";
         if(!empty($stato) && $stato != "") {
             if($stato == -1)
                 $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0";
@@ -307,7 +307,7 @@ SELECT
         WHERE 1 = 1
 EOF;
       if(!empty($soggetto))
-          $sql .= " AND A1.DESCRIZIONE like '%$soggetto%'";
+          $sql .= " AND REPLACE(A1.DESCRIZIONE,'''', '') like '%$soggetto%'";
       if(!empty($stato) && $stato != "") {
           if($stato == -1)
               $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0";
@@ -360,6 +360,13 @@ EOF;
                 $stato_text = 1;
             return $stato_text;
         } catch (Exception $e) {}
+    }
+
+    public function getDataApertura(){
+        $idattivita = Input::get("idattivita");
+        $sql = "SELECT CONVERT(VARCHAR(15),ATTIVITA.APERTAIL,105) APERTAIL FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
+        $res = DB::select($sql);
+        return $res[0]['APERTAIL'];
     }
 
     public function chiudiTicket(){

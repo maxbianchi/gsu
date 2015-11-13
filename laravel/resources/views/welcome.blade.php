@@ -90,7 +90,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico webfax</b></div>
-                        <div class="col-md-4 col-md-offset-2">Aprti un <b>attivit&agrave; / Ticket</b></div>
+                        <div class="col-md-4 col-md-offset-2">Apri un <b>attivit&agrave; / Ticket</b></div>
                     </div>
                 </div>
 
@@ -112,6 +112,14 @@
                         <div class="col-md-2 col-md-offset-1">
                             <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
                         </div>
+                        @else
+                            <div class="col-md-1 col-md-offset-3" >
+                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/clientticket?stato=0')}}' ,'_blank')">ATTIVITA</button>
+                            </div>
+
+                            <div class="col-md-2 col-md-offset-1">
+                                <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
+                            </div>
                         @endif
                         <!--/**/-->
 

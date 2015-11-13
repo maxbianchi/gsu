@@ -135,17 +135,11 @@
             </tr>
             <tr>
                 <td>MOTIVO DELLA CHIAMATA</td>
-                <td colspan="3"></td>
-            </tr>
-            <tr>
-                <td colspan="4"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
+                <td colspan="3"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$request['MOTIVO'] or ""}}</textarea></td>
             </tr>
             <tr>
                 <td>DETTAGLIO ATTIVIT&Agrave;</td>
-                <td colspan="3"></td>
-            </tr>
-            <tr>
-                <td colspan="4"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
+                <td colspan="3"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly">{{$request['ELENCO ATTIVITA'] or ""}}</textarea></td>
             </tr>
             <tr>
                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>

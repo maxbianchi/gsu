@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="padding-top:10px;">
-                        <div style="border:solid 1px; text-align: center;">RDI - Rapporto di intervento tecnico nr. {{Input::get('idattivita')}} del <?php echo date("d-m-Y"); ?></div>
+                        <div style="border:solid 1px; text-align: center;">RDI - Rapporto di intervento tecnico nr. {{Input::get('idattivita')}} del {{$apertail}}</div>
                     </td>
                 </tr>
                 <tr>
@@ -437,11 +437,12 @@
                         var cliente = $("#cliente").val();
                         var cliente_finale = $("#cliente_finale").val();
                         var ubicazione_impianto = $("#ubicazione_impianto").val();
+                        var email_referente = $("#email_referente").val();
                         var html="<!DOCTYPE html><body>";
                         html+= document.getElementById('toPrint').innerHTML;
                         html+="</body></html>";
 
-                        $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '<?php str_replace(array("\n","\r"),"",Input::get('motivo'))?>', cliente: cliente, cliente_finale: cliente_finale, ubicazione_impianto: ubicazione_impianto })
+                        $.post( "/ticket/pdf", { html: html, '_token': '{{ csrf_token() }}', idattivita: '{{Input::get('idattivita')}}', email: '{{Input::get('email')}}', motivo: '<?php str_replace(array("\n","\r"),"",Input::get('motivo'))?>', cliente: cliente, cliente_finale: cliente_finale, ubicazione_impianto: ubicazione_impianto, email_referente: email_referente })
                                 .done(function( data ) {
                                     location.href = '{{url('/ticket/alltickets')}}';
                                 });
