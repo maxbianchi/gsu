@@ -438,7 +438,7 @@
                         var cliente_finale = $("#cliente_finale").val();
                         var ubicazione_impianto = $("#ubicazione_impianto").val();
                         var email_referente = $("#email_referente").val();
-                        var html="<!DOCTYPE html><body>";
+                        var html="<!DOCTYPE html><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'></head><body>";
                         html+= document.getElementById('toPrint').innerHTML;
                         html+="</body></html>";
 
