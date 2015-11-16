@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => 'staff@uniweb.it', 'name' => 'staff@uniweb.it'],
+	'from' => ['address' => 'staff@uniweb.it', 'name' => 'TICKET UNIWEB'],
 
 	/*
 	|--------------------------------------------------------------------------
