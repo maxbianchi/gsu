@@ -85,9 +85,13 @@
         <div class="well" style="width:100%; padding: 8px 0;">
             <div style="overflow-y: scroll; overflow-x: hidden; height: 100%;">
                 <ul class="nav nav-list">
-                    <li><label class="tree-toggler nav-header">Tecnico</label>
+                    <li><label class="tree-toggler nav-header">Stato</label>
                         <ul class="nav nav-list tree">
                             <li><a href="{{url('/ticket/alltickets').'?stato=-1'}}">NON ASSEGNATI</a></li>
+                        </ul>
+                    </li>
+                    <li><label class="tree-toggler nav-header">Tecnico</label>
+                        <ul class="nav nav-list tree">
                             @foreach($tecnici as $tecnico)
                                 <li><a href="{{url('/ticket/alltickets').'?tecnico='.$tecnico['IDTECNICO']}}">{{$tecnico['DESCRIZIONE']}}</a></li>
                             @endforeach
@@ -121,6 +125,7 @@
                         <td>TICKET FORNITORE</td>
                         <td>IN CARICO A</td>
                         <td>STATO</td>
+                        <td>ELABORATO</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -131,15 +136,16 @@
                         $idattivita = $res['IDATTIVITA'];
                         ?>
 
-                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE UNIWEB") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>;cursor: pointer; cursor: hand;" onclick="window.location.href='{{url('/ticket/tickets').'?idattivita='.$res['IDATTIVITA']}}'">
-                            <td>{{$res['CONFERMA_ORDINE']}}</td>
-                            <td>{{$res['SOGGETTO_NOME']}}</td>
-                            <td>{{$res['TITOLO']}}</td>
-                            <td>{{$res['IDATTIVITA']}}</td>
-                            <td>{{$res['TGU']}}</td>
-                            <td>{{$res['TICKETTELECOM']}}</td>
-                            <td>{{$res['INCARICOA']}}</td>
-                            <td>{{$res['STATO']}}</td>
+                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE UNIWEB") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>;cursor: pointer; cursor: hand;">
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['CONFERMA_ORDINE']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['SOGGETTO_NOME']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['TITOLO']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['IDATTIVITA']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['TGU']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['TICKETTELECOM']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['INCARICOA']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['STATO']}}</td>
+                            <td><?php if($res['STATO'] == "CHIUSO") echo "<input type='checkbox' class='elaborato' data-idattivita='$idattivita'"; ?></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -166,7 +172,20 @@
         </div>
     </div>
 
-
+    <div id="msg_elaborato" class="modal fade" style="z-index:99999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Archiviare il record elaborato ?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-primary elaborato-save">Conferma</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -174,7 +193,7 @@
 
 @section('script')
     <script>
-
+        var idattivita="";
         $(document).ready(function () {
 
             function h(e) {
@@ -249,6 +268,25 @@
 
             $('label.tree-toggler').click(function () {
                 $(this).parent().children('ul.tree').toggle(300);
+            });
+
+            $(".clickable").click(function(){
+                var idattivita = $(this).data("idattivita");
+                window.location.href='{{url('/ticket/tickets').'?idattivita='}}' + idattivita;
+            });
+
+            $(".elaborato").click(function(){
+                if($(this).is(':checked')) {
+                    idattivita = $(this).data("idattivita");
+                    $('#msg_elaborato').modal('show');
+                }
+            });
+
+            $(".elaborato-save").click(function(){
+                $.get("{{url('/ticket/elaborato')}}", {idattivita: idattivita})
+                        .done(function (data) {
+                            $('#msg_elaborato').modal('hide');
+                        });
             });
 
         });

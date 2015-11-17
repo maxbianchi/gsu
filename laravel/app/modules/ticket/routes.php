@@ -34,4 +34,5 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::post('/ticket/salvanuovo', 'ClientController@salvaticket');
     Route::post('/ticket/getdatacliente', 'ClientController@getdatacliente');
     Route::get('/ticket/sollecitoticketcliente', 'ClientController@sollecitoticket');
+    Route::get('/ticket/elaborato', 'ClientController@elaborato');
 });

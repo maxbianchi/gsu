@@ -107,4 +107,9 @@ class ClientController extends MainController {
 
     }
 
+    public function elaborato(){
+        $model = new ClientiModel();
+        $model->elaborato();
+    }
+
 }

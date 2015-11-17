@@ -79,5 +79,11 @@ class ClientiModel extends Model {
         DB::insert($sql);
     }
 
+    public function elaborato(){
+        $idattivita = Input::get("idattivita");
+        $sql = "UPDATE TICKET.dbo.ATTIVITA SET ELABORATO=1 WHERE IDATTIVITA='$idattivita'";
+        DB::update($sql);
+    }
+
 }
 
