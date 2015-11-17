@@ -65,6 +65,16 @@
                     <div class="col-md-2"></div>
                 </div>
                 <div class="row">
+                    <div class="col-md-1">DA DATA INTERVENTO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('data_intervento_da')}}" name="data_intervento_da" class="datepicker"></div>
+                    <div class="col-md-1">A DATA INTERVENTO</div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('data_intervento_a')}}" name="data_intervento_a" class="datepicker"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row">
                     <div class="col-md-2"><input type="submit" value="CERCA" id="cerca" name="cerca" class="btn btn-primary btn-xs"></div>
                 </div>
             </form>

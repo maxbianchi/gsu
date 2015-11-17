@@ -4,6 +4,7 @@ use App\Modules\Gsu\Utility;
 use App\Utenti;
 use Illuminate\Database\Eloquent\Model;
 use Input;
+use League\Flysystem\Util;
 use Session;
 use DB;
 
@@ -153,6 +154,7 @@ class AttivitaModel extends Model {
     }
 
     public function getTestataTickets(){
+        $utility = new Utility();
         $soggetto = Input::get("cliente");
         $stato = Input::get("stato");
         $tecnico = Input::get("tecnico");
@@ -162,6 +164,16 @@ class AttivitaModel extends Model {
         $categoria = Input::get('categoria');
         $titolo = Input::get('titolo');
         $conferma_ordine = Input::get('conferma_ordine');
+        $data_intervento_da = Input::get("data_intervento_da");
+        if(!empty($data_intervento_da)) {
+            $data_intervento_da = $utility->convertDate($data_intervento_da);
+            $data_intervento_da = date('Y-m-d H:i:s', strtotime($data_intervento_da));
+        }
+        if(!empty($data_intervento_a)) {
+            $data_intervento_a = Input::get("data_intervento_a");
+            $data_intervento_a = $utility->convertDate($data_intervento_a);
+            $data_intervento_a .= " 23:59:59";
+        }
 
         $sql =<<<EOF
 SELECT
@@ -177,8 +189,8 @@ SELECT
         A.APERTODA IDAPERTODA,
         A.INCARICOA IDINCARICOA,
         C.DESCRIZIONE,
-        TITOLO,
-        MOTIVO,
+        A.TITOLO,
+        A.MOTIVO,
         ST.IDSTATO,
         ST.STATO,
         A.SOGGETTO SOGGETTO_CODICE,
@@ -201,7 +213,8 @@ SELECT
         A.TELEFONO_REFERENTE,
         A.IDCATEGORIA,
         A.CONFERMA_ORDINE,
-        A.COD_SERVIZIO
+        A.COD_SERVIZIO,
+        V.DATA_INTERVENTO
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
         LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
@@ -210,6 +223,7 @@ SELECT
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON A.SOGGETTO = A1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON A.CLIENTE_FINALE = A3.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON A.UBICAZIONE = A2.SOGGETTO
+        LEFT OUTER JOIN TICKET.dbo.VERBALINI V ON V.IDATTIVITA = A.IDATTIVITA
         WHERE 1 = 1
 EOF;
         if(!empty($soggetto))
@@ -235,7 +249,12 @@ EOF;
         if(!empty($conferma_ordine))
             $sql .= " AND A.CONFERMA_ORDINE LIKE '%$conferma_ordine%'";
 
-        $sql .= " ORDER BY A.STATO, A.APERTAIL DESC";
+        if(!empty($data_intervento_da))
+            $sql .= " AND V.DATA_INTERVENTO >= '$data_intervento_da'";
+        if(!empty($data_intervento_a))
+            $sql .= " AND V.DATA_INTERVENTO <= '$data_intervento_a'";
+
+        $sql .= " ORDER BY A.STATO, A1.DESCRIZIONE";
 
         $request = DB::select($sql);
         return $request;
@@ -325,7 +344,7 @@ EOF;
       if(!empty($categoria))
           $sql .= " AND A.IDCATEGORIA = $categoria";
 
-      $sql .= " ORDER BY A.STATO, A.APERTAIL DESC";
+      $sql .= " ORDER BY A.STATO, A1.DESCRIZIONE";
 
       $request = DB::select($sql);
       return $request;
