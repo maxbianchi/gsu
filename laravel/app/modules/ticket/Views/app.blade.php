@@ -66,6 +66,7 @@
 				<ul class="nav navbar-nav navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         @if (Session::get('logged')  == 1)
+                            <li><a href="{{URL::asset('manuali/MANUALE-ATTIVITA.pdf')}}" title="MANUALE"><b>MANUALE</b></a></li>
                             <li><a href="{{ url('/logout') }}" title="Logout"><b>Logout</b></a></li>
                         @endif
                     </ul>
