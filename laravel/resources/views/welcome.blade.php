@@ -106,7 +106,7 @@
                         <!--/**/-->
                         @if (Session::get('livello')  == 1)
                         <div class="col-md-1 col-md-offset-3" >
-                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/alltickets?stato=0&tecnico=').Session::get('idtecnico')}}' ,'_blank')">ATTIVITA</button>
+                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/alltickets?stato=0&tecnico=').Session::get('idtecnico')}}' ,'_blank')">ATTIVITA/TICKET</button>
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
@@ -114,7 +114,7 @@
                         </div>
                         @else
                             <div class="col-md-1 col-md-offset-3" >
-                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/clientticket?stato=0')}}' ,'_blank')">ATTIVITA</button>
+                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/clientticket?stato=0')}}' ,'_blank')">ATTIVITA/TICKET</button>
                             </div>
 
                             <div class="col-md-2 col-md-offset-1">
