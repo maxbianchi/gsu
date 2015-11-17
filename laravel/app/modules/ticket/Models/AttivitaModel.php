@@ -135,7 +135,7 @@ class AttivitaModel extends Model {
         $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request  = DB::select($sql);
         if(count($request) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio' )";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 )";
             DB::insert($sql);
         }
         else {
