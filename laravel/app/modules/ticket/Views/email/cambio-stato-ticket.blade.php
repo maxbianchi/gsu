@@ -5,10 +5,12 @@
 </head>
 <body>
 
-<h3>Buongiorno,<br>
+<h3>Buongiorno {{$cliente}},<br>
     con la presente vi informiamo che il ticket id: {{$idattivita}}<br>
     Titolo: {{$titolo or ""}}<br>
-    Conferma ordine: {{$conferma_ordine}}
+    Conferma ordine: {{$conferma_ordine}}<br>
+    Cliente finale: {{$cliente_finale}}<br>
+    Ubicazione: {{$ubicazione_impianto}}
 </h3><br>
 <br>
 Motivo della chiamata:<br>

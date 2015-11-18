@@ -80,12 +80,12 @@ class TicketController extends MainController {
             if (is_array($row['email']))
                 $row['email'] = $row['email'][0];
             if(!empty(trim($row['email']))) {
-                Mail::send('ticket::email.chiusura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email']], function ($message) use ($row) {
+                Mail::send('ticket::email.chiusura-ticket', ['idattivita' => $row['idattivita'],'conferma_ordine' => $row['conferma_ordine'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'],'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
                     $message->to($row['email'])->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
                 });
             }
             if (!empty(trim($row['email_referente'])) && trim($row['email_referente']) != "") {
-                Mail::send('ticket::email.chiusura-ticket', ['stato' => 'CHIUSO','conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email_referente']], function ($message) use ($row) {
+                Mail::send('ticket::email.chiusura-ticket', ['stato' => 'CHIUSO','conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email_referente'],'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
                     $message->to($row['email_referente'])->subject('Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
                 });
             }
