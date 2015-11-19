@@ -169,6 +169,7 @@ class AttivitaModel extends Model {
             $data_intervento_da = $utility->convertDate($data_intervento_da);
             $data_intervento_da = date('Y-m-d H:i:s', strtotime($data_intervento_da));
         }
+        $data_intervento_a = Input::get("data_intervento_a");
         if(!empty($data_intervento_a)) {
             $data_intervento_a = Input::get("data_intervento_a");
             $data_intervento_a = $utility->convertDate($data_intervento_a);
@@ -214,7 +215,7 @@ SELECT
         A.IDCATEGORIA,
         A.CONFERMA_ORDINE,
         A.COD_SERVIZIO,
-        V.DATA_INTERVENTO
+        CONVERT(VARCHAR(10),V.DATA_INTERVENTO,105 ) DATA_INTERVENTO
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
         LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA

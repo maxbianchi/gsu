@@ -125,6 +125,7 @@
                         <td>TICKET FORNITORE</td>
                         <td>IN CARICO A</td>
                         <td>STATO</td>
+                        <td>DATA INTERVENTO</td>
                         <td>ELABORATO</td>
                     </tr>
                     </thead>
@@ -145,6 +146,7 @@
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['TICKETTELECOM']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['INCARICOA']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['STATO']}}</td>
+                            <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['DATA_INTERVENTO']}}</td>
                             <td><?php if($res['STATO'] == "CHIUSO") echo "<input type='checkbox' class='elaborato' data-idattivita='$idattivita'"; ?></td>
                         </tr>
                     @endforeach
@@ -270,12 +272,12 @@
                 $(this).parent().children('ul.tree').toggle(300);
             });
 
-            $(".clickable").click(function(){
+            $( document ).delegate(".clickable","click",function(){
                 var idattivita = $(this).data("idattivita");
                 window.location.href='{{url('/ticket/tickets').'?idattivita='}}' + idattivita;
             });
 
-            $(".elaborato").click(function(){
+            $( document ).delegate(".elaborato","click",function(){
                 if($(this).is(':checked')) {
                     idattivita = $(this).data("idattivita");
                     $('#msg_elaborato').modal('show');
