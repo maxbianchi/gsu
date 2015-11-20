@@ -105,8 +105,8 @@ class AttivitaModel extends Model {
     }
 
     public function eliminaattivita(){
-        $idattivita = Input::get("idattivita");
-        DB::delete("DELETE FROM TICKET.dbo.SINGOLE_ATTIVITA WHERE IDATTIVITA='$idattivita'");
+        $id = Input::get("id");
+        DB::delete("DELETE FROM TICKET.dbo.SINGOLE_ATTIVITA WHERE ID='$id'");
     }
 
     public function salvaticket(){

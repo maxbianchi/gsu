@@ -53,7 +53,7 @@
                     </tr>
                 </table>
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-                <input type="hidden" name="id" value="{{$request['ID'] or ""}}">
+                <input type="hidden" name="id" class="id" value="{{$request['ID'] or ""}}">
                 <input type="hidden" name="idattivita" class="idattivita" value="{{$request['IDATTIVITA'] or ""}}">
             </form>
         @endforeach
@@ -104,6 +104,7 @@
         $(document).ready(function () {
 
             var idattivita = "";
+            var id_singola_attivita = "";
             function h(e) {
                 $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
             }
@@ -115,12 +116,13 @@
 
             $(".elimina-attivita").click(function(){
                 idattivita = $(this).closest('form').find(".idattivita").val();
+                id_singola_attivita = $(this).closest('form').find(".id").val();
                 $('#delete').modal('show');
             });
 
             $("#btn_elimina").click(function(){
-                console.log(idattivita);
-                $.get( "{{url('/ticket/eliminaattivita')}}", { idattivita: idattivita } )
+                console.log(id_singola_attivita);
+                $.get( "{{url('/ticket/eliminaattivita')}}", { id: id_singola_attivita } )
                         .done(function( data ) {
                             $("#delete").modal('toggle');
                             location.reload();
