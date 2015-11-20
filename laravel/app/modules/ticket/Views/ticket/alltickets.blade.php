@@ -81,7 +81,7 @@
         </div>
     </div>
 
-     <div class="col-xs-4 col-md-2" style="border:1px solid #E7E7E7; background-color: #F5F5F5;">
+     <div class="col-xs-4 col-md-2 hidden-xs" style="border:1px solid #E7E7E7; background-color: #F5F5F5;">
         <div class="well" style="width:100%; padding: 8px 0;">
             <div style="overflow-y: scroll; overflow-x: hidden; height: 100%;">
                 <ul class="nav nav-list">
