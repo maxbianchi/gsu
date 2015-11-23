@@ -68,6 +68,7 @@ class TicketController extends MainController {
             $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = $res['CONFERMA_ORDINE'];
         $row['email'] = Input::get("email");
+        $row['email'] = explode(";", $row['email']);
         $row['cliente'] = Input::has("cliente") ? $model->getClientiById(Input::get("cliente")) : "";
         $row['cliente_finale'] = Input::has("cliente_finale") ? $model->getClientiById(Input::get("cliente_finale")) : "";
         $row['ubicazione_impianto'] = Input::has("ubicazione_impianto") ? $model->getClientiById(Input::get("ubicazione_impianto")) : "";
