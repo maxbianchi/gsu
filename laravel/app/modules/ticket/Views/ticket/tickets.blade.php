@@ -42,6 +42,7 @@
                     <div class="col-md-2"><select name="stato">
                             <option value="">TUTTI</option>
                             <option value="-1" {{Input::get('stato') == '-1' ? 'selected="selected"' : ""  }}>NON ASSEGNATO</option>
+                            <option value="-2" {{Input::get('stato') == '-2' ? 'selected="selected"' : ""  }}>ARCHIVIATO</option>
                             @foreach($stati as $stato)
                                 <option value="{{$stato['IDSTATO'] or ""}}" {{Input::get('stato') == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                             @endforeach
@@ -81,13 +82,18 @@
         </div>
     </div>
 
-    <div class="col-xs-4 col-md-2 hidden-xs" style="border:1px solid #E7E7E7; background-color: #F5F5F5;">
+    <div class="cols-xs-4 col-md-2 hidden-xs" style="border: 1px solid #E7E7E7; background-color: #F5F5F5">
         <div class="well" style="width:100%; padding: 8px 0;">
-            <div style="overflow-y: scroll; overflow-x: hidden;width:100%; height: 100%;">
+            <div style="overflow: scroll; overflow-x: hidden; height: 100%;">
                 <ul class="nav nav-list">
-                    <li><label class="tree-toggler nav-header">Tecnico</label>
+                    <li><label class="tree-toggler nav-header">Stato</label>
                         <ul class="nav nav-list tree">
                             <li><a href="{{url('/ticket/alltickets').'?stato=-1'}}">NON ASSEGNATI</a></li>
+                            <li><a href="{{url('/ticket/alltickets').'?stato=-2'}}">ARCHIVIATI</a></li>
+                        </ul>
+                    </li>
+                    <li><label class="tree-toggler nav-header">Tecnico</label>
+                        <ul class="nav nav-list tree">
                             @foreach($tecnici as $tecnico)
                                 <li><a href="{{url('/ticket/alltickets').'?tecnico='.$tecnico['IDTECNICO']}}">{{$tecnico['DESCRIZIONE']}}</a></li>
                             @endforeach
@@ -99,6 +105,7 @@
                             @foreach($categorie as $categoria)
                                 <li><a href="{{url('/ticket/alltickets').'?categoria='.$categoria['IDCATEGORIA']}}">{{$categoria['DESCRIZIONE']}}</a></li>
                             @endforeach
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -258,10 +265,10 @@
                                 <td colspan="3"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
                             </tr>
                             <tr>
-                                <td>DETTAGLIO ATTIVIT&Agrave;<a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a></td>
+                                <td>DETTAGLIO ATTIVIT&Agrave;<?php if ($res['ELABORATO'] != 1): ?><a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a><?php endif; ?></td>
                                 <td colspan="3"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;------------------------&#10;"; endforeach; ?></textarea></td>
                             </tr>
-                            <tr>
+                            <tr><?php if ($res['ELABORATO'] != 1): ?>
                                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
                             </tr>
                             <tr>
@@ -294,6 +301,7 @@
                             </tr>
                             <tr>
                                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
+                                <?php endif; ?>
                             </tr>
                             <tr>
                                 <td>CAMBIA STATO</td>
@@ -304,9 +312,9 @@
                                         @endforeach
                                     </select>
                                 </td>
-                                <td><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"></td>
+                                <td><?php if ($res['ELABORATO'] != 1): ?><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"><?php endif;?></td>
                                 <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
-                                    <input type="button" value="INVIA SOLLECITO" style="float:right;" class="btn btn-primary btn-xs sollecito">
+                                    <?php if ($res['ELABORATO'] != 1): ?><input type="button" value="INVIA SOLLECITO" style="float:right;" class="btn btn-primary btn-xs sollecito"><?php endif;?>
                                 </td>
                             </tr>
                         </table>

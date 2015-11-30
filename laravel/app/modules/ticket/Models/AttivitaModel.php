@@ -225,15 +225,19 @@ SELECT
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON A.CLIENTE_FINALE = A3.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON A.UBICAZIONE = A2.SOGGETTO
         LEFT OUTER JOIN TICKET.dbo.VERBALINI V ON V.IDATTIVITA = A.IDATTIVITA
-        WHERE A.ELABORATO != 1
+        WHERE 1 = 1
 EOF;
         if(!empty($soggetto))
             $sql .= " AND REPLACE(A1.DESCRIZIONE,'''', '') like '%$soggetto%'";
         if(!empty($stato) && $stato != "") {
             if($stato == -1)
-                $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0";
+                $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0 AND A.ELABORATO != 1";
+            elseif($stato == -2)
+                $sql .= " AND A.ELABORATO = 1";
             else
-                $sql .= " AND A.STATO = '$stato'";
+                $sql .= " AND A.ELABORATO != 1 AND A.STATO = '$stato'";
+        }else{
+            $sql .= "AND A.ELABORATO != 1";
         }
         if(!empty($tecnico))
             $sql .= " AND A.INCARICOA = '$tecnico'";
@@ -313,6 +317,7 @@ SELECT
         A.IDCATEGORIA,
         A.CONFERMA_ORDINE,
         A.COD_SERVIZIO,
+        A.ELABORATO,
         CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
         CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
         FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
