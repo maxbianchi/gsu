@@ -112,7 +112,7 @@
                     <td><input type="text" name="scadrinnovogaranzia" value="{{$request['SCADRINNOVOGARANZIA'] or ""}}" class="datepicker"></td>
                 </tr>
                 <tr>
-                    <td>ASSISTENZA TECNICA</td>
+                    <td>ASSISTENZA TECNICA A PAGAMENTO</td>
                     <td><input type="text" name="assistenza_tecnica" value="{{$assistenzatecnica}}" style="background-color:{{$assistenzatecnica == "SI" ? "green" : "red" }}" class="servizi"></td>
                 </tr>
                 <tr>
