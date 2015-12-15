@@ -79,7 +79,7 @@ class ClientController extends MainController {
             }
 
             Mail::send('ticket::email.apertura-ticket-cliente', ['stato' => 'APERTO','user' => $row['users'],'titolo' => $row['titolo'],'idattivita' => $row['idattivita'], 'motivo' => $row['motivo']], function ($message) use ($row) {
-                $message->to(EMAIL, 'Staff Uniweb')->subject($row['users'].' - Apertura ticket da CLIENTE ' . $row['idattivita']);
+                $message->to(EMAIL_STAFF, 'Staff Uniweb')->subject($row['users'].' - Apertura ticket da CLIENTE ' . $row['idattivita']);
             });
         }
         catch (Exception $e) {}
@@ -101,7 +101,7 @@ class ClientController extends MainController {
 
 
             Mail::send('ticket::email.sollecito-ticket-cliente', ['user' => $row['users'],'titolo' => $row['titolo'],'idattivita' => $row['idattivita'], 'motivo' => $row['motivo']], function ($message) use ($row) {
-                $message->to(EMAIL, 'Staff Uniweb')->subject($row['users'].' - Sollecito ticket da CLIENTE ' . $row['idattivita']);
+                $message->to(EMAIL_STAFF, 'Staff Uniweb')->subject($row['users'].' - Sollecito ticket da CLIENTE ' . $row['idattivita']);
             });
 
 

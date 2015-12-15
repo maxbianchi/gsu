@@ -63,7 +63,7 @@ class TicketController extends MainController {
         $row['motivo'] = $res['MOTIVO'];
         $row['titolo'] = $res['TITOLO'];
         $row['incaricoa'] = !empty($res['INCARICOA']) ? $model->getTecnicoByID($res['INCARICOA']) : "";
-        $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL;
+        $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL_STAFF;
         if(empty($row['email_tecnico']))
             $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = $res['CONFERMA_ORDINE'];
