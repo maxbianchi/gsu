@@ -74,7 +74,7 @@ class AttivitaController extends MainController {
             $row['descrizione'] = "Apertura ticket Uniweb " . $row['idattivita'];
             $row['motivo'] = Input::get("motivo");
             $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
-            $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+            $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL;
             if(empty($row['email_tecnico']))
                 $row['email_tecnico'] = "staff@uniweb.it";
             $row['conferma_ordine'] = Input::get("conferma_ordine");
@@ -151,7 +151,7 @@ class AttivitaController extends MainController {
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
         $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
-        $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+        $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL;
         if(empty($row['email_tecnico']))
             $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = Input::get("conferma_ordine");
@@ -197,7 +197,7 @@ class AttivitaController extends MainController {
         $row['motivo'] = Input::get("motivo");
         $email = Input::get("email");
         $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
-        $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : "staff@uniweb.it";
+        $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL;
         if(empty($row['email_tecnico']))
             $row['email_tecnico'] = "staff@uniweb.it";
         $row['conferma_ordine'] = Input::get("conferma_ordine");
