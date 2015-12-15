@@ -64,8 +64,8 @@ class Utenti extends Model {
             }
         }
 
-        if(count($utente) == 1)
-            $utente = $utente[0];
+        /*if(count($utente) == 1)
+            $utente = $utente[0];*/
 
         return $utente;
     }
