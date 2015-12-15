@@ -6,4 +6,4 @@
  * Time: 12.05
  */
 
-define('EMAIL', 'staff@uniweb.it');
+define('EMAIL_STAFF', 'staff@uniweb.it');

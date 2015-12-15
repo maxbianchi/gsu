@@ -22,10 +22,7 @@
     "psr-4": {
       "App\\": "app/",
       "Modules\\": "app/modules"
-    },
-    "files": [
-      "app/constants.php"
-    ]
+    }
   },
   "minimum-stability": "dev",
   "scripts": {
