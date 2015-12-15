@@ -153,7 +153,7 @@ EOF;
         if(!empty($data_contratto)) {
             $data_contratto = explode("-", $data_contratto);
             $data_contratto = $data_contratto[2]."-".$data_contratto[1]."-".$data_contratto[0];
-            $sql .= " AND RICHIESTE.DATADOCUMENTO = 'CONVERT(date,$data_contratto, 105)'";
+            $sql .= " AND RICHIESTE.DATADOCUMENTO = CONVERT(date,'$data_contratto', 102)";
         }
 
         if(!empty($nrcontratto))
