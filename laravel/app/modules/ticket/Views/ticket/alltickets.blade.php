@@ -139,7 +139,7 @@
                         $idattivita = $res['IDATTIVITA'];
                         ?>
 
-                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE UNIWEB") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>;cursor: pointer; cursor: hand;">
+                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>;cursor: pointer; cursor: hand;">
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['CONFERMA_ORDINE']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['SOGGETTO_NOME']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['TITOLO']}}</td>

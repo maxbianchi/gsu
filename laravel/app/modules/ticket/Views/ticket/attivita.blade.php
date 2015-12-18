@@ -104,6 +104,12 @@
                 </td>
             </tr>
             <tr>
+                <td></td>
+                <td></td>
+                <td>TIPOLOGIA ASSISTENZA</td>
+                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
+            </tr>
+            <tr>
                 <td>NOME REFERENTE</td>
                 <td><input type="text" style="background-color: #FFC;" name="nome_referente" id="nome_referente" value="{{$request['NOME_REFERENTE'] or ""}}"></td>
                 <td>TELEFONO REFERENTE</td>
@@ -205,6 +211,20 @@
             </div>
         </div>
 
+        <div id="msg_bloccato" class="modal fade" style="z-index:99999;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ATTENZIONE utente bloccato !</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-modal" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @endsection
 
 
@@ -272,12 +292,46 @@
 
 
                     $("#cliente").change(function(){
+
+                        $.post( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
+                                .done(function( data ) {
+                                    data = JSON.parse(data);
+                                    if(data[0].Blocked == 1)
+                                    {
+                                        $('#msg_bloccato').modal('show');
+                                    }
+                                });
+
+                        $.post( "{{url('/ticket/getCategorie')}}", $("form#form").serialize())
+                                .done(function( data ) {
+                                    data = JSON.parse(data);
+                                    var $select = $('#categoria');
+                                    $select.find('option').remove();
+                                    $.each(data, function (key, data) {
+                                        $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
+                                    })
+                                });
                         $.post( "{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     data = JSON.parse(data);
                                     $("#email").val(data[0]['EMAIL']);
                                     //$("#nome_referente").val(data[0]['CONTATTO']);
                                     $("#telefono_referente").val(data[0]['TELEFONO']);
+                                });
+                        $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                .done(function (data) {
+                                    data = JSON.parse(data);
+                                    $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                });
+                    });
+
+                    $("#categoria").change(function(){
+                        $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                .done(function (data) {
+
+                                    data = JSON.parse(data);
+                                    console.log(data[0].TipologiaAssistenza);
+                                    $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
                                 });
                     });
 

@@ -248,7 +248,7 @@ EOF;
         if(!empty($idattivita))
             $sql .= " AND A.IDATTIVITA = $idattivita";
         if(!empty($categoria))
-            $sql .= " AND A.IDCATEGORIA = $categoria";
+            $sql .= " AND A.IDCATEGORIA = '$categoria'";
         if(!empty($titolo))
             $sql .= " AND A.TITOLO LIKE '%$titolo%'";
         if(!empty($conferma_ordine))
@@ -348,7 +348,7 @@ EOF;
       if(!empty($idattivita))
           $sql .= " AND A.IDATTIVITA = $idattivita";
       if(!empty($categoria))
-          $sql .= " AND A.IDCATEGORIA = $categoria";
+          $sql .= " AND A.IDCATEGORIA = '$categoria''";
 
       $sql .= " ORDER BY A.STATO, A1.DESCRIZIONE";
 
@@ -487,14 +487,15 @@ EOF;
         $garanzia = isset($_POST['garanzia_si'])  ? 1 : 0;
         $macchina_funzione = isset($_POST['macchina_funzione_si']) ? 1 : 0;
         $incaricoa = Input::get('incaricoa');
+        $carnet = Input::get('carnet');
 
         $sql = "SELECT * FROM TICKET.dbo.VERBALINI WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         if(count($res) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.VERBALINI (IDATTIVITA,CLIENTE,UBICAZIONE,RIFERIMENTO,TELEFONO,EMAIL,MATRICOLA,MODELLO,LETTURA_BN,LETTURA_COLORE,MOTIVO,DESCRIZIONE,CODICE_1,DESCRIZIONE_1,QTA_1,NOTE_1,CODICE_2,DESCRIZIONE_2,QTA_2,NOTE_2,CODICE_3,DESCRIZIONE_3,QTA_3,NOTE_3,DATA_INTERVENTO,INTERVENTO_REMOTO,TEMPO_TOTALE,TEMPO_VIAGGIO_1,ORA_INIZIO_1,ORA_FINE_1,TEMPO_VIAGGIO_2,ORA_INIZIO_2,ORA_FINE_2,NOTE,INTERVENTO_RISOLUTIVO,IN_GARANZIA,MACCHINA_FUNZIONE,TECNICO, CLIENTE_FINALE, TEMPO_VIAGGIO_1_MINUTI,ORA_INIZIO_1_MINUTI,ORA_FINE_1_MINUTI,TEMPO_VIAGGIO_2_MINUTI,ORA_INIZIO_2_MINUTI,ORA_FINE_2_MINUTI) VALUES ('$idattivita','$cliente','$ubicazione','$riferimento','$telefono','$email','$matricola','$modello','$tot_bn','$tot_colore','$motivo','$descrizione','$codice1','$descrizione1','$qta1','$note1','$codice2','$descrizione2','$qta2','$note2','$codice3','$descrizione3','$qta3','$note3','$data_intervento','$intervento_remoto','$tempo','$tempo_viaggio','$ora_inizio','$ora_fine','$tempo_viaggio2','$ora_inizio2','$ora_fine2','$note','$intervento_risolutivo','$garanzia','$macchina_funzione','$incaricoa', '$cliente_finale','$tempo_viaggio_minuti','$ora_inizio_minuti','$ora_fine_minuti','$tempo_viaggio2_minuti','$ora_inizio2_minuti','$ora_fine2_minuti')";
+            $sql = "INSERT INTO TICKET.dbo.VERBALINI (IDATTIVITA,CLIENTE,UBICAZIONE,RIFERIMENTO,TELEFONO,EMAIL,MATRICOLA,MODELLO,LETTURA_BN,LETTURA_COLORE,MOTIVO,DESCRIZIONE,CODICE_1,DESCRIZIONE_1,QTA_1,NOTE_1,CODICE_2,DESCRIZIONE_2,QTA_2,NOTE_2,CODICE_3,DESCRIZIONE_3,QTA_3,NOTE_3,DATA_INTERVENTO,INTERVENTO_REMOTO,TEMPO_TOTALE,TEMPO_VIAGGIO_1,ORA_INIZIO_1,ORA_FINE_1,TEMPO_VIAGGIO_2,ORA_INIZIO_2,ORA_FINE_2,NOTE,INTERVENTO_RISOLUTIVO,IN_GARANZIA,MACCHINA_FUNZIONE,TECNICO, CLIENTE_FINALE, TEMPO_VIAGGIO_1_MINUTI,ORA_INIZIO_1_MINUTI,ORA_FINE_1_MINUTI,TEMPO_VIAGGIO_2_MINUTI,ORA_INIZIO_2_MINUTI,ORA_FINE_2_MINUTI,CARNET) VALUES ('$idattivita','$cliente','$ubicazione','$riferimento','$telefono','$email','$matricola','$modello','$tot_bn','$tot_colore','$motivo','$descrizione','$codice1','$descrizione1','$qta1','$note1','$codice2','$descrizione2','$qta2','$note2','$codice3','$descrizione3','$qta3','$note3','$data_intervento','$intervento_remoto','$tempo','$tempo_viaggio','$ora_inizio','$ora_fine','$tempo_viaggio2','$ora_inizio2','$ora_fine2','$note','$intervento_risolutivo','$garanzia','$macchina_funzione','$incaricoa', '$cliente_finale','$tempo_viaggio_minuti','$ora_inizio_minuti','$ora_fine_minuti','$tempo_viaggio2_minuti','$ora_inizio2_minuti','$ora_fine2_minuti','$carnet')";
             DB::insert($sql);
         } else {
-            $sql = "UPDATE TICKET.dbo.VERBALINI SET CLIENTE='$cliente',UBICAZIONE='$ubicazione',RIFERIMENTO='$riferimento',TELEFONO='$telefono',EMAIL='$email',MATRICOLA='$matricola',MODELLO='$modello',LETTURA_BN='$tot_bn',LETTURA_COLORE='$tot_colore',MOTIVO='$motivo',DESCRIZIONE='$descrizione',CODICE_1='$codice1',DESCRIZIONE_1='$descrizione1',QTA_1='$qta1',NOTE_1='$note1',CODICE_2='$codice2',DESCRIZIONE_2='$descrizione2',QTA_2='$qta2',NOTE_2='$note2',CODICE_3='$codice3',DESCRIZIONE_3='$descrizione3',QTA_3='$qta3',NOTE_3='$note3',DATA_INTERVENTO='$data_intervento',INTERVENTO_REMOTO='$intervento_remoto',TEMPO_TOTALE='$tempo',TEMPO_VIAGGIO_1='$tempo_viaggio',ORA_INIZIO_1='$ora_inizio',ORA_FINE_1='$ora_fine',TEMPO_VIAGGIO_2='$tempo_viaggio2',ORA_INIZIO_2='$ora_inizio2',ORA_FINE_2='$ora_fine2',NOTE='$note',INTERVENTO_RISOLUTIVO='$intervento_risolutivo',IN_GARANZIA='$garanzia',MACCHINA_FUNZIONE='$macchina_funzione',TECNICO='$incaricoa', CLIENTE_FINALE='$cliente_finale',TEMPO_VIAGGIO_1_MINUTI='$tempo_viaggio_minuti',ORA_INIZIO_1_MINUTI='$ora_inizio_minuti',ORA_FINE_1_MINUTI='$ora_fine_minuti',TEMPO_VIAGGIO_2_MINUTI='$tempo_viaggio2_minuti', ORA_INIZIO_2_MINUTI='$ora_inizio2_minuti',ORA_FINE_2_MINUTI='$ora_fine2_minuti' WHERE IDATTIVITA = '$idattivita'";
+            $sql = "UPDATE TICKET.dbo.VERBALINI SET CLIENTE='$cliente',UBICAZIONE='$ubicazione',RIFERIMENTO='$riferimento',TELEFONO='$telefono',EMAIL='$email',MATRICOLA='$matricola',MODELLO='$modello',LETTURA_BN='$tot_bn',LETTURA_COLORE='$tot_colore',MOTIVO='$motivo',DESCRIZIONE='$descrizione',CODICE_1='$codice1',DESCRIZIONE_1='$descrizione1',QTA_1='$qta1',NOTE_1='$note1',CODICE_2='$codice2',DESCRIZIONE_2='$descrizione2',QTA_2='$qta2',NOTE_2='$note2',CODICE_3='$codice3',DESCRIZIONE_3='$descrizione3',QTA_3='$qta3',NOTE_3='$note3',DATA_INTERVENTO='$data_intervento',INTERVENTO_REMOTO='$intervento_remoto',TEMPO_TOTALE='$tempo',TEMPO_VIAGGIO_1='$tempo_viaggio',ORA_INIZIO_1='$ora_inizio',ORA_FINE_1='$ora_fine',TEMPO_VIAGGIO_2='$tempo_viaggio2',ORA_INIZIO_2='$ora_inizio2',ORA_FINE_2='$ora_fine2',NOTE='$note',INTERVENTO_RISOLUTIVO='$intervento_risolutivo',IN_GARANZIA='$garanzia',MACCHINA_FUNZIONE='$macchina_funzione',TECNICO='$incaricoa', CLIENTE_FINALE='$cliente_finale',TEMPO_VIAGGIO_1_MINUTI='$tempo_viaggio_minuti',ORA_INIZIO_1_MINUTI='$ora_inizio_minuti',ORA_FINE_1_MINUTI='$ora_fine_minuti',TEMPO_VIAGGIO_2_MINUTI='$tempo_viaggio2_minuti', ORA_INIZIO_2_MINUTI='$ora_inizio2_minuti',ORA_FINE_2_MINUTI='$ora_fine2_minuti', CARNET='$carnet' WHERE IDATTIVITA = '$idattivita'";
             DB::update($sql);
         }
 
@@ -537,6 +538,29 @@ EOF;
         }
         return $result[0];
     }
+
+    public function getCategorie(){
+        $cliente = Input::get('cliente');
+        $sql = "SELECT R.Codice, R.Descrizione FROM ".MAGO.".dbo.JBS_RIGHECONTRATTI R INNER JOIN ".MAGO.".dbo.JBS_TESTACONTRATTI T ON R.NrContratto=T.NrContratto LEFT JOIN ".MAGO.".dbo.MA_Items I ON I.Item = R.Codice WHERE I.CommodityCtg = 'SERV' AND T.Cliente = '$cliente'";
+        $res = DB::select($sql);
+        return $res;
+    }
+
+    public function checkBlocked(){
+        $cliente = Input::get('cliente');
+        $sql = "SELECT Blocked FROM ".MAGO.".dbo.MA_CustSuppCustomerOptions WHERE Customer = '$cliente'";
+        $res = DB::select($sql);
+        return $res;
+    }
+
+    public function getTipologiaContratto(){
+        $cliente = Input::get('cliente');
+        $categoria = Input::get('categoria');
+        $sql = "SELECT TipologiaAssistenza FROM ".MAGO.".dbo.JBS_GestioneAssistenza WHERE CustSupp = '$cliente' AND Categoria='$categoria'";
+        $res = DB::select($sql);
+        return $res;
+    }
+
 
 }
 

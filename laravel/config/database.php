@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'default' => 'sqlsrv_2',
+	'default' => 'sqlsrv_ravennademo',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -101,6 +101,14 @@ return [
             'database' => 'gsu',
             'username' => 'sa',
             'password' => '670-ariste',
+            'prefix'   => '',
+        ],
+        'sqlsrv_ravennademo' => [
+            'driver'   => 'sqlsrv',
+            'host'     => '172.27.12.171',
+            'database' => 'gsu',
+            'username' => 'sa',
+            'password' => 'sa_sql2008',
             'prefix'   => '',
         ],
 

@@ -7,3 +7,4 @@
  */
 
 define('EMAIL_STAFF', 'staff@uniweb.it');
+define('MAGO', 'Assistence');

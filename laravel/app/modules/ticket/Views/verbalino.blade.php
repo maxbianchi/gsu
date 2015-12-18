@@ -365,6 +365,7 @@
                                     Macchina in funzione <input type="checkbox" value="" <?php echo isset($verbalino['MACCHINA_FUNZIONE']) && $verbalino['MACCHINA_FUNZIONE'] == 1 ? "checked='checked'" : ""; ?> name="macchina_funzione_si" class="edit-checkbox">SI <input type="checkbox" value="" name="macchina_funzione_no" class="edit-checkbox">NO
                                 </td>
                                 <td style="width:50%">
+                                    Nr. Carnet <input type="text" value="{{$verbalino['CARNET'] or ""}}" id="carnet" name="carnet" class="edit" style="width:10%">
                                 </td>
                             </tr>
                         </table>

@@ -232,4 +232,22 @@ class AttivitaController extends MainController {
         return json_encode($clienti);
     }
 
+    public function getcategorie(){
+        $model = new AttivitaModel();
+        $clienti = $model->getCategorie();
+        return json_encode($clienti);
+    }
+
+    public function checkBlocked(){
+        $model = new AttivitaModel();
+        $blocked = $model->checkblocked();
+        return json_encode($blocked);
+    }
+
+    public function getTipologiaContratto(){
+        $model = new AttivitaModel();
+        $tipologia = $model->getTipologiaContratto();
+        return json_encode($tipologia);
+    }
+
 }
