@@ -293,15 +293,6 @@
 
                     $("#cliente").change(function(){
 
-                        $.post( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
-                                .done(function( data ) {
-                                    data = JSON.parse(data);
-                                    if(data[0].Blocked == 1)
-                                    {
-                                        $('#msg_bloccato').modal('show');
-                                    }
-                                });
-
                         $.post( "{{url('/ticket/getCategorie')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     data = JSON.parse(data);
@@ -310,6 +301,11 @@
                                     $.each(data, function (key, data) {
                                         $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
                                     })
+                                    $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                            .done(function (data) {
+                                                data = JSON.parse(data);
+                                                $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                            });
                                 });
                         $.post( "{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
                                 .done(function( data ) {
@@ -318,10 +314,14 @@
                                     //$("#nome_referente").val(data[0]['CONTATTO']);
                                     $("#telefono_referente").val(data[0]['TELEFONO']);
                                 });
-                        $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
-                                .done(function (data) {
+
+                        $.post( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
+                                .done(function( data ) {
                                     data = JSON.parse(data);
-                                    $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                    if(data[0].Blocked == 1)
+                                    {
+                                        $('#msg_bloccato').modal('show');
+                                    }
                                 });
                     });
 
