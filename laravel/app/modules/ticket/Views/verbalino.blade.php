@@ -365,7 +365,7 @@
                                     Macchina in funzione <input type="checkbox" value="" <?php echo isset($verbalino['MACCHINA_FUNZIONE']) && $verbalino['MACCHINA_FUNZIONE'] == 1 ? "checked='checked'" : ""; ?> name="macchina_funzione_si" class="edit-checkbox">SI <input type="checkbox" value="" name="macchina_funzione_no" class="edit-checkbox">NO
                                 </td>
                                 <td style="width:50%">
-                                    Nr. Carnet <input type="text" value="{{$verbalino['CARNET'] or ""}}" id="carnet" name="carnet" class="edit" style="width:10%">
+                                    Carnet <input type="checkbox" value="" <?php echo isset($verbalino['CARNET_MATTINA']) && $verbalino['CARNET_MATTINA'] == 1 ? "checked='checked'" : ""; ?> name="carnet_mattina" class="edit-checkbox">Mattina <input type="checkbox" value="" <?php echo isset($verbalino['CARNET_POMERIGGIO']) && $verbalino['CARNET_POMERIGGIO'] == 1 ? "checked='checked'" : ""; ?> name="carnet_pomeriggio" class="edit-checkbox">Pomeriggio
                                 </td>
                             </tr>
                         </table>

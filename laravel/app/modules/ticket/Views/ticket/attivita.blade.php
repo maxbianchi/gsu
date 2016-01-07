@@ -104,10 +104,16 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
+                <td>CARNET DISPONIBILI NR.</td>
+                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value=""></td>
                 <td>TIPOLOGIA ASSISTENZA</td>
                 <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
+            </tr>
+            <tr>
+                <td>TICKET DISPONIBILI VAL. €</td>
+                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value=""></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
                 <td>NOME REFERENTE</td>
@@ -292,7 +298,6 @@
 
 
                     $("#cliente").change(function(){
-
                         $.post( "{{url('/ticket/getCategorie')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     data = JSON.parse(data);
@@ -305,8 +310,32 @@
                                             .done(function (data) {
                                                 data = JSON.parse(data);
                                                 $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                                $("#ticket_disponibili").val(0);
+                                                if($("#tipologia_assistenza").val() == "TICKET") {
+                                                    $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                                                        categoria: $("#categoria").val(),
+                                                        cliente: $("#cliente").val()
+                                                    })
+                                                            .done(function (data) {
+                                                                data = JSON.parse(data);
+                                                                $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                                                                console.log(data[0].JBS_ValoreTotaleEuro);
+                                                            });
+                                                }
                                             });
                                 });
+                        $.get( "{{url('/ticket/getCarnetDisponibili')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                .done(function( data ) {
+                                    data = JSON.parse(data);
+                                    var count = 0;
+                                    $.each(data, function (key, data) {
+                                        count++;
+                                    })
+                                    $("#carnet_disponibili").val(count);
+                                    console.log(count);
+                                });
+
+
                         $.post( "{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     data = JSON.parse(data);
@@ -315,7 +344,7 @@
                                     $("#telefono_referente").val(data[0]['TELEFONO']);
                                 });
 
-                        $.post( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
+                        $.get( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     data = JSON.parse(data);
                                     if(data[0].Blocked == 1)
@@ -330,15 +359,50 @@
                                 .done(function (data) {
 
                                     data = JSON.parse(data);
-                                    console.log(data[0].TipologiaAssistenza);
                                     $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                    $.get( "{{url('/ticket/getCarnetDisponibili')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                            .done(function( data ) {
+                                                data = JSON.parse(data);
+                                                var count = 0;
+                                                $.each(data, function (key, data) {
+                                                    count++;
+                                                })
+                                                $("#carnet_disponibili").val(count);
+                                                console.log(count);
+                                            });
+                                    $("#ticket_disponibili").val(0);
+                                    if($("#tipologia_assistenza").val() == "TICKET") {
+                                        $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                                            categoria: $("#categoria").val(),
+                                            cliente: $("#cliente").val()
+                                        })
+                                                .done(function (data) {
+                                                    data = JSON.parse(data);
+                                                    $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                                                    console.log(data[0].JBS_ValoreTotaleEuro);
+                                                });
+                                    }
+
                                 });
                     });
+
 
                     $("#cliente").val('{{Input::get('cliente')}}').trigger("change");
                     $("#cliente_finale").val('{{Input::get('cliente_finale')}}').trigger("change");
                     $("#ubicazione_impianto").val('{{Input::get('ubicazione')}}').trigger("change");
                     $("#tgu").val('{{Input::get('tgu')}}').trigger("change");
+                    $("#ticket_disponibili").val(0);
+                    if($("#tipologia_assistenza").val() == "TICKET") {
+                        $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                            categoria: $("#categoria").val(),
+                            cliente: $("#cliente").val()
+                        })
+                                .done(function (data) {
+                                    data = JSON.parse(data);
+                                    $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                                    console.log(data[0].JBS_ValoreTotaleEuro);
+                                });
+                    }
 
                     /*$(".noEnter").keypress(function(evt) {
                         var charCode=(evt.which)?evt.which:event.keyCode;

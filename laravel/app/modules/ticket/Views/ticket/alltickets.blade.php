@@ -149,7 +149,7 @@
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['INCARICOA']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['STATO']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['DATA_INTERVENTO']}}</td>
-                            <td><?php if($res['STATO'] == "CHIUSO") echo "<input type='checkbox' class='elaborato' data-idattivita='$idattivita'"; ?></td>
+                            <td><?php if($res['STATO'] == "CHIUSO" && $res['ELABORATO'] != 1) echo "<input type='checkbox' class='elaborato' data-idattivita='$idattivita'"; ?></td>
                         </tr>
                     @endforeach
                     </tbody>

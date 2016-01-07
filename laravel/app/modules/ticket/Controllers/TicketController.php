@@ -65,7 +65,7 @@ class TicketController extends MainController {
         $row['incaricoa'] = !empty($res['INCARICOA']) ? $model->getTecnicoByID($res['INCARICOA']) : "";
         $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL_STAFF;
         if(empty($row['email_tecnico']))
-            $row['email_tecnico'] = "staff@uniweb.it";
+            $row['email_tecnico'] = EMAIL_STAFF;
         $row['conferma_ordine'] = $res['CONFERMA_ORDINE'];
         $row['email'] = Input::get("email");
         $row['email'] = explode(";", $row['email']);
@@ -93,7 +93,7 @@ class TicketController extends MainController {
             $model = new AttivitaModel();
             $result = $model->getAllAttivitaByID($row['idattivita']);
             Mail::send('ticket::email.cambio-stato-ticket-staff', ['stato' => 'CHIUSO','incaricoa' => $row['incaricoa'],'conferma_ordine' => $row['conferma_ordine'], 'idattivita' => $row['idattivita'],'titolo' => $row['titolo'], 'motivo' => $row['motivo'], 'email' => $row['email'],'result' => $result,'cliente' => $row['cliente'],'cliente_finale' => $row['cliente_finale'],'ubicazione_impianto' => $row['ubicazione_impianto']], function ($message) use ($row) {
-                $message->to($row['email_tecnico'], 'Staff Uniweb')->subject($row['cliente'].' - Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
+                $message->to($row['email_tecnico'], EMAIL_STAFF_DESC)->subject($row['cliente'].' - Chiusura ticket ' . $row['idattivita'])->attach($row['pathToFile']);
             });
         }
         catch (Exception $e) {}

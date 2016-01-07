@@ -85,5 +85,23 @@ class ClientiModel extends Model {
         DB::update($sql);
     }
 
+    public function getNumeroCarnet($cliente,$categoria){
+        $sql = "SELECT Seriale,DataCreazione,ValoreInOre,NrCarnet,RigaCarnet,NrOrdine FROM ".MAGO.".dbo.JBS_GestioneCarnet WHERE Esaurito='0' AND Categoria='$categoria' AND CustSupp='$cliente'";
+        $request  = DB::select($sql);
+        return $request;
+    }
+
+    public function getTicketDisponibile($cliente,$categoria){
+        $sql = "SELECT JBS_ValoreTotaleEuro FROM ".MAGO.".dbo.MA_CustSupp WHERE CustSupp='$cliente'";
+        $request  = DB::select($sql);
+        return $request;
+    }
+
+    public function updateTicketDisponibile($cliente, $importo){
+        $sql = "UPDATE ".MAGO.".dbo.MA_CustSupp SET JBS_ValoreTotaleEuro='$importo' WHERE CustSupp='$cliente'";
+        $request  = DB::update($sql);
+        return $request;
+    }
+
 }
 

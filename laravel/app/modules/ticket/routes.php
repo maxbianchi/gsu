@@ -26,7 +26,7 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::get('/ticket/modificaattivita', 'AttivitaController@modificaattivita');
     Route::get('/ticket/getsingleuser', 'AttivitaController@getsingleuser');
     Route::post('/ticket/getCategorie', 'AttivitaController@getcategorie');
-    Route::post('/ticket/checkBlocked', 'AttivitaController@checkBlocked');
+    Route::get('/ticket/checkBlocked', 'AttivitaController@checkBlocked');
     Route::get('/ticket/getTipologiaContratto', 'AttivitaController@gettipologiacontratto');
 
     //Cliente
@@ -37,4 +37,6 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::post('/ticket/getdatacliente', 'ClientController@getdatacliente');
     Route::get('/ticket/sollecitoticketcliente', 'ClientController@sollecitoticket');
     Route::get('/ticket/elaborato', 'ClientController@elaborato');
+    Route::get('/ticket/getCarnetDisponibili', 'ClientController@getCarnetDisponibili');
+    Route::get('/ticket/getTicketDisponibili', 'ClientController@getTicketDisponibili');
 });

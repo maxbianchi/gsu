@@ -17,6 +17,7 @@
     <br><br>
 
     <div class="container-fluid">
+
         <div class="border">
             <form method="GET" action="{{url('/ticket/alltickets')}}" id="form" name="form_search">
                 <div class="row">
@@ -123,7 +124,7 @@
                 ?>
                 <div style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE UNIWEB") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>">{{$res['CONFERMA_ORDINE']." - ".$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</div>
                 <div>
-                    <form action="{{url('/ticket/chiuditicket')}}" method="post"  name="form_{{$res['IDATTIVITA']}}">
+                    <form action="{{url('/ticket/chiuditicket')}}" method="post" id="form_ticket"  name="form_{{$res['IDATTIVITA']}}">
                         <div class="border">
                             <table class="tbl_clienti" style="width:100%">
                                 <tbody>
@@ -222,10 +223,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td>CARNET DISPONIBILI NR.</td>
+                                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value=""></td>
                                 <td>TIPOLOGIA ASSISTENZA</td>
                                 <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
+                            </tr>
+                            <tr>
+                                <td>TICKET DISPONIBILI VAL. €</td>
+                                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value=""></td>
+                                <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>NOME REFERENTE</td>
@@ -445,16 +452,7 @@
             });
 
             $("#cliente").change(function(){
-
-                $.post( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
-                        .done(function( data ) {
-                            data = JSON.parse(data);
-                            if(data[0].Blocked == 1)
-                            {
-                                $('#msg_bloccato').modal('show');
-                            }
-                        });
-                $.post( "{{url('/ticket/getCategorie')}}", {'cliente' : $("#cliente").val(), '_token' : '{{ csrf_token() }}' })
+                $.post( "{{url('/ticket/getCategorie')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
                             data = JSON.parse(data);
                             var $select = $('#categoria');
@@ -462,7 +460,36 @@
                             $.each(data, function (key, data) {
                                 $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
                             })
+                            $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                    .done(function (data) {
+                                        data = JSON.parse(data);
+                                        $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                        $("#ticket_disponibili").val(0);
+                                        if($("#tipologia_assistenza").val() == "TICKET") {
+                                            $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                                                categoria: $("#categoria").val(),
+                                                cliente: $("#cliente").val()
+                                            })
+                                                    .done(function (data) {
+                                                        data = JSON.parse(data);
+                                                        $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                                                        console.log(data[0].JBS_ValoreTotaleEuro);
+                                                    });
+                                        }
+                                    });
                         });
+
+                $.get( "{{url('/ticket/getCarnetDisponibili')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                        .done(function( data ) {
+                            data = JSON.parse(data);
+                            var count = 0;
+                            $.each(data, function (key, data) {
+                                count++;
+                            })
+                            $("#carnet_disponibili").val(count);
+                            console.log(count);
+                        });
+
                 $.post( "{{url('/ticket/getEmailCliente')}}", {'cliente' : $("#cliente").val(), '_token' : '{{ csrf_token() }}' })
                         .done(function( data ) {
                             data = JSON.parse(data);
@@ -470,10 +497,14 @@
                             //$("#nome_referente").val(data[0]['CONTATTO']);
                             $("#telefono_referente").val(data[0]['TELEFONO']);
                         });
-                $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
-                        .done(function (data) {
+
+                $.post( "{{url('/ticket/checkBlocked')}}", $(this).closest('form').serialize())
+                        .done(function( data ) {
                             data = JSON.parse(data);
-                            $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                            if(data[0].Blocked == 1)
+                            {
+                                $('#msg_bloccato').modal('show');
+                            }
                         });
             });
 
@@ -482,35 +513,127 @@
                         .done(function (data) {
 
                             data = JSON.parse(data);
-                            console.log(data[0].TipologiaAssistenza);
                             $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                            $.get( "{{url('/ticket/getCarnetDisponibili')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                    .done(function( data ) {
+                                        data = JSON.parse(data);
+                                        var count = 0;
+                                        $.each(data, function (key, data) {
+                                            count++;
+                                        })
+                                        $("#carnet_disponibili").val(count);
+                                        console.log(count);
+                                    });
+                            $("#ticket_disponibili").val(0);
+                            if($("#tipologia_assistenza").val() == "TICKET") {
+                                $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                                    categoria: $("#categoria").val(),
+                                    cliente: $("#cliente").val()
+                                })
+                                        .done(function (data) {
+                                            data = JSON.parse(data);
+                                            $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                                            console.log(data[0].JBS_ValoreTotaleEuro);
+                                        });
+                            }
+
                         });
+
             });
+        });
 
-            $(".sollecito").click(function(){
-                $.get( "{{url('/ticket/sollecitoticket')}}", $(this).closest('form').serialize())
-                        .done(function( data ) {
-                            $('#msg_sollecito').modal('show');
-                        });
-            });
+        $(".sollecito").click(function(){
+            $.get( "{{url('/ticket/sollecitoticket')}}", $(this).closest('form').serialize())
+                    .done(function( data ) {
+                        $('#msg_sollecito').modal('show');
+                    });
+        });
 
-            $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
-                    .done(function (data) {
-
+        function changeCliente(){
+            $.post( "{{url('/ticket/getCategorie')}}", $('#form_ticket').serialize())
+                    .done(function( data ) {
                         data = JSON.parse(data);
-                        console.log(data[0].TipologiaAssistenza);
-                        $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                        var $select = $('#categoria');
+                        $select.find('option').remove();
+                            $.each(data, function (key, data) {
+                            $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
+                        })
+                        $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                                .done(function (data) {
+                                    data = JSON.parse(data);
+                                    $("#tipologia_assistenza").val(data[0].TipologiaAssistenza);
+                                    $("#ticket_disponibili").val(0);
+                                    if($("#tipologia_assistenza").val() == "TICKET") {
+                                        $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                                            categoria: $("#categoria").val(),
+                                            cliente: $("#cliente").val()
+                                        })
+                                                .done(function (data) {
+                                                    data = JSON.parse(data);
+                                                    $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                                                    console.log(data[0].JBS_ValoreTotaleEuro);
+                                                });
+                                    }
+                                });
                     });
 
-            /*$(".noEnter").keypress(function(evt) {
-                var charCode=(evt.which)?evt.which:event.keyCode;
-                if (charCode == 10 || charCode == 13)
-                return false;
-                return true;
-            });*/
+            $.get( "{{url('/ticket/getCarnetDisponibili')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
+                    .done(function( data ) {
+                        data = JSON.parse(data);
+                        var count = 0;
+                        $.each(data, function (key, data) {
+                            count++;
+                        })
+                        $("#carnet_disponibili").val(count);
+                        console.log(count);
+                    });
+
+            $.post( "{{url('/ticket/getEmailCliente')}}", {'cliente' : $("#cliente").val(), '_token' : '{{ csrf_token() }}' })
+                    .done(function( data ) {
+                        data = JSON.parse(data);
+                        $("#email").val(data[0]['EMAIL']);
+                        //$("#nome_referente").val(data[0]['CONTATTO']);
+                        $("#telefono_referente").val(data[0]['TELEFONO']);
+                    });
+
+            $.get( "{{url('/ticket/checkBlocked')}}", $(this).closest('form').serialize())
+                    .done(function( data ) {
+                        data = JSON.parse(data);
+                        if(data[0].Blocked == 1)
+                        {
+                            $('#msg_bloccato').modal('show');
+                        }
+                    });
+        }
+
+        changeCliente();
+        $("#cliente").trigger("change");
+        $("#cliente_finale").trigger("change");
+        $("#ubicazione_impianto").trigger("change");
+        $("#tgu").trigger("change");
+        $("#categoria").trigger("change");
+        $("#ticket_disponibili").val(0);
+        if($("#tipologia_assistenza").val() == "TICKET") {
+            $.get("{{url('/ticket/getTicketDisponibili')}}", {
+                categoria: $("#categoria").val(),
+                cliente: $("#cliente").val()
+            })
+                    .done(function (data) {
+                        data = JSON.parse(data);
+                        $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
+                        console.log(data[0].JBS_ValoreTotaleEuro);
+                    });
+        }
+
+        /*$(".noEnter").keypress(function(evt) {
+         var charCode=(evt.which)?evt.which:event.keyCode;
+         if (charCode == 10 || charCode == 13)
+         return false;
+         return true;
+         });*/
 
 
-        });
+
     </script>
 
 @endsection
