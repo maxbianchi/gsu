@@ -224,13 +224,13 @@
                             </tr>
                             <tr>
                                 <td>CARNET DISPONIBILI NR.</td>
-                                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value=""></td>
+                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs"></td>
                                 <td>TIPOLOGIA ASSISTENZA</td>
                                 <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
                             </tr>
                             <tr>
                                 <td>TICKET DISPONIBILI VAL. €</td>
-                                <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value=""></td>
+                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ricarica Ticket" class="btn btn-primary btn-xs"></td>
                                 <td></td>
                                 <td></td>
                             </tr>
