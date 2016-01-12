@@ -105,13 +105,16 @@ class TicketController extends MainController {
     public function chiudiTicket(){
         $stato = Input::get("stato");
         if($stato == 4) {
+            $idattivita = Input::get('idattivita');
             $model = new Utenti();
             $users = $model->getAllUserFromMago();
             $model = new AttivitaModel();
+            $attivita = $model->getDataFromAttivita($idattivita);
             $apertail = $model->getDataApertura();
             $tecnico = $model->getTecnico();
             $verbalino = $model->getVerbalino();
-            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino,'apertail' => $apertail]);
+            $carnetdisponibili = $model->getCarnetDisponibili($attivita['SOGGETTO'],$attivita['IDCATEGORIA']);
+            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino,'apertail' => $apertail,'carnetdisponibili' => $carnetdisponibili]);
         }
     }
 

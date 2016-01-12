@@ -150,8 +150,13 @@ class ClientController extends MainController {
             case 'CARNET':
                 if($verbalino[0]['IN_GARANZIA'] != 1):
                     //CARNET
-                    $numero_carnet = $verbalino[0]['CARNET_MATTINA'] + $carnet_mattina = $verbalino[0]['CARNET_POMERIGGIO'];
+                    $carnet_mattina = $verbalino[0]['CARNET_MATTINA'];
+                    $carnet_pomeriggio = $verbalino[0]['CARNET_POMERIGGIO'];
                     $carnet_disponibili = $model->getNumeroCarnet($attivita[0]['SOGGETTO'], $attivita[0]['IDCATEGORIA']);
+                    if(!empty($carnet_mattina))
+                        $model->setCarnetEsaurito($carnet_mattina);
+                    if(!empty($carnet_pomeriggio))
+                        $model->setCarnetEsaurito($carnet_pomeriggio);
                 endif;
                 break;
             default:

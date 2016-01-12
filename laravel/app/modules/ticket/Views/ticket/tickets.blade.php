@@ -332,6 +332,9 @@
                             </tr>
                         </table>
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="SOGGETTO_CODICE" value="{{isset($res['SOGGETTO_CODICE']) ? $res['SOGGETTO_CODICE'] : ""  }}">
+                        <input type="hidden" name="CLIENTE_FINALE_CODICE" value="{{isset($res['CLIENTE_FINALE_CODICE']) ? $res['CLIENTE_FINALE_CODICE'] : ""  }}">
+                        <input type="hidden" name="DESTINATARIOABITUALE_CODICE" value="{{isset($res['DESTINATARIOABITUALE_CODICE']) ? $res['DESTINATARIOABITUALE_CODICE'] : ""  }}">
                         <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
                     </form>
                 </div>
@@ -460,6 +463,7 @@
                             $.each(data, function (key, data) {
                                 $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
                             })
+                            //$select.val('{{$res['IDCATEGORIA']}}');
                             $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
                                     .done(function (data) {
                                         data = JSON.parse(data);
@@ -558,6 +562,7 @@
                             $.each(data, function (key, data) {
                             $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
                         })
+                        $select.val('{{$res['IDCATEGORIA']}}');
                         $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
                                 .done(function (data) {
                                     data = JSON.parse(data);

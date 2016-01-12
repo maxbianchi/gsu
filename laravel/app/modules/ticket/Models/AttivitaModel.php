@@ -511,8 +511,8 @@ EOF;
         $garanzia = isset($_POST['garanzia_si']) ? 1 : 0;
         $macchina_funzione = isset($_POST['macchina_funzione_si']) ? 1 : 0;
         $incaricoa = Input::get('incaricoa');
-        $carnet_mattina = isset($_POST['carnet_mattina']) ? 1 : 0;
-        $carnet_pomeriggio = isset($_POST['carnet_pomeriggio']) ? 1 : 0;
+        $carnet_mattina = $_POST['carnet_mattina'];
+        $carnet_pomeriggio = $_POST['carnet_pomeriggio'];
 
         $sql = "SELECT * FROM TICKET.dbo.VERBALINI WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
@@ -656,6 +656,17 @@ EOF;
         $sql = "SELECT COUNT(*) FROM ".MAGO.".dbo.JBS_GestioneCarnet WHERE CustSupp='$cliente' AND categoria='$categoria'";
         $res = DB::select($sql);
         return $res;
+    }
+
+    public function getCarnetDisponibili($cliente, $categoria){
+        $sql = "SELECT * FROM ".MAGO.".dbo.JBS_GestioneCarnet WHERE CustSupp='$cliente' AND categoria='$categoria' AND Esaurito='0'";
+        $res = DB::select($sql);
+        return $res;
+    }
+
+    public function setCarnetEsaurito($seriale){
+        $sql = "UPDATE ".MAGO.".dbo.JBS_GestioneCarnet SET Esaurito = '1' WHERE Seriale = '$seriale'";
+        $res = DB::update($sql);
     }
 
     private function calculateProgressivoRiga($row){
