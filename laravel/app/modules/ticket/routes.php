@@ -39,4 +39,5 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::get('/ticket/elaborato', 'ClientController@elaborato');
     Route::get('/ticket/getCarnetDisponibili', 'ClientController@getCarnetDisponibili');
     Route::get('/ticket/getTicketDisponibili', 'ClientController@getTicketDisponibili');
+    Route::get('/ticket/storeOrdiniRighe', 'ClientController@storeOrdiniRighe');
 });

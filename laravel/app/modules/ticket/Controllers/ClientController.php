@@ -193,4 +193,13 @@ class ClientController extends MainController {
         return json_encode($ticket_disponibili);
     }
 
+    public function storeOrdiniRighe(){
+        $idattivita = Input::get("idattivita");
+        $model = new AttivitaModel();
+        $attivita = $model->getAllFromAttivita($idattivita);
+        $qta = Input::get("qta");
+        $val = Input::get("val");
+        $model->storeOrdiniRigheJBS($attivita[0],$qta,$val);
+    }
+
 }

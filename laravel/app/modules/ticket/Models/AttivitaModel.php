@@ -613,9 +613,12 @@ EOF;
         DB::insert($sql);
     }
 
-    public function storeOrdiniRigheJBS($attivita, $verbalino)
+    public function storeOrdiniRigheJBS($attivita,$qta,$val)
     {
-        $sql = "INSERT INTO " . MAGO . ".dbo.JBS_ImportazioneOrdiniRighe (ID,Riga,NrAssistenza,Cliente,Categoria,Descrizione,Qta,ValUnit,Sel,Importato) VALUES ('1','1','" . $attivita['IDATTIVITA'] . "','" . $attivita['SOGGETTO'] . "','" . $attivita['IDCATEGORIA'] . "','" . $verbalino['MOTIVO'] . "','QTA','VALUNIT','0','0')";
+        $sql = "SELECT MAX(Riga) Riga FROM " . MAGO . ".dbo.JBS_StoricoTicket";
+        $res = DB::select($sql);
+        $progressivoriga = $this->calculateProgressivoRiga($res);
+        $sql = "INSERT INTO " . MAGO . ".dbo.JBS_ImportazioneOrdiniRighe (ID,Riga,NrAssistenza,Cliente,Categoria,Descrizione,Qta,ValUnit,Sel,Importato) VALUES ('1','$progressivoriga','" . $attivita['IDATTIVITA'] . "','" . $attivita['SOGGETTO'] . "','" . $attivita['IDCATEGORIA'] . "','" . $attivita['MOTIVO'] . "','$qta','$val','0','0')";
         DB::insert($sql);
     }
 

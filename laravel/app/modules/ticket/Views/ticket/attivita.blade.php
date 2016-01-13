@@ -105,13 +105,13 @@
             </tr>
             <tr>
                 <td>CARNET DISPONIBILI NR.</td>
-                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs"></td>
+                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value=""></td>
                 <td>TIPOLOGIA ASSISTENZA</td>
                 <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
             </tr>
             <tr>
                 <td>TICKET DISPONIBILI VAL. €</td>
-                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ricarica Ticket" class="btn btn-primary btn-xs"></td>
+                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value=""></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -199,7 +199,7 @@
             </tr>
         </table>
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
+        <input type="hidden" name="idattivita" id="idattivita" value="{{$idattivita or ""}}">
         </form>
         <hr>
 
@@ -231,6 +231,8 @@
             </div>
         </div>
 
+
+
         @endsection
 
 
@@ -239,16 +241,6 @@
             <script>
 
                 $(document).ready(function () {
-
-                    function h(e) {
-                        $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
-                    }
-                    $('textarea').each(function () {
-                        h(this);
-                    }).on('input', function () {
-                        h(this);
-                    });
-
 
                     $(".salva-attivita").click(function(){
                         //Verifico che siano settati tempo e tecnico
@@ -403,6 +395,17 @@
                                     console.log(data[0].JBS_ValoreTotaleEuro);
                                 });
                     }
+
+
+
+                    function h(e) {
+                        $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
+                    }
+                    $('textarea').each(function () {
+                        h(this);
+                    }).on('input', function () {
+                        h(this);
+                    });
 
                     /*$(".noEnter").keypress(function(evt) {
                         var charCode=(evt.which)?evt.which:event.keyCode;

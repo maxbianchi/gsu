@@ -224,13 +224,13 @@
                             </tr>
                             <tr>
                                 <td>CARNET DISPONIBILI NR.</td>
-                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs"></td>
+                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs btn_carnet"></td>
                                 <td>TIPOLOGIA ASSISTENZA</td>
                                 <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
                             </tr>
                             <tr>
                                 <td>TICKET DISPONIBILI VAL. €</td>
-                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ricarica Ticket" class="btn btn-primary btn-xs"></td>
+                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ricarica Ticket" class="btn btn-primary btn-xs btn_ticket"></td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -335,7 +335,7 @@
                         <input type="hidden" name="SOGGETTO_CODICE" value="{{isset($res['SOGGETTO_CODICE']) ? $res['SOGGETTO_CODICE'] : ""  }}">
                         <input type="hidden" name="CLIENTE_FINALE_CODICE" value="{{isset($res['CLIENTE_FINALE_CODICE']) ? $res['CLIENTE_FINALE_CODICE'] : ""  }}">
                         <input type="hidden" name="DESTINATARIOABITUALE_CODICE" value="{{isset($res['DESTINATARIOABITUALE_CODICE']) ? $res['DESTINATARIOABITUALE_CODICE'] : ""  }}">
-                        <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
+                        <input type="hidden" name="idattivita" id="idattivita" value="{{$idattivita or ""}}">
                     </form>
                 </div>
             @endforeach
@@ -374,7 +374,37 @@
         </div>
     </div>
 
+    <div id="msg_carnet" class="modal fade" style="z-index:99999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Digitare il numero di carnet desiderati:</h4>
+                    <input type="text" name="carnet_ordine" id="carnet_ordine">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-default btn-modal btn_carnet_ordine" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div id="msg_ticket" class="modal fade" style="z-index:99999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Digitare l'importo da ricaricare:</h4>
+                    <input type="text" name="ticket_ordine" id="ticket_ordine">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+                    <button type="button" class="btn btn-default btn-modal btn_ticket_ordine" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -384,6 +414,46 @@
     <script>
 
         $(document).ready(function () {
+
+            $(".btn_carnet").click(function(){
+                $('#msg_carnet').modal('show');
+            })
+            $(".btn_carnet_ordine").click(function(){
+                if($("#carnet_ordine").val() == ''){
+                    alert("Compilare il numero di ticket");
+                    return false;
+                }
+                var qta = $("#carnet_ordine").val();
+                var val = null;
+                $.get("{{url('/ticket/storeOrdiniRighe')}}", {
+                    qta: qta,
+                    val: val,
+                    idattivita: $("#idattivita").val()
+                })
+                        .done(function (data) {
+                            alert("Ordine salvato");
+                        });
+            })
+
+            $(".btn_ticket").click(function(){
+                $('#msg_ticket').modal('show');
+            })
+            $(".btn_ticket_ordine").click(function(){
+                if($("#ticket_ordine").val() == ''){
+                    alert("Compilare il valore da ricaricare");
+                    return false;
+                }
+                var qta = 1;
+                var val = $("#ticket_ordine").val();
+                $.get("{{url('/ticket/storeOrdiniRighe')}}", {
+                    qta: qta,
+                    val: val,
+                    idattivita: $("#idattivita").val()
+                })
+                        .done(function (data) {
+                            alert("Ordine salvato");
+                        });
+            })
 
             function h(e) {
                 $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
@@ -544,6 +614,7 @@
                         });
 
             });
+
         });
 
         $(".sollecito").click(function(){
