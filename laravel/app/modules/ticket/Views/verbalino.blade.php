@@ -473,6 +473,12 @@
                 $("#carnet_mattina").find('option:eq(0)').text(select);
             })
 
+            $("#carnet_pomeriggio").change(function(){
+                var select = $(this).val();
+                $("#carnet_pomeriggio").find('option:eq(0)').val(select);
+                $("#carnet_pomeriggio").find('option:eq(0)').text(select);
+            })
+
 
             $("#cliente").change(function () {
                 var id = $("#cliente").val();
