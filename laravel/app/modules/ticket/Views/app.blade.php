@@ -97,6 +97,31 @@
             });
 
             @if (Session::get('livello')  == 1)
+
+            $('.search_fornitore').autocomplete({
+                source: '/ticket/getclienti',
+                minLength: 2,
+                select: function(event, ui) {
+                }
+            });
+
+            $('#search_fornitore').autocomplete({
+                source: '/ticket/getclienti',
+                minLength: 2,
+                select: function(event, ui) {
+                    $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_cliente').val()})
+                            .done(function (json) {
+                                $("#fornitore").html("");
+                                json = JSON.parse(json);
+                                $("#fornitore").append('<option value="">-----</option>')
+                                $(json).each(function(index,data){
+                                    $("#fornitore").append('<option value="' + data.SOGGETTO + '">' + data.DESCRIZIONE + ' - ' + data.INDIRIZZO + ' - ' + data.LOCALITA + ' - ' + data.PROVINCIA + ' - ' + data.SOGGETTO + ' - PIVA: ' + data.PARTITAIVA + '</option>')
+                                })
+
+                            });
+                }
+            });
+
                 $('.search_anagrafica').autocomplete({
                     source: '/ticket/getclienti',
                     minLength: 2,

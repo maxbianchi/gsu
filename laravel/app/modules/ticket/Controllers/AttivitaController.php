@@ -75,6 +75,7 @@ class AttivitaController extends MainController {
             $row['motivo'] = Input::get("motivo");
             $row['incaricoa'] = Input::has("incaricoa") ? $model->getTecnicoByID(Input::get("incaricoa")) : "";
             $row['email_tecnico'] = Input::has("incaricoa") ? $model->getEmailTecnicoByID(Input::get("incaricoa")) : EMAIL_STAFF;
+            $row['ingaranzia'] = Input::get("ingaranzia");
             if(empty($row['email_tecnico']))
                 $row['email_tecnico'] = EMAIL_STAFF;
             $row['conferma_ordine'] = Input::get("conferma_ordine");

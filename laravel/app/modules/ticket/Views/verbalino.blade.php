@@ -282,10 +282,17 @@
                                         <input type="text" value="{{$verbalino['DATA_INTERVENTO_CONV'] or ""}}" id="data_intervento" name="data_intervento" class="edit-date datepicker" style="width:100%">
                                     </td>
                                     <td  style="width:10%">
-                                        Intervento Remoto
+                                        <!--Intervento Remoto-->
+                                        Tipologia intervento
                                     </td>
                                     <td  style="width:10%">
-                                        <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_REMOTO']) && $verbalino['INTERVENTO_REMOTO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_remoto" class="edit-checkbox" style="width:100%">
+                                        <select name="tipologia_intervento" id="tipologia_intervento">
+                                            <option value=""><?php echo isset($verbalino['TIPOLOGIA_INTERVENTO']) ? $verbalino['TIPOLOGIA_INTERVENTO'] : '------' ?> </option>
+                                            <option value="TELEFONICO">TELEFONICO</option>
+                                            <option value="IN REMOTO">IN REMOTO</option>
+                                            <option value="PRESSO CLIENTE">PRESSO CLIENTE</option>
+                                        </select>
+                                        <!--<input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_REMOTO']) && $verbalino['INTERVENTO_REMOTO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_remoto" class="edit-checkbox" style="width:100%">-->
                                     </td>
                                     <td  style="width:10%">
                                         Tempo gestione interno min.
@@ -358,7 +365,12 @@
                                         Intervento risolutivo <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_RISOLUTIVO']) && $verbalino['INTERVENTO_RISOLUTIVO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
                                     </td>
                                     <td style="width:50%">
-                                        In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO
+                                        <!--In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO-->
+                                        <?php if(isset($verbalino['IN_GARANZIA']))
+                                                echo $verbalino['IN_GARANZIA'] == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
+                                              else
+                                                echo Input::has("ingaranzia") && Input::get("ingaranzia") == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
+                                        ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -478,6 +490,13 @@
                 $("#carnet_pomeriggio").find('option:eq(0)').val(select);
                 $("#carnet_pomeriggio").find('option:eq(0)').text(select);
             })
+
+            $("#tipologia_intervento").change(function(){
+                var select = $(this).val();
+                $("#tipologia_intervento").find('option:eq(0)').val(select);
+                $("#tipologia_intervento").find('option:eq(0)').text(select);
+            })
+
 
 
             $("#cliente").change(function () {

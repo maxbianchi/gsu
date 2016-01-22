@@ -113,6 +113,7 @@
         </div>
     </div>
 
+
     <div class="col-xs-14 col-sm-6 col-md-10 col-lg-8">
         <div class="container-fluid">
             <?php $idattivita = 0;?>
@@ -123,7 +124,7 @@
                 $idattivita = $res['IDATTIVITA'];
                 ?>
                 <div style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE UNIWEB") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>">{{$res['CONFERMA_ORDINE']." - ".$res['SOGGETTO_NOME']." - ".$res['TITOLO']." - NR TICKET INTERNO ".$res['IDATTIVITA']." - TGU/IMEI ".$res['TGU']." - TICKET FORNITORE ".$res['TICKETTELECOM']}}</div>
-                <div>
+
                     <form action="{{url('/ticket/chiuditicket')}}" method="post" id="form_ticket"  name="form_{{$res['IDATTIVITA']}}">
                         <div class="border">
                             <table class="tbl_clienti" style="width:100%">
@@ -169,6 +170,234 @@
 
                         </div>
 
+
+                        <!-- TABS -->
+
+                        <ul class="nav nav-tabs" id="mioTab">
+                            <li class="active"><a href="#home" data-toggle="tab">Ticket</a></li>
+                            <li><a href="#uno" data-toggle="tab">Cliente</a></li>
+                            <li><a href="#due" data-toggle="tab">Fornitore</a></li>
+                            <li><a href="#tre" data-toggle="tab">Servizio</a></li>
+                        </ul>
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="home"><h1>Ticket</h1>
+                                <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Verbalino Intervento</td>
+                                        <td><?php if(file_exists("/var/www/gsu/laravel/public/output/".$res['IDATTIVITA'].".pdf")): ?>
+                                            <a href="/output/{{$res['IDATTIVITA']}}.pdf" download title="Verbalino" alt="Verbalino"><img src="{{ URL::asset('images/pdf_icon.png') }}"></a>
+                                            <?php
+                                            endif;
+                                            ?>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>NR INTERNO TICKET </td>
+                                        <td class="manutenzione"><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled"  value="{{$res['IDATTIVITA']}}"></td>
+                                        <td>ATTIVIT&Agrave; APERTA IL</td>
+                                        <td><input type="text" style="background-color: #eee;" name="apertail" readonly="readonly" disabled="disabled" value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>ATTIVIT&Agrave; CHIUSA IL</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="chiusail" readonly="readonly" disabled="disabled"  value="{{$res['CHIUSAIL']." - ".$res['CHIUSAIL_ORA']}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>ATTIVIT&Agrave; APERTA DA</td>
+                                        <td>
+                                            <select name="apertoda" class="apertoda" style="background-color: #FFC;">
+                                                <option value="">-----</option>
+                                                @foreach($tecnici as $tecnico)
+                                                    <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDAPERTODA']) && $res['IDAPERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>ATTIVIT&Agrave; IN CARICO A</td>
+                                        <td>
+                                            <select name="incaricoa" class="incaricoa" style="background-color: #FFC;">
+                                                <option value="">-----</option>
+                                                @foreach($tecnici as $tecnico)
+                                                    <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDINCARICOA']) && $res['IDINCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>CATEGORIA *</td>
+                                        <td>
+                                            <select name="categoria" id="categoria" class="categoria" style="background-color: #FFC;">
+                                                @foreach($categorie as $categoria)
+                                                    <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td>TIPOLOGIA ASSISTENZA</td>
+                                        <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tipologia</td>
+                                        <td><select style="background-color: #FFC;" name="ingaranzia">
+                                                <option value="0" <?php echo isset($res['IN_GARANZIA']) && $res['IN_GARANZIA'] == 0 ? 'selected="selected"' : ""  ?>>A CONTRATTO</option>
+                                                <option value="1" <?php echo isset($res['IN_GARANZIA']) && $res['IN_GARANZIA'] == 1 ? 'selected="selected"' : ""  ?>>A CONSUNTIVO</option>
+                                            </select></td>
+                                        <td>CARNET DISPONIBILI NR.</td>
+                                        <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs btn_carnet"></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>TICKET DISPONIBILI VAL. €</td>
+                                        <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ricarica Ticket" class="btn btn-primary btn-xs btn_ticket"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>TITOLO ATTIVIT&Agrave;</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="titolo" value="{{$res['TITOLO'] or ""}}"></td>
+                                        <td>TEMPO TOTALE min.</td>
+                                        <td>
+                                            <?php
+                                            $tempo_totale = 0;
+                                            foreach($attivita as $row):
+                                                if($row['IDATTIVITA'] == $res['IDATTIVITA'])
+                                                    $tempo_totale += $row['TEMPO'];
+                                            endforeach;
+                                            ?>
+                                            <input type="text" style="background-color: #FFC;" name="tempo_totale" value="{{$tempo_totale}}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>MOTIVO DELLA CHIAMATA</td>
+                                        <td colspan="3"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$res['MOTIVO'] or ""}}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>DETTAGLIO ATTIVIT&Agrave;<?php if ($res['ELABORATO'] != 1): ?><a href="{{url('/ticket/modificaattivita?idattivita='.$res['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a><?php endif; ?></td>
+                                        <td colspan="3"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($attivita as $row): if($row['IDATTIVITA'] == $res['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE']." - TEMPO: ".$row['TEMPO'])."&#10;------------------------&#10;"; endforeach; ?></textarea></td>
+                                    </tr>
+                                    <tr><?php if ($res['ELABORATO'] != 1): ?>
+                                        <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AGGIUNGI ATTIVIT&Agrave;</td>
+                                        <td></td>
+                                        <td>TECNICO</td>
+                                        <td>
+                                            <select name="incaricoa_attivita" class="incaricoa_attivita" style="background-color: #FFC;">
+                                                <option value="">-----</option>
+                                                @foreach($tecnici as $tecnico)
+                                                    <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>DURATA INTERVENTO MINUTI</td>
+                                        <td><input type="text" name="tempo" class="tempo" value="{{$res['TEMPO'] or "0"}}" style="min-width:50px !important; width:50px;background-color: #FFC;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><textarea name="attivita" id="attivita" cols="130"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><input type="button" value="AGGIUNGI ATTIVIT&Agrave;" class="btn btn-primary btn-xs salva-attivita"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
+                                        <?php endif; ?>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="uno"><h1>Cliente</h1>
+                                <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                                    <tr>
+                                        <td>NR INTERNO TICKET </td>
+                                        <td class="manutenzione"><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled"  value="{{$res['IDATTIVITA']}}"></td>
+                                        <td>ATTIVIT&Agrave; APERTA IL</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="apertail" readonly="readonly" disabled="disabled" value="{{$res['APERTAIL']." - ".$res['APERTAIL_ORA']}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMAIL FATTURAZIONE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
+                                        <td>ATTIVIT&Agrave; CHIUSA IL</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="chiusail" readonly="readonly" disabled="disabled"  value="{{$res['CHIUSAIL']." - ".$res['CHIUSAIL_ORA']}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOME REFERENTE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="nome_referente" value="{{$res['NOME_REFERENTE'] or ""}}"></td>
+                                        <td>TELEFONO REFERENTE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="telefono_referente" id="email" value="{{$res['TELEFONO_REFERENTE'] or ""}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>EMAIL REFERENTE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="email_referente" id="email_referente" value="{{$res['EMAIL_REFERENTE'] or ""}}"></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="due"><h1>Fornitore</h1>
+                                <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                                    <tr class="soggetto">
+                                        <td>FORNITORE</td>
+                                        <td style="background-color:#FFC">
+                                            <input type="text" value="" name="search_fornitore" id="search_fornitore" >
+                                            <select name="fornitore" id="fornitore">
+                                                <option value="">-----</option>
+                                                @foreach($users as $user)
+                                                    <option value="{{$user['SOGGETTO']}}" {{isset($res['FORNITORE']) && $res['FORNITORE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']." - ".$user['SOGGETTO']." - PIVA: ".$user['PARTITAIVA']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>NR TICKET FORNITORE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="tickettelecom" value="{{$res['TICKETTELECOM'] or ""}}"></td>
+                                        <td>ORDINE FORNITORE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="ordinefornitore" value="{{$res['ORDINE_FORNITORE'] or ""}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>NOME REFERENTE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="nomefornitore" value="{{$res['NOME_FORNITORE'] or ""}}"></td>
+                                        <td>TELEFONO REFERENTE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="telefonofornitore" value="{{$res['TELEFONO_FORNITORE'] or ""}}"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="tre"><h1>Servizio</h1>
+                                <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
+                                    <tr>
+                                        <td>TGU/IMEI/TEL</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="tgu" value="{{$res['TGU'] or ""}}"></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CONFERMA ORDINE</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="conferma_ordine" id="conferma_ordine" value="{{$res['CONFERMA_ORDINE'] or ""}}"></td>
+                                        <td>COD. SERVIZIO</td>
+                                        <td><input type="text" style="background-color: #FFC;" name="cod_servizio" id="cod_servizio" value="{{$res['COD_SERVIZIO'] or ""}}"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <!-- END TABS -->
+
+
+
+                        <!--
+
                         <br><br>
                         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
 
@@ -179,8 +408,8 @@
                                 <td><?php if(file_exists("/var/www/gsu/laravel/public/output/".$res['IDATTIVITA'].".pdf")): ?>
                                     <a href="/output/{{$res['IDATTIVITA']}}.pdf" download title="Verbalino" alt="Verbalino"><img src="{{ URL::asset('images/pdf_icon.png') }}"></a>
                                     <?php
-                                    endif;
-                                    ?>
+                        endif;
+                        ?>
 
                                 </td>
                             </tr>
@@ -198,33 +427,33 @@
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDAPERTODA']) && $res['IDAPERTODA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
-                                    </select>
-                                </td>
-                                <td>ATTIVIT&Agrave; IN CARICO A</td>
+                                </select>
+                            </td>
+                            <td>ATTIVIT&Agrave; IN CARICO A</td>
                                 <td>
                                     <select name="incaricoa" class="incaricoa" style="background-color: #FFC;">
                                         <option value="">-----</option>
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{isset($res['IDINCARICOA']) && $res['IDINCARICOA'] == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>EMAIL FATTURAZIONE</td>
-                                <td><input type="text" style="background-color: #FFC;" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>EMAIL FATTURAZIONE</td>
+                            <td><input type="text" style="background-color: #FFC;" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
                                 <td>CATEGORIA *</td>
                                 <td>
                                     <select name="categoria" id="categoria" class="categoria" style="background-color: #FFC;">
                                         @foreach($categorie as $categoria)
                                             <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>CARNET DISPONIBILI NR.</td>
-                                <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs btn_carnet"></td>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CARNET DISPONIBILI NR.</td>
+                            <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs btn_carnet"></td>
                                 <td>TIPOLOGIA ASSISTENZA</td>
                                 <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
                             </tr>
@@ -264,12 +493,12 @@
                                 <td>TEMPO TOTALE min.</td>
                                 <td>
                                     <?php
-                                    $tempo_totale = 0;
-                                    foreach($attivita as $row):
-                                        if($row['IDATTIVITA'] == $res['IDATTIVITA'])
-                                            $tempo_totale += $row['TEMPO'];
-                                    endforeach;
-                                    ?>
+                        $tempo_totale = 0;
+                        foreach($attivita as $row):
+                            if($row['IDATTIVITA'] == $res['IDATTIVITA'])
+                                $tempo_totale += $row['TEMPO'];
+                        endforeach;
+                        ?>
                                     <input type="text" style="background-color: #FFC;" name="tempo_totale" value="{{$tempo_totale}}">
                                 </td>
                             </tr>
@@ -294,14 +523,14 @@
                                         @foreach($tecnici as $tecnico)
                                             <option value="{{$tecnico['IDTECNICO'] or ""}}" {{Session::has('idtecnico') && Session::get('idtecnico') == $tecnico['IDTECNICO'] ? 'selected="selected"' : ""  }}>{{$tecnico['DESCRIZIONE'] or ""}}</option>
                                         @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>DURATA INTERVENTO MINUTI</td>
-                                <td><input type="text" name="tempo" class="tempo" value="{{$res['TEMPO'] or "0"}}" style="min-width:50px !important; width:50px;background-color: #FFC;"></td>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>DURATA INTERVENTO MINUTI</td>
+                            <td><input type="text" name="tempo" class="tempo" value="{{$res['TEMPO'] or "0"}}" style="min-width:50px !important; width:50px;background-color: #FFC;"></td>
                             </tr>
                             <tr>
                                 <td colspan="4"><textarea name="attivita" id="attivita" cols="130"></textarea></td>
@@ -316,6 +545,8 @@
                                 <td colspan="4"><hr style="color: #f00;background-color: #f00;height: 5px;"></td>
                                 <?php endif; ?>
                             </tr>
+                            <!-->
+                        <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail" style="width:100% !important">
                             <tr>
                                 <td>CAMBIA STATO</td>
                                 <td>
@@ -327,17 +558,20 @@
                                 </td>
                                 <td><?php if ($res['ELABORATO'] != 1): ?><input type="button" value="SALVA TICKET" class="btn btn-primary btn-xs salva-ticket"><?php endif;?></td>
                                 <td><input type="button" value="INDIETRO" onClick="location.href='{{ URL::previous() }}'" class="btn btn-primary btn-xs">
+                                </td>
+                                <td>
                                     <?php if ($res['ELABORATO'] != 1): ?><input type="button" value="INVIA SOLLECITO" style="float:right;" class="btn btn-primary btn-xs sollecito"><?php endif;?>
                                 </td>
                             </tr>
                         </table>
+
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="SOGGETTO_CODICE" value="{{isset($res['SOGGETTO_CODICE']) ? $res['SOGGETTO_CODICE'] : ""  }}">
                         <input type="hidden" name="CLIENTE_FINALE_CODICE" value="{{isset($res['CLIENTE_FINALE_CODICE']) ? $res['CLIENTE_FINALE_CODICE'] : ""  }}">
                         <input type="hidden" name="DESTINATARIOABITUALE_CODICE" value="{{isset($res['DESTINATARIOABITUALE_CODICE']) ? $res['DESTINATARIOABITUALE_CODICE'] : ""  }}">
                         <input type="hidden" name="idattivita" id="idattivita" value="{{$idattivita or ""}}">
                     </form>
-                </div>
+
             @endforeach
         </div>
     </div>
@@ -630,7 +864,7 @@
                         data = JSON.parse(data);
                         var $select = $('#categoria');
                         $select.find('option').remove();
-                            $.each(data, function (key, data) {
+                        $.each(data, function (key, data) {
                             $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
                         })
                         $select.val('{{$res['IDCATEGORIA']}}');

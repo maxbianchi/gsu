@@ -290,6 +290,7 @@
                 $.get("{{url('/ticket/elaborato')}}", {idattivita: idattivita})
                         .done(function (data) {
                             $('#msg_elaborato').modal('hide');
+                            location.reload();
                         });
             });
 
