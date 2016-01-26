@@ -6334,6 +6334,10 @@ table.tbl_clienti tr.destinatarioabituale{
     background-color: #ffcceb; //#ffccff;
 }
 
+.sedeoperativa{
+    background-color: #61d5dc;
+}
+
 table.tbl_clienti td{
     padding:2px;
 }

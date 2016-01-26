@@ -165,6 +165,18 @@
                                         </select>
                                     </td>
                                 </tr>
+                                <tr class="sedeoperativa">
+                                    <td>SEDE OPERATIVA</td>
+                                    <td>
+                                        <input type="text" value="" name="search_sedeoperativa" id="search_sedeoperativa" >
+                                        <select name="sedeoperativa" id="sedeoperativa">
+                                            <option value="">-----</option>
+                                            @foreach($sedioperative as $sede)
+                                                <option value="{{$sede['CustSupp']}}" {{isset($res['SEDE_OPERATIVA']) && $res['SEDE_OPERATIVA'] == $sede['CustSupp'] ? 'selected="selected"' : ""  }}>{{$sede['CompanyName']." - ".$sede['Address']." - ".$sede['City']." - ".$sede['County']." - ".$sede['CustSupp']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -761,6 +773,7 @@
             $("#cliente").change(function(){
                 $.post( "{{url('/ticket/getCategorie')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
+                            $("#sedeoperativa").val($("#cliente").val()).change();
                             data = JSON.parse(data);
                             var $select = $('#categoria');
                             $select.find('option').remove();
@@ -781,7 +794,6 @@
                                                     .done(function (data) {
                                                         data = JSON.parse(data);
                                                         $("#ticket_disponibili").val(data[0].JBS_ValoreTotaleEuro);
-                                                        console.log(data[0].JBS_ValoreTotaleEuro);
                                                     });
                                         }
                                     });

@@ -4,6 +4,7 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
 
     //AJAX
     Route::get('/ticket/getclienti', 'AttivitaController@getclienti');
+    Route::get('/ticket/getsedeoperativa', 'AttivitaController@getsedeoperativa');
 
     Route::get('/ticket/index', 'TicketController@index');
     Route::post('/ticket/pdf', 'TicketController@pdf');
@@ -25,6 +26,7 @@ Route::group(array('module'=>'Ticket','namespace' => 'App\Modules\Ticket\Control
     Route::get('/ticket/sollecitoticket', 'AttivitaController@sollecitoticket');
     Route::get('/ticket/modificaattivita', 'AttivitaController@modificaattivita');
     Route::get('/ticket/getsingleuser', 'AttivitaController@getsingleuser');
+    Route::get('/ticket/getsinglesede', 'AttivitaController@getsinglesede');
     Route::post('/ticket/getCategorie', 'AttivitaController@getcategorie');
     Route::get('/ticket/checkBlocked', 'AttivitaController@checkBlocked');
     Route::get('/ticket/getTipologiaContratto', 'AttivitaController@gettipologiacontratto');

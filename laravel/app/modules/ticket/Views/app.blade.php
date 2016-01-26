@@ -179,6 +179,25 @@
                             });
                 }
             });
+
+
+            $('#search_sedeoperativa').autocomplete({
+                source: '/ticket/getsedeoperativa',
+                minLength: 2,
+                select: function(event, ui) {
+                    $.get("{{url('/ticket/getsinglesede')}}", { 'descrizione' : $('#search_sedeoperativa').val()})
+                            .done(function (json) {
+                                $("#sedeoperativa").html("");
+                                json = JSON.parse(json);
+                                $("#sedeoperativa").append('<option value="">-----</option>')
+                                $(json).each(function(index,data){
+                                    $("#sedeoperativa").append('<option value="' + data.CustSupp + '">' + data.CompanyName + ' - ' + data.Address + ' - ' + data.City + ' - ' + data.County + ' - ' + data.CustSupp + '</option>')
+                                })
+
+                            });
+                }
+            });
+
             @endif;
 
             @if (Session::get('livello')  == 2)

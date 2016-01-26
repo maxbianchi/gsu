@@ -12,6 +12,12 @@ use DB;
 class AttivitaModel extends Model
 {
 
+    public function getAllSedieOperative(){
+        $sql = "SELECT * FROM ".MAGO.".dbo.JBS_SEDEOPERATIVA ORDER BY CompanyName";
+        $request = DB::select($sql);
+        return $request;
+    }
+
     public function getAllTecnici()
     {
         $sql = "SELECT * FROM TICKET.dbo.TECNICI ORDER BY DESCRIZIONE";
@@ -146,14 +152,15 @@ class AttivitaModel extends Model
         $nome_fornitore = Input::get("nomefornitore");
         $telefono_fornitore = Input::get("telefonofornitore");
         $fornitore = Input::get("fornitore");
+        $sedeoperativa = Input::get("sedeoperativa");
 
         $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request = DB::select($sql);
         if (count($request) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato,in_garanzia,ordine_fornitore,nome_fornitore,telefono_fornitore,fornitore) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 ,$in_garanzia,'$ordine_fornitore','$nome_fornitore','$telefono_fornitore','$fornitore' )";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato,in_garanzia,ordine_fornitore,nome_fornitore,telefono_fornitore,fornitore,sede_operativa) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 ,$in_garanzia,'$ordine_fornitore','$nome_fornitore','$telefono_fornitore','$fornitore','$sedeoperativa' )";
             DB::insert($sql);
         } else {
-            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio', in_garanzia=$in_garanzia, ordine_fornitore='$ordine_fornitore',nome_fornitore='$nome_fornitore',telefono_fornitore='$telefono_fornitore',fornitore='$fornitore' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio', in_garanzia=$in_garanzia, ordine_fornitore='$ordine_fornitore',nome_fornitore='$nome_fornitore',telefono_fornitore='$telefono_fornitore',fornitore='$fornitore',sede_operativa='$sedeoperativa' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
 
@@ -237,6 +244,7 @@ SELECT
         A.NOME_FORNITORE,
         A.TELEFONO_FORNITORE,
         A.FORNITORE,
+        A.SEDE_OPERATIVA,
         CONVERT(VARCHAR(10),V.DATA_INTERVENTO,105 ) DATA_INTERVENTO
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
@@ -346,6 +354,7 @@ SELECT
         A.NOME_FORNITORE,
         A.TELEFONO_FORNITORE,
         A.FORNITORE,
+        A.SEDE_OPERATIVA,
         CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
         CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
         FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
@@ -565,6 +574,18 @@ EOF;
     {
         $q = Input::get('term');
         $res = DB::select("SELECT DISTINCT REPLACE(LTRIM(RTRIM(DESCRIZIONE)),'''','') AS DESCRIZIONE FROM UNIWEB.dbo.AGE10 WHERE DESCRIZIONE like '%$q%'");
+        $result = "";
+        foreach ($res as $keys => $values) {
+            foreach ($values as $key => $value)
+                $result[] = trim($value);
+        }
+        return $result;
+    }
+
+    public function getSedeOperativaByRivenditore()
+    {
+        $q = Input::get('term');
+        $res = DB::select("SELECT DISTINCT REPLACE(LTRIM(RTRIM(COMPANYNAME)),'''','') AS DESCRIZIONE FROM ".MAGO.".dbo.JBS_SEDEOPERATIVA WHERE COMPANYNAME like '%$q%'");
         $result = "";
         foreach ($res as $keys => $values) {
             foreach ($values as $key => $value)

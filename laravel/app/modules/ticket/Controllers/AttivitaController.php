@@ -29,11 +29,12 @@ class AttivitaController extends MainController {
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
         $model = new AttivitaModel();
+        $sedioperative = $model->getAllSedieOperative();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         $categorie = $model->getAllCategorie();
         $idattivita = $model->generateIDAttivita();
-        return view("ticket::ticket.attivita", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'categorie' => $categorie]);
+        return view("ticket::ticket.attivita", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'categorie' => $categorie,'sedioperative' => $sedioperative]);
     }
 
     public function salvaattivita(){
@@ -125,16 +126,24 @@ class AttivitaController extends MainController {
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
         $model = new AttivitaModel();
+        $sedioperative = $model->getAllSedieOperative();
         $result = $model->getTickets();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         $categorie = $model->getAllCategorie();
-        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
+        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie,'sedioperative' => $sedioperative]);
     }
 
     public function getSingleUser(){
         $model = new Utenti();
         $users = $model->getSingleUserFromMago();
+        return json_encode($users);
+
+    }
+
+    public function getSingleSede(){
+        $model = new Utenti();
+        $users = $model->getSingleSedeFromMago();
         return json_encode($users);
 
     }
@@ -230,6 +239,12 @@ class AttivitaController extends MainController {
     public function getclienti(){
         $model = new AttivitaModel();
         $clienti = $model->getClientiByRivenditore();
+        return json_encode($clienti);
+    }
+
+    public function getsedeoperativa(){
+        $model = new AttivitaModel();
+        $clienti = $model->getSedeOperativaByRivenditore();
         return json_encode($clienti);
     }
 
