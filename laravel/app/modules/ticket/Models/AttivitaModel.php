@@ -15,6 +15,13 @@ class AttivitaModel extends Model
     public function getAllSedieOperative(){
         $sql = "SELECT * FROM ".MAGO.".dbo.JBS_SEDEOPERATIVA ORDER BY CompanyName";
         $request = DB::select($sql);
+        $request = [];
+        foreach($request as $key => $value){
+            foreach($value as $key2 => $value2){
+                $request[$key][$key2] = utf8_encode($value2);
+            }
+        }
+        return $utente;
         return $request;
     }
 
