@@ -51,7 +51,7 @@
                         <select name="sedeoperativa" id="sedeoperativa">
                             <option value="">-----</option>
                             @foreach($sedioperative as $sede)
-                                <option value="{{$sede['CustSupp']}}" {{isset($request['SEDE_OPERATIVA']) && $request['SEDE_OPERATIVA'] == $sede['CustSupp'] ? 'selected="selected"' : ""  }}>{{$sede['CompanyName']." - ".$sede['Address']." - ".$sede['City']." - ".$sede['County']." - ".$sede['CustSupp']}}</option>
+                                <option value="{{$sede['CustSupp']}}" {{Input::has('SEDE_OPERATIVA') && Input::get('SEDE_OPERATIVA') == $sede['CustSupp'] ? 'selected="selected"' : ""  }}>{{$sede['CompanyName']." - ".$sede['Address']." - ".$sede['City']." - ".$sede['County']." - ".$sede['CustSupp']}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -538,19 +538,6 @@
                             $("#cliente_finale_citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
                         });
             });
-            $("#ubicazione_impianto").change(function () {
-                var id = $("#ubicazione_impianto").val();
-                $.get("/ticket/getuserfrommago", {id: id})
-                        .done(function (data) {
-                            data = JSON.parse(data);
-                            $("#ubicazione_ragionesociale").val(data[0]['DESCRIZIONE']);
-                            $("#ubicazione_ragionesociale").attr("value", (data[0]['DESCRIZIONE']));
-                            $("#ubicazione_indirizzo").val(data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']);
-                            $("#ubicazione_indirizzo").attr("value", (data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']));
-                            $("#ubicazione_citta").val(data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']);
-                            $("#ubicazione_citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
-                        });
-            });
 
             $("#sedeoperativa").change(function () {
                 var id = $("#sedeoperativa").val();
@@ -565,6 +552,21 @@
                             $("#ubicazione_citta").attr("value", (data[0]['City'] + " - " + data[0]['County'] + " - " + data[0]['ZIPCode']));
                         });
             });
+
+            $("#ubicazione_impianto").change(function () {
+                var id = $("#ubicazione_impianto").val();
+                $.get("/ticket/getuserfrommago", {id: id})
+                        .done(function (data) {
+                            data = JSON.parse(data);
+                            $("#ubicazione_ragionesociale").val(data[0]['DESCRIZIONE']);
+                            $("#ubicazione_ragionesociale").attr("value", (data[0]['DESCRIZIONE']));
+                            $("#ubicazione_indirizzo").val(data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']);
+                            $("#ubicazione_indirizzo").attr("value", (data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']));
+                            $("#ubicazione_citta").val(data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']);
+                            $("#ubicazione_citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
+                        });
+            });
+
 
             $(".edit").on("keyup", function(){
                 $(this).attr("value", $(this).val());
@@ -587,6 +589,7 @@
 
             $("#cliente").val('{{Input::get('SOGGETTO_CODICE')}}').trigger("change");
             $("#cliente_finale").val('{{Input::get('CLIENTE_FINALE_CODICE')}}').trigger("change");
+            $("#sedeoperativa").val('{{Input::get('SEDE_OPERATIVA')}}').trigger("change");
             $("#ubicazione_impianto").val('{{Input::get('DESTINATARIOABITUALE_CODICE')}}').trigger("change");
 
             $('textarea').each(function () {

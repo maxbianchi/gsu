@@ -581,6 +581,7 @@
                         <input type="hidden" name="SOGGETTO_CODICE" value="{{isset($res['SOGGETTO_CODICE']) ? $res['SOGGETTO_CODICE'] : ""  }}">
                         <input type="hidden" name="CLIENTE_FINALE_CODICE" value="{{isset($res['CLIENTE_FINALE_CODICE']) ? $res['CLIENTE_FINALE_CODICE'] : ""  }}">
                         <input type="hidden" name="DESTINATARIOABITUALE_CODICE" value="{{isset($res['DESTINATARIOABITUALE_CODICE']) ? $res['DESTINATARIOABITUALE_CODICE'] : ""  }}">
+                        <input type="hidden" name="SEDE_OPERATIVA" value="{{isset($res['SEDE_OPERATIVA']) ? $res['SEDE_OPERATIVA'] : ""  }}">
                         <input type="hidden" name="idattivita" id="idattivita" value="{{$idattivita or ""}}">
                     </form>
 
