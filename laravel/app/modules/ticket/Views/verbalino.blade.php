@@ -67,7 +67,7 @@
                 <table style="width:100%;font-family: Arial; font-size:10px;" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top" style="width:30%;">
-                            <img src="{{ URL::asset('images/Banner.png') }}" >
+                            <img src="{{ URL::asset('images/logo_uniweb.png') }}" alt="Uniweb 4.0 Dashboard" style="width:150px;" title="Uniweb 4.0 Dashboard">
                         </td>
                         <td style="width:70%;" colspan="2">
                             <table style="width:100%">
