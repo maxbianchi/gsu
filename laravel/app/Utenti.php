@@ -93,6 +93,18 @@ class Utenti extends Model {
         return $utente;
     }
 
+    public function getUserFromJBS_Sede_Operativa(){
+        $id = Input::get("id");
+        $utenti  = DB::select("SELECT *  FROM ".MAGO.".dbo.JBS_SEDEOPERATIVA WHERE CompanyName != '' AND CustSupp=$id ORDER BY CompanyName");
+        $utente = [];
+        foreach($utenti as $key => $value){
+            foreach($value as $key2 => $value2){
+                $utente[$key][$key2] = utf8_encode($value2);
+            }
+        }
+        return $utente;
+    }
+
     public function getSingleUserFromMago(){
         $descrizione = Input::get("descrizione");
         $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL, A.CAP, A.TELEFONO,A.PARTITAIVA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE like '%$descrizione%' ORDER BY DESCRIZIONE");

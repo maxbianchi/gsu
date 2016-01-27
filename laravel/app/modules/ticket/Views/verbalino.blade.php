@@ -44,6 +44,18 @@
                         </select>
                     </td>
                 </tr>
+                <tr class="sedeoperativa">
+                    <td>SEDE OPERATIVA</td>
+                    <td>
+                        <input type="text" value="" name="search_sedeoperativa" id="search_sedeoperativa" >
+                        <select name="sedeoperativa" id="sedeoperativa">
+                            <option value="">-----</option>
+                            @foreach($sedioperative as $sede)
+                                <option value="{{$sede['CustSupp']}}" {{isset($request['SEDE_OPERATIVA']) && $request['SEDE_OPERATIVA'] == $sede['CustSupp'] ? 'selected="selected"' : ""  }}>{{$sede['CompanyName']." - ".$sede['Address']." - ".$sede['City']." - ".$sede['County']." - ".$sede['CustSupp']}}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
                 </tbody>
             </table>
 
@@ -501,6 +513,7 @@
 
             $("#cliente").change(function () {
                 var id = $("#cliente").val();
+                $("#sedeoperativa").val($("#cliente").val()).change();
                 $.get("/ticket/getuserfrommago", {id: id})
                         .done(function (data) {
                             data = JSON.parse(data);
@@ -536,6 +549,20 @@
                             $("#ubicazione_indirizzo").attr("value", (data[0]['INDIRIZZO'] + " - Tel.: " + data[0]['TELEFONO']));
                             $("#ubicazione_citta").val(data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']);
                             $("#ubicazione_citta").attr("value", (data[0]['LOCALITA'] + " - " + data[0]['PROVINCIA'] + " - " + data[0]['CAP']));
+                        });
+            });
+
+            $("#sedeoperativa").change(function () {
+                var id = $("#sedeoperativa").val();
+                $.get("/ticket/getuserfromjbs_sede_operativa", {id: id})
+                        .done(function (data) {
+                            data = JSON.parse(data);
+                            $("#ubicazione_ragionesociale").val(data[0]['CompanyName']);
+                            $("#ubicazione_ragionesociale").attr("value", (data[0]['CompanyName']));
+                            $("#ubicazione_indirizzo").val(data[0]['Address']);
+                            $("#ubicazione_indirizzo").attr("value", (data[0]['Address']));
+                            $("#ubicazione_citta").val(data[0]['City'] + " - " + data[0]['County'] + " - " + data[0]['ZIPCode']);
+                            $("#ubicazione_citta").attr("value", (data[0]['City'] + " - " + data[0]['County'] + " - " + data[0]['ZIPCode']));
                         });
             });
 

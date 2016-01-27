@@ -38,6 +38,13 @@ class TicketController extends MainController {
         return json_encode($user);
     }
 
+    public function getUserFromJBS_Sede_Operativa(){
+        $id = Input::get("id");
+        $model = new Utenti();
+        $user = $model->getUserFromJBS_Sede_Operativa($id);
+        return json_encode($user);
+    }
+
     public function getAnagrafica(){
         $descrizione = Input::get("term");
         $model = new Utenti();
@@ -109,12 +116,13 @@ class TicketController extends MainController {
             $model = new Utenti();
             $users = $model->getAllUserFromMago();
             $model = new AttivitaModel();
+            $sedioperative = $model->getAllSedieOperative();
             $attivita = $model->getDataFromAttivita($idattivita);
             $apertail = $model->getDataApertura();
             $tecnico = $model->getTecnico();
             $verbalino = $model->getVerbalino();
             $carnetdisponibili = $model->getCarnetDisponibili($attivita['SOGGETTO'],$attivita['IDCATEGORIA']);
-            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino,'apertail' => $apertail,'carnetdisponibili' => $carnetdisponibili]);
+            return view("ticket::verbalino", ['users' => $users, 'tecnico' => $tecnico,'verbalino' => $verbalino,'apertail' => $apertail,'carnetdisponibili' => $carnetdisponibili,'sedioperative' => $sedioperative]);
         }
     }
 
