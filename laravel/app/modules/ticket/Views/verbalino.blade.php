@@ -438,10 +438,10 @@
                             <div class="container_12" style="text-align: center;">
                                 <table>
                                     <tr>
-                                        <td style="width:20%;text-align:left;">
+                                        <td style="width:20%;text-align:left;" valign="top">
                                             <img src="{{ URL::asset('images/logo1.png') }}" style="width:80%;">
                                         </td>
-                                        <td style="width:60%;font-size:9px;font-family:'Century Gothic'">
+                                        <td style="width:60%;font-size:8px;font-family:'Century Gothic'" valign="top">
                                             <strong>Uniweb Srl</strong>
                                             - Via Milano, 51 - 22063 Cantu' (CO) - CF / P.IVA 02478160134
                                             <br>
@@ -451,7 +451,7 @@
                                             Reg. Imp. di Como n. 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n. 262922
                                         </td>
                                         <td style="width:20%;text-align:right;">
-                                            <img src="{{ URL::asset('images/iso.png') }}" style="width:80%;float:right;">
+                                            <img src="{{ URL::asset('images/iso.png') }}" style="width:80%;float:right;" valign="top">
                                         </td>
                                     </tr>
                                 </table>
