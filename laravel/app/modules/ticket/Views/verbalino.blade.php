@@ -373,10 +373,10 @@
                         <td colspan="2">
                             <table style="width:100%">
                                 <tr>
-                                    <td style="width:50%">
+                                    <td style="width:30%">
                                         Intervento risolutivo <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_RISOLUTIVO']) && $verbalino['INTERVENTO_RISOLUTIVO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
                                     </td>
-                                    <td style="width:50%">
+                                    <td style="width:20%">
                                         <!--In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO-->
                                         <?php if(isset($verbalino['IN_GARANZIA']))
                                                 echo $verbalino['IN_GARANZIA'] == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
@@ -384,20 +384,22 @@
                                                 echo Input::has("ingaranzia") && Input::get("ingaranzia") == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
                                         ?>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td style="width:50%">
-                                        Macchina in funzione <input type="checkbox" value="" <?php echo isset($verbalino['MACCHINA_FUNZIONE']) && $verbalino['MACCHINA_FUNZIONE'] == 1 ? "checked='checked'" : ""; ?> name="macchina_funzione_si" class="edit-checkbox">SI <input type="checkbox" value="" name="macchina_funzione_no" class="edit-checkbox">NO
-                                    </td>
-                                    <td style="width:50%">
-                                        Carnet Mattina
+
+                                        <td style="width:10%">
+                                            Carnet Mattina
+                                        </td>
+                                        <td style="width:15%">
                                         <select name="carnet_mattina" id="carnet_mattina">
                                             <option value=""><?php echo isset($verbalino['CARNET_MATTINA']) ? $verbalino['CARNET_MATTINA'] : '------' ?> </option>
                                             @foreach($carnetdisponibili as $row)
                                                 <option value="{{$row['Seriale']}}">{{$row['Seriale']}}</option>
                                             @endforeach
                                         </select>
+                                        </td>
+                                    <td style="width:10%">
                                         Pomeriggio
+                                    </td>
+                                    <td style="width:15%">
                                         <select name="carnet_pomeriggio" id="carnet_pomeriggio">
                                             <option value="<?php echo isset($verbalino['CARNET_POMERIGGIO']) ? $verbalino['CARNET_POMERIGGIO'] : '' ?>"><?php echo isset($verbalino['CARNET_POMERIGGIO']) ? $verbalino['CARNET_POMERIGGIO'] : '------' ?> </option>
                                             @foreach($carnetdisponibili as $row)
@@ -406,6 +408,12 @@
                                         </select>
                                     </td>
                                 </tr>
+                                <!--<tr>
+                                    <td style="width:7%">
+                                        Macchina in funzione <input type="checkbox" value="" <?php echo isset($verbalino['MACCHINA_FUNZIONE']) && $verbalino['MACCHINA_FUNZIONE'] == 1 ? "checked='checked'" : ""; ?> name="macchina_funzione_si" class="edit-checkbox">SI <input type="checkbox" value="" name="macchina_funzione_no" class="edit-checkbox">NO
+                                    </td>
+
+                                </tr>-->
 
                             </table>
                         </td>
@@ -426,15 +434,28 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <img src="{{ URL::asset('images/logo1.png') }}" style="width:100px;position:absolute;">
-                            <div class="container_12" style="text-align: center;padding-top:10px;">
-                                <strong>Uniweb Srl</strong>
-                                - Via Milano, 51 - 22063 Cantu' (CO) - CF / P.IVA 02478160134
-                                <br>
-                                Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
-                                <a href="mailto:info@uniweb.it">info@uniweb.it</a>
-                                <br>
-                                Reg. Imp. di Como n. 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n. 262922 - pec info@pec.uniweb.it
+
+                            <div class="container_12" style="text-align: center;">
+                                <table>
+                                    <tr>
+                                        <td style="width:20%;text-align:left;">
+                                            <img src="{{ URL::asset('images/logo1.png') }}" style="width:80%;">
+                                        </td>
+                                        <td style="width:60%;font-size:9px;font-family:'Century Gothic'">
+                                            <strong>Uniweb Srl</strong>
+                                            - Via Milano, 51 - 22063 Cantu' (CO) - CF / P.IVA 02478160134
+                                            <br>
+                                            Tel. +39 031 701728 r.a. - Fax +39 031 7073755  <br>
+                                            E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
+                                            <br>
+                                            Reg. Imp. di Como n. 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n. 262922
+                                        </td>
+                                        <td style="width:20%;text-align:right;">
+                                            <img src="{{ URL::asset('images/iso.png') }}" style="width:80%;float:right;">
+                                        </td>
+                                    </tr>
+                                </table>
+
                             </div>
 
                         </td>
@@ -445,6 +466,8 @@
             <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="incaricoa" value="{{Input::get('incaricoa')}}">
             <input type="hidden" name="idattivita" value="{{Input::get('idattivita')}}">
+            <input type="hidden" name="macchina_funzione_no" value="0">
+            <input type="hidden" name="macchina_funzione_si" value="1">
             <br>
             <br>
             <br>
