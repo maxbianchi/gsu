@@ -448,7 +448,7 @@
                                             Tel. +39 031 701728 r.a. - Fax +39 031 7073755  <br>
                                             E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
                                             <br>
-                                            Reg. Imp. di Como n. 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n. 262922
+                                            Reg. Imp. di Como n. 02478160134 - Cap. Soc.: € 15.000,00 i.v. - CCIAA Como REA n. 262922
                                         </td>
                                         <td style="width:20%;text-align:right;">
                                             <img src="{{ URL::asset('images/iso.png') }}" style="width:100%;float:right;" valign="top">
