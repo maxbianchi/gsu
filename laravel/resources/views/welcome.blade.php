@@ -36,7 +36,8 @@
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">
+                            <!--<img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">-->
+                            <img style="height:35px;" src="{{ URL::asset('images/logotim.png') }}">
                         </div>
                         <!--/**/-->
 
