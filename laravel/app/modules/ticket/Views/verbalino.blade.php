@@ -284,7 +284,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="padding-top:10px;">
+                        <td colspan="2" style="padding-top:0px;">
                             <table>
                                 <tr>
                                     <td style="width:10%">
