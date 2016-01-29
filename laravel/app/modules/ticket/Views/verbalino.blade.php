@@ -287,18 +287,18 @@
                         <td colspan="2" style="padding-top:0px;">
                             <table>
                                 <tr>
-                                    <td style="width:10%">
+                                    <td style="width:12%">
                                         Data Intervento
                                     </td>
                                     <td style="width:10%">
                                         <input type="text" value="{{$verbalino['DATA_INTERVENTO_CONV'] or ""}}" id="data_intervento" name="data_intervento" class="edit-date datepicker" style="width:100%">
                                     </td>
-                                    <td  style="width:10%">
+                                    <td  style="width:12%">
                                         <!--Intervento Remoto-->
                                         Tipologia intervento
                                     </td>
                                     <td  style="width:10%">
-                                        <select name="tipologia_intervento" id="tipologia_intervento">
+                                        <select name="tipologia_intervento" id="tipologia_intervento" style="width:100%">
                                             <option value=""><?php echo isset($verbalino['TIPOLOGIA_INTERVENTO']) ? $verbalino['TIPOLOGIA_INTERVENTO'] : '------' ?> </option>
                                             <option value="TELEFONICO">TELEFONICO</option>
                                             <option value="IN REMOTO">IN REMOTO</option>
@@ -306,30 +306,30 @@
                                         </select>
                                         <!--<input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_REMOTO']) && $verbalino['INTERVENTO_REMOTO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_remoto" class="edit-checkbox" style="width:100%">-->
                                     </td>
-                                    <td  style="width:10%">
-                                        Tempo gestione interno min.
+                                    <td  style="width:12%">
+                                        Tempo gestione interno (mm)
                                     </td>
                                     <td  style="width:10%">
-                                        <input type="text" value="<?php echo isset($verbalino['TEMPO_TOTALE']) ? $verbalino['TEMPO_TOTALE'] : Input::get('tempo_totale'); ?>" id="tempo" name="tempo" class="edit" style="width:100%">
+                                        <input type="text" value="<?php echo isset($verbalino['TEMPO_TOTALE']) ? $verbalino['TEMPO_TOTALE'] : Input::get('tempo_totale'); ?>" id="tempo" name="tempo" class="edit" style="width: 50%;text-align: right;float:right;">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width:10%">
-                                        Tempo Viaggio(h:mm)
+                                        Tempo viaggio andata (h:mm)
                                     </td>
                                     <td style="width:10%">
                                         <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1'] or ""}}" id="tempo_viaggio" name="tempo_viaggio" class="edit" style="width:40%">&nbsp;:&nbsp;
                                         <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1_MINUTI'] or ""}}" id="tempo_viaggio_minuti" name="tempo_viaggio_minuti" class="edit" style="width:40%">
                                     </td>
                                     <td  style="width:10%">
-                                        Ora inizio intervento(h:mm)
+                                        Ora inizio intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
                                         <input type="text" value="{{$verbalino['ORA_INIZIO_1'] or ""}}" id="ora_inizio" name="ora_inizio" class="edit" style="width:40%">&nbsp;:&nbsp;
                                         <input type="text" value="{{$verbalino['ORA_INIZIO_1_MINUTI'] or ""}}" id="ora_inizio_minuti" name="ora_inizio_minuti" class="edit" style="width:40%">
                                     </td>
                                     <td  style="width:10%">
-                                        Ora fine intervento(h:mm)
+                                        Ora fine intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
                                         <input type="text" value="{{$verbalino['ORA_FINE_1'] or ""}}" id="ora_fine" name="ora_fine" class="edit" style="width:40%">&nbsp;:&nbsp;
@@ -338,21 +338,21 @@
                                 </tr>
                                 <tr>
                                     <td style="width:10%">
-                                        Tempo Viaggio(h:mm)
+                                        Tempo viaggio ritorno (h:mm)
                                     </td>
                                     <td style="width:10%">
                                         <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2'] or ""}}" id="tempo_viaggio2" name="tempo_viaggio2" class="edit" style="width:40%">&nbsp;:&nbsp;
                                         <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2_MINUTI'] or ""}}" id="tempo_viaggio2_minuti" name="tempo_viaggio2_minuti" class="edit" style="width:40%">
                                     </td>
                                     <td  style="width:10%">
-                                        Ora inizio intervento(h:mm)
+                                        Ora inizio intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
                                         <input type="text" value="{{$verbalino['ORA_INIZIO_2'] or ""}}" id="ora_inizio2" name="ora_inizio2" class="edit" style="width:40%">&nbsp;:&nbsp;
                                         <input type="text" value="{{$verbalino['ORA_INIZIO_2_MINUTI'] or ""}}" id="ora_inizio2_minuti" name="ora_inizio2_minuti" class="edit" style="width:40%">
                                     </td>
                                     <td  style="width:10%">
-                                        Ora fine intervento(h:mm)
+                                        Ora fine intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
                                         <input type="text" value="{{$verbalino['ORA_FINE_2'] or ""}}" id="ora_fine2" name="ora_fine2" class="edit" style="width:40%">&nbsp;:&nbsp;
@@ -376,7 +376,7 @@
                                     <td style="width:30%">
                                         Intervento risolutivo <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_RISOLUTIVO']) && $verbalino['INTERVENTO_RISOLUTIVO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
                                     </td>
-                                    <td style="width:20%">
+                                    <td style="width:16%">
                                         <!--In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO-->
                                         <?php if(isset($verbalino['IN_GARANZIA']))
                                                 echo $verbalino['IN_GARANZIA'] == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
@@ -385,7 +385,7 @@
                                         ?>
                                     </td>
 
-                                        <td style="width:10%">
+                                        <td style="width:12%">
                                             Carnet Mattina
                                         </td>
                                         <td style="width:15%">
@@ -396,8 +396,8 @@
                                             @endforeach
                                         </select>
                                         </td>
-                                    <td style="width:10%">
-                                        Pomeriggio
+                                    <td style="width:12%">
+                                        Carnet Pomeriggio
                                     </td>
                                     <td style="width:15%">
                                         <select name="carnet_pomeriggio" id="carnet_pomeriggio">
@@ -443,12 +443,12 @@
                                         </td>
                                         <td style="width:395pt;font-size:8px;font-family:'Century Gothic'" valign="top">
                                             <strong>Uniweb Srl</strong>
-                                            - Via Milano, 51 - 22063 Cantu' (CO) - CF / P.IVA 02478160134
+                                            - Cantu' (CO) - 22063 - Via Milano, 51
                                             <br>
                                             Tel. +39 031 701728 r.a. - Fax +39 031 7073755  <br>
-                                            E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
+                                            www.uniweb.it E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
                                             <br>
-                                            Reg. Imp. di Como n. 02478160134 - Cap. Soc.: € 15.000,00 i.v. <br> CCIAA Como REA n. 262922
+                                            CF / P.IVA 02478160134 Reg. Imp. di Como n. 02478160134 <br> Cap. Soc.: € 15.000,00 i.v. CCIAA Como REA n. 262922
                                         </td>
                                         <td style="width:100pt;text-align:right;">
                                             <img src="{{ URL::asset('images/iso.png') }}" style="width:100%;float:right;" valign="top">
