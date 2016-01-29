@@ -373,10 +373,10 @@
                         <td colspan="2">
                             <table style="width:100%">
                                 <tr>
-                                    <td style="width:30%">
+                                    <td style="width:24%">
                                         Intervento risolutivo <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_RISOLUTIVO']) && $verbalino['INTERVENTO_RISOLUTIVO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
                                     </td>
-                                    <td style="width:16%">
+                                    <td style="width:14%">
                                         <!--In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO-->
                                         <?php if(isset($verbalino['IN_GARANZIA']))
                                                 echo $verbalino['IN_GARANZIA'] == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
@@ -385,10 +385,10 @@
                                         ?>
                                     </td>
 
-                                        <td style="width:12%">
+                                        <td style="width:14%">
                                             Carnet Mattina
                                         </td>
-                                        <td style="width:15%">
+                                        <td style="width:17%">
                                         <select name="carnet_mattina" id="carnet_mattina">
                                             <option value=""><?php echo isset($verbalino['CARNET_MATTINA']) ? $verbalino['CARNET_MATTINA'] : '------' ?> </option>
                                             @foreach($carnetdisponibili as $row)
@@ -396,10 +396,10 @@
                                             @endforeach
                                         </select>
                                         </td>
-                                    <td style="width:12%">
+                                    <td style="width:14%">
                                         Carnet Pomeriggio
                                     </td>
-                                    <td style="width:15%">
+                                    <td style="width:17%">
                                         <select name="carnet_pomeriggio" id="carnet_pomeriggio">
                                             <option value="<?php echo isset($verbalino['CARNET_POMERIGGIO']) ? $verbalino['CARNET_POMERIGGIO'] : '' ?>"><?php echo isset($verbalino['CARNET_POMERIGGIO']) ? $verbalino['CARNET_POMERIGGIO'] : '------' ?> </option>
                                             @foreach($carnetdisponibili as $row)
