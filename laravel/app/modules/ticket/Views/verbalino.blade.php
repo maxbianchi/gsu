@@ -318,22 +318,22 @@
                                         Tempo viaggio andata (h:mm)
                                     </td>
                                     <td style="width:10%">
-                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1'] or ""}}" id="tempo_viaggio" name="tempo_viaggio" class="edit" style="width:40%">&nbsp;:&nbsp;
-                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1_MINUTI'] or ""}}" id="tempo_viaggio_minuti" name="tempo_viaggio_minuti" class="edit" style="width:40%">
+                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1'] or ""}}" id="tempo_viaggio" name="tempo_viaggio" class="edit" style="width:40%;text-align: right;">&nbsp;:&nbsp;
+                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_1_MINUTI'] or ""}}" id="tempo_viaggio_minuti" name="tempo_viaggio_minuti" class="edit" style="width:40%;text-align: right;">
                                     </td>
                                     <td  style="width:10%">
                                         Ora inizio intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
-                                        <input type="text" value="{{$verbalino['ORA_INIZIO_1'] or ""}}" id="ora_inizio" name="ora_inizio" class="edit" style="width:40%">&nbsp;:&nbsp;
-                                        <input type="text" value="{{$verbalino['ORA_INIZIO_1_MINUTI'] or ""}}" id="ora_inizio_minuti" name="ora_inizio_minuti" class="edit" style="width:40%">
+                                        <input type="text" value="{{$verbalino['ORA_INIZIO_1'] or ""}}" id="ora_inizio" name="ora_inizio" class="edit" style="width:40%;text-align: right;">&nbsp;:&nbsp;
+                                        <input type="text" value="{{$verbalino['ORA_INIZIO_1_MINUTI'] or ""}}" id="ora_inizio_minuti" name="ora_inizio_minuti" class="edit" style="width:40%;text-align: right;">
                                     </td>
                                     <td  style="width:10%">
                                         Ora fine intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
-                                        <input type="text" value="{{$verbalino['ORA_FINE_1'] or ""}}" id="ora_fine" name="ora_fine" class="edit" style="width:40%">&nbsp;:&nbsp;
-                                        <input type="text" value="{{$verbalino['ORA_FINE_1_MINUTI'] or ""}}" id="ora_fine_minuti" name="ora_fine_minuti" class="edit" style="width:40%">
+                                        <input type="text" value="{{$verbalino['ORA_FINE_1'] or ""}}" id="ora_fine" name="ora_fine" class="edit" style="width:40%;text-align: right;">&nbsp;:&nbsp;
+                                        <input type="text" value="{{$verbalino['ORA_FINE_1_MINUTI'] or ""}}" id="ora_fine_minuti" name="ora_fine_minuti" class="edit" style="width:40%;text-align: right;">
                                     </td>
                                 </tr>
                                 <tr>
@@ -341,22 +341,22 @@
                                         Tempo viaggio ritorno (h:mm)
                                     </td>
                                     <td style="width:10%">
-                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2'] or ""}}" id="tempo_viaggio2" name="tempo_viaggio2" class="edit" style="width:40%">&nbsp;:&nbsp;
-                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2_MINUTI'] or ""}}" id="tempo_viaggio2_minuti" name="tempo_viaggio2_minuti" class="edit" style="width:40%">
+                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2'] or ""}}" id="tempo_viaggio2" name="tempo_viaggio2" class="edit" style="width:40%;text-align: right;">&nbsp;:&nbsp;
+                                        <input type="text" value="{{$verbalino['TEMPO_VIAGGIO_2_MINUTI'] or ""}}" id="tempo_viaggio2_minuti" name="tempo_viaggio2_minuti" class="edit" style="width:40%;text-align: right;">
                                     </td>
                                     <td  style="width:10%">
                                         Ora inizio intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
-                                        <input type="text" value="{{$verbalino['ORA_INIZIO_2'] or ""}}" id="ora_inizio2" name="ora_inizio2" class="edit" style="width:40%">&nbsp;:&nbsp;
-                                        <input type="text" value="{{$verbalino['ORA_INIZIO_2_MINUTI'] or ""}}" id="ora_inizio2_minuti" name="ora_inizio2_minuti" class="edit" style="width:40%">
+                                        <input type="text" value="{{$verbalino['ORA_INIZIO_2'] or ""}}" id="ora_inizio2" name="ora_inizio2" class="edit" style="width:40%;text-align: right;">&nbsp;:&nbsp;
+                                        <input type="text" value="{{$verbalino['ORA_INIZIO_2_MINUTI'] or ""}}" id="ora_inizio2_minuti" name="ora_inizio2_minuti" class="edit" style="width:40%;text-align: right;">
                                     </td>
                                     <td  style="width:10%">
                                         Ora fine intervento (h:mm)
                                     </td>
                                     <td  style="width:10%">
-                                        <input type="text" value="{{$verbalino['ORA_FINE_2'] or ""}}" id="ora_fine2" name="ora_fine2" class="edit" style="width:40%">&nbsp;:&nbsp;
-                                        <input type="text" value="{{$verbalino['ORA_FINE_2_MINUTI'] or ""}}" id="ora_fine2_minuti" name="ora_fine2_minuti" class="edit" style="width:40%">
+                                        <input type="text" value="{{$verbalino['ORA_FINE_2'] or ""}}" id="ora_fine2" name="ora_fine2" class="edit" style="width:40%;text-align: right;">&nbsp;:&nbsp;
+                                        <input type="text" value="{{$verbalino['ORA_FINE_2_MINUTI'] or ""}}" id="ora_fine2_minuti" name="ora_fine2_minuti" class="edit" style="width:40%;text-align: right;">
                                     </td>
                                 </tr>
                             </table>
