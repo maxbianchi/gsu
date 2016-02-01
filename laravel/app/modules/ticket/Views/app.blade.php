@@ -109,7 +109,7 @@
                 source: '/ticket/getclienti',
                 minLength: 2,
                 select: function(event, ui) {
-                    $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_cliente').val()})
+                    $.get("{{url('/ticket/getsingleuser')}}", { 'descrizione' : $('#search_fornitore').val()})
                             .done(function (json) {
                                 $("#fornitore").html("");
                                 json = JSON.parse(json);
