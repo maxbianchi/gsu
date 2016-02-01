@@ -136,8 +136,9 @@ class ClientController extends MainController {
             case 'TICKET':
                 if($verbalino[0]['IN_GARANZIA'] != 1):
                     //Gestione tempo minimo
-                    if($tipologia_contratto['0']['TempoMinimo'] > $tempo)
-                        $importo = $tipologia_contratto['0']['TempoMinimo'] * $prezzo[0]['PREZZO_FINALE'];
+                    $tempo_minimo = $tipologia_contratto['0']['TempoMinimo'] / 60;
+                    if($tempo_minimo > $tempo)
+                        $importo = $tempo_minimo * $prezzo[0]['PREZZO_FINALE'];
                     //Gestione DirittoFisso
                     $importo += $tipologia_contratto['0']['DirittoFisso'];
                     $model->storeTicket($attivita[0],$verbalino[0],$importo);
@@ -163,8 +164,9 @@ class ClientController extends MainController {
                 if($verbalino[0]['IN_GARANZIA'] != 1):
                     //CONSUNTIVO
                     //Gestione tempo minimo
-                    if($tipologia_contratto['0']['TempoMinimo'] > $tempo)
-                        $tempo = $tipologia_contratto['0']['TempoMinimo'];
+                    $tempo_minimo = $tipologia_contratto['0']['TempoMinimo'] / 60;
+                    if($tempo_minimo > $tempo)
+                        $tempo = $tempo_minimo;
                     $model->storeConsuntivo($attivita[0],$verbalino[0],$tempo,$prezzo[0]['PREZZO_FINALE']);
                 endif;
         }
