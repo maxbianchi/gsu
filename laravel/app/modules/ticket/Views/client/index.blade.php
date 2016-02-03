@@ -77,8 +77,8 @@
                 <ul class="nav nav-list">
                     <li><label class="tree-toggler nav-header">Stato</label>
                         <ul class="nav nav-list tree">
-                            <li><a href="{{url('/ticket/alltickets').'?stato=0'}}">IN GESTIONE</a></li>
-                            <li><a href="{{url('/ticket/alltickets').'?stato=-2'}}">ARCHIVIATI</a></li>
+                            <li><a href="{{url('/ticket/clientticket').'?stato=0'}}">IN GESTIONE</a></li>
+                            <li><a href="{{url('/ticket/clientticket').'?stato=-2'}}">ARCHIVIATI</a></li>
                         </ul>
                     </li>
                     <li><label class="tree-toggler nav-header">Categoria</label>
