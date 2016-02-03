@@ -22,7 +22,7 @@
             <form method="GET" action="{{url('/ticket/alltickets')}}" id="form" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('cliente')}}" class="search_anagrafica" name="cliente" ></div>
+                    <div class="col-md-2"><input type="text" id="cliente" value="{{Input::get('cliente')}}" class="search_anagrafica" name="cliente" ></div>
                     <div class="col-md-1 ">TITOLO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('titolo')}}" id="titolo" name="titolo" ></div>
                     <div class="col-md-2 ">CONFERMA ORDINE</div>
