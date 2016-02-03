@@ -25,6 +25,7 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::get('/users', 'UserController@index');
 Route::get('/adduser', 'UserController@adduser');
 Route::get('/edituser', 'UserController@edituser');
+Route::get('/loaduser', 'UserController@loaduser');
 Route::post('/createuser', 'UserController@createuser');
 Route::get('/deleteuser', 'UserController@deleteuser');
 

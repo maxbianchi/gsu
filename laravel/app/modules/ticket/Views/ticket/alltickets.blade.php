@@ -40,7 +40,7 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('tickettelecom')}}" id="tickettelecom" name="tickettelecom" ></div>
                     <div class="col-md-2">STATO</div>
                     <div class="col-md-2"><select name="stato">
-                            <option value="">TUTTI</option>
+                            <option value="0">TUTTI</option>
                             <option value="-1" {{Input::get('stato') == '-1' ? 'selected="selected"' : ""  }}>NON ASSEGNATO</option>
                             <option value="-2" {{Input::get('stato') == '-2' ? 'selected="selected"' : ""  }}>ARCHIVIATO</option>
                             @foreach($stati as $stato)
@@ -88,7 +88,7 @@
                 <ul class="nav nav-list">
                     <li><label class="tree-toggler nav-header">Stato</label>
                         <ul class="nav nav-list tree">
-                            <li><a href="{{url('/ticket/alltickets').'?stato=-1'}}">NON ASSEGNATI</a></li>
+                            <li><a href="{{url('/ticket/alltickets').'?stato=0'}}">IN GESTIONE</a></li>
                             <li><a href="{{url('/ticket/alltickets').'?stato=-2'}}">ARCHIVIATI</a></li>
                         </ul>
                     </li>

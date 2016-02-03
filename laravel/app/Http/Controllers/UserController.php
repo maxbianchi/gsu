@@ -53,6 +53,14 @@ class UserController extends Controller {
         return view('users.addusers', ['utenti' => $utenti, 'request' => $request]);
     }
 
+    public function loaduser()
+    {
+        $id = Input::get("id");
+        $model = new Utenti();
+        $user = $model->getUser($id);
+        return json_encode($user);
+    }
+
     public function createuser()
     {
         $codutente = Input::get('codutente');

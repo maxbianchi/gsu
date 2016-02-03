@@ -108,6 +108,19 @@
                 $("#username").val(value);
             });
 
+            //Load data for edit user
+            var id = '{{Input::get("id")}}';
+            $.get("{{ url('/loaduser') }}", {id: id})
+                    .done(function (json) {
+                        var parsed = JSON.parse(json);
+                        console.log(parsed);
+                        $("#username").val(parsed[0].UTENTE);
+                        $("#password").val(parsed[0].PASSWORD);
+                        $("#livello").val(parsed[0].LIVELLO).change();
+                        $("#codutente").val(parsed[0].CODUTENTE).change();
+                        $("#id").val(parsed[0].IDUTENTE);
+                    });
+
         });
     </script>
 @endsection

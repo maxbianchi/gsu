@@ -70,6 +70,22 @@ class Utenti extends Model {
         return $utente;
     }
 
+    public function getUser($id = ""){
+        $sql = "SELECT U.IDUTENTE, U.UTENTE, U.PASSWORD, U.LIVELLO,U.CODUTENTE  FROM gsu.dbo.UTENTI U WHERE U.IDUTENTE = '$id' ";
+        $utente  = DB::select($sql);
+
+        foreach($utente as $key => $value){
+            foreach($value as $key2 => $value2){
+                $utente[$key][$key2] = utf8_encode($value2);
+            }
+        }
+
+        /*if(count($utente) == 1)
+            $utente = $utente[0];*/
+
+        return $utente;
+    }
+
     public function getAllUserFromMago(){
         $utenti  = DB::select("SELECT A.SOGGETTO, A.DESCRIZIONE, A.INDIRIZZO, A.LOCALITA, A.PROVINCIA, A.EMAIL,A.PARTITAIVA  FROM UNIWEB.dbo.AGE10 A WHERE A.DESCRIZIONE != '' ORDER BY DESCRIZIONE");
         $utente = [];

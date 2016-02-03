@@ -89,7 +89,7 @@
                 <ul class="nav nav-list">
                     <li><label class="tree-toggler nav-header">Stato</label>
                         <ul class="nav nav-list tree">
-                            <li><a href="{{url('/ticket/alltickets').'?stato=-1'}}">NON ASSEGNATI</a></li>
+                            <li><a href="{{url('/ticket/alltickets').'?stato=0'}}">IN GESTIONE</a></li>
                             <li><a href="{{url('/ticket/alltickets').'?stato=-2'}}">ARCHIVIATI</a></li>
                         </ul>
                     </li>
@@ -564,7 +564,7 @@
                                 <td>
                                     <select name="stato" class="stato" style="background-color: #FFC;">
                                         @foreach($stati as $stato)
-                                            <option value="{{$stato['IDSTATO'] or ""}}" {{isset($res['IDSTATO']) && $res['IDSTATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
+                                            <option value="{{$stato['IDSTATO'] or "0"}}" {{isset($res['IDSTATO']) && $res['IDSTATO'] == $stato['IDSTATO'] ? 'selected="selected"' : ""  }}>{{$stato['STATO'] or ""}}</option>
                                         @endforeach
                                     </select>
                                 </td>
