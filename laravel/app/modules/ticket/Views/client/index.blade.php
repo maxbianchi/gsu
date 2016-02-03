@@ -75,6 +75,12 @@
         <div class="well" style="width:100%; padding: 8px 0;">
             <div style="overflow-y: scroll; overflow-x: hidden; height: 100%;">
                 <ul class="nav nav-list">
+                    <li><label class="tree-toggler nav-header">Stato</label>
+                        <ul class="nav nav-list tree">
+                            <li><a href="{{url('/ticket/alltickets').'?stato=0'}}">IN GESTIONE</a></li>
+                            <li><a href="{{url('/ticket/alltickets').'?stato=-2'}}">ARCHIVIATI</a></li>
+                        </ul>
+                    </li>
                     <li><label class="tree-toggler nav-header">Categoria</label>
                         <ul class="nav nav-list tree">
                             @foreach($categorie as $categoria)
