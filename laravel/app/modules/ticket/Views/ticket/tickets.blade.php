@@ -22,9 +22,9 @@
             <form method="GET" action="{{url('/ticket/alltickets')}}" id="form" name="form_search">
                 <div class="row">
                     <div class="col-md-1 soggetto">CLIENTE</div>
-                    <div class="col-md-2"><input type="text" id="cliente" value="{{Input::get('cliente')}}" class="search_anagrafica" name="cliente" ></div>
+                    <div class="col-md-2"><input type="text"value="{{Input::get('cliente')}}" class="search_anagrafica locked" name="cliente" ></div>
                     <div class="col-md-1 ">TITOLO</div>
-                    <div class="col-md-2"><input type="text" value="{{Input::get('titolo')}}" id="titolo" name="titolo" ></div>
+                    <div class="col-md-2"><input type="text" value="{{Input::get('titolo')}}" id="titolo" name="titolo"></div>
                     <div class="col-md-2 ">CONFERMA ORDINE</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('conferma_ordine')}}" id="conferma_ordine" name="conferma_ordine" ></div>
                     <div class="col-md-3"></div>
@@ -132,8 +132,8 @@
                                 <tr class="soggetto">
                                     <td>CLIENTE *</td>
                                     <td>
-                                        <input type="text" value="" name="search_cliente" id="search_cliente" >
-                                        <select name="cliente" id="cliente">
+                                        <input type="text" value="" name="search_cliente" id="search_cliente" class="locked">
+                                        <select name="cliente" id="cliente" class="locked">
                                             <option value="">-----</option>
                                             @foreach($users as $user)
                                                 <option value="{{$user['SOGGETTO']}}" {{isset($res['SOGGETTO_CODICE']) && $res['SOGGETTO_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']." - ". $user['SOGGETTO']." - PIVA: ".$user['PARTITAIVA']}}</option>
@@ -144,8 +144,8 @@
                                 <tr class="cliente">
                                     <td>CLIENTE FINALE</td>
                                     <td>
-                                        <input type="text" value="" name="search_cliente_finale" id="search_cliente_finale" >
-                                        <select name="cliente_finale" id="cliente_finale">
+                                        <input type="text" value="" name="search_cliente_finale" id="search_cliente_finale" class="locked">
+                                        <select name="cliente_finale" id="cliente_finale" class="locked">
                                             <option value="">-----</option>
                                             @foreach($users as $user)
                                                 <option value="{{$user['SOGGETTO']}}" {{isset($res['CLIENTE_FINALE_CODICE']) && $res['CLIENTE_FINALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']." - ". $user['SOGGETTO']." - PIVA: ".$user['PARTITAIVA']}}</option>
@@ -156,8 +156,8 @@
                                 <tr class="destinatarioabituale">
                                     <td>UBICAZIONE IMPIANTO</td>
                                     <td>
-                                        <input type="text" value="" name="search_ubicazione" id="search_ubicazione" >
-                                        <select name="ubicazione_impianto" id="ubicazione_impianto">
+                                        <input type="text" value="" name="search_ubicazione" id="search_ubicazione" class="locked">
+                                        <select name="ubicazione_impianto" id="ubicazione_impianto" class="locked">
                                             <option value="">-----</option>
                                             @foreach($users as $user)
                                                 <option value="{{$user['SOGGETTO']}}" {{isset($res['DESTINATARIOABITUALE_CODICE']) && $res['DESTINATARIOABITUALE_CODICE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']." - ". $user['SOGGETTO']." - PIVA: ".$user['PARTITAIVA']}}</option>
@@ -168,8 +168,8 @@
                                 <tr class="sedeoperativa">
                                     <td>SEDE OPERATIVA</td>
                                     <td>
-                                        <input type="text" value="" name="search_sedeoperativa" id="search_sedeoperativa" >
-                                        <select name="sedeoperativa" id="sedeoperativa">
+                                        <input type="text" value="" name="search_sedeoperativa" id="search_sedeoperativa" class="locked">
+                                        <select name="sedeoperativa" id="sedeoperativa" class="locked">
                                             <option value="">-----</option>
                                             @foreach($sedioperative as $sede)
                                                 <option value="{{$sede['CustSupp']}}" {{isset($res['SEDE_OPERATIVA']) && $res['SEDE_OPERATIVA'] == $sede['CustSupp'] ? 'selected="selected"' : ""  }}>{{$sede['CompanyName']." - ".$sede['Address']." - ".$sede['City']." - ".$sede['County']." - ".$sede['CustSupp']}}</option>
@@ -361,8 +361,8 @@
                                     <tr class="soggetto">
                                         <td>FORNITORE</td>
                                         <td style="background-color:#FFC">
-                                            <input type="text" value="" name="search_fornitore" id="search_fornitore" >
-                                            <select name="fornitore" id="fornitore">
+                                            <input type="text" value="" name="search_fornitore" id="search_fornitore" class="locked">
+                                            <select name="fornitore" id="fornitore" class="locked">
                                                 <option value="">-----</option>
                                                 @foreach($users as $user)
                                                     <option value="{{$user['SOGGETTO']}}" {{isset($res['FORNITORE']) && $res['FORNITORE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']." - ".$user['SOGGETTO']." - PIVA: ".$user['PARTITAIVA']}}</option>

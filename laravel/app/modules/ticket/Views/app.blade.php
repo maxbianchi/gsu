@@ -223,6 +223,7 @@
             @if (Session::get('livello')  == 3)
                 $("#cliente").attr("disabled", "disabled");
                 $("#cliente_finale").attr("disabled", "disabled");
+                $(".locked").attr("disabled", "disabled");
             @endif;
 
         });
