@@ -6370,7 +6370,7 @@ table.tbl_clienti td{
 html,body {height:100%; margin: 0;}
 #container {min-height:100%;height:auto !important; /*per gli altri browser*/height:100%; /*per IE 6*/ margin-bottom:-50px;}
 #content { padding-bottom:50px; }
-#footer{height:50px;
+#footer{height:90px;
     width: 100%;
     background-color: #F5F5F5;
     border-color: #E7E7E7;
@@ -6477,3 +6477,10 @@ table.servizi_collegati tr td {
     font-size: 12px;
 }
 
+.footer_td{
+    font-size:10px;
+    font-family:'Century Gothic';
+    border-left:1px solid;
+    text-align:left;
+    padding-left:5px;
+}

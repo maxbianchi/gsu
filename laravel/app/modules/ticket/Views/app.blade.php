@@ -242,6 +242,38 @@
         Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>
     </div>-->
 
-
+<div id="footer" class="container_12">
+    <div class="container">
+        <div class="row">
+            <table>
+                <tr>
+                    <td style="width:20%;text-align:left;border:none !important;" valign="top" class="footer_td">
+                        <img src="{{ URL::asset('images/logo1.png') }}" style="width:60%;">
+                    </td>
+                    <td style="width:20%;" valign="top" class="footer_td">
+                        <strong>Uniweb Srl</strong>
+                        - Cantu' (CO) - 22063 <br> Via Milano, 51 <br> <a href="{{url('/cookie-policy')}}">Cookie policy</a>
+                    </td>
+                    <td style="width:20%;" valign="top" class="footer_td">
+                        Tel. +39 031 701728 r.a. <br> Fax +39 031 7073755  <br> E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> <br> Pec: info@pec.uniweb.it
+                    </td>
+                    <td style="width:20%;" valign="top" class="footer_td">
+                        CF / P.IVA 02478160134 <br> Reg. Imp. di Como n. 02478160134 <br> Cap. Soc.: € 15.000,00 i.v. <br> CCIAA Como REA n. 262922
+                    </td>
+                    <td style="width:20%;" class="footer_td">
+                        <img src="{{ URL::asset('images/iso.png') }}" style="width:90%;float:right;" valign="top">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!--<strong>Uniweb Srl</strong>
+        - Cantú (CO) - 22063 - Via Milano, 51 - CF / P.IVA 02478160134
+        <br>
+        Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
+        <a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
+        <br>
+        Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>-->
+</div>
 </body>
 </html>
