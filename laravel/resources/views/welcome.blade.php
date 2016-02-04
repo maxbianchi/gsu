@@ -28,7 +28,7 @@
                             <button type="button" class="btn btn-primary" onclick="window.open('{{url('/gsu/index')}}' ,'_blank')">GSU</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
-                            <img style="width:180px;" src="{{ URL::asset('images/logo.png') }}">
+                            <img style="width:130px;margin-top:-10px;" src="{{ URL::asset('images/logo_slogan.png') }}">
                         </div>
                         <!--/**/-->
                         <div class="col-md-1 col-md-offset-3">
