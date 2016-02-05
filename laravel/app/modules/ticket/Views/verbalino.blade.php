@@ -63,7 +63,27 @@
             <br><br>
 
             <div id="toPrint" style="width:595pt; height:842pt;">
+<style>
+    #container {min-height:100%;height:auto !important; /*per gli altri browser*/height:100%; /*per IE 6*/ margin-bottom:-50px;}
+    #content { padding-bottom:50px; }
+    #footer{height:90px;
+        width: 100%;
+        background-color: #F5F5F5;
+        border-color: #E7E7E7;
+        text-align: center;
+        color: #646464;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 12px;}
 
+    .footer_td{
+        font-size:10px;
+        font-family:'Century Gothic';
+        border-left:1px solid;
+        text-align:left;
+        padding-left:5px;
+    }
+
+</style>
                 <table style="width:100%;font-family: Arial; font-size:10px;" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top" style="width:30%;">
@@ -434,8 +454,33 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-
-                            <div class="container_12" style="text-align: center;">
+                            <div id="footer" class="container_12">
+                                <div class="container">
+                                    <div class="row">
+                                        <table>
+                                            <tr>
+                                                <td style="width:20%;text-align:left;border:none !important;" valign="top" class="footer_td">
+                                                    <img src="{{ URL::asset('images/logo1.png') }}" style="width:60%;">
+                                                </td>
+                                                <td style="width:20%;" valign="top" class="footer_td">
+                                                    <strong>Uniweb Srl</strong><br>
+                                                    Cantu' (CO) - 22063 <br> Via Milano, 51 <br> <a href="{{url('/cookie-policy')}}">Cookie policy</a>
+                                                </td>
+                                                <td style="width:20%;" valign="top" class="footer_td">
+                                                    Tel. +39 031 701728 r.a. <br> Fax +39 031 7073755  <br> E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> <br> Pec: info@pec.uniweb.it
+                                                </td>
+                                                <td style="width:20%;" valign="top" class="footer_td">
+                                                    CF / P.IVA 02478160134 <br> Reg. Imp. di Como n. 02478160134 <br> Cap. Soc.: € 15.000,00 i.v. <br> CCIAA Como REA n. 262922
+                                                </td>
+                                                <td style="width:20%;" class="footer_td">
+                                                    <img src="{{ URL::asset('images/iso.png') }}" style="width:90%;float:right;" valign="top">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="container_12" style="text-align: center;">
                                 <table>
                                     <tr>
                                         <td style="width:100pt;text-align:left;" valign="top">
@@ -456,7 +501,7 @@
                                     </tr>
                                 </table>
 
-                            </div>
+                            </div>-->
 
                         </td>
                     </tr>

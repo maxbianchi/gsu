@@ -52,7 +52,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="form-group">
-                        <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico Voip</b></div>
+                        <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico Voip e CSE</b></div>
                         <div class="col-md-6 pull-right text-right">Utilizza il servizio ORION per <b>monitorare i tuoi servizi di connettivit&agrave;</b></div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <img style="width:260px;" src="{{ URL::asset('images/orion.gif') }}">
+                            <img style="width:100px;" src="{{ URL::asset('images/orion.gif') }}">
                         </div>
                         <!--/**/-->
 
@@ -123,6 +123,44 @@
                             </div>
                         @endif
                         <!--/**/-->
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="form-group">
+                        <div class="col-md-5 col-md-offset-1"><b>Unithings</b></div>
+                        <div class="col-md-4 col-md-offset-2">Unistore</b></div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <!--/**/-->
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-primary unithings" onclick="window.open('{{url('http://www.unithings.it')}}' ,'_blank')">Unithings</button>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1">
+                            <img style="width:150px;" src="{{ URL::asset('images/unithings.png') }}">
+                        </div>
+                        <!--/**/-->
+                        <div class="col-md-1 col-md-offset-3" >
+                            <button type="button" class="btn btn-primary unistore" onclick="window.open('{{url('https://controlpanel.cloud.uniweb.it/single.html')}}' ,'_blank')">UNISTORE</button>
+                        </div>
+
+                        <div class="col-md-2 col-md-offset-1">
+                            <!--<img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">-->
+                        </div>
+
+                                    <!--/**/-->
 
 
                     </div>

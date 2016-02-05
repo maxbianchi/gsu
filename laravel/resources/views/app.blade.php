@@ -35,7 +35,6 @@
                 <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/logo_slogan.png') }}" alt="Uniweb 4.0 Dashboard" style="width:150px;" title="Uniweb 4.0 Dashboard"></a>
 
                 <div style="margin-left: 40%;position: absolute;top: 15px;"><b>{{utf8_encode(Session::get('user')['username']." - ".Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}</b></div>
-                <img src="{{ URL::asset('images/unithings.png') }}" alt="Unithings" style="width:120px;margin-left: 30%;position: absolute;top: 35px;" title="Unithings">
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -96,13 +95,6 @@
         </table>
         </div>
         </div>
-        <!--<strong>Uniweb Srl</strong>
-        - Cantú (CO) - 22063 - Via Milano, 51 - CF / P.IVA 02478160134
-        <br>
-        Tel. +39 031 701728 r.a. - Fax +39 031 7073755 - E-mail:
-        <a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
-        <br>
-        Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>-->
     </div>
 
 
