@@ -578,10 +578,10 @@
                         </table>
 
                         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="SOGGETTO_CODICE" value="{{isset($res['SOGGETTO_CODICE']) ? $res['SOGGETTO_CODICE'] : ""  }}">
-                        <input type="hidden" name="CLIENTE_FINALE_CODICE" value="{{isset($res['CLIENTE_FINALE_CODICE']) ? $res['CLIENTE_FINALE_CODICE'] : ""  }}">
-                        <input type="hidden" name="DESTINATARIOABITUALE_CODICE" value="{{isset($res['DESTINATARIOABITUALE_CODICE']) ? $res['DESTINATARIOABITUALE_CODICE'] : ""  }}">
-                        <input type="hidden" name="SEDE_OPERATIVA" value="{{isset($res['SEDE_OPERATIVA']) ? $res['SEDE_OPERATIVA'] : ""  }}">
+                        <input type="hidden" id="SOGGETTO_CODICE" name="SOGGETTO_CODICE" value="{{isset($res['SOGGETTO_CODICE']) ? $res['SOGGETTO_CODICE'] : ""  }}">
+                        <input type="hidden" id="CLIENTE_FINALE_CODICE" name="CLIENTE_FINALE_CODICE" value="{{isset($res['CLIENTE_FINALE_CODICE']) ? $res['CLIENTE_FINALE_CODICE'] : ""  }}">
+                        <input type="hidden" id="DESTINATARIOABITUALE_CODICE" name="DESTINATARIOABITUALE_CODICE" value="{{isset($res['DESTINATARIOABITUALE_CODICE']) ? $res['DESTINATARIOABITUALE_CODICE'] : ""  }}">
+                        <input type="hidden" id="SEDE_OPERATIVA" name="SEDE_OPERATIVA" value="{{isset($res['SEDE_OPERATIVA']) ? $res['SEDE_OPERATIVA'] : ""  }}">
                         <input type="hidden" name="idattivita" id="idattivita" value="{{$idattivita or ""}}">
                     </form>
 
@@ -702,16 +702,6 @@
                         });
             })
 
-            function h(e) {
-                $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
-            }
-            $('textarea').each(function () {
-                h(this);
-            }).on('input', function () {
-                h(this);
-            });
-
-
             $(".salva-attivita").click(function(){
                 //Verifico che siano settati tempo e tecnico
                 var msg = "";
@@ -771,10 +761,22 @@
                         });
             });
 
+            $("#cliente_finale").change(function(){
+                $("#CLIENTE_FINALE_CODICE").val($("#cliente_finale").val());
+            });
+            $("#ubicazione_impianto").change(function(){
+                $("#DESTINATARIOABITUALE_CODICE").val($("#ubicazione_impianto").val());
+            });
+            $("#sedeoperativa").change(function(){
+                $("#SEDE_OPERATIVA").val($("#sedeoperativa").val());
+            });
+
+
             $("#cliente").change(function(){
                 $.post( "{{url('/ticket/getCategorie')}}", $(this).closest('form').serialize())
                         .done(function( data ) {
                             $("#sedeoperativa").val($("#cliente").val()).change();
+                            $("#SOGGETTO_CODICE").val($("#cliente").val());
                             data = JSON.parse(data);
                             var $select = $('#categoria');
                             $select.find('option').remove();
@@ -860,6 +862,15 @@
 
                         });
 
+            });
+
+            function h(e) {
+                $(e).css({'height':'auto','overflow-y':'hidden'}).height(e.scrollHeight);
+            }
+            $('textarea').each(function () {
+                h(this);
+            }).on('input', function () {
+                h(this);
             });
 
         });
