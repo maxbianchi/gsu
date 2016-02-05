@@ -511,7 +511,7 @@
             <input type="hidden" name="idattivita" value="{{Input::get('idattivita')}}">
             <input type="hidden" name="macchina_funzione_no" value="0">
             <input type="hidden" name="macchina_funzione_si" value="1">
-            <input type="button" value="SALVA" onclick="toPDF();" style="margin-top:150px;">
+            <input type="button" value="SALVA" onclick="toPDF();" style="margin-top:280px;">
         </form>
 
     </div>
