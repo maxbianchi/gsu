@@ -452,13 +452,13 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <div id="footer" class="container_12">
+                            <div  class="container_12">
                                 <div class="container">
                                     <div class="row">
                                         <table>
                                             <tr>
                                                 <td style="width:20%;text-align:left;border:none !important;" valign="top" class="footer_td">
-                                                    <img src="{{ URL::asset('images/logo1.png') }}" style="width:60%;">
+                                                    <img src="{{ URL::asset('images/logo1.png') }}" style="width:90%;">
                                                 </td>
                                                 <td style="width:20%;" valign="top" class="footer_td">
                                                     <strong>Uniweb Srl</strong><br>
