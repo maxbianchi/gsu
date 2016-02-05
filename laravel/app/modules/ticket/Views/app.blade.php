@@ -242,7 +242,9 @@
         Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>
     </div>-->
 
-<div id="footer" class="container_12">
+<?php
+    if(Request::segment(2) != "chiuditicket"): ?>
+<div class="container_12">
     <div class="container">
         <div class="row">
             <table>
@@ -267,6 +269,8 @@
             </table>
         </div>
     </div>
+</div>
+    <?php endif;?>
     <!--<strong>Uniweb Srl</strong>
         - Cantú (CO) - 22063 - Via Milano, 51 - CF / P.IVA 02478160134
         <br>
@@ -274,6 +278,6 @@
         <a href="mailto:info@uniweb.it">info@uniweb.it</a> Pec: info@pec.uniweb.it
         <br>
         Reg. Imp. di Como n° 02478160134 - Capitale Sociale: € 15.000,00 i.v. - CCIAA Como REA n° 262922 - <a href="{{url('/cookie-policy')}}">Cookie policy</a>-->
-</div>
+
 </body>
 </html>

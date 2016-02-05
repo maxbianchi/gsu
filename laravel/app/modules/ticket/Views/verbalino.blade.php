@@ -1,4 +1,4 @@
-<!--@extends('ticket::app')-->
+@extends('ticket::app')
 
 @section('content')
     <br><br>
@@ -64,8 +64,6 @@
 
             <div id="toPrint" style="width:595pt; height:842pt;">
 <style>
-    #container {min-height:100%;height:auto !important; /*per gli altri browser*/height:100%; /*per IE 6*/ margin-bottom:-50px;}
-    #content { padding-bottom:50px; }
     #footer{height:90px;
         width: 100%;
         background-color: #F5F5F5;
