@@ -35,6 +35,7 @@
                 <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/logo_slogan.png') }}" alt="Uniweb 4.0 Dashboard" style="width:150px;" title="Uniweb 4.0 Dashboard"></a>
 
                 <div style="margin-left: 40%;position: absolute;top: 15px;"><b>{{utf8_encode(Session::get('user')['username']." - ".Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}</b></div>
+                <img src="{{ URL::asset('images/unithings.png') }}" alt="Unithings" style="width:120px;margin-left: 30%;position: absolute;top: 35px;" title="Unithings">
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
