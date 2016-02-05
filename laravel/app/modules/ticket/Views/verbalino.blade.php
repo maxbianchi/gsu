@@ -1,4 +1,4 @@
-@extends('ticket::app')
+<!--@extends('ticket::app')-->
 
 @section('content')
     <br><br>
@@ -73,10 +73,10 @@
         text-align: center;
         color: #646464;
         font-family: Arial,Helvetica,sans-serif;
-        font-size: 12px;}
+        font-size: 8px;}
 
     .footer_td{
-        font-size:10px;
+        font-size:8px;
         font-family:'Century Gothic';
         border-left:1px solid;
         text-align:left;
