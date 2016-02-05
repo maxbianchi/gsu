@@ -65,13 +65,13 @@
             <div id="toPrint" style="width:595pt; height:842pt;">
 <style>
     #footer{height:90px;
-        width: 100%;
-        background-color: #F5F5F5;
+        width: 595pt;
         border-color: #E7E7E7;
         text-align: center;
         color: #646464;
         font-family: Arial,Helvetica,sans-serif;
-        font-size: 8px;}
+        font-size: 8px;
+        background-color: transparent !important}
 
     .footer_td{
         font-size:8px;
@@ -452,25 +452,25 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <div  class="container_12">
+                            <div id="footer" class="container_12">
                                 <div class="container">
                                     <div class="row">
                                         <table>
-                                            <tr>
-                                                <td style="width:20%;text-align:left;border:none !important;" valign="top" class="footer_td">
+                                            <tr style="width:100%;">
+                                                <td style="width:119pt;text-align:left;border:none !important;" valign="top" class="footer_td">
                                                     <img src="{{ URL::asset('images/logo1.png') }}" style="width:90%;">
                                                 </td>
-                                                <td style="width:20%;" valign="top" class="footer_td">
+                                                <td style="width:119pt;" valign="top" class="footer_td">
                                                     <strong>Uniweb Srl</strong><br>
                                                     Cantu' (CO) - 22063 <br> Via Milano, 51 <br> <a href="{{url('/cookie-policy')}}">Cookie policy</a>
                                                 </td>
-                                                <td style="width:20%;" valign="top" class="footer_td">
+                                                <td style="width:119pt;" valign="top" class="footer_td">
                                                     Tel. +39 031 701728 r.a. <br> Fax +39 031 7073755  <br> E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> <br> Pec: info@pec.uniweb.it
                                                 </td>
-                                                <td style="width:20%;" valign="top" class="footer_td">
+                                                <td style="width:119pt;" valign="top" class="footer_td">
                                                     CF / P.IVA 02478160134 <br> Reg. Imp. di Como n. 02478160134 <br> Cap. Soc.: € 15.000,00 i.v. <br> CCIAA Como REA n. 262922
                                                 </td>
-                                                <td style="width:20%;" class="footer_td">
+                                                <td style="width:119pt;" class="footer_td">
                                                     <img src="{{ URL::asset('images/iso.png') }}" style="width:90%;float:right;" valign="top">
                                                 </td>
                                             </tr>
