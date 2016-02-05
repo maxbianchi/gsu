@@ -79,8 +79,8 @@
                     <img src="{{ URL::asset('images/logo1.png') }}" style="width:60%;">
                 </td>
                 <td style="width:20%;" valign="top" class="footer_td">
-                    <strong>Uniweb Srl</strong>
-                    - Cantu' (CO) - 22063 <br> Via Milano, 51 <br> <a href="{{url('/cookie-policy')}}">Cookie policy</a>
+                    <strong>Uniweb Srl</strong><br>
+                    Cantu' (CO) - 22063 <br> Via Milano, 51 <br> <a href="{{url('/cookie-policy')}}">Cookie policy</a>
                 </td>
                 <td style="width:20%;" valign="top" class="footer_td">
                     Tel. +39 031 701728 r.a. <br> Fax +39 031 7073755  <br> E-mail:<a href="mailto:info@uniweb.it">info@uniweb.it</a> <br> Pec: info@pec.uniweb.it
