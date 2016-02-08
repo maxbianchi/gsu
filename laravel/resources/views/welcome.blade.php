@@ -146,10 +146,10 @@
                     <div class="form-group">
                         <!--/**/-->
                         <div class="col-md-1">
-                            <button type="button" class="btn btn-primary unithings" onclick="window.open('{{url('http://www.unithings.it')}}' ,'_blank')">Unithings</button>
+                            <button type="button" class="btn btn-primary unithings" onclick="window.open('{{url('http://www.unithings.it')}}' ,'_blank')" >Unithings</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
-                            <img style="width:150px;" src="{{ URL::asset('images/unithings.png') }}">
+                            <img style="width:150px;position:relative;top:-10px;" src="{{ URL::asset('images/unithings.png') }}">
                         </div>
                         <!--/**/-->
                         <div class="col-md-1 col-md-offset-3" >
