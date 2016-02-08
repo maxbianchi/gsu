@@ -138,7 +138,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1"><b>Unithings</b></div>
-                        <div class="col-md-4 col-md-offset-2">Unistore</b></div>
+                        <div class="col-md-4 col-md-offset-2"><b>Unistore</b></div>
                     </div>
                 </div>
 
