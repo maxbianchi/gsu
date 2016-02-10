@@ -70,16 +70,26 @@
         <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
 
                 <tr>
-                    <td>COD MANUTENZIONE </td>
+                    <td>COD MANUTENZIONE</td>
                     <td class="manutenzione">{{$request['MANUTENZIONE'] or ""}}</td>
                 </tr>
                 <tr>
                     <td>TIPO SERVIZIO</td>
-                    <td><input type="text" name="tipo_servizio" value="{{$request['TIPO_SERVIZIO'] or ""}}"></td>
+                    <td><select name="tipo_servizio">
+                            <option value="Area Riservata" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Area Riservata" ? 'selected="selected"' : ""  }}>Area Riservata</option>
+                            <option value="Banca Sella" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Banca Sella" ? 'selected="selected"' : ""  }}>Banca Sella</option>
+                            <option value="Directory riservata" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Directory riservata" ? 'selected="selected"' : ""  }}>Directory riservata</option>
+                            <option value="FTP Negozio" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "FTP Negozio" ? 'selected="selected"' : ""  }}>FTP Negozio</option>
+                            <option value="Internet Emporium" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Internet Emporium" ? 'selected="selected"' : ""  }}>Internet Emporium</option>
+                            <option value="IP SAFE" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "IP SAFE" ? 'selected="selected"' : ""  }}>IP SAFE</option>
+
+                            <option value="Npm" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Npm" ? 'selected="selected"' : ""  }}>Npm</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>SERVER</td>
-                    <td><input type="text" name="server" value="{{$request['SERVER'] or ""}}"></td>
+                        <input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>DIRECTORY</td>
