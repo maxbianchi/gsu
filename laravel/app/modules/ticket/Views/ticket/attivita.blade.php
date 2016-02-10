@@ -150,8 +150,8 @@
                     <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td>NUMERO VERDE TECNICO</td>
+                    <td><input type="text" style="background-color: #FFC;" name="numero_verde_tecnico" id="numero_verde_tecnico" value="{{$request['NUMERO_VERDE_TECNICO'] or ""}}"></td></td>
                     <td>CARNET DISPONIBILI NR.</td>
                     <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value=""></td>
 

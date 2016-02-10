@@ -28,6 +28,7 @@ return [
 
 	//'default' => 'sqlsrv_ravennademo',
     'default' => 'sqlsrv_2',
+    //'default' => 'sqlsrv_produzione',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -88,7 +89,7 @@ return [
 			'schema'   => 'public',
 		],
 
-		'sqlsrv' => [
+		'sqlsrv_produzione' => [
 			'driver'   => 'sqlsrv',
 			'host'     => '172.27.13.14',
 			'database' => 'GSU',

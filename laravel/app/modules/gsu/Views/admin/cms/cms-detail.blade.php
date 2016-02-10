@@ -36,6 +36,10 @@
                     <td><input type="text" name="server" value="{{$request['SERVER_'] or ""}}"></td>
                 </tr>
                 <tr>
+                    <td>INDIRIZZO</td>
+                    <td><input type="text" name="indirizzo" value="{{$request['INDIRIZZO'] or ""}}"></td>
+                </tr>
+                <tr>
                     <td>TIPO ACCOUNT</td>
                     <td><input type="text" name="tipo_account" value="{{$request['TIPO_ACCOUNT'] or ""}}"></td>
                 </tr>

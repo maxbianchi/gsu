@@ -243,6 +243,7 @@
         <input type="hidden" name="cliente" value="{{$request['SOGGETTO_CODICE'] or ""}}">
         <input type="hidden" name="ubicazione" value="{{$request['DESTINATARIOABITUALE_CODICE'] or ""}}">
         <input type="hidden" name="tgu" value="{{$request['TGU'] or ""}}">
+        <input type="hidden" name="numeroverde" value="{{$request['N_VERDE']}}">
         <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
     </form>
 
