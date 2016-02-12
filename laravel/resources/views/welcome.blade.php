@@ -17,7 +17,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza i tuoi <b>servizi attivi</b></div>
-                        <div class="col-md-4 col-md-offset-2">Visualizza il tuo <b>traffico mobile</b></div>
+                        <div class="col-md-4 col-md-offset-2">Visualizza o apri i tuoi <b>Ticket</b></div>
                     </div>
                 </div>
 
@@ -31,17 +31,24 @@
                             <img style="width:130px;margin-top:-10px;" src="{{ URL::asset('images/logo_slogan.png') }}">
                         </div>
                         <!--/**/-->
-                        <div class="col-md-1 col-md-offset-3">
-                            <button type="button" class="btn btn-primary mobile">MOBILE</button>
-                        </div>
+                        @if (Session::get('livello')  == 1)
+                            <div class="col-md-1 col-md-offset-3" >
+                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/alltickets?stato=0&tecnico=').Session::get('idtecnico')}}' ,'_blank')">ATTIVITA/TICKET</button>
+                            </div>
 
-                        <div class="col-md-2 col-md-offset-1">
-                            <!--<img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">-->
-                            <img style="height:35px;" src="{{ URL::asset('images/logotim.png') }}">
-                        </div>
-                        <!--/**/-->
+                            <div class="col-md-2 col-md-offset-1">
+                                <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
+                            </div>
+                        @else
+                            <div class="col-md-1 col-md-offset-3" >
+                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/clientticket?stato=0')}}' ,'_blank')">ATTIVITA/TICKET</button>
+                            </div>
 
-
+                            <div class="col-md-2 col-md-offset-1">
+                                <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
+                            </div>
+                            @endif
+                                    <!--/**/-->
                     </div>
                 </div>
             </div>
@@ -53,7 +60,7 @@
                 <div class="panel-heading">
                     <div class="form-group">
                         <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico Voip e CSE</b></div>
-                        <div class="col-md-6 pull-right text-right">Utilizza il servizio ORION per <b>monitorare i tuoi servizi di connettivit&agrave;</b></div>
+                        <div class="col-md-4 col-md-offset-2">Visualizza il tuo <b>traffico mobile</b></div>
                     </div>
                 </div>
 
@@ -67,64 +74,15 @@
                             <img src="{{ URL::asset('images/logo_unigate.png') }}">
                         </div>
                         <!--/**/-->
-                        <div class="col-md-1 col-md-offset-3" >
-                            <button type="button" class="btn btn-primary orion">ORION</button>
+                        <div class="col-md-1 col-md-offset-3">
+                            <button type="button" class="btn btn-primary mobile">MOBILE</button>
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <img style="width:100px;" src="{{ URL::asset('images/orion.gif') }}">
+                            <!--<img style="width:180px;" src="{{ URL::asset('images/telecom-italia.gif') }}">-->
+                            <img style="height:35px;" src="{{ URL::asset('images/logotim.png') }}">
                         </div>
                         <!--/**/-->
-
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="row">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="form-group">
-                        <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico webfax</b></div>
-                        <div class="col-md-4 col-md-offset-2">Apri un <b>attivit&agrave; / Ticket</b></div>
-                    </div>
-                </div>
-
-                <div class="panel-body">
-                    <div class="form-group">
-                        <!--/**/-->
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-primary webfax">WEBFAX</button>
-                        </div>
-                        <div class="col-md-2 col-md-offset-1">
-                            <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
-                        </div>
-                        <!--/**/-->
-                        @if (Session::get('livello')  == 1)
-                        <div class="col-md-1 col-md-offset-3" >
-                            <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/alltickets?stato=0&tecnico=').Session::get('idtecnico')}}' ,'_blank')">ATTIVITA/TICKET</button>
-                        </div>
-
-                        <div class="col-md-2 col-md-offset-1">
-                            <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
-                        </div>
-                        @else
-                            <div class="col-md-1 col-md-offset-3" >
-                                <button type="button" class="btn btn-primary" onclick="window.open('{{url('/ticket/clientticket?stato=0')}}' ,'_blank')">ATTIVITA/TICKET</button>
-                            </div>
-
-                            <div class="col-md-2 col-md-offset-1">
-                                <img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">
-                            </div>
-                        @endif
-                        <!--/**/-->
-
-
                     </div>
                 </div>
 
@@ -146,7 +104,7 @@
                     <div class="form-group">
                         <!--/**/-->
                         <div class="col-md-1">
-                            <button type="button" class="btn btn-primary unithings" onclick="window.open('{{url('http://www.unithings.it')}}' ,'_blank')" >Unithings</button>
+                            <button type="button" class="btn btn-primary unithings" onclick="window.open('{{url('http://www.unithings.it')}}' ,'_blank')" >UNITHINGS</button>
                         </div>
                         <div class="col-md-2 col-md-offset-1">
                             <img style="width:150px;position:relative;top:-10px;" src="{{ URL::asset('images/unithings.png') }}">
@@ -160,7 +118,7 @@
                             <!--<img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">-->
                         </div>
 
-                                    <!--/**/-->
+                        <!--/**/-->
 
 
                     </div>
@@ -170,6 +128,42 @@
 
         </div>
 
+        <div class="row">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="form-group">
+                        <div class="col-md-5 col-md-offset-1">Visualizza il tuo <b>traffico webfax</b></div>
+                        <div class="col-md-6 pull-right text-right">Utilizza il servizio ORION per <b>monitorare i tuoi servizi di connettivit&agrave;</b></div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        <!--/**/-->
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-primary webfax">WEBFAX</button>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1">
+                            <img style="width:190px;" src="{{ URL::asset('images/webfax.png') }}">
+                        </div>
+                        <!--/**/-->
+                        <div class="col-md-1 col-md-offset-3" >
+                            <button type="button" class="btn btn-primary orion">ORION</button>
+                        </div>
+
+                        <div class="col-md-2 col-md-offset-1">
+                            <img style="width:100px;" src="{{ URL::asset('images/orion.gif') }}">
+                        </div>
+                        <!--/**/-->
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
 
