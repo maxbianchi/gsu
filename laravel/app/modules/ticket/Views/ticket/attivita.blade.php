@@ -382,6 +382,7 @@
                         $.post( "{{url('/ticket/getCategorie')}}", $("form#form").serialize())
                                 .done(function( data ) {
                                     $("#sedeoperativa").val($("#cliente").val()).change();
+                                    $("#sedeoperativa").attr('disabled',true);
                                     data = JSON.parse(data);
                                     var $select = $('#categoria');
                                     $select.find('option').remove();
@@ -473,6 +474,7 @@
                     $("#ubicazione_impianto").val('{{Input::get('ubicazione')}}').trigger("change");
                     $("#tgu").val('{{Input::get('tgu')}}').trigger("change");
                     $("#ticket_disponibili").val(0);
+                    $("#sedeoperativa").attr('disabled',true);
                     if($("#tipologia_assistenza").val() == "TICKET") {
                         $.get("{{url('/ticket/getTicketDisponibili')}}", {
                             categoria: $("#categoria").val(),
