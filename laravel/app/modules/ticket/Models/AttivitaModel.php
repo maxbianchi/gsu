@@ -158,14 +158,15 @@ class AttivitaModel extends Model
         $telefono_fornitore = Input::get("telefonofornitore");
         $fornitore = Input::get("fornitore");
         $sedeoperativa = Input::get("sedeoperativa");
+        $emailfornitore = Input::get("emailfornitore");
 
         $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request = DB::select($sql);
         if (count($request) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato,in_garanzia,ordine_fornitore,nome_fornitore,telefono_fornitore,fornitore,sede_operativa) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 ,$in_garanzia,'$ordine_fornitore','$nome_fornitore','$telefono_fornitore','$fornitore','$sedeoperativa' )";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato,in_garanzia,ordine_fornitore,nome_fornitore,telefono_fornitore,fornitore,sede_operativa,email_fornitore) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 ,$in_garanzia,'$ordine_fornitore','$nome_fornitore','$telefono_fornitore','$fornitore','$sedeoperativa','$emailfornitore' )";
             DB::insert($sql);
         } else {
-            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio', in_garanzia=$in_garanzia, ordine_fornitore='$ordine_fornitore',nome_fornitore='$nome_fornitore',telefono_fornitore='$telefono_fornitore',fornitore='$fornitore',sede_operativa='$sedeoperativa' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio', in_garanzia=$in_garanzia, ordine_fornitore='$ordine_fornitore',nome_fornitore='$nome_fornitore',telefono_fornitore='$telefono_fornitore',fornitore='$fornitore',sede_operativa='$sedeoperativa',email_fornitore='$emailfornitore' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
 
@@ -250,6 +251,7 @@ SELECT
         A.TELEFONO_FORNITORE,
         A.FORNITORE,
         A.SEDE_OPERATIVA,
+        A.EMAIL_FORNITORE,
         CONVERT(VARCHAR(10),V.DATA_INTERVENTO,105 ) DATA_INTERVENTO
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
@@ -360,6 +362,7 @@ SELECT
         A.TELEFONO_FORNITORE,
         A.FORNITORE,
         A.SEDE_OPERATIVA,
+        A.EMAIL_FORNITORE,
         CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
         CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
         FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
