@@ -259,8 +259,14 @@
         <div class="tab-pane" id="tre"><h1>Servizio</h1>
             <table border="0" class="tabella dataTable table table-striped table-bordered display no-footer detail">
                 <tr>
-                    <td>TGU / IMEI / TEL</td>
+                    <td>TGU</td>
                     <td><input type="text" style="background-color: #FFC;" name="tgu" id="tgu" value="{{$request['TGU'] or ""}}"></td>
+                    <td>IMEI</td>
+                    <td><input type="text" style="background-color: #FFC;" name="imei" id="imei" value="{{$request['IMEI'] or ""}}"></td>
+                </tr>
+                <tr>
+                    <td>TEL</td>
+                    <td><input type="text" style="background-color: #FFC;" name="tel" id="tel" value="{{$request['TEL'] or ""}}"></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>

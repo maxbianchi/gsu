@@ -123,15 +123,17 @@ class AttivitaController extends MainController {
 
 
     public function tickets(){
+        $idattivita = Input::get("idattivita");
         $model = new Utenti();
         $users = $model->getAllUserFromMago();
         $model = new AttivitaModel();
         $sedioperative = $model->getAllSedieOperative();
-        $result = $model->getTickets();
+        $result = $model->getTickets($idattivita);
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
         $categorie = $model->getAllCategorie();
-        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie,'sedioperative' => $sedioperative]);
+        $singole_attivita = $model->getSingoleAttivita($idattivita);
+        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie,'sedioperative' => $sedioperative, 'singole_attivita' => $singole_attivita ]);
     }
 
     public function getSingleUser(){
@@ -151,6 +153,11 @@ class AttivitaController extends MainController {
     public function getEmailCliente(){
         $model = new AttivitaModel();
         return $model->getEmailCliente();
+    }
+
+    public function getEmailFornitore(){
+        $model = new AttivitaModel();
+        return $model->getEmailFornitore();
     }
 
     public function mailAperturaTicket(){

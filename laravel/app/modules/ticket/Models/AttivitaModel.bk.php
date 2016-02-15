@@ -307,16 +307,23 @@ EOF;
 
     }
 
-    public function getTickets($idattivita)
+    public function getTickets()
     {
         $soggetto = Input::get("cliente");
+        $stato = Input::get("stato");
+        $tecnico = Input::get("tecnico");
+        $tgu = Input::get("tgu");
+        $tickettelecom = Input::get("tickettelecom");
+        $idattivita = Input::get('idattivita');
+        $categoria = Input::get('categoria');
+
         $sql = <<<EOF
 SELECT
         A.IDATTIVITA,
-        A.TICKETTELECOM,
+        TICKETTELECOM,
         T1.DESCRIZIONE APERTODA,
         T2.DESCRIZIONE INCARICOA,
-        A.TGU,
+        TGU,
         CONVERT(VARCHAR(10),A.APERTAIL,105 ) APERTAIL,
         CONVERT(VARCHAR(10),A.APERTAIL,108 ) APERTAIL_ORA,
         CONVERT(VARCHAR(10),A.CHIUSAIL,105 ) CHIUSAIL,
@@ -324,8 +331,8 @@ SELECT
         A.APERTODA IDAPERTODA,
         A.INCARICOA IDINCARICOA,
         C.DESCRIZIONE,
-        A.TITOLO,
-        A.MOTIVO,
+        TITOLO,
+        MOTIVO,
         ST.IDSTATO,
         ST.STATO,
         A.SOGGETTO SOGGETTO_CODICE,
@@ -343,6 +350,9 @@ SELECT
         A2.PROVINCIA		AS CLIENTE_PROVINCIA,
         A.SOGGETTO,
         A.UBICAZIONE,
+        S.DESCRIZIONE,
+        T3.DESCRIZIONE INCARICOA_ATTIVITA,
+        S.TEMPO,
         A.NOME_REFERENTE,
         A.EMAIL_REFERENTE,
         A.TELEFONO_REFERENTE,
@@ -358,59 +368,51 @@ SELECT
         A.SEDE_OPERATIVA,
         A.EMAIL_FORNITORE,
         A.IMEI,
-        A.TEL
-        FROM TICKET.dbo.ATTIVITA A
+        A.TEL,
+        CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL,
+        CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA
+        FROM TICKET.dbo.ATTIVITA A LEFT JOIN TICKET.dbo.SINGOLE_ATTIVITA S ON A.IDATTIVITA = S.IDATTIVITA
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
         LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
         LEFT JOIN TICKET.dbo.TECNICI T1 ON A.apertoda = T1.IDTECNICO
         LEFT JOIN TICKET.dbo.TECNICI T2 ON A.incaricoa = T2.IDTECNICO
+		LEFT JOIN TICKET.dbo.TECNICI T3 ON S.incaricoa = T3.IDTECNICO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON A.SOGGETTO = A1.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A3 ON A.CLIENTE_FINALE = A3.SOGGETTO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A2 ON A.UBICAZIONE = A2.SOGGETTO
-        WHERE IDATTIVITA='$idattivita'
+        WHERE 1 = 1
 EOF;
         if (!empty($soggetto))
             $sql .= " AND REPLACE(A1.DESCRIZIONE,'''', '') like '%$soggetto%'";
+        if (!empty($stato) && $stato != "") {
+            if ($stato == -1)
+                $sql .= " AND A.INCARICOA IS NULL OR A.INCARICOA = 0";
+            else
+                $sql .= " AND A.STATO = '$stato'";
+        }
+        if (!empty($tecnico))
+            $sql .= " AND A.INCARICOA = '$tecnico'";
+        if (!empty($tgu))
+            $sql .= " AND A.TGU = '$tgu'";
+        if (!empty($tickettelecom))
+            $sql .= " AND A.TICKETTELECOM = $tickettelecom";
+        if (!empty($idattivita))
+            $sql .= " AND A.IDATTIVITA = $idattivita";
+        if (!empty($categoria))
+            $sql .= " AND A.IDCATEGORIA = '$categoria''";
+
         $sql .= " ORDER BY A.STATO, A1.DESCRIZIONE";
 
         $request = DB::select($sql);
-        return $request[0];
-
-    }
-
-    public function getSingoleAttivita($idattivita){
-        $sql = "SELECT *,CONVERT(VARCHAR(10),S.INSERITOIL,105 ) INSERITOIL, CONVERT(VARCHAR(10),S.INSERITOIL,108 ) INSERITOIL_ORA, T3.DESCRIZIONE INCARICOA_ATTIVITA FROM TICKET.dbo.SINGOLE_ATTIVITA S LEFT JOIN TICKET.dbo.TECNICI T3 ON S.incaricoa = T3.IDTECNICO  WHERE IDATTIVITA='$idattivita' ORDER BY ID";
-        $request = DB::select($sql);
         return $request;
+
     }
 
     public function getEmailCliente()
     {
         $cliente = Input::get('cliente');
-        $idattivita = Input::get('idattivita');
-        $sql = "SELECT EMAIL_REFERENTE EMAIL, TELEFONO_REFERENTE TELEFONO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita' AND SOGGETTO='$cliente'";
-        $res = DB::select($sql);
         $sql = "SELECT EMAIL, TELEFONO FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
-        $res2 = DB::select($sql);
-        if (empty($res[0]['EMAIL']))
-            $res[0]['EMAIL'] = $res2[0]['EMAIL'];
-        if (empty($res[0]['TELEFONO']))
-            $res[0]['TELEFONO'] = $res2[0]['TELEFONO'];
-        return json_encode($res);
-    }
-
-    public function getEmailFornitore()
-    {
-        $cliente = Input::get('cliente');
-        $idattivita = Input::get('idattivita');
-        $sql = "SELECT EMAIL_FORNITORE AS EMAIL, TELEFONO_FORNITORE AS TELEFONO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita' AND SOGGETTO='$cliente'";
         $res = DB::select($sql);
-        $sql = "SELECT EMAIL, TELEFONO FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
-        $res2 = DB::select($sql);
-        if (empty($res[0]['EMAIL']))
-            $res[0]['EMAIL'] = $res2[0]['EMAIL'];
-        if (empty($res[0]['TELEFONO']))
-            $res[0]['TELEFONO'] = $res2[0]['TELEFONO'];
         return json_encode($res);
     }
 
@@ -431,7 +433,7 @@ EOF;
         $sql = "SELECT STATO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita'";
         $res = DB::select($sql);
         try {
-            if (isset($res[0]))
+            if (isset($res) > 0)
                 $stato_text = $res[0]['STATO'];
             else
                 $stato_text = 1;
