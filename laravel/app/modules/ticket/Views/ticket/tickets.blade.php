@@ -664,7 +664,6 @@
                         });
             });
             fornitore = 1;
-            console.log(fornitore);
 
             $("#cliente").change(function(){
                 $.post( "{{url('/ticket/getCategorie')}}", $(this).closest('form').serialize())
@@ -717,6 +716,7 @@
                                 data = JSON.parse(data);
                                 $("#email").val(data[0]['EMAIL']);
                                 //$("#nome_referente").val(data[0]['CONTATTO']);
+                                $("#email_referente").val(data[0]['EMAIL_REFERENTE']);
                                 $("#telefono_referente").val(data[0]['TELEFONO']);
                             });
                 }

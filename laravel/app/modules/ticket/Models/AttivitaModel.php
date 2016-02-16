@@ -388,7 +388,7 @@ EOF;
     {
         $cliente = Input::get('cliente');
         $idattivita = Input::get('idattivita');
-        $sql = "SELECT EMAIL_REFERENTE EMAIL, TELEFONO_REFERENTE TELEFONO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita' AND SOGGETTO='$cliente'";
+        $sql = "SELECT EMAIL, EMAIL_REFERENTE, TELEFONO_REFERENTE TELEFONO FROM TICKET.dbo.ATTIVITA WHERE IDATTIVITA='$idattivita' AND SOGGETTO='$cliente'";
         $res = DB::select($sql);
         $sql = "SELECT EMAIL, TELEFONO FROM UNIWEB.dbo.AGE10 A1 WHERE SOGGETTO='$cliente'";
         $res2 = DB::select($sql);

@@ -246,7 +246,7 @@
                     <td>NOME REFERENTE</td>
                     <td><input type="text" style="background-color: #FFC;" name="nomefornitore" value="{{$request['NOME_FORNITORE'] or ""}}"></td>
                     <td>TELEFONO REFERENTE</td>
-                    <td><input type="text" style="background-color: #FFC;" name="telefonofornitore" value="{{$request['TELEFONO_FORNITORE'] or ""}}"></td>
+                    <td><input type="text" style="background-color: #FFC;" name="telefonofornitore" id="telefonofornitore" value="{{$request['TELEFONO_FORNITORE'] or ""}}"></td>
                 </tr>
                 <tr>
                     <td>EMAIL REFERENTE</td>
@@ -337,6 +337,9 @@
 
                 $(document).ready(function () {
 
+                    var email = 0;
+                    var fornitore = 0;
+
                     $(".salva-attivita").click(function(){
                         //Verifico che siano settati tempo e tecnico
                         var msg = "";
@@ -383,6 +386,23 @@
                                 });
                     });
 
+                    $("#fornitore").change(function() {
+                        $.post("{{url('/ticket/getEmailFornitore')}}", {
+                            'cliente': $("#fornitore").val(),
+                            'idattivita': $("#idattivita").val(),
+                            '_token': '{{ csrf_token() }}'
+                        })
+                                .done(function (data) {
+                                    if (fornitore != 0) {
+                                        console.log("PIPPO");
+                                        data = JSON.parse(data);
+                                        $("#emailfornitore").val(data[0]['EMAIL']);
+                                        //$("#nome_referente").val(data[0]['CONTATTO']);
+                                        $("#telefonofornitore").val(data[0]['TELEFONO']);
+                                    }
+                                });
+                    });
+                    fornitore = 1;
 
                     $("#cliente").change(function(){
                         $.post( "{{url('/ticket/getCategorie')}}", $("form#form").serialize())
@@ -423,14 +443,17 @@
                                     console.log(count);
                                 });
 
-
-                        $.post( "{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
-                                .done(function( data ) {
-                                    data = JSON.parse(data);
-                                    $("#email").val(data[0]['EMAIL']);
-                                    //$("#nome_referente").val(data[0]['CONTATTO']);
-                                    $("#telefono_referente").val(data[0]['TELEFONO']);
-                                });
+                        if(email != 0) {
+                            $.post("{{url('/ticket/getEmailCliente')}}", $("form#form").serialize())
+                                    .done(function (data) {
+                                        data = JSON.parse(data);
+                                        $("#email").val(data[0]['EMAIL']);
+                                        //$("#nome_referente").val(data[0]['CONTATTO']);
+                                        $("#telefono_referente").val(data[0]['TELEFONO']);
+                                        $("#email_referente").val(data[0]['EMAIL_REFERENTE']);
+                                    });
+                        }
+                        email = 1;
 
                         $.get( "{{url('/ticket/checkBlocked')}}", $("form#form").serialize())
                                 .done(function( data ) {
