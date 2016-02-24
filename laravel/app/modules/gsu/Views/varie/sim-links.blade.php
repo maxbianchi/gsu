@@ -38,6 +38,9 @@ $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
         <td>
             <a href="{{url('/gsu/search')."?canone=CAN-I11&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">OPZIONE DATI</a>
         </td>
+
+    </tr>
+    <tr>
         <td>
             <a href="{{url('/gsu/search')."?canone=CAN-I12&cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']}}">OPZIONE DATI ESTERO</a>
         </td>
@@ -49,6 +52,9 @@ $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
         </td>
         <td>
             <a href="{{url('/gsu/apparati-mobile/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".$request['NTELEFONO']}}">APPARATI MOBILE</a>
+        </td>
+        <td>
+            <a href="{{url('/gsu/sim-servizio-reperibilita/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".$request['TELEFONO']}}">SERVIZIO REPERIBILITA</a>
         </td>
     </tr>
 </table>

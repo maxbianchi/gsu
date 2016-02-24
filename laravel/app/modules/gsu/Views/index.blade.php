@@ -161,6 +161,9 @@
             <div class="col-md-3"><input type="button" value="MOBILE ASSISTENZA TECNICA" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-I20').$checkBoxStart}}"></div>
             <div class="col-md-3"><input type="button" value="MOBILE FILTRO ACCESSI" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-I21').$checkBoxStart}}"></div>
         </div>
+        <div class="row">
+            <div class="col-md-3"><input type="button" value="MOBILE SERVIZIO REPERIBILITA" class="btn btn-default btn-xs" pagina="{{url('/gsu/search?canone=CAN-I231-001B').$checkBoxStart}}"></div>
+        </div>
     </div>
 
 

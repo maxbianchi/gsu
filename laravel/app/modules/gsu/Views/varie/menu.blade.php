@@ -105,6 +105,7 @@
                         <li><a href="{{url('/gsu/sim-opzione-dati')}}?canone=CAN-I12">Opzione Dati Estero</a></li>
                         <li><a href="{{url('/gsu/sim-assistenza-tecnica')}}?canone=CAN-I20">Assistenza tecnica</a></li>
                         <li><a href="{{url('/gsu/sim-filtro-accessi')}}?canone=CAN-I21">Filtro accessi</a></li>
+                        <li><a href="{{url('/gsu/sim-servizio-reperibilita')}}?canone=CAN-I231-001B">Servizio Reperibilita</a></li>
                     </ul>
                 </li>
             </ul>

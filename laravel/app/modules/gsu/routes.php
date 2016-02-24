@@ -489,7 +489,7 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::post('gsu/sim-opzione-dati/save', 'SimOpzioneDatiController@save');
     Route::get('gsu/sim-opzione-dati/delete', 'SimOpzioneDatiController@delete');
 
-    //SIM OPZIONE DATI
+    //SIM ASSISTENZA TECNICA
     Route::get('gsu/sim-assistenza-tecnica', 'SimAssistenzaTecnicaController@main');
     Route::get('gsu/sim-assistenza-tecnica/search', 'SimAssistenzaTecnicaController@search');
     Route::get('gsu/sim-assistenza-tecnica/show', 'SimAssistenzaTecnicaController@show');
@@ -504,6 +504,14 @@ Route::group(array('module'=>'Gsu','namespace' => 'App\Modules\Gsu\Controllers')
     Route::get('gsu/sim-filtro-accessi/edit', 'SimFiltroAccessiController@edit');
     Route::post('gsu/sim-filtro-accessi/save', 'SimFiltroAccessiController@save');
     Route::get('gsu/sim-filtro-accessi/delete', 'SimFiltroAccessiController@delete');
+
+    //SERVIZIO REPERIBILITA
+    Route::get('gsu/sim-servizio-reperibilita', 'SimServizioReperibilitaController@main');
+    Route::get('gsu/sim-servizio-reperibilita/search', 'SimServizioReperibilitaController@search');
+    Route::get('gsu/sim-servizio-reperibilita/show', 'SimServizioReperibilitaController@show');
+    Route::get('gsu/sim-servizio-reperibilita/edit', 'SimServizioReperibilitaController@edit');
+    Route::post('gsu/sim-servizio-reperibilita/save', 'SimServizioReperibilitaController@save');
+    Route::get('gsu/sim-servizio-reperibilita/delete', 'SimServizioReperibilitaController@delete');
 
     //UTENTE AGGIUNTIVO
     Route::get('gsu/utente-aggiuntivo', 'UtenteAggiuntivoController@main');

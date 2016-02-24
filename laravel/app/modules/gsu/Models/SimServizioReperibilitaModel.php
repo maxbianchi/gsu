@@ -7,7 +7,7 @@ use Session;
 use DB;
 
 
-class SimOpzioneDatiModel extends Model {
+class SimServizioReperibilitaModel extends Model {
 
     public function getAllRequest(){
         $cliente = trim(Input::get('cliente'));
@@ -49,38 +49,18 @@ class SimOpzioneDatiModel extends Model {
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			SIM.IDSIM,
-			SIM.CODICE_R,
-			SIM.CCID,
-			SIM.NTELEFONO,
-			SIM.TIPOSIM,
-            SIM.TEC_UMTS,
-            SIM.TEC_GSM,
-			SIM.TEC_EDGE,
-			SIM.TGC,
-			SIM.CATCHIAMATE,
-			SIM.PIANOTARIFFARIO,
-			SIM.PROMOZIONE,
-			SIM.NORIGINALE,
-			SIM.NEXTENSION,
-			SIM.TIPOSERVIZIO,
-			SIM.OPZDATI,
-			SIM.NMU,
-			SIM.SERIALE_TEL,
-			SIM.OPZROAMING,
-			SIM.PROMOVOCE,
-			SIM.NBREVE,
-			SIM.RESTRIZIONI,
-			SIM.OPZINTERCOM,
-			SIM.FILTROACCESSI,
-			SIM.ELIMINATO
-			FROM gsu.dbo.SIM
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
+		    SIM_SERVIZIO_REPERIBILITA.ID,
+			SIM_SERVIZIO_REPERIBILITA.CODICE_R,
+			SIM_SERVIZIO_REPERIBILITA.TELEFONO,
+			SIM_SERVIZIO_REPERIBILITA.SERVIZIO,
+			SIM_SERVIZIO_REPERIBILITA.ELIMINATO
+			FROM gsu.dbo.SIM_SERVIZIO_REPERIBILITA
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM_SERVIZIO_REPERIBILITA.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
 			LEFT OUTER JOIN gsu.dbo.RICHIESTE_EVASE ON gsu.dbo.RICHIESTE_EVASE.CODICE_R = richieste.MANUTENZIONE
-            WHERE SIM.ELIMINATO = 0
+            WHERE SIM_SERVIZIO_REPERIBILITA.ELIMINATO = 0
 EOF;
 
         if(!empty($cliente))
@@ -108,10 +88,8 @@ EOF;
         $manutenzione = Input::get('manutenzione');
         $data_contratto = Input::get('data_contratto');
 
-        $ntelefono = Input::get('ntelefono');
-        $ccid = Input::get('ccid');
-        $pianotariffario = Input::get('pianotariffario');
-        $opzdati = Input::get('opzdati');
+        $telefono = Input::get('ntelefono');
+        $servizio = Input::get('servizio');
         $eliminati = Input::get('eliminati');
 
         $sql = <<<EOF
@@ -148,33 +126,13 @@ EOF;
 			anagrafica3.PARTITAIVA		AS DESTINATARIOABITUALE_PARTITAIVA,
             RICHIESTE.QUANTITA AS QTAAOF70,
             ISNULL(RICHIESTE_EVASE.QUANTITA, 0) AS QTAGSU,
-			SIM.IDSIM,
-			SIM.CODICE_R,
-			SIM.CCID,
-			SIM.NTELEFONO,
-			SIM.TIPOSIM,
-            SIM.TEC_UMTS,
-            SIM.TEC_GSM,
-			SIM.TEC_EDGE,
-			SIM.TGC,
-			SIM.CATCHIAMATE,
-			SIM.PIANOTARIFFARIO,
-			SIM.PROMOZIONE,
-			SIM.NORIGINALE,
-			SIM.NEXTENSION,
-			SIM.TIPOSERVIZIO,
-			SIM.OPZDATI,
-			SIM.NMU,
-			SIM.SERIALE_TEL,
-			SIM.OPZROAMING,
-			SIM.PROMOVOCE,
-			SIM.NBREVE,
-			SIM.RESTRIZIONI,
-			SIM.OPZINTERCOM,
-			SIM.FILTROACCESSI,
-			SIM.ELIMINATO
-			FROM gsu.dbo.SIM
-			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM.codice_r = richieste.MANUTENZIONE
+			SIM_SERVIZIO_REPERIBILITA.ID,
+			SIM_SERVIZIO_REPERIBILITA.CODICE_R,
+			SIM_SERVIZIO_REPERIBILITA.TELEFONO,
+			SIM_SERVIZIO_REPERIBILITA.SERVIZIO,
+			SIM_SERVIZIO_REPERIBILITA.ELIMINATO
+			FROM gsu.dbo.SIM_SERVIZIO_REPERIBILITA
+			LEFT OUTER JOIN UNIWEB.dbo.AOF70 richieste ON SIM_SERVIZIO_REPERIBILITA.codice_r = richieste.MANUTENZIONE
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica1	ON richieste.SOGGETTO				= anagrafica1.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica2	ON richieste.CLIENTE				= anagrafica2.SOGGETTO
 			LEFT OUTER JOIN	UNIWEB.dbo.AGE10	anagrafica3	ON richieste.DESTINATARIOABITUALE	= anagrafica3.SOGGETTO
@@ -183,7 +141,7 @@ EOF;
 EOF;
 
         if(!empty($id))
-            $sql .= " AND SIM.IDSIM = '$id'";
+            $sql .= " AND SIM_SERVIZIO_REPERIBILITA.ID = '$id'";
         if(!empty($cliente))
             $sql .= " AND REPLACE(LTRIM(RTRIM(ANAGRAFICA1.DESCRIZIONE)),'''','') like '%$cliente%'";
         if(!empty($cliente_finale))
@@ -202,15 +160,15 @@ EOF;
             $sql .= " AND RICHIESTE.DATADOCUMENTO = CONVERT(date,'$data_contratto', 102)";
         }
 
-        if(!empty($ntelefono))
-            $sql .= " AND SIM.NTELEFONO like '%$ntelefono%'";
-        if(!empty($opzdati))
-            $sql .= " AND SIM.OPZDATI like '%$opzdati%'";
+        if(!empty($telefono))
+            $sql .= " AND SIM_SERVIZIO_REPERIBILITA.TELEFONO like '%$telefono%'";
+        if(!empty($servizio))
+            $sql .= " AND SIM_SERVIZIO_REPERIBILITA.SERVIZIO like '%$servizio%'";
 
         if(!empty($eliminati))
-            $sql .= " AND SIM.ELIMINATO = 1";
+            $sql .= " AND SIM_SERVIZIO_REPERIBILITA.ELIMINATO = 1";
         else
-            $sql .= " AND SIM.ELIMINATO = 0";
+            $sql .= " AND SIM_SERVIZIO_REPERIBILITA.ELIMINATO = 0";
 
         $sql .= " ORDER BY SOGGETTO, CLIENTE, DESTINATARIOABITUALE";
 
@@ -224,7 +182,7 @@ EOF;
         $id = Input::get('id');
         $manutenzione = Input::get('manutenzione');
         if(!empty($id)) {
-            $sql = "UPDATE gsu.dbo.SIM SET ELIMINATO=1 WHERE IDSIM='$id'";
+            $sql = "UPDATE gsu.dbo.SIM_SERVIZIO_REPERIBILITA SET ELIMINATO=1 WHERE ID='$id'";
             DB::update($sql);
 
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -250,21 +208,11 @@ EOF;
         $stato_precedente = Input::get('stato_precedente');
 
         $ntelefono = Input::get('ntelefono');
-        $ccid = Input::get('ccid');
-        $tiposim = Input::get('tiposim');
-        $tec_gsm = Input::get('tec_gsm') == "on" ? 1 : 0 ;
-        $tec_umts = Input::get('tec_umts') == "on" ? 1 : 0 ;
-        $tec_edge = Input::get('tec_edge') == "on" ? 1 : 0 ;
-        $tgc = Input::get('tgc');
-        $catchiamate = Input::get('catchiamate');
-        $promovoce = Input::get('promovoce');
-        $nbreve = Input::get('nbreve');
-        $restrisioni = Input::get('restrizioni');
-        $opzdati = Input::get('opzdati');
+        $servizio = Input::get('servizio');
 
         try {
             if(empty($id)) {
-                DB::insert("INSERT INTO gsu.dbo.SIM (CODICE_R,NTELEFONO,CCID,TIPOSIM,TEC_GSM,TEC_UMTS,TEC_EDGE,TGC,CATCHIAMATE,PROMOVOCE,NBREVE,RESTRIZIONI,OPZDATI, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$ccid','$tiposim','$tec_gsm','$tec_umts','$tec_edge','$tgc','$catchiamate','$promovoce','$nbreve','$restrisioni','$opzdati',$eliminato)");
+                DB::insert("INSERT INTO gsu.dbo.SIM_SERVIZIO_REPERIBILITA (CODICE_R,TELEFONO,SERVIZIO, ELIMINATO) VALUES ('$manutenzione','$ntelefono','$servizio',$eliminato)");
 
 
                 $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
@@ -279,7 +227,7 @@ EOF;
                 }
             }
             else
-                $sql = "UPDATE gsu.dbo.SIM SET Codice_R='$manutenzione',NTELEFONO='$ntelefono',OPZDATI='$opzdati',CCID='$ccid',TIPOSIM='$tiposim',TEC_GSM='$tec_gsm',TEC_UMTS='$tec_umts',TEC_EDGE='$tec_edge',TGC='$tgc',CATCHIAMATE='$catchiamate',PROMOVOCE='$promovoce',NBREVE='$nbreve',RESTRIZIONI='$restrisioni',ELIMINATO=$eliminato WHERE IDSIM=$id";
+                $sql = "UPDATE gsu.dbo.SIM_SERVIZIO_REPERIBILITA SET Codice_R='$manutenzione',TELEFONO='$ntelefono',SERVIZIO='$servizio',ELIMINATO=$eliminato WHERE ID=$id";
             DB::update($sql);
             if($stato_precedente == 1 && $eliminato == 0){
                 DB::update("UPDATE gsu.dbo.RICHIESTE_EVASE SET QUANTITA = (QUANTITA + 1) where CODICE_R = '$manutenzione'");
@@ -297,7 +245,7 @@ EOF;
     }
 
     public function checkAddNew(){
-        $model = new SimIntercomModel();
+        $model = new SimServizioReperibilitaModel();
         $res = $model->getFilteredRequest();
         $codici_manutenzione = [];
         $cod_manutenzione = "";
