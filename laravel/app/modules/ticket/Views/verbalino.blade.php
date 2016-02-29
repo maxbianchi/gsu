@@ -225,7 +225,7 @@
                     <tr>
                         <td colspan="2" style="padding-top:10px;">
                             <div style="border:solid 1px; text-align: center;">
-                                Motivo della chiamata <textarea value="<?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?>" id="motivo" name="motivo" class="edit-textarea" style="width:100%" rows="4"><?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?></textarea>
+                                Motivo della chiamata <textarea value="<?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?>" id="motivo" name="motivo" class="edit-textarea" style="width:100%" rows="5"><?php echo isset($verbalino['MOTIVO']) ? $verbalino['MOTIVO'] : Input::get('motivo'); ?></textarea>
                             </div>
                         </td>
                     </tr>
@@ -300,7 +300,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="padding-top:0px;">
+                        <td colspan="2" style="padding-top:10px;">
                             <table>
                                 <tr>
                                     <td style="width:12%">
