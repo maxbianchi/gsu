@@ -59,7 +59,7 @@ class TicketController extends MainController {
             unlink('/var/www/gsu/laravel/public/output/'.$idattivita.'.pdf');
         }
         $snappy = new Pdf('/var/www/gsu/laravel/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
-        $snappy->generateFromHtml($html, '/var/www/gsu/laravel/public/output/'.$idattivita.'.pdf',['margin-bottom' => '50mm']);
+        $snappy->generateFromHtml($html, '/var/www/gsu/laravel/public/output/'.$idattivita.'.pdf',['margin-bottom' => '5mm']);
         $model = new AttivitaModel();
         $model->chiudiTicket();
         chmod('/var/www/gsu/laravel/public/output/'.$idattivita.'.pdf', 0777);
