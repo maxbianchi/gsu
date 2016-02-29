@@ -70,7 +70,8 @@
         color: #646464;
         font-family: Arial,Helvetica,sans-serif;
         font-size: 8px;
-        background-color: transparent !important}
+        background-color: transparent !important;
+        margin-top:20px;}
 
     .footer_td2{
         font-size:8px;
@@ -387,7 +388,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <table style="width:100%">
+                            <table style="width:100%;height:34pt;">
                                 <tr>
                                     <td style="width:26%">
                                         Intervento risolutivo <input type="checkbox" value="" <?php echo isset($verbalino['INTERVENTO_RISOLUTIVO']) && $verbalino['INTERVENTO_RISOLUTIVO'] == 1 ? "checked='checked'" : ""; ?> name="intervento_risolutivo_si" class="edit-checkbox">SI <input type="checkbox" value="" name="intervento_risolutivo_no" class="edit-checkbox">NO
