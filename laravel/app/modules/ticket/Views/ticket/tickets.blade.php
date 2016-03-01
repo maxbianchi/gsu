@@ -378,13 +378,15 @@
                                     <td>FORNITORE</td>
                                     <td style="background-color:#FFC">
                                         <input type="text" value="" name="search_fornitore" id="search_fornitore" >
-                                        <select name="fornitore" id="fornitore" >
+                                        <select name="fornitore" id="fornitore" style="max-width:600px;">
                                             <option value="">-----</option>
                                             @foreach($users as $user)
                                                 <option value="{{$user['SOGGETTO']}}" {{isset($result['FORNITORE']) && $result['FORNITORE'] == $user['SOGGETTO'] ? 'selected="selected"' : ""  }}>{{$user['DESCRIZIONE']." - ".$user['INDIRIZZO']." - ".$user['LOCALITA']." - ".$user['PROVINCIA']." - ".$user['SOGGETTO']." - PIVA: ".$user['PARTITAIVA']}}</option>
                                             @endforeach
                                         </select>
                                     </td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>NR TICKET FORNITORE</td>
