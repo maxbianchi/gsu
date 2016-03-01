@@ -260,8 +260,8 @@
                                 <tr>
                                     <td>Tipologia</td>
                                     <td><select style="background-color: #FFC;" name="ingaranzia">
-                                            <option value="0" <?php echo isset($result['IN_GARANZIA']) && $result['IN_GARANZIA'] == 0 ? 'selected="selected"' : ""  ?>>A CONTRATTO</option>
-                                            <option value="1" <?php echo isset($result['IN_GARANZIA']) && $result['IN_GARANZIA'] == 1 ? 'selected="selected"' : ""  ?>>A CONSUNTIVO</option>
+                                            <option value="1" <?php echo isset($result['IN_GARANZIA']) && $result['IN_GARANZIA'] == 0 ? 'selected="selected"' : ""  ?>>A CONSUNTIVO</option>
+                                            <option value="0" <?php echo isset($result['IN_GARANZIA']) && $result['IN_GARANZIA'] == 1 ? 'selected="selected"' : ""  ?>>A CONTRATTO (in garanzia)</option>
                                         </select></td>
                                     <td>CARNET DISPONIBILI NR.</td>
                                     <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ordina Carnet" class="btn btn-primary btn-xs btn_carnet"></td>

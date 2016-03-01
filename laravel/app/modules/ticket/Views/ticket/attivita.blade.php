@@ -165,8 +165,8 @@
                 <tr>
                     <td>Tipologia</td>
                     <td><select name="ingaranzia" style="background-color: #FFC;">
-                            <option value="0">A CONTRATTO</option>
                             <option value="1">A CONSUNTIVO</option>
+                            <option value="0">A CONTRATTO (in garanzia)</option>
                         </select></td>
                     <td>TICKET DISPONIBILI VAL. €</td>
                     <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value=""></td>
