@@ -84,7 +84,7 @@
                 <table style="width:100%;font-family: Arial; font-size:10px;" cellpadding="0" cellspacing="0">
                     <tr>
                         <td valign="top" style="width:30%;">
-                            <img src="{{ URL::asset('images/loghi_verbalino.png') }}" alt="Uniweb 4.0 Dashboard" style="width:95%;" title="Uniweb 4.0 Dashboard">
+                            <img src="{{ URL::asset('images/loghi_verbalino.png') }}" alt="Uniweb 4.0 Dashboard" style="width:90%;" title="Uniweb 4.0 Dashboard">
                         </td>
                         <td style="width:70%;" colspan="2">
                             <table style="width:100%">
@@ -301,7 +301,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="padding-top:10px;">
+                        <td colspan="2" style="padding-top:5px;">
                             <table>
                                 <tr>
                                     <td style="width:12%">
