@@ -138,8 +138,9 @@ class TicketController extends MainController {
         $result = $model->getTestataTickets();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
-        $categorie = $model->getAllCategorie();
-        return view("ticket::ticket.alltickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie]);
+        $genere = $model->getAllCategorieTable();
+        $sistemisti = $model->getAllCategorie();
+        return view("ticket::ticket.alltickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'genere' => $genere,'sistemisti' => $sistemisti]);
     }
 
 }

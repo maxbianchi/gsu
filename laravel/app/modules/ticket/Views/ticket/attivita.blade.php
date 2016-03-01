@@ -141,8 +141,8 @@
                     <td>
                         <select name="categoria" id="categoria" class="categoria" style="background-color: #FFC;">
                             <option value="">-----</option>
-                            @foreach($categorie as $categoria)
-                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                            @foreach($sistemisti as $sistemista)
+                                <option value="{{$sistemista['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $sistemista['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$sistemista['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -150,8 +150,14 @@
                     <td><input type="text" style="background-color: #eee;" readonly="readonly" disabled="disabled" name="tipologia_assistenza" id="tipologia_assistenza" value=""></td>
                 </tr>
                 <tr>
-                    <td>NUMERO VERDE TECNICO</td>
-                    <td><input type="text" style="background-color: #FFC;" name="numero_verde_tecnico" id="numero_verde_tecnico" value="{{$request['NUMERO_VERDE_TECNICO'] or ""}}"></td></td>
+                    <td>GENERE</td>
+                    <td>
+                        <select name="genere" id="genere" class="genere" style="background-color: #FFC;">
+                            @foreach($genere as $row)
+                                <option value="{{$row['IDCATEGORIA'] or ""}}" {{isset($result['IDGENERE']) && $result['IDGENERE'] == $row['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$row['DESCRIZIONE'] or ""}}</option>
+                            @endforeach
+                        </select>
+                    </td>
                     <td>CARNET DISPONIBILI NR.</td>
                     <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="carnet_disponibili" id="carnet_disponibili" value=""></td>
 

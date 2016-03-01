@@ -32,9 +32,10 @@ class AttivitaController extends MainController {
         $sedioperative = $model->getAllSedieOperative();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
-        $categorie = $model->getAllCategorie();
+        $sistemisti = $model->getAllCategorie();
+        $genere = $model->getAllCategorieTable();
         $idattivita = $model->generateIDAttivita();
-        return view("ticket::ticket.attivita", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'categorie' => $categorie,'sedioperative' => $sedioperative]);
+        return view("ticket::ticket.attivita", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'genere' => $genere,'sedioperative' => $sedioperative,'sistemisti' => $sistemisti]);
     }
 
     public function salvaattivita(){
@@ -131,9 +132,10 @@ class AttivitaController extends MainController {
         $result = $model->getTickets($idattivita);
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
-        $categorie = $model->getAllCategorie();
+        $sistemisti = $model->getAllCategorie();
         $singole_attivita = $model->getSingoleAttivita($idattivita);
-        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'categorie' => $categorie,'sedioperative' => $sedioperative, 'singole_attivita' => $singole_attivita ]);
+        $genere = $model->getAllCategorieTable();
+        return view("ticket::ticket.tickets", ['result' => $result,'users' => $users, 'tecnici' => $tecnici,'stati' => $stati,'sistemisti' => $sistemisti,'sedioperative' => $sedioperative, 'singole_attivita' => $singole_attivita ,'genere' => $genere]);
     }
 
     public function getSingleUser(){

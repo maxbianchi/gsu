@@ -55,12 +55,12 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
                     <div class="col-md-1">TICKET INTERNO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('idattivita')}}" id="idattivita" name="idattivita" ></div>
-                    <div class="col-md-2">CATEGORIA</div>
+                    <div class="col-md-2">GENERE</div>
                     <div class="col-md-2">
-                        <select name="categoria">
+                        <select name="genere">
                             <option value="">TUTTE</option>
-                            @foreach($categorie as $categoria)
-                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                            @foreach($genere as $row)
+                                <option value="{{$row['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $row['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$row['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -71,8 +71,14 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('data_intervento_da')}}" name="data_intervento_da" class="datepicker"></div>
                     <div class="col-md-1">A DATA INTERVENTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('data_intervento_a')}}" name="data_intervento_a" class="datepicker"></div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2">SISTEMISTA</div>
                     <div class="col-md-2">
+                        <select name="categoria">
+                            <option value="">TUTTE</option>
+                            @foreach($sistemisti as $sistemista)
+                                <option value="{{$sistemista['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $sistemista['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$sistemista['DESCRIZIONE'] or ""}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -101,10 +107,18 @@
                         </ul>
                     </li>
                     <li class="divider"></li>
-                    <li><label class="tree-toggler nav-header">Categoria</label>
+                    <li><label class="tree-toggler nav-header">Sistemista</label>
                         <ul class="nav nav-list tree">
-                            @foreach($categorie as $categoria)
-                                <li><a href="{{url('/ticket/alltickets').'?categoria='.$categoria['IDCATEGORIA']}}">{{$categoria['DESCRIZIONE']}}</a></li>
+                            @foreach($sistemisti as $sistemista)
+                                <li><a href="{{url('/ticket/alltickets').'?categoria='.$sistemista['IDCATEGORIA']}}">{{$sistemista['DESCRIZIONE']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggler nav-header">Genere</label>
+                        <ul class="nav nav-list tree">
+                            @foreach($genere as $row)
+                                <li><a href="{{url('/ticket/alltickets').'?genere='.$row['IDCATEGORIA']}}">{{$row['DESCRIZIONE']}}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -234,12 +248,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>CATEGORIA *</td>
+                                    <td>SISTEMISTA *</td>
                                     <td>
                                         <select name="categoria" id="categoria" class="categoria" style="background-color: #FFC;">
-                                            @foreach($categorie as $categoria)
-                                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($result['IDCATEGORIA']) && $result['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
-                                            @endforeach
+
                                         </select>
                                     </td>
                                     <td>TIPOLOGIA ASSISTENZA</td>
@@ -256,8 +268,14 @@
 
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>GENERE</td>
+                                    <td>
+                                        <select name="genere" id="genere" class="genere" style="background-color: #FFC;">
+                                            @foreach($genere as $row)
+                                                <option value="{{$row['IDCATEGORIA'] or ""}}" {{isset($result['IDGENERE']) && $result['IDGENERE'] == $row['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$row['DESCRIZIONE'] or ""}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
                                     <td>TICKET DISPONIBILI VAL. €</td>
                                     <td><input type="text" style="background-color: #eee;min-width:50%;" readonly="readonly" disabled="disabled" name="ticket_disponibili" id="ticket_disponibili" value="">&nbsp;&nbsp;<input type="button" value="Ricarica Ticket" class="btn btn-primary btn-xs btn_ticket"></td>
                                 </tr>
@@ -677,7 +695,7 @@
                             $.each(data, function (key, data) {
                                 $select.append('<option value=' + data.Codice + '>' + data.Descrizione + '</option>');
                             })
-                            //$select.val('{{$result['IDCATEGORIA']}}');
+                            $select.val('{{$result['IDCATEGORIA']}}');
                             $.get("{{url('/ticket/getTipologiaContratto')}}", {categoria: $("#categoria").val(), cliente: $("#cliente").val()})
                                     .done(function (data) {
                                         data = JSON.parse(data);

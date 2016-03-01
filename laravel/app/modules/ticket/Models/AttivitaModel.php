@@ -32,6 +32,13 @@ class AttivitaModel extends Model
 
     public function getAllCategorie()
     {
+        $sql = "SELECT Item AS IDCATEGORIA, Description AS DESCRIZIONE FROM ".MAGO.".dbo.vw_JBS_Categorie ORDER BY Item";
+        $request = DB::select($sql);
+        return $request;
+    }
+
+    public function getAllCategorieTable()
+    {
         $sql = "SELECT * FROM TICKET.dbo.CATEGORIE ORDER BY DESCRIZIONE";
         $request = DB::select($sql);
         return $request;
@@ -161,14 +168,15 @@ class AttivitaModel extends Model
         $emailfornitore = Input::get("emailfornitore");
         $imei = Input::get("imei");
         $tel = Input::get("tel");
+        $genere = Input::get("genere");
 
         $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request = DB::select($sql);
         if (count($request) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato,in_garanzia,ordine_fornitore,nome_fornitore,telefono_fornitore,fornitore,sede_operativa,email_fornitore,imei,tel) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 ,$in_garanzia,'$ordine_fornitore','$nome_fornitore','$telefono_fornitore','$fornitore','$sedeoperativa','$emailfornitore','$imei','$tel' )";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, TICKETTELECOM, apertoda, incaricoa, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente,cliente_finale,conferma_ordine,cod_servizio,elaborato,in_garanzia,ordine_fornitore,nome_fornitore,telefono_fornitore,fornitore,sede_operativa,email_fornitore,imei,tel,idgenere) VALUES ('$idattivita', '$tickettelecom', '$apertoda', '$incaricoa','$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$cliente_finale','$conferma_ordine','$cod_servizio', 0 ,$in_garanzia,'$ordine_fornitore','$nome_fornitore','$telefono_fornitore','$fornitore','$sedeoperativa','$emailfornitore','$imei','$tel','$genere' )";
             DB::insert($sql);
         } else {
-            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio', in_garanzia=$in_garanzia, ordine_fornitore='$ordine_fornitore',nome_fornitore='$nome_fornitore',telefono_fornitore='$telefono_fornitore',fornitore='$fornitore',sede_operativa='$sedeoperativa',email_fornitore='$emailfornitore',imei='$imei',tel='$tel' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE TICKET.dbo.ATTIVITA SET TICKETTELECOM='$tickettelecom', apertoda='$apertoda', incaricoa='$incaricoa', tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente', cliente_finale='$cliente_finale', conferma_ordine='$conferma_ordine', cod_servizio='$cod_servizio', in_garanzia=$in_garanzia, ordine_fornitore='$ordine_fornitore',nome_fornitore='$nome_fornitore',telefono_fornitore='$telefono_fornitore',fornitore='$fornitore',sede_operativa='$sedeoperativa',email_fornitore='$emailfornitore',imei='$imei',tel='$tel', idgenere='$genere' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
 
@@ -206,6 +214,7 @@ class AttivitaModel extends Model
             $data_intervento_a = $utility->convertDate($data_intervento_a);
             $data_intervento_a .= " 23:59:59";
         }
+        $genere = Input::get('genere');
 
         $sql = <<<EOF
 SELECT
@@ -256,10 +265,11 @@ SELECT
         A.EMAIL_FORNITORE,
         A.IMEI,
         A.TEL,
+        A.IDGENERE,
         CONVERT(VARCHAR(10),V.DATA_INTERVENTO,105 ) DATA_INTERVENTO
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
-        LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
+        LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDGENERE = C.IDCATEGORIA
         LEFT JOIN TICKET.dbo.TECNICI T1 ON A.apertoda = T1.IDTECNICO
         LEFT JOIN TICKET.dbo.TECNICI T2 ON A.incaricoa = T2.IDTECNICO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON A.SOGGETTO = A1.SOGGETTO
@@ -290,6 +300,8 @@ EOF;
             $sql .= " AND A.IDATTIVITA = $idattivita";
         if (!empty($categoria))
             $sql .= " AND A.IDCATEGORIA = '$categoria'";
+        if (!empty($genere))
+            $sql .= " AND A.IDGENERE = '$genere'";
         if (!empty($titolo))
             $sql .= " AND A.TITOLO LIKE '%$titolo%'";
         if (!empty($conferma_ordine))
@@ -358,10 +370,11 @@ SELECT
         A.SEDE_OPERATIVA,
         A.EMAIL_FORNITORE,
         A.IMEI,
-        A.TEL
+        A.TEL,
+        A.IDGENERE
         FROM TICKET.dbo.ATTIVITA A
         LEFT JOIN TICKET.dbo.STATI ST ON A.STATO = ST.IDSTATO
-        LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDCATEGORIA = C.IDCATEGORIA
+        LEFT JOIN TICKET.dbo.CATEGORIE C ON A.IDGENERE = C.IDCATEGORIA
         LEFT JOIN TICKET.dbo.TECNICI T1 ON A.apertoda = T1.IDTECNICO
         LEFT JOIN TICKET.dbo.TECNICI T2 ON A.incaricoa = T2.IDTECNICO
         LEFT OUTER JOIN UNIWEB.dbo.AGE10 A1 ON A.SOGGETTO = A1.SOGGETTO
@@ -621,7 +634,7 @@ EOF;
     public function getCategorie()
     {
         $cliente = Input::get('cliente');
-        $sql = "SELECT R.Codice, R.Descrizione FROM " . MAGO . ".dbo.JBS_RIGHECONTRATTI R INNER JOIN " . MAGO . ".dbo.JBS_TESTACONTRATTI T ON R.NrContratto=T.NrContratto LEFT JOIN " . MAGO . ".dbo.MA_Items I ON I.Item = R.Codice WHERE I.CommodityCtg = 'SERV' AND T.Cliente = '$cliente'";
+        $sql = "SELECT R.Codice, R.Descrizione FROM " . MAGO . ".dbo.JBS_RIGHECONTRATTI R INNER JOIN " . MAGO . ".dbo.JBS_TESTACONTRATTI T ON R.NrContratto=T.NrContratto LEFT JOIN " . MAGO . ".dbo.MA_Items I ON I.Item = R.Codice WHERE I.CommodityCtg = 'SERVIZI' AND T.Cliente = '$cliente'";
         $res = DB::select($sql);
         return $res;
     }

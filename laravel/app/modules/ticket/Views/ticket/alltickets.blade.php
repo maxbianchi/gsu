@@ -54,12 +54,12 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('tgu')}}" id="tgu" name="tgu" ></div>
                     <div class="col-md-1">TICKET INTERNO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('idattivita')}}" id="idattivita" name="idattivita" ></div>
-                    <div class="col-md-2">CATEGORIA</div>
+                    <div class="col-md-2">GENERE</div>
                     <div class="col-md-2">
-                        <select name="categoria">
+                        <select name="genere">
                             <option value="">TUTTE</option>
-                            @foreach($categorie as $categoria)
-                                <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                            @foreach($genere as $row)
+                                <option value="{{$row['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $row['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$row['DESCRIZIONE'] or ""}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -70,8 +70,16 @@
                     <div class="col-md-2"><input type="text" value="{{Input::get('data_intervento_da')}}" name="data_intervento_da" class="datepicker"></div>
                     <div class="col-md-1">A DATA INTERVENTO</div>
                     <div class="col-md-2"><input type="text" value="{{Input::get('data_intervento_a')}}" name="data_intervento_a" class="datepicker"></div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2">SISTEMISTA</div>
                     <div class="col-md-2">
+
+                    <select name="categoria">
+                        <option value="">TUTTE</option>
+                        @foreach($sistemisti as $sistemista)
+                            <option value="{{$sistemista['IDCATEGORIA'] or ""}}" {{Input::get('categoria') == $sistemista['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$sistemista['DESCRIZIONE'] or ""}}</option>
+                        @endforeach
+                    </select>
+
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -100,11 +108,19 @@
                         </ul>
                     </li>
                     <li class="divider"></li>
-                    <li><label class="tree-toggler nav-header">Categoria</label>
+                    <li><label class="tree-toggler nav-header">Sistemista</label>
                         <ul class="nav nav-list tree">
-                            @foreach($categorie as $categoria)
-                                <li><a href="{{url('/ticket/alltickets').'?categoria='.$categoria['IDCATEGORIA']}}">{{$categoria['DESCRIZIONE']}}</a></li>
-                        @endforeach
+                            @foreach($sistemisti as $sistemista)
+                                <li><a href="{{url('/ticket/alltickets').'?categoria='.$sistemista['IDCATEGORIA']}}">{{$sistemista['DESCRIZIONE']}}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                    <li class="divider"></li>
+                    <li><label class="tree-toggler nav-header">Genere</label>
+                        <ul class="nav nav-list tree">
+                            @foreach($genere as $row)
+                                <li><a href="{{url('/ticket/alltickets').'?genere='.$row['IDCATEGORIA']}}">{{$row['DESCRIZIONE']}}</a></li>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>
@@ -139,7 +155,7 @@
                         $idattivita = $res['IDATTIVITA'];
                         ?>
 
-                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>;cursor: pointer; cursor: hand;">
+                        <tr style="<?php if($res['STATO'] == "CHIUSO") echo "color:red;text-decoration: line-through;"; elseif($res['STATO'] == "IN LAVORAZIONE UNIWEB") echo "color:green";elseif($res['STATO'] == "IN ATTESA CLIENTE") echo "color:orange"; ?>;cursor: pointer; cursor: hand;">
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['CONFERMA_ORDINE']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['SOGGETTO_NOME']}}</td>
                             <td class="clickable" data-idattivita="{{$res['IDATTIVITA']}}">{{$res['TITOLO']}}</td>
