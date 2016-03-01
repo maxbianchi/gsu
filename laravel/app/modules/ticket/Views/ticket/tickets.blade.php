@@ -298,9 +298,6 @@
                                     <td colspan="3"><textarea style="background-color: #FFC;" name="motivo" class="noEnter" cols="130">{{$result['MOTIVO'] or ""}}</textarea></td>
                                 </tr>
                                 <tr>
-                                    <?php
-                                        print_r($row['DESCRIZIONE'])
-                                        ?>
                                     <td>DETTAGLIO ATTIVIT&Agrave;<?php if ($result['ELABORATO'] != 1): ?><a href="{{url('/ticket/modificaattivita?idattivita='.$result['IDATTIVITA'])}}" title="Modifica attività" style="float:right;"><i class="glyphicon glyphicon-pencil"></i></a><?php endif; ?></td>
                                     <td colspan="3"><textarea style="background-color: #eee;" name="elenco_attivita" cols="130" readonly="readonly"><?php foreach($singole_attivita as $row): if($row['IDATTIVITA'] == $result['IDATTIVITA']) echo $row['INSERITOIL']." - ".$row['INSERITOIL_ORA']." - ".$row['INCARICOA_ATTIVITA']." - ".trim($row['DESCRIZIONE'])." - TEMPO: ".trim($row['TEMPO'])."&#10;------------------------&#10;"; endforeach; ?></textarea></td>
                                 </tr>
