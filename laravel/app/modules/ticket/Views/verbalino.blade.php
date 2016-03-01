@@ -233,7 +233,7 @@
                     <tr>
                         <td colspan="2" style="padding-top:10px;">
                             <div style="border:solid 1px; text-align: center;">
-                                Descrizione Intervento <textarea value="{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="6">{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}</textarea>
+                                Descrizione Intervento <textarea value="{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}" id="descrizione" name="descrizione" class="edit-textarea" style="width:100%" rows="5">{{$verbalino['DESCRIZIONE_INTERVENTO'] or ""}}</textarea>
                             </div>
                         </td>
                     </tr>
