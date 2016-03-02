@@ -6,7 +6,7 @@
         <div class="row">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Portale UniWeb 4.0
+                    <div class="panel-heading">Portale UniWeb 4.1
 
                         @if (Session::get('livello')  == 1)
                             <a href="{{ url('/adduser') }}" style="float:right;">Crea nuovo utente</a>

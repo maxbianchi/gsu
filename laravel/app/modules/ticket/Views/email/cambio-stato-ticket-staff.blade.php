@@ -36,7 +36,7 @@ Elenco Attivit&agrave;:<br>
 <b>Cordiali Saluti</b><br>
 
 <div id="footer" class="container_12">
-    <img src="http://areaclienti.uniweb.it/images/logo_slogan.png"><br>
+    <img src="http://areaclienti.uniweb.it/images/logo_email.png"><br>
     <strong>Uniweb Srl</strong>
     Cantú (CO) - 22063 - Via Milano, 51 - CF / P.IVA 02478160134
     <br>

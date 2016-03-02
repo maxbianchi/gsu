@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Uniweb srl - portale 4.0</title>
+	<title>Uniweb srl - portale 4.1</title>
 
     <link href="{{ asset('/css/jqueryui/1.11.4/themes/redmond/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jquery.dataTables.css') }}" rel="stylesheet">
@@ -32,7 +32,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-                <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/logo_slogan.png') }}" alt="Uniweb 4.0 Dashboard" style="width:150px;" title="Uniweb 4.0 Dashboard"></a>
+                <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/logo_slogan.png') }}" alt="Uniweb 4.1 Dashboard" style="width:150px;" title="Uniweb 4.1 Dashboard"></a>
 
                 <div style="margin-left: 40%;position: absolute;top: 15px;"><b>{{utf8_encode(Session::get('user')['username']." - ".Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}</b></div>
 			</div>
