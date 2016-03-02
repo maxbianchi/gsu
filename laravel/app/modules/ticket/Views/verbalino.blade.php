@@ -395,10 +395,7 @@
                                     </td>
                                     <td style="width:12%">
                                         <!--In garanzia <input type="checkbox" value="" <?php echo isset($verbalino['IN_GARANZIA']) && $verbalino['IN_GARANZIA'] == 1 ? "checked='checked'" : ""; ?> name="garanzia_si" class="edit-checkbox">SI <input type="checkbox" value="" name="garanzia_no" class="edit-checkbox">NO-->
-                                        <?php if(isset($verbalino['IN_GARANZIA']))
-                                                echo $verbalino['IN_GARANZIA'] == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
-                                              else
-                                                echo Input::has("ingaranzia") && Input::get("ingaranzia") == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
+                                        <?php echo Input::has("ingaranzia") && Input::get("ingaranzia") == 1 ? "A CONSUNTIVO" : "A CONTRATTO";
                                         ?>
                                     </td>
 
@@ -508,6 +505,7 @@
             <input type="hidden" name="idattivita" value="{{Input::get('idattivita')}}">
             <input type="hidden" name="macchina_funzione_no" value="0">
             <input type="hidden" name="macchina_funzione_si" value="1">
+            <input type="hidden" name="garanzia_si" value="{{Input::get('ingaranzia')}}">
             <input type="button" value="SALVA" onclick="toPDF();" style="margin-top:180px;">
         </form>
 

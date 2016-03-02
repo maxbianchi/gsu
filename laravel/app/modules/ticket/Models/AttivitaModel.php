@@ -557,7 +557,7 @@ EOF;
         $note = Input::get('note');
         $note = str_replace("'", "", $note);
         $intervento_risolutivo = isset($_POST['intervento_risolutivo_si']) ? 1 : 0;
-        $garanzia = isset($_POST['garanzia_si']) ? 1 : 0;
+        $garanzia = Input::get('garanzia_si');
         $macchina_funzione = isset($_POST['macchina_funzione_si']) ? 1 : 0;
         $incaricoa = Input::get('incaricoa');
         $carnet_mattina = $_POST['carnet_mattina'];
