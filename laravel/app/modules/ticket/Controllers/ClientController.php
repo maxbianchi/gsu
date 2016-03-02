@@ -134,7 +134,7 @@ class ClientController extends MainController {
             case 'CONTRATTO':
                 break;
             case 'TICKET':
-                if($verbalino[0]['IN_GARANZIA'] != 1):
+                if($attivita[0]['IN_GARANZIA'] == 1):
                     //Gestione tempo minimo
                     $tempo_minimo = $tipologia_contratto['0']['TempoMinimo'] / 60;
                     if($tempo_minimo > $tempo)
@@ -149,7 +149,7 @@ class ClientController extends MainController {
                 endif;
                 break;
             case 'CARNET':
-                if($verbalino[0]['IN_GARANZIA'] != 1):
+                if($attivita[0]['IN_GARANZIA'] == 1):
                     //CARNET
                     $carnet_mattina = $verbalino[0]['CARNET_MATTINA'];
                     $carnet_pomeriggio = $verbalino[0]['CARNET_POMERIGGIO'];
@@ -161,7 +161,7 @@ class ClientController extends MainController {
                 endif;
                 break;
             default:
-                if($verbalino[0]['IN_GARANZIA'] != 1):
+                if($attivita[0]['IN_GARANZIA'] == 1):
                     //CONSUNTIVO
                     //Gestione tempo minimo
                     $tempo_minimo = $tipologia_contratto['0']['TempoMinimo'] / 60;
