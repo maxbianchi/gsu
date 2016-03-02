@@ -62,7 +62,7 @@
             <br><br>
             <br><br>
 
-            <div id="toPrint" style="width:595pt !important; height:842pt;">
+            <div id="toPrint" style="width:595pt !important; height:832pt;">
 <style>
     #footer2{height:90px;
          border-color: #E7E7E7;
