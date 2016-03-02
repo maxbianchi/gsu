@@ -41,7 +41,7 @@
                         <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Ftp Negozio">Ftp Negozio</a></li>
                         <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Internet Emporium">Internet Emporium</a></li>
                         <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=IP SAFE">IP SAFE</a></li>
-                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=MRTG">Npm</a></li>
+                        <li><a href="{{url('/gsu/servizi-web')}}?tipo_servizio=Npm">Npm</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Servizi Posta avanzati</a>
