@@ -54,7 +54,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-                <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/logo_slogan.png') }}" alt="Uniweb 4.0 Dashboard" style="width:150px;" title="Uniweb 4.0 Dashboard"></a>
+                <a href="{{ url('/dashboard') }}"><img src="{{ URL::asset('images/logo_slogan.png') }}" alt="Uniweb 4.1 Dashboard" style="width:150px;" title="Uniweb 4.0 Dashboard"></a>
                 <div style="margin-left: 40%;position: absolute;top: 16px;"><b>{{utf8_encode(Session::get('user')['username']." - ".Session::get('user')['DESCRIZIONE']." ".Session::get('user')['INDIRIZZO']." ".Session::get('user')['LOCALITA']) }}</b>
                     <span style="padding-left:100px!important;color:#283891;font-size:22px;"><?php !empty($tableName) ? print_r("SEZIONE $tableName") : ""?></span>
                 </div>
