@@ -54,7 +54,7 @@ $request['DESTINATARIOABITUALE'] = trim($request['DESTINATARIOABITUALE']);
             <a href="{{url('/gsu/apparati-mobile/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".$request['NTELEFONO']}}">APPARATI MOBILE</a>
         </td>
         <td>
-            <a href="{{url('/gsu/sim-servizio-reperibilita/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".$request['TELEFONO']}}">SERVIZIO REPERIBILITA</a>
+            <a href="{{url('/gsu/sim-servizio-reperibilita/search')."?cliente=".$request['SOGGETTO']."&cliente_finale=".$request['CLIENTE']."&ubicazione=".$request['DESTINATARIOABITUALE']."&ntelefono=".isset($request['TELEFONO']) && !empty($request['TELEFONO']) ? $request['TELEFONO'] : ""}}">SERVIZIO REPERIBILITA</a>
         </td>
     </tr>
 </table>
