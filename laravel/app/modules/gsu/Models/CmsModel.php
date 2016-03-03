@@ -223,9 +223,12 @@ EOF;
             $sql = "UPDATE gsu.dbo.WEBHAT SET ELIMINATO=1 WHERE IDWEBHAT='$id'";
             DB::update($sql);
 
+            $sql = "SELECT count(*) WEBHAT FROM gsu.dbo.WEBHAT WHERE CODICE_R='$manutenzione' AND ELIMINATO != 1";
+            $count_webhat = DB::select($sql);
+
             $sql = "SELECT * FROM gsu.dbo.RICHIESTE_EVASE WHERE CODICE_R = '$manutenzione'";
             $richieste_evase = DB::select($sql);
-            if(count($richieste_evase) > 0){
+            if(count($richieste_evase) > 0 && isset($count_webhat[0]) && $count_webhat[0]['WEBHAT'] == 1){
                 $richieste_evase = $richieste_evase[0];
                 $qta = $richieste_evase['QUANTITA'] - 1;
                 /*if($qta == 0)
