@@ -81,7 +81,7 @@
                             <option value="Directory riservata" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Directory riservata" ? 'selected="selected"' : ""  }}>Directory riservata</option>
                             <option value="FTP Negozio" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "FTP Negozio" ? 'selected="selected"' : ""  }}>FTP Negozio</option>
                             <option value="Internet Emporium" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Internet Emporium" ? 'selected="selected"' : ""  }}>Internet Emporium</option>
-                            <option value="Npm" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Npm" ? 'selected="selected"' : ""  }}>Npm</option>
+                            <option value="Orion-Npm" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Orion-Npm" ? 'selected="selected"' : ""  }}>Orion-Npm</option>
                         </select>
                     </td>
                 </tr>

@@ -83,7 +83,7 @@
                             <option value="Internet Emporium" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Internet Emporium" ? 'selected="selected"' : ""  }}>Internet Emporium</option>
                             <option value="IP SAFE" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "IP SAFE" ? 'selected="selected"' : ""  }}>IP SAFE</option>
 
-                            <option value="Npm" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Npm" ? 'selected="selected"' : ""  }}>Npm</option>
+                            <option value="Orion-Npm" {{isset($request['TIPO_SERVIZIO']) && $request['TIPO_SERVIZIO'] == "Orion-Npm" ? 'selected="selected"' : ""  }}>Orion-Npm</option>
                         </select>
                     </td>
                 </tr>
