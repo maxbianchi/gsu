@@ -9,3 +9,4 @@
 define('EMAIL_STAFF', 'staff@uniweb.it');
 define('EMAIL_STAFF_DESC', 'STAFF UNIWEB');
 define('MAGO', 'UNIWEB');
+const SISTEMISTI = ['ASS-Z001', 'ASS-Z002', 'ASS-Z003', 'ASS-Z004'];

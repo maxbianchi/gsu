@@ -115,7 +115,7 @@
                         </div>
 
                         <div class="col-md-2 col-md-offset-1">
-                            <!--<img style="width:190px;" src="{{ URL::asset('images/ticket.jpg') }}">-->
+                            <img style="width:150px;margin-top:-10px" src="{{ URL::asset('images/logo_unistore_carrello.png') }}">
                         </div>
 
                         <!--/**/-->

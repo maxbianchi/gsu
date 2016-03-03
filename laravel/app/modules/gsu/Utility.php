@@ -49,6 +49,10 @@ class Utility{
                     $res["GSU"]['rivenditore']['text'] = "Attivo";
                     $res["GSU"]['rivenditore']['color'] = "green";
                 }
+                if(in_array($row['CANONE'], SISTEMISTI)){
+                    $res["GSU"]['rivenditore']['text'] = "Attivo";
+                    $res["GSU"]['rivenditore']['color'] = "green";
+                }
             } else {
                 if (($QTAGSU == 0)) {
                     $res["GSU"]['rivenditore']['text'] = "Disattivo";
