@@ -49,7 +49,7 @@ class Utility{
                     $res["GSU"]['rivenditore']['text'] = "Attivo";
                     $res["GSU"]['rivenditore']['color'] = "green";
                 }
-                if(in_array($row['CANONE'], SISTEMISTI)){
+                if(in_array($row['CANONE'], unserialize(SISTEMISTI))){
                     $res["GSU"]['rivenditore']['text'] = "Attivo";
                     $res["GSU"]['rivenditore']['color'] = "green";
                 }
