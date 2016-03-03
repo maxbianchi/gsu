@@ -634,7 +634,7 @@ EOF;
     public function getCategorie()
     {
         $cliente = Input::get('cliente');
-        $sql = "SELECT R.Codice, R.Descrizione FROM " . MAGO . ".dbo.JBS_RIGHECONTRATTI R INNER JOIN " . MAGO . ".dbo.JBS_TESTACONTRATTI T ON R.NrContratto=T.NrContratto LEFT JOIN " . MAGO . ".dbo.MA_Items I ON I.Item = R.Codice WHERE I.CommodityCtg = 'SERVIZI' AND T.Cliente = '$cliente'";
+        $sql = "SELECT R.Codice, R.Descrizione FROM " . MAGO . ".dbo.JBS_RIGHECONTRATTI R INNER JOIN " . MAGO . ".dbo.JBS_TESTACONTRATTI T ON R.NrContratto=T.NrContratto LEFT JOIN " . MAGO . ".dbo.MA_Items I ON I.Item = R.Codice WHERE I.CommodityCtg ='".CATMERCEOLOGICA."' AND T.Cliente = '$cliente'";
         $res = DB::select($sql);
         return $res;
     }
