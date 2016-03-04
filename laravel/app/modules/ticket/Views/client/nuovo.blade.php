@@ -49,12 +49,11 @@
             <tr>
                 <td>EMAIL FATTURAZIONE</td>
                 <td><input type="text" style="background-color: #FFC;" name="email" id="email" value="{{$res['EMAIL'] or ""}}"></td>
-                <td>CATEGORIA *</td>
+                <td>GENERE</td>
                 <td>
-                    <select name="categoria" id="categoria" class="categoria" style="background-color: #FFC;">
-                        <option value="">-----</option>
-                        @foreach($categorie as $categoria)
-                            <option value="{{$categoria['IDCATEGORIA'] or ""}}" {{isset($res['IDCATEGORIA']) && $res['IDCATEGORIA'] == $categoria['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$categoria['DESCRIZIONE'] or ""}}</option>
+                    <select name="genere" id="genere" class="genere" style="background-color: #FFC;">
+                        @foreach($genere as $row)
+                            <option value="{{$row['IDCATEGORIA'] or ""}}" {{isset($result['IDGENERE']) && $result['IDGENERE'] == $row['IDCATEGORIA'] ? 'selected="selected"' : ""  }}>{{$row['DESCRIZIONE'] or ""}}</option>
                         @endforeach
                     </select>
                 </td>
@@ -102,6 +101,7 @@
         <input type="hidden" name="idattivita" value="{{$idattivita or ""}}">
         <input type="hidden" name="incaricoa" value="0">
         <input type="hidden" name="apertoda" value="0">
+        <input type="hidden" name="elaborato" value="0">
         <?php $soggetto = Session::get("user");
               $soggetto = $soggetto['SOGGETTO'];
         ?>

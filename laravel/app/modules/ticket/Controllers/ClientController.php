@@ -46,9 +46,9 @@ class ClientController extends MainController {
         $model = new AttivitaModel();
         $tecnici = $model->getAllTecnici();
         $stati = $model->getAllStati();
-        $categorie = $model->getAllCategorie();
+        $genere = $model->getAllCategorieTable();
         $idattivita = $model->generateIDAttivita();
-        return view("ticket::client.nuovo", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'categorie' => $categorie]);
+        return view("ticket::client.nuovo", ['users' => $users, 'tecnici' => $tecnici,'stati' => $stati, 'idattivita' => $idattivita,'genere' => $genere]);
     }
 
     public function salvaticket(){

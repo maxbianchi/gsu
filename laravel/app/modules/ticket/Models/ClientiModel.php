@@ -51,16 +51,18 @@ class ClientiModel extends Model {
         $email_referente = Input::get("email_referente");
         $nome_referente = Input::get("nome_referente");
         $telefono_referente = Input::get("telefono_referente");
+        $idgenere = Input::get("genere");
+        $elaborato = Input::get("elaborato");
 
 
         $sql = "SELECT * FROM TICKET.dbo.ATTIVITA where IDATTIVITA=$idattivita";
         $request  = DB::select($sql);
         if(count($request) == 0) {
-            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente) VALUES ('$idattivita', '$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente')";
+            $sql = "INSERT INTO TICKET.dbo.ATTIVITA (idattivita, tgu, titolo, motivo, stato, soggetto, ubicazione, apertail, email, idcategoria,nome_referente, email_referente, telefono_referente, elaborato,idgenere) VALUES ('$idattivita', '$tgu', '$titolo','$motivo', '$stato', '$soggetto', '$ubicazione', '$apertail', '$email','$idcategoria','$nome_referente','$email_referente','$telefono_referente','$elaborato','$idgenere')";
             DB::insert($sql);
         }
         else {
-            $sql = "UPDATE TICKET.dbo.ATTIVITA SET tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente' WHERE idattivita='$idattivita'";
+            $sql = "UPDATE TICKET.dbo.ATTIVITA SET tgu='$tgu', titolo='$titolo', motivo='$motivo', stato='$stato', soggetto='$soggetto', ubicazione='$ubicazione', email='$email', idcategoria='$idcategoria',nome_referente='$nome_referente', email_referente='$email_referente', telefono_referente='$telefono_referente',elaborato='$elaborato',idgenere='$idgenere' WHERE idattivita='$idattivita'";
             DB::update($sql);
         }
         $this->salvaStorico($idattivita,$stato);

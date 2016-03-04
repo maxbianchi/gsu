@@ -13,8 +13,8 @@
 
 @section('content')
     <br><br>
-    <div class="col-xs-14 col-sm-6 col-md-10 col-lg-8">
-        <input type="button" value="APRI TICKET" onClick="location.href='{{ url('ticket/nuovo') }}'" class="btn btn-primary btn-xs" style="clear:both;width:200px;">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+        <input type="button" value="APRI TICKET" onClick="location.href='{{ url('ticket/nuovo') }}'" class="btn btn-primary btn-md center-block;" style="clear:both;width:200px;color:#ffffcc;">
     </div>
     <br><br>
 
